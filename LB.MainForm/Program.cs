@@ -29,7 +29,6 @@ namespace LB.MainForm
                             if (!mainForm.bolIsCancel)
                             {
                                 break;
-
                             }
                         }
                     }
