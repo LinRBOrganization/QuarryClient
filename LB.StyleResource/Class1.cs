@@ -6,5 +6,6 @@ namespace LB.StyleResource
 {
     public class Class1
     {
+        //linrubin
     }
 }
