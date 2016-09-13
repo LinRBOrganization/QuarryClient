@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace LB.SysConfig
 {
     public partial class frmAddUser : LBForm
-    {
+    { 
         private long _UserID = 0;//用户ID号
         public frmAddUser(long lUserID)
         {
@@ -26,6 +26,10 @@ namespace LB.SysConfig
             this.txtUserType.DataSource = LB.Common.LBConst.GetConstData("UserType");//读取用户类型常量列表
             this.txtUserType.DisplayMember = "ConstText";
             this.txtUserType.ValueMember = "ConstValue";
+
+            this.txtUserSex.DataSource = LB.Common.LBConst.GetConstData("UserSex");//读取用户类型常量列表
+            this.txtUserSex.DisplayMember = "ConstText";
+            this.txtUserSex.ValueMember = "ConstValue";
         }
 
         //保存
@@ -90,14 +94,14 @@ namespace LB.SysConfig
             dtSPIN.Columns.Add("LoginName", typeof(string));
             dtSPIN.Columns.Add("UserName", typeof(string));
             dtSPIN.Columns.Add("UserPassword", typeof(string));
-            dtSPIN.Columns.Add("UserSex", typeof(string));
+            dtSPIN.Columns.Add("UserSex", typeof(int));
             dtSPIN.Columns.Add("UserType", typeof(int));
             DataRow drNew = dtSPIN.NewRow();
             drNew["UserID"] = _UserID;
             drNew["LoginName"] = this.txtLoginName.Text;
             drNew["UserName"] = this.txtUserName.Text;
             drNew["UserPassword"] = this.txtUserPassword.Text;
-            drNew["UserSex"] = this.txtUserSex.Text;
+            drNew["UserSex"] = this.txtUserSex.SelectedValue;
             drNew["UserType"] = this.txtUserType.SelectedValue;
             dtSPIN.Rows.Add(drNew);
 
