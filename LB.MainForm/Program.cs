@@ -28,7 +28,7 @@ namespace LB.MainForm
                             Application.Run(mainForm);
                             if (!mainForm.bolIsCancel)
                             {
-                                break;
+                                break; 
                             }
                         }
                     }
