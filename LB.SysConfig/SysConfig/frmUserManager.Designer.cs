@@ -47,6 +47,7 @@ namespace LB.SysConfig
             this.btnClose = new LB.Controls.LBToolStripButton(this.components);
             this.btnSave = new LB.Controls.LBToolStripButton(this.components);
             this.btnAdd = new LB.Controls.LBToolStripButton(this.components);
+            this.btnReflesh = new LB.Controls.LBToolStripButton(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.grdMain)).BeginInit();
             this.skinToolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -57,15 +58,8 @@ namespace LB.SysConfig
             this.grdMain.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.grdMain.BackgroundColor = System.Drawing.SystemColors.Window;
             this.grdMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.grdMain.ColumnFont = null;
+            this.grdMain.ColumnFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.grdMain.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(246)))), ((int)(((byte)(239)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.grdMain.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.grdMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdMain.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -77,7 +71,7 @@ namespace LB.SysConfig
             this.grdMain.ColumnSelectForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 12F);
             dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(188)))), ((int)(((byte)(240)))));
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
@@ -87,13 +81,17 @@ namespace LB.SysConfig
             this.grdMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.grdMain.EnableHeadersVisualStyles = false;
             this.grdMain.GridColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.grdMain.HeadFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.grdMain.HeadSelectForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdMain.HeadFont = null;
+            this.grdMain.HeadForeColor = System.Drawing.Color.Empty;
+            this.grdMain.HeadSelectBackColor = System.Drawing.Color.Empty;
+            this.grdMain.HeadSelectForeColor = System.Drawing.Color.Empty;
+            this.grdMain.LineNumberForeColor = System.Drawing.Color.MidnightBlue;
             this.grdMain.Location = new System.Drawing.Point(0, 40);
             this.grdMain.Name = "grdMain";
             this.grdMain.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.grdMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -103,7 +101,7 @@ namespace LB.SysConfig
             this.grdMain.TabIndex = 1;
             this.grdMain.TitleBack = null;
             this.grdMain.TitleBackColorBegin = System.Drawing.Color.White;
-            this.grdMain.TitleBackColorEnd = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(196)))), ((int)(((byte)(242)))));
+            this.grdMain.TitleBackColorEnd = System.Drawing.SystemColors.ActiveBorder;
             // 
             // LoginName
             // 
@@ -185,7 +183,8 @@ namespace LB.SysConfig
             this.skinToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnClose,
             this.btnSave,
-            this.btnAdd});
+            this.btnAdd,
+            this.btnReflesh});
             this.skinToolStrip1.Location = new System.Drawing.Point(0, 0);
             this.skinToolStrip1.Name = "skinToolStrip1";
             this.skinToolStrip1.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
@@ -230,15 +229,26 @@ namespace LB.SysConfig
             this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // btnReflesh
+            // 
+            this.btnReflesh.Image = ((System.Drawing.Image)(resources.GetObject("btnReflesh.Image")));
+            this.btnReflesh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnReflesh.LBPermissionCode = "";
+            this.btnReflesh.Name = "btnReflesh";
+            this.btnReflesh.Size = new System.Drawing.Size(36, 37);
+            this.btnReflesh.Text = "刷新";
+            this.btnReflesh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnReflesh.Click += new System.EventHandler(this.btnReflesh_Click);
+            // 
             // frmUserManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(557, 333);
             this.Controls.Add(this.grdMain);
             this.Controls.Add(this.skinToolStrip1);
+            this.LBPageTitle = "用户及权限管理";
             this.Name = "frmUserManager";
-            this.Text = "用户权限管理";
+            this.Size = new System.Drawing.Size(557, 333);
             ((System.ComponentModel.ISupportInitialize)(this.grdMain)).EndInit();
             this.skinToolStrip1.ResumeLayout(false);
             this.skinToolStrip1.PerformLayout();
@@ -259,5 +269,6 @@ namespace LB.SysConfig
         private LBDataGridViewComboBoxColumn UserSex;
         private LBDataGridViewComboBoxColumn UserType;
         private System.Windows.Forms.DataGridViewTextBoxColumn ChangeTime;
+        private LBToolStripButton btnReflesh;
     }
 }

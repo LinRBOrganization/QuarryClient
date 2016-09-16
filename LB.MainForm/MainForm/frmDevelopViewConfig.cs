@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace LB.MainForm
 {
-    public partial class frmDevelopViewConfig : LBForm
+    public partial class frmDevelopViewConfig : LBUIPageBase
     {
         public frmDevelopViewConfig()
         {

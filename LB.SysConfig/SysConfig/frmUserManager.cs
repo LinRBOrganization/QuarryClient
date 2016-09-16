@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace LB.SysConfig
 {
-    public partial class frmUserManager : LBForm
+    public partial class frmUserManager : LBUIPageBase
     {
         public frmUserManager()
         {
@@ -56,6 +56,19 @@ namespace LB.SysConfig
             {
                 LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
             }
+        }
+
+        private void btnReflesh_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadDataSource();
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+            
         }
     }
 }

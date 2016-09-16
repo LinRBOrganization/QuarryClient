@@ -156,6 +156,20 @@
         S1P4riiKLy5+EmlpCtfID/0WCqtS+wcPADfU1vc0LQAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="btnReflesh.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAG8SURBVDhPrZFrK0NxHMfnDcieeuYV8Ba8CE9FSEjulzS3
+        KJHMvVBuy2WjWUgyUm7JA2zEJib3Wa3DtmN2/Tr/33bW+fNAyrc+nc6D7+d3+h7Vv2Vw24MO/fWvVLcs
+        I17h078pQE44HEYwGITf74coinh/98DlfsPp1SsJ+g2Wn5K+dRei0SihDHv7CALeAGC9E0mQNeeGVnfE
+        S7QrT4hEIoQcZdklAscOHwlk4tVYuo239OlyyvcrkDSSREzaluhpcQI7h4DJBFQ1mXhB17wdoVDoR1kJ
+        EzCOn4FKjZEXdExZEQgESJIyoaarTh8S12XB4SNw8ACUNSzygvaxI3jEmIAVZb5/wb5U3rkDSuvmeUHr
+        0C4E72cCpWTvQSDY9S0HYL4BSqpneEFzzyacgp9QXmWw4oZDwLJNGvASWLUDReXTvKCxcw2PbpGQi8nj
+        auguTkiQOp2WEDAKS8d5QUObCTevPkJ5XSbdkEkC/XmMguJRXlDfsoCrFy/BCmx99jszpGK2uRWz5wKM
+        F4DOGiOvcJgX1GpmcXbvIdja5luBFmejbUijsetMMBMX5OQP8IKaeh3+QnZuryRQqb4AAIVSCpHzfYUA
+        AAAASUVORK5CYII=
+</value>
+  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>25</value>
   </metadata>
