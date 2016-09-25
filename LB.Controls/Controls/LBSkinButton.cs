@@ -14,6 +14,7 @@ namespace LB.Controls
         public LBSkinButton()
         {
             InitializeComponent();
+            LBInitializeComponent();
         }
 
         public LBSkinButton(IContainer container)
@@ -21,6 +22,7 @@ namespace LB.Controls
             container.Add(this);
 
             InitializeComponent();
+            LBInitializeComponent();
         }
 
         /// <summary>
@@ -37,6 +39,12 @@ namespace LB.Controls
             {
                 _LBPermissionCode = value;
             }
+        }
+
+        private void LBInitializeComponent()
+        {
+            this.BaseColor = System.Drawing.Color.LightGray;
+            this.BorderColor = System.Drawing.Color.Gray;
         }
 
         protected override void OnClick(EventArgs e)

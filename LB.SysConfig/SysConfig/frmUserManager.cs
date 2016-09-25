@@ -1,4 +1,6 @@
 ﻿using LB.Controls;
+using LB.Page.Helper;
+using LB.Report.Report;
 using LB.WinFunction;
 using System;
 using System.Collections.Generic;
@@ -69,6 +71,20 @@ namespace LB.SysConfig
                 LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
             }
             
+        }
+
+        private void btnEditReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ReportArgs reportArgs = new ReportArgs((int)1, (DataView)this.grdMain.DataSource, null);
+                frmReport frm = new frmReport(reportArgs);
+                LBShowForm.ShowDialog(frm);
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
         }
     }
 }
