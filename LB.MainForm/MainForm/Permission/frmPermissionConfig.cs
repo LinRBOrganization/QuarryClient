@@ -97,7 +97,7 @@ namespace LB.MainForm.Permission
                 this.grdMain.CurrentCell = null;
                 this.grdMain.EndEdit();
                 DataView dvResult = this.grdMain.DataSource as DataView;
-                int iRowIndex = 0;
+                //int iRowIndex = 0;
                 StringBuilder strError = new StringBuilder();
 
                 foreach (DataGridViewRow dgvr in this.grdMain.Rows)

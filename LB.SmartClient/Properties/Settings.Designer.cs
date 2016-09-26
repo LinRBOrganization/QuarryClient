@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LB.Properties {
+namespace LB.SmartClient.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -27,9 +27,9 @@ namespace LB.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:27222/LBWebService.asmx")]
-        public string LB_Base_LBWebService_LBWebService {
+        public string LB_SmartClient_Webservice_LBWebService {
             get {
-                return ((string)(this["LB_Base_LBWebService_LBWebService"]));
+                return ((string)(this["LB_SmartClient_Webservice_LBWebService"]));
             }
         }
     }

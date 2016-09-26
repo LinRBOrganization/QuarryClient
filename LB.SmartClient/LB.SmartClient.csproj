@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ECEA6DEB-C611-4487-9EE1-641240CF8CBF}</ProjectGuid>
+    <ProjectGuid>{8C9675E8-9C82-4457-BD3F-B2A8FE66DBC2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LB.MainForm</RootNamespace>
-    <AssemblyName>LB.MainForm</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>LB.SmartClient</RootNamespace>
+    <AssemblyName>LB.SmartClient</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -24,7 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -46,60 +45,42 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Messaging" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainForm.cs">
+    <Compile Include="FileSplitStreamReader.cs" />
+    <Compile Include="frmSetAddress.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="frmSetAddress.Designer.cs">
+      <DependentUpon>frmSetAddress.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm\frmDevelopViewConfig.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MainForm\frmDevelopViewConfig.Designer.cs">
-      <DependentUpon>frmDevelopViewConfig.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainForm\frmSQLScriptBuilder.cs">
+    <Compile Include="frmSmartClient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm\frmSQLScriptBuilder.Designer.cs">
-      <DependentUpon>frmSQLScriptBuilder.cs</DependentUpon>
+    <Compile Include="frmSmartClient.Designer.cs">
+      <DependentUpon>frmSmartClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm\Permission\frmAddPermission.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm\Permission\frmAddPermission.Designer.cs">
-      <DependentUpon>frmAddPermission.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainForm\Permission\frmPermissionConfig.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MainForm\Permission\frmPermissionConfig.Designer.cs">
-      <DependentUpon>frmPermissionConfig.cs</DependentUpon>
-    </Compile>
+    <Compile Include="IniClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="ServerConfig.cs" />
+    <Compile Include="Web References\Webservice\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frmSetAddress.resx">
+      <DependentUpon>frmSetAddress.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm\frmDevelopViewConfig.resx">
-      <DependentUpon>frmDevelopViewConfig.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm\frmSQLScriptBuilder.resx">
-      <DependentUpon>frmSQLScriptBuilder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm\Permission\frmAddPermission.resx">
-      <DependentUpon>frmAddPermission.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm\Permission\frmPermissionConfig.resx">
-      <DependentUpon>frmPermissionConfig.cs</DependentUpon>
+    <EmbeddedResource Include="frmSmartClient.resx">
+      <DependentUpon>frmSmartClient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -118,37 +99,30 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Web References\Webservice\LBWebService.wsdl" />
+    <None Include="Web References\Webservice\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LB.Base\LB.Base.csproj">
-      <Project>{739059d0-9d83-4881-b502-b08cca50a4e4}</Project>
-      <Name>LB.Base</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LB.Common\LB.Common.csproj">
-      <Project>{88240f2e-3447-4a6e-a598-8fee981b5a4a}</Project>
-      <Name>LB.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LB.Controls\LB.Controls.csproj">
-      <Project>{04c9ad34-d6ab-4518-9701-9f991d3a8b60}</Project>
-      <Name>LB.Controls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LB.Login\LB.Login.csproj">
-      <Project>{12978718-afcb-4ab2-b00f-cdbd3c2aaa23}</Project>
-      <Name>LB.Login</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LB.SysConfig\LB.SysConfig.csproj">
-      <Project>{948f87ee-5644-4cb5-afa2-c8aeeb1470c2}</Project>
-      <Name>LB.SysConfig</Name>
-    </ProjectReference>
+    <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\btnSave.gif" />
+    <WebReferenceUrl Include="http://localhost:27222/LBWebService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\Webservice\</RelPath>
+      <UpdateFromURL>http://localhost:27222/LBWebService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>LB_SmartClient_Webservice_LBWebService</CachedSettingsPropName>
+    </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\btnClose.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnDelete.gif" />
+    <None Include="Web References\Webservice\LBWebService.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

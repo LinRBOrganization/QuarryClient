@@ -1,17 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{948F87EE-5644-4CB5-AFA2-C8AEEB1470C2}</ProjectGuid>
+    <ProjectGuid>{B74451B8-3C98-49CD-BFED-FC79C41CB742}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LB</RootNamespace>
-    <AssemblyName>LB.SysConfig</AssemblyName>
+    <RootNamespace>LB.Report</RootNamespace>
+    <AssemblyName>LB.Report</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,27 +22,36 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\LB.MainForm\bin\Debug\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CSkin">
-      <HintPath>..\LB.MainForm\bin\Debug\CSkin.dll</HintPath>
+      <HintPath>..\..\..\QuarryProject\WebClient\LB.MainForm\bin\Debug\CSkin.dll</HintPath>
     </Reference>
     <Reference Include="DMSkin">
-      <HintPath>..\LB.MainForm\bin\Debug\DMSkin.dll</HintPath>
+      <HintPath>..\..\..\QuarryProject\WebClient\LB.MainForm\bin\Debug\DMSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport, Version=2013.2.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LB.MainForm\bin\Debug\FastReport.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Bars, Version=2013.2.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LB.MainForm\bin\Debug\FastReport.Bars.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Editor, Version=2013.2.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LB.MainForm\bin\Debug\FastReport.Editor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -53,38 +63,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SysConfig\frmAddUser.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SysConfig\frmAddUser.Designer.cs">
-      <DependentUpon>frmAddUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SysConfig\frmChangePassword.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SysConfig\frmChangePassword.Designer.cs">
-      <DependentUpon>frmChangePassword.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SysConfig\frmUserManager.cs">
+    <Compile Include="Report\frmEditReport.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SysConfig\frmUserManager.Designer.cs">
-      <DependentUpon>frmUserManager.cs</DependentUpon>
+    <Compile Include="Report\frmEditReport.Designer.cs">
+      <DependentUpon>frmEditReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\frmReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Report\frmReport.Designer.cs">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ReportArgs.cs" />
+    <Compile Include="Report\ReportHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="SysConfig\frmAddUser.resx">
-      <DependentUpon>frmAddUser.cs</DependentUpon>
+    <EmbeddedResource Include="Report\frmEditReport.resx">
+      <DependentUpon>frmEditReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SysConfig\frmChangePassword.resx">
-      <DependentUpon>frmChangePassword.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SysConfig\frmUserManager.resx">
-      <DependentUpon>frmUserManager.cs</DependentUpon>
+    <EmbeddedResource Include="Report\frmReport.resx">
+      <DependentUpon>frmReport.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -100,35 +103,10 @@
       <Project>{04c9ad34-d6ab-4518-9701-9f991d3a8b60}</Project>
       <Name>LB.Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LB.Report\LB.Report.csproj">
-      <Project>{b74451b8-3c98-49cd-bfed-fc79c41cb742}</Project>
-      <Name>LB.Report</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LB.StyleResource\LB.StyleResource.csproj">
       <Project>{bb3a2964-6a7e-479a-b180-b156fbcc868b}</Project>
       <Name>LB.StyleResource</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnClose.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnListMode.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnNewSave3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnOpenAdd.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnReset.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnDelete.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnNewSave31.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
