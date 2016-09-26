@@ -35,6 +35,9 @@
             this.txtDescription = new CCWin.SkinControl.SkinTextBox();
             this.btnSaveReport = new LB.Controls.LBSkinButton(this.components);
             this.btnDeleteReport = new LB.Controls.LBSkinButton(this.components);
+            this.btnUpLoadReport = new LB.Controls.LBSkinButton(this.components);
+            this.skinLabel3 = new CCWin.SkinControl.SkinLabel();
+            this.txtReportPath = new CCWin.SkinControl.SkinTextBox();
             this.SuspendLayout();
             // 
             // skinLabel2
@@ -42,7 +45,7 @@
             this.skinLabel2.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel2.BorderColor = System.Drawing.Color.White;
             this.skinLabel2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel2.Location = new System.Drawing.Point(31, 30);
+            this.skinLabel2.Location = new System.Drawing.Point(31, 13);
             this.skinLabel2.Name = "skinLabel2";
             this.skinLabel2.Size = new System.Drawing.Size(83, 32);
             this.skinLabel2.TabIndex = 8;
@@ -59,7 +62,7 @@
             this.txtReportTemplateName.IsPasswordChat = '\0';
             this.txtReportTemplateName.IsSystemPasswordChar = false;
             this.txtReportTemplateName.Lines = new string[0];
-            this.txtReportTemplateName.Location = new System.Drawing.Point(117, 34);
+            this.txtReportTemplateName.Location = new System.Drawing.Point(117, 17);
             this.txtReportTemplateName.Margin = new System.Windows.Forms.Padding(0);
             this.txtReportTemplateName.MaxLength = 32767;
             this.txtReportTemplateName.MinimumSize = new System.Drawing.Size(28, 28);
@@ -101,7 +104,7 @@
             this.skinLabel1.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel1.BorderColor = System.Drawing.Color.White;
             this.skinLabel1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel1.Location = new System.Drawing.Point(31, 72);
+            this.skinLabel1.Location = new System.Drawing.Point(31, 55);
             this.skinLabel1.Name = "skinLabel1";
             this.skinLabel1.Size = new System.Drawing.Size(83, 32);
             this.skinLabel1.TabIndex = 10;
@@ -118,7 +121,7 @@
             this.txtDescription.IsPasswordChat = '\0';
             this.txtDescription.IsSystemPasswordChar = false;
             this.txtDescription.Lines = new string[0];
-            this.txtDescription.Location = new System.Drawing.Point(117, 76);
+            this.txtDescription.Location = new System.Drawing.Point(117, 59);
             this.txtDescription.Margin = new System.Windows.Forms.Padding(0);
             this.txtDescription.MaxLength = 32767;
             this.txtDescription.MinimumSize = new System.Drawing.Size(28, 28);
@@ -164,7 +167,7 @@
             this.btnSaveReport.DownBack = null;
             this.btnSaveReport.Font = new System.Drawing.Font("宋体", 10F);
             this.btnSaveReport.LBPermissionCode = "";
-            this.btnSaveReport.Location = new System.Drawing.Point(128, 120);
+            this.btnSaveReport.Location = new System.Drawing.Point(128, 145);
             this.btnSaveReport.MouseBack = null;
             this.btnSaveReport.Name = "btnSaveReport";
             this.btnSaveReport.NormlBack = null;
@@ -183,7 +186,7 @@
             this.btnDeleteReport.DownBack = null;
             this.btnDeleteReport.Font = new System.Drawing.Font("宋体", 10F);
             this.btnDeleteReport.LBPermissionCode = "";
-            this.btnDeleteReport.Location = new System.Drawing.Point(240, 120);
+            this.btnDeleteReport.Location = new System.Drawing.Point(215, 145);
             this.btnDeleteReport.MouseBack = null;
             this.btnDeleteReport.Name = "btnDeleteReport";
             this.btnDeleteReport.NormlBack = null;
@@ -193,10 +196,91 @@
             this.btnDeleteReport.UseVisualStyleBackColor = false;
             this.btnDeleteReport.Click += new System.EventHandler(this.btnDeleteReport_Click);
             // 
+            // btnUpLoadReport
+            // 
+            this.btnUpLoadReport.BackColor = System.Drawing.Color.Transparent;
+            this.btnUpLoadReport.BaseColor = System.Drawing.Color.LightGray;
+            this.btnUpLoadReport.BorderColor = System.Drawing.Color.Gray;
+            this.btnUpLoadReport.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.btnUpLoadReport.DownBack = null;
+            this.btnUpLoadReport.Font = new System.Drawing.Font("宋体", 10F);
+            this.btnUpLoadReport.LBPermissionCode = "";
+            this.btnUpLoadReport.Location = new System.Drawing.Point(302, 145);
+            this.btnUpLoadReport.MouseBack = null;
+            this.btnUpLoadReport.Name = "btnUpLoadReport";
+            this.btnUpLoadReport.NormlBack = null;
+            this.btnUpLoadReport.Size = new System.Drawing.Size(81, 26);
+            this.btnUpLoadReport.TabIndex = 13;
+            this.btnUpLoadReport.Text = "上传报表";
+            this.btnUpLoadReport.UseVisualStyleBackColor = false;
+            this.btnUpLoadReport.Click += new System.EventHandler(this.btnUpLoadReport_Click);
+            // 
+            // skinLabel3
+            // 
+            this.skinLabel3.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabel3.BorderColor = System.Drawing.Color.White;
+            this.skinLabel3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel3.Location = new System.Drawing.Point(31, 97);
+            this.skinLabel3.Name = "skinLabel3";
+            this.skinLabel3.Size = new System.Drawing.Size(83, 32);
+            this.skinLabel3.TabIndex = 14;
+            this.skinLabel3.Text = "报表路径";
+            this.skinLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtReportPath
+            // 
+            this.txtReportPath.BackColor = System.Drawing.Color.Transparent;
+            this.txtReportPath.DownBack = null;
+            this.txtReportPath.Icon = null;
+            this.txtReportPath.IconIsButton = false;
+            this.txtReportPath.IconMouseState = CCWin.SkinClass.ControlState.Normal;
+            this.txtReportPath.IsPasswordChat = '\0';
+            this.txtReportPath.IsSystemPasswordChar = false;
+            this.txtReportPath.Lines = new string[0];
+            this.txtReportPath.Location = new System.Drawing.Point(117, 101);
+            this.txtReportPath.Margin = new System.Windows.Forms.Padding(0);
+            this.txtReportPath.MaxLength = 32767;
+            this.txtReportPath.MinimumSize = new System.Drawing.Size(28, 28);
+            this.txtReportPath.MouseBack = null;
+            this.txtReportPath.MouseState = CCWin.SkinClass.ControlState.Normal;
+            this.txtReportPath.Multiline = false;
+            this.txtReportPath.Name = "txtReportPath";
+            this.txtReportPath.NormlBack = null;
+            this.txtReportPath.Padding = new System.Windows.Forms.Padding(5);
+            this.txtReportPath.ReadOnly = false;
+            this.txtReportPath.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtReportPath.Size = new System.Drawing.Size(275, 28);
+            // 
+            // 
+            // 
+            this.txtReportPath.SkinTxt.AccessibleName = "";
+            this.txtReportPath.SkinTxt.AutoCompleteCustomSource.AddRange(new string[] {
+            "asdfasdf",
+            "adsfasdf"});
+            this.txtReportPath.SkinTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtReportPath.SkinTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtReportPath.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtReportPath.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtReportPath.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
+            this.txtReportPath.SkinTxt.Location = new System.Drawing.Point(5, 5);
+            this.txtReportPath.SkinTxt.Name = "BaseText";
+            this.txtReportPath.SkinTxt.Size = new System.Drawing.Size(265, 18);
+            this.txtReportPath.SkinTxt.TabIndex = 0;
+            this.txtReportPath.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.txtReportPath.SkinTxt.WaterText = "";
+            this.txtReportPath.TabIndex = 15;
+            this.txtReportPath.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtReportPath.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.txtReportPath.WaterText = "";
+            this.txtReportPath.WordWrap = true;
+            // 
             // frmEditReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtReportPath);
+            this.Controls.Add(this.skinLabel3);
+            this.Controls.Add(this.btnUpLoadReport);
             this.Controls.Add(this.btnDeleteReport);
             this.Controls.Add(this.btnSaveReport);
             this.Controls.Add(this.skinLabel1);
@@ -204,7 +288,7 @@
             this.Controls.Add(this.skinLabel2);
             this.Controls.Add(this.txtReportTemplateName);
             this.Name = "frmEditReport";
-            this.Size = new System.Drawing.Size(432, 158);
+            this.Size = new System.Drawing.Size(494, 179);
             this.ResumeLayout(false);
 
         }
@@ -217,5 +301,8 @@
         private CCWin.SkinControl.SkinTextBox txtDescription;
         private Controls.LBSkinButton btnSaveReport;
         private Controls.LBSkinButton btnDeleteReport;
+        private Controls.LBSkinButton btnUpLoadReport;
+        private CCWin.SkinControl.SkinLabel skinLabel3;
+        private CCWin.SkinControl.SkinTextBox txtReportPath;
     }
 }
