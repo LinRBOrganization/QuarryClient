@@ -39,6 +39,18 @@
     <Reference Include="DMSkin">
       <HintPath>..\LB.MainForm\bin\Debug\DMSkin.dll</HintPath>
     </Reference>
+    <Reference Include="FastReport, Version=2015.3.3.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LB.MainForm\bin\Debug\FastReport.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Bars, Version=2015.3.3.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LB.MainForm\bin\Debug\FastReport.Bars.dll</HintPath>
+    </Reference>
+    <Reference Include="FastReport.Editor, Version=2015.3.3.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LB.MainForm\bin\Debug\FastReport.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Design" />
@@ -47,7 +59,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Args\PageEventArgs.cs" />
     <Compile Include="Controls\Args\TabPageCloseEventArgs.cs" />
+    <Compile Include="Controls\Args\ToolStripReportArgs.cs" />
+    <Compile Include="Controls\Helper\LBEnum.cs" />
     <Compile Include="Controls\Helper\LBShowForm.cs" />
     <Compile Include="Controls\LBBillForm.cs">
       <SubType>Form</SubType>
@@ -81,6 +96,18 @@
     <Compile Include="Controls\LBSkinButton.Designer.cs">
       <DependentUpon>LBSkinButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\LBToolStripDropDownReportViewButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\LBToolStripDropDownReportViewButton.Designer.cs">
+      <DependentUpon>LBToolStripDropDownReportViewButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LBToolStripReportViewButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\LBToolStripReportViewButton.Designer.cs">
+      <DependentUpon>LBToolStripReportViewButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\LBToolStripDropDownButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -99,6 +126,22 @@
     <Compile Include="Controls\LBUIPageBase.Designer.cs">
       <DependentUpon>LBUIPageBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Report\frmEditReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Report\frmEditReport.designer.cs">
+      <DependentUpon>frmEditReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Report\frmReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Report\frmReport.designer.cs">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Report\ReportArgs.cs" />
+    <Compile Include="Controls\Report\ReportCommon.cs" />
+    <Compile Include="Controls\Report\ReportHelper.cs" />
+    <Compile Include="Controls\Report\ReportRequestArgs.cs" />
     <Compile Include="Controls\TestForm1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +189,12 @@
     <EmbeddedResource Include="Controls\LBUIPageBase.resx">
       <DependentUpon>LBUIPageBase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Report\frmEditReport.resx">
+      <DependentUpon>frmEditReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Report\frmReport.resx">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\TestForm1.resx">
       <DependentUpon>TestForm1.cs</DependentUpon>
     </EmbeddedResource>
@@ -172,6 +221,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon1.ico" />
+    <None Include="Resources\btnConfig.gif" />
+    <None Include="Resources\btnPreview.gif" />
     <None Include="Resources\ICO_Delete.ico" />
     <None Include="Resources\20160916050321165_easyicon_net_16.ico" />
     <None Include="Resources\Icon1.ico" />

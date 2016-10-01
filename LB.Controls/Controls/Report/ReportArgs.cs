@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
-namespace LB.Report.Report
+namespace LB.Controls.Report
 {
     public class ReportArgs
     {
-        private DataView _DataSource = null;
-        public DataView DataSource
+        private DataSet _DSDataSource = null;
+        public DataSet DSDataSource
         {
             get
             {
-                return _DataSource;
+                return _DSDataSource;
+            }
+            set
+            {
+                _DSDataSource = value;
             }
         }
 
@@ -25,7 +29,7 @@ namespace LB.Report.Report
             }
         }
 
-        private int _ReportTypeID;
+        private long _ReportTypeID;
         public long ReportTypeID
         {
             get
@@ -34,9 +38,9 @@ namespace LB.Report.Report
             }
         }
 
-        public ReportArgs(int iReportTypeID, DataView dvDataSource, DataRow recordDR)
+        public ReportArgs(long iReportTypeID, DataSet dsDataSource, DataRow recordDR)
         {
-            this._DataSource = dvDataSource;
+            this._DSDataSource = dsDataSource;
             this._RecordDR = recordDR;
             this._ReportTypeID = iReportTypeID;
         }

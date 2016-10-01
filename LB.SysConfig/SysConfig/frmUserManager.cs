@@ -9,6 +9,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using LB.Controls.Args;
+using LB.Controls.Report;
 
 namespace LB.SysConfig
 {
@@ -73,18 +75,32 @@ namespace LB.SysConfig
             
         }
 
-        private void btnEditReport_Click(object sender, EventArgs e)
+        protected override void OnInitToolStripControl(ToolStripReportArgs args)
         {
-            try
-            {
-                ReportArgs reportArgs = new ReportArgs((int)1, (DataView)this.grdMain.DataSource, null);
-                frmReport frm = new frmReport(reportArgs);
-                LBShowForm.ShowDialog(frm);
-            }
-            catch (Exception ex)
-            {
-                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
-            }
+            args.LBToolStrip = skinToolStrip1;
+            args.ReportTypeID = 1;
+            base.OnInitToolStripControl(args);
+            
+        }
+
+        protected override void OnReportEdit(ReportRequestArgs args)
+        {
+            base.OnReportEdit(args);
+            DataTable dtSource = ((DataView)this.grdMain.DataSource).Table.Copy();
+            dtSource.TableName = "T001";
+            DataSet dsSource = new DataSet("Report");
+            dsSource.Tables.Add(dtSource);
+            args.DSDataSource = dsSource;
+        }
+
+        protected override void OnReportBeforeView(ReportRequestArgs args)
+        {
+            base.OnReportBeforeView(args);
+            DataTable dtSource = ((DataView)this.grdMain.DataSource).Table.Copy();
+            dtSource.TableName = "T001";
+            DataSet dsSource = new DataSet("Report");
+            dsSource.Tables.Add(dtSource);
+            args.DSDataSource = dsSource;
         }
     }
 }
