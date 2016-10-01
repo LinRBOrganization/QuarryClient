@@ -78,14 +78,14 @@ namespace LB.SysConfig
         protected override void OnInitToolStripControl(ToolStripReportArgs args)
         {
             args.LBToolStrip = skinToolStrip1;
-            args.ReportTypeID = 1;
+            args.ReportTypeID = 1;//客户管理
             base.OnInitToolStripControl(args);
             
         }
 
-        protected override void OnReportEdit(ReportRequestArgs args)
+        protected override void OnReportRequest(ReportRequestArgs args)
         {
-            base.OnReportEdit(args);
+            base.OnReportRequest(args);
             DataTable dtSource = ((DataView)this.grdMain.DataSource).Table.Copy();
             dtSource.TableName = "T001";
             DataSet dsSource = new DataSet("Report");
@@ -93,14 +93,5 @@ namespace LB.SysConfig
             args.DSDataSource = dsSource;
         }
 
-        protected override void OnReportBeforeView(ReportRequestArgs args)
-        {
-            base.OnReportBeforeView(args);
-            DataTable dtSource = ((DataView)this.grdMain.DataSource).Table.Copy();
-            dtSource.TableName = "T001";
-            DataSet dsSource = new DataSet("Report");
-            dsSource.Tables.Add(dtSource);
-            args.DSDataSource = dsSource;
-        }
     }
 }

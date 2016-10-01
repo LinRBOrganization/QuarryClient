@@ -226,7 +226,7 @@ namespace LB.Controls
                 }
 
                 ReportRequestArgs args = new Report.ReportRequestArgs(lReportTemplateID, lReportTypeID, null, null);
-                OnReportBeforeView(args);
+                OnReportRequest(args);
                 if (args.DSDataSource == null && args.RecordDR == null)
                 {
                     LB.WinFunction.LBCommonHelper.ShowCommonMessage("未设置数据源，编辑报表失败！");
@@ -247,12 +247,7 @@ namespace LB.Controls
             
         }
 
-        protected virtual void OnReportEdit(ReportRequestArgs args)
-        {
-
-        }
-
-        protected virtual void OnReportBeforeView(ReportRequestArgs args)
+        protected virtual void OnReportRequest(ReportRequestArgs args)
         {
 
         }
@@ -263,7 +258,7 @@ namespace LB.Controls
             {
                 LBToolStripReportViewButton btnEditReport = sender as LBToolStripReportViewButton;
                 ReportRequestArgs args = new Report.ReportRequestArgs(0,(int)btnEditReport.ReportTypeID, null, null);
-                OnReportEdit(args);
+                OnReportRequest(args);
                 if (args.DSDataSource == null && args.RecordDR == null)
                 {
                     LB.WinFunction.LBCommonHelper.ShowCommonMessage("未设置数据源，编辑报表失败！");
