@@ -6,7 +6,7 @@ using System.Text;
 
 namespace LB.WinFunction
 {
-    public class LBEncrypt
+    internal class LBEncrypt
     {
         ///
         /// DES 加密(数据加密标准，速度较快，适用于加密大量数据的场合)
@@ -71,11 +71,6 @@ namespace LB.WinFunction
             catch (Exception ex) { throw ex; }
             finally { m_DESProvider.Clear(); }
             return m_strDecrypt;
-        }
-
-        public string DESEncrypt(object strPassword, string v)
-        {
-            throw new NotImplementedException();
         }
     }
 

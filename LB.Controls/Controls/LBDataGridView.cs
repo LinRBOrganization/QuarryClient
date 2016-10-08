@@ -31,6 +31,8 @@ namespace LB.Controls
 
         private void LBInitializeComponent()
         {
+            
+
             this.CellClick += LBDataGridView_CellClick;
         }
 

@@ -34,19 +34,6 @@ namespace LB.Controls
             MyColumn.FieldName = this.FieldName;
             return MyColumn;
         }
-
-        public override DataGridViewCell CellTemplate
-        {
-            get
-            {
-                return base.CellTemplate;
-            }
-
-            set
-            {
-                base.CellTemplate = value;
-            }
-        }
     }
 }
 

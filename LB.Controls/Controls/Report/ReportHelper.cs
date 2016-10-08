@@ -125,11 +125,11 @@ namespace LB.Controls.Report
         /// <summary>
         /// 预览报表
         /// </summary>
-        public static void OpenReportDialog(enRequestReportActionType eActionType, ReportRequestArgs reportRequestArgs)
+        public static void OpenReportDialog( ReportRequestArgs reportRequestArgs)
         {
             DataRow drReportTemplateConfig = GetReportTemplateRow(reportRequestArgs.ReportTemplateID);
             reportRequestArgs.ReportTemplateConfig = drReportTemplateConfig;
-            ShowReport(eActionType,reportRequestArgs);
+            ShowReport(reportRequestArgs);
         }
 
         /// <summary>
@@ -150,12 +150,12 @@ namespace LB.Controls.Report
 
                 strReportPath = strReportFullName;
 
-                //Form frm = new Form();
-                //frm.Icon = FastReport.Utils.Config.PreviewSettings.Icon;
-                //frm.Show();
-                //report.Design();
+                Form frm = new Form();
+                frm.Icon = FastReport.Utils.Config.PreviewSettings.Icon;
+                frm.Show();
+                report.Design();
                 report.Dispose();
-                //frm.Close();
+                frm.Close();
             }
             return strReportPath;
         }
@@ -186,7 +186,7 @@ namespace LB.Controls.Report
             }
         }
 
-        private static void ShowReport(enRequestReportActionType eActionType, ReportRequestArgs e)
+        private static void ShowReport(ReportRequestArgs e)
         {
             // FastReport 配置
             Config.DesignerSettings.ShowInTaskbar = true;
@@ -207,33 +207,22 @@ namespace LB.Controls.Report
 
             // 加载模板
             FastReport.Report report = null;
-            Form frm = null;
+            Form frm = new Form();
             try
             {
-                frm = new Form();
                 report = new FastReport.Report();
                 report.Load(strFileFullName);
                 // 纸张设置
                 //SetPaperAuto(report, iReportTemplateID);
 
                 BuildParmsAndData(e, report, enBuildParmsAndDataActionType.SetValue);
+               
+                frm.FormBorderStyle = FormBorderStyle.None;
+                frm.Text = "报表预览["+ strReportTemplateName+"]";
+                frm.TransparencyKey = frm.BackColor;
+                frm.Show();
 
-                if (eActionType == enRequestReportActionType.Preview)//预览
-                {
-                    //frm.FormBorderStyle = FormBorderStyle.None;
-                    //frm.Text = "报表预览[" + strReportTemplateName + "]";
-                    //frm.TransparencyKey = frm.BackColor;
-                    //frm.Show();
-
-                    //report.Show(true, frm);
-
-                    report.Show(false);
-                }
-                else if (eActionType == enRequestReportActionType.DirectPrint)//直接打印
-                {
-                    report.PrintSettings.ShowDialog = false;
-                    report.Print();
-                }
+                report.Show(true,frm);
             }
             finally
             {
@@ -242,10 +231,7 @@ namespace LB.Controls.Report
                     if (report != null)
                     {
                         report.Dispose();
-                        if (frm != null)
-                        {
-                            frm.Close();
-                        }
+                        frm.Close();
                     }
                 }
                 catch

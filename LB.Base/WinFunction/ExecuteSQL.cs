@@ -1,5 +1,4 @@
-﻿using LB.WinFunction.Args;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
@@ -8,8 +7,6 @@ namespace LB.WinFunction
 {
     public class ExecuteSQL
     {
-        public static event CallSPHandle CallSPEvent;
-        
         /// <summary>
         /// 调用存储过程或中间层
         /// </summary>
@@ -30,11 +27,6 @@ namespace LB.WinFunction
             if (bolIsError)
             {
                 throw new Exception(strErrorMsg);
-            }
-            if (CallSPEvent != null)
-            {
-                CallSPArgs args = new Args.CallSPArgs(iSPType, dtInput);
-                CallSPEvent(args);
             }
         }
 

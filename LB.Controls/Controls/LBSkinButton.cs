@@ -52,7 +52,6 @@ namespace LB.Controls
             try
             {
                 LBPermission.VerifyUserPermission(LBPermissionCode);
-                //LBLog.InsertSysLog(LBPermissionCode);
             }
             catch (Exception ex)
             {

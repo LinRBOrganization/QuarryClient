@@ -22,89 +22,7 @@ namespace LB.SysConfig
             this.grdMain.AutoGenerateColumns = false;
             this.grdMain.LBLoadConst();
             this.grdMain.DataError += delegate (object sender, DataGridViewDataErrorEventArgs e) { };
-            this.grdMain.LBCellButtonClick += GrdMain_LBCellButtonClick;
-            this.grdMain.CellDoubleClick += GrdMain_CellDoubleClick;
             LoadDataSource();//加载数据源
-        }
-
-        private void GrdMain_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
-                {
-                    DataGridViewRow dgvr = this.grdMain.Rows[e.RowIndex];
-                    if (dgvr.DataBoundItem != null)
-                    {
-                        DataRowView drv = dgvr.DataBoundItem as DataRowView;
-                        long lUserID = drv["UserID"] == DBNull.Value ?
-                            0 : Convert.ToInt64(drv["UserID"]);
-
-                        if (lUserID > 0)
-                        {
-                            frmAddUser frm = new frmAddUser(lUserID);
-                            frm.ShowDialog();
-
-                            LoadDataSource();
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
-            }
-        }
-
-        private void GrdMain_LBCellButtonClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if (this.grdMain.Columns[e.ColumnIndex].Name.Equals("Delete"))
-                {
-                    DataGridViewRow dgvr = this.grdMain.Rows[e.RowIndex];
-                    if (dgvr.IsNewRow)
-                    {
-                        return;
-                    }
-
-                    if (dgvr.DataBoundItem != null)
-                    {
-                        DataRowView drv = dgvr.DataBoundItem as DataRowView;
-                        long lUserID = drv["UserID"] == DBNull.Value ?
-                            0 : Convert.ToInt64(drv["UserID"]);
-
-                        if (lUserID > 0)
-                        {
-                            if (LB.WinFunction.LBCommonHelper.ConfirmMessage("确定删除？", "提示", MessageBoxButtons.YesNo) ==
-                                 DialogResult.Yes)
-                            {
-                                LBDbParameterCollection parmCol = new LBDbParameterCollection();
-                                parmCol.Add(new LBParameter("UserID", enLBDbType.Int64, lUserID));
-                                DataSet dsReturn;
-                                Dictionary<string, object> dictValue;
-                                try
-                                {
-                                    ExecuteSQL.CallSP(10002, parmCol, out dsReturn, out dictValue);
-                                    LoadDataSource();
-                                }
-                                catch (Exception ex)
-                                {
-                                    dgvr.ErrorText = ex.Message;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            this.grdMain.Rows.Remove(dgvr);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
-            }
         }
 
         protected override void OnLoad(EventArgs e)
@@ -137,8 +55,6 @@ namespace LB.SysConfig
             {
                 frmAddUser frm = new frmAddUser(0);
                 frm.ShowDialog();
-
-                LoadDataSource();
             }
             catch (Exception ex)
             {
@@ -177,9 +93,5 @@ namespace LB.SysConfig
             args.DSDataSource = dsSource;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

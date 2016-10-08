@@ -76,8 +76,6 @@
     <Compile Include="Controls\LBDataGridView.Designer.cs">
       <DependentUpon>LBDataGridView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\LBDataGridViewButtonCell.cs" />
-    <Compile Include="Controls\LBDataGridViewButtonColumn.cs" />
     <Compile Include="Controls\LBDataGridViewComboBoxColumn.cs" />
     <Compile Include="Controls\LBForm.cs">
       <SubType>Form</SubType>
@@ -223,7 +221,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon1.ico" />
-    <None Include="Resources\btnPrint.gif" />
     <None Include="Resources\btnConfig.gif" />
     <None Include="Resources\btnPreview.gif" />
     <None Include="Resources\ICO_Delete.ico" />

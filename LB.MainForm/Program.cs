@@ -23,26 +23,12 @@ namespace LB.MainForm
                     Application.Run(login);
                     if (LoginInfo.IsVerifySuccess)
                     {
-                        if (LoginInfo.UserType == 0)//地磅文员
+                        using (MainForm mainForm = new MainForm())
                         {
-                            using (WeightForm mainForm = new WeightForm())
+                            Application.Run(mainForm);
+                            if (!mainForm.bolIsCancel)
                             {
-                                Application.Run(mainForm);
-                                if (!mainForm.bolIsCancel)
-                                {
-                                    break;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            using (MainForm mainForm = new MainForm())
-                            {
-                                Application.Run(mainForm);
-                                if (!mainForm.bolIsCancel)
-                                {
-                                    break;
-                                }
+                                break; 
                             }
                         }
                     }
