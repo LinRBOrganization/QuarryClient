@@ -1,4 +1,4 @@
-﻿namespace LB.Report.Report
+﻿namespace LB.Controls.Report
 {
     partial class frmEditReport
     {
@@ -38,6 +38,8 @@
             this.btnUpLoadReport = new LB.Controls.LBSkinButton(this.components);
             this.skinLabel3 = new CCWin.SkinControl.SkinLabel();
             this.txtReportPath = new CCWin.SkinControl.SkinTextBox();
+            this.btnSelectReport = new System.Windows.Forms.Button();
+            this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // skinLabel2
@@ -249,7 +251,7 @@
             this.txtReportPath.Padding = new System.Windows.Forms.Padding(5);
             this.txtReportPath.ReadOnly = false;
             this.txtReportPath.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtReportPath.Size = new System.Drawing.Size(275, 28);
+            this.txtReportPath.Size = new System.Drawing.Size(179, 28);
             // 
             // 
             // 
@@ -264,7 +266,7 @@
             this.txtReportPath.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
             this.txtReportPath.SkinTxt.Location = new System.Drawing.Point(5, 5);
             this.txtReportPath.SkinTxt.Name = "BaseText";
-            this.txtReportPath.SkinTxt.Size = new System.Drawing.Size(265, 18);
+            this.txtReportPath.SkinTxt.Size = new System.Drawing.Size(169, 18);
             this.txtReportPath.SkinTxt.TabIndex = 0;
             this.txtReportPath.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.txtReportPath.SkinTxt.WaterText = "";
@@ -274,10 +276,25 @@
             this.txtReportPath.WaterText = "";
             this.txtReportPath.WordWrap = true;
             // 
+            // btnSelectReport
+            // 
+            this.btnSelectReport.Location = new System.Drawing.Point(302, 105);
+            this.btnSelectReport.Name = "btnSelectReport";
+            this.btnSelectReport.Size = new System.Drawing.Size(90, 23);
+            this.btnSelectReport.TabIndex = 16;
+            this.btnSelectReport.Text = "选择本地报表";
+            this.btnSelectReport.UseVisualStyleBackColor = true;
+            this.btnSelectReport.Click += new System.EventHandler(this.btnSelectReport_Click);
+            // 
+            // openFile
+            // 
+            this.openFile.FileName = "openFileDialog1";
+            // 
             // frmEditReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnSelectReport);
             this.Controls.Add(this.txtReportPath);
             this.Controls.Add(this.skinLabel3);
             this.Controls.Add(this.btnUpLoadReport);
@@ -304,5 +321,7 @@
         private Controls.LBSkinButton btnUpLoadReport;
         private CCWin.SkinControl.SkinLabel skinLabel3;
         private CCWin.SkinControl.SkinTextBox txtReportPath;
+        private System.Windows.Forms.Button btnSelectReport;
+        private System.Windows.Forms.OpenFileDialog openFile;
     }
 }

@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LB.Report", "LB.Report\LB.R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LB.SmartClient", "LB.SmartClient\LB.SmartClient.csproj", "{8C9675E8-9C82-4457-BD3F-B2A8FE66DBC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LB.PageType", "LB.PageType\LB.PageType.csproj", "{140F1360-E156-45ED-BE3A-B4A0AF2D40E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{8C9675E8-9C82-4457-BD3F-B2A8FE66DBC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C9675E8-9C82-4457-BD3F-B2A8FE66DBC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C9675E8-9C82-4457-BD3F-B2A8FE66DBC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{140F1360-E156-45ED-BE3A-B4A0AF2D40E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{140F1360-E156-45ED-BE3A-B4A0AF2D40E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{140F1360-E156-45ED-BE3A-B4A0AF2D40E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{140F1360-E156-45ED-BE3A-B4A0AF2D40E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

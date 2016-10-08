@@ -63,31 +63,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Report\frmEditReport.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Report\frmEditReport.Designer.cs">
-      <DependentUpon>frmEditReport.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Report\frmReport.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Report\frmReport.Designer.cs">
-      <DependentUpon>frmReport.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Report\ReportArgs.cs" />
-    <Compile Include="Report\ReportHelper.cs" />
+    <Compile Include="Report\Factory\AssemblyStart.cs" />
+    <Compile Include="Report\Factory\Page_Report.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Report\frmEditReport.resx">
-      <DependentUpon>frmEditReport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Report\frmReport.resx">
-      <DependentUpon>frmReport.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +84,10 @@
     <ProjectReference Include="..\LB.Controls\LB.Controls.csproj">
       <Project>{04c9ad34-d6ab-4518-9701-9f991d3a8b60}</Project>
       <Name>LB.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LB.PageType\LB.PageType.csproj">
+      <Project>{140f1360-e156-45ed-be3a-b4a0af2d40e8}</Project>
+      <Name>LB.PageType</Name>
     </ProjectReference>
     <ProjectReference Include="..\LB.StyleResource\LB.StyleResource.csproj">
       <Project>{bb3a2964-6a7e-479a-b180-b156fbcc868b}</Project>

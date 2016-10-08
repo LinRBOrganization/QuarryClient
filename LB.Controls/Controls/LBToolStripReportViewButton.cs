@@ -9,30 +9,41 @@ using System.Windows.Forms;
 
 namespace LB.Controls
 {
-    public partial class LBToolStripButton : ToolStripButton
+    public partial class LBToolStripReportViewButton : LBToolStripButton
     {
-        private string _LBPermissionCode = "";
-        [Description("权限校验码")]//
-        public string LBPermissionCode
+        private enToolStripType _ToolStripType = enToolStripType.EditReportButton;
+        [Description("按钮类型")]//
+        public enToolStripType ToolStripType
         {
             set
             {
-                _LBPermissionCode = value;
+                _ToolStripType = value;
             }
             get
             {
-                return _LBPermissionCode;
+                return _ToolStripType;
             }
         }
 
-        public LBToolStripButton()
+        private long _ReportTypeID;
+        public long ReportTypeID
+        {
+            get
+            {
+                return _ReportTypeID;
+            }
+            set
+            {
+                _ReportTypeID = value;
+            }
+        }
+
+        public LBToolStripReportViewButton()
         {
             InitializeComponent();
         }
 
-        
-
-        public LBToolStripButton(IContainer container)
+        public LBToolStripReportViewButton(IContainer container)
         {
             container.Add(this);
 

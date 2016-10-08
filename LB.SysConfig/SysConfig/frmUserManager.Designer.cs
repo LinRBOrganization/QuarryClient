@@ -48,9 +48,7 @@ namespace LB.SysConfig
             this.btnSave = new LB.Controls.LBToolStripButton(this.components);
             this.btnAdd = new LB.Controls.LBToolStripButton(this.components);
             this.btnReflesh = new LB.Controls.LBToolStripButton(this.components);
-            this.lbToolStripButton1 = new LB.Controls.LBToolStripButton(this.components);
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnEditReport = new LB.Controls.LBToolStripButton(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.grdMain)).BeginInit();
             this.skinToolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -188,9 +186,7 @@ namespace LB.SysConfig
             this.btnSave,
             this.btnAdd,
             this.btnReflesh,
-            this.toolStripSeparator1,
-            this.lbToolStripButton1,
-            this.btnEditReport});
+            this.toolStripSeparator1});
             this.skinToolStrip1.Location = new System.Drawing.Point(0, 0);
             this.skinToolStrip1.Name = "skinToolStrip1";
             this.skinToolStrip1.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
@@ -246,31 +242,10 @@ namespace LB.SysConfig
             this.btnReflesh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnReflesh.Click += new System.EventHandler(this.btnReflesh_Click);
             // 
-            // lbToolStripButton1
-            // 
-            this.lbToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("lbToolStripButton1.Image")));
-            this.lbToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.lbToolStripButton1.LBPermissionCode = "";
-            this.lbToolStripButton1.Name = "lbToolStripButton1";
-            this.lbToolStripButton1.Size = new System.Drawing.Size(60, 37);
-            this.lbToolStripButton1.Text = "预览报表";
-            this.lbToolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 40);
-            // 
-            // btnEditReport
-            // 
-            this.btnEditReport.Image = ((System.Drawing.Image)(resources.GetObject("btnEditReport.Image")));
-            this.btnEditReport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEditReport.LBPermissionCode = "";
-            this.btnEditReport.Name = "btnEditReport";
-            this.btnEditReport.Size = new System.Drawing.Size(60, 37);
-            this.btnEditReport.Text = "报表设计";
-            this.btnEditReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnEditReport.Click += new System.EventHandler(this.btnEditReport_Click);
             // 
             // frmUserManager
             // 
@@ -302,8 +277,6 @@ namespace LB.SysConfig
         private LBDataGridViewComboBoxColumn UserType;
         private System.Windows.Forms.DataGridViewTextBoxColumn ChangeTime;
         private LBToolStripButton btnReflesh;
-        private LBToolStripButton lbToolStripButton1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private LBToolStripButton btnEditReport;
     }
 }
