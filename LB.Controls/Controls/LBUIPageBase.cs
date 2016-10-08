@@ -151,6 +151,14 @@ namespace LB.Controls
                 {
                     args.LBToolStrip.Items.RemoveByKey("btnReportViewMulit");
                 }
+                if (args.LBToolStrip.Items.ContainsKey("btnReportPrintSingle"))
+                {
+                    args.LBToolStrip.Items.RemoveByKey("btnReportPrintSingle");
+                }
+                if (args.LBToolStrip.Items.ContainsKey("btnReportPrintMutli"))
+                {
+                    args.LBToolStrip.Items.RemoveByKey("btnReportPrintMutli");
+                }
                 if (dtReportTemp.Rows.Count == 1)
                 {
                     if (!args.LBToolStrip.Items.ContainsKey("btnReportViewSingle"))
@@ -170,9 +178,28 @@ namespace LB.Controls
                         btnReportViewSingle.Click += BtnReportViewSingle_Click;
                         args.LBToolStrip.Items.Add(btnReportViewSingle);
                     }
+
+                    if (!args.LBToolStrip.Items.ContainsKey("btnReportPrintSingle"))
+                    {
+                        string strReportTemplateID = dtReportTemp.Rows[0]["ReportTemplateID"].ToString();
+                        LBToolStripReportViewButton btnReportPrintSingle = new LB.Controls.LBToolStripReportViewButton();
+                        btnReportPrintSingle.Image = Properties.Resources.btnPrint;
+                        btnReportPrintSingle.ImageTransparentColor = System.Drawing.Color.Magenta;
+                        btnReportPrintSingle.LBPermissionCode = "";
+                        btnReportPrintSingle.Name = "btnReportPrintSingle";
+                        btnReportPrintSingle.ReportTypeID = args.ReportTypeID;
+                        btnReportPrintSingle.Tag = dtReportTemp.Rows[0];
+                        btnReportPrintSingle.Size = new System.Drawing.Size(60, 37);
+                        btnReportPrintSingle.Text = "报表打印";
+                        btnReportPrintSingle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+                        btnReportPrintSingle.ToolStripType = LB.Controls.Helper.enToolStripType.EditReportButton;
+                        btnReportPrintSingle.Click += BtnReportPrintSingle_Click; ;
+                        args.LBToolStrip.Items.Add(btnReportPrintSingle);
+                    }
                 }
                 if (dtReportTemp.Rows.Count > 1)
                 {
+                    //添加预览按钮
                     if (!args.LBToolStrip.Items.ContainsKey("btnReportViewMutli"))
                     {
                         LBToolStripDropDownReportViewButton btnReportViewSingle = new LB.Controls.LBToolStripDropDownReportViewButton();
@@ -199,7 +226,74 @@ namespace LB.Controls
                             btnReportViewSingle.DropDownItems.Add(toolstripItem);
                         }
                     }
+                    //添加直接打印按钮
+                    if (!args.LBToolStrip.Items.ContainsKey("btnReportPrintMutli"))
+                    {
+                        LBToolStripDropDownReportViewButton btnReportPrintMutli = new LB.Controls.LBToolStripDropDownReportViewButton();
+                        btnReportPrintMutli.Image = Properties.Resources.btnPrint;
+                        btnReportPrintMutli.ImageTransparentColor = System.Drawing.Color.Magenta;
+                        btnReportPrintMutli.LBPermissionCode = "";
+                        btnReportPrintMutli.Name = "btnReportPrintMutli";
+                        btnReportPrintMutli.ReportTypeID = args.ReportTypeID;
+                        btnReportPrintMutli.Size = new System.Drawing.Size(60, 37);
+                        btnReportPrintMutli.Text = "报表预览";
+                        btnReportPrintMutli.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+                        //btnReportPrintMutli.Click += BtnReportViewSingle_Click;
+                        args.LBToolStrip.Items.Add(btnReportPrintMutli);
+
+                        foreach (DataRow drReport in dtReportTemp.Rows)
+                        {
+                            string strReportTemplateID = drReport["ReportTemplateID"].ToString();
+                            string strReportTemplateName = drReport["ReportTemplateName"].ToString().TrimEnd();
+                            System.Windows.Forms.ToolStripMenuItem toolstripItem = new ToolStripMenuItem();
+                            toolstripItem.Tag = drReport;
+                            toolstripItem.Name = "btnReportPrintMunuItem" + strReportTemplateID;
+                            toolstripItem.Text = strReportTemplateName;
+                            toolstripItem.Click += BtnReportPrintSingle_Click;
+                            btnReportPrintMutli.DropDownItems.Add(toolstripItem);
+                        }
+                    }
                 }
+            }
+        }
+
+        //直接打印
+        private void BtnReportPrintSingle_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataRow dr = null;
+                long lReportTemplateID = 0;
+                long lReportTypeID = 0;
+                if (sender is System.Windows.Forms.ToolStripMenuItem)
+                {
+                    System.Windows.Forms.ToolStripMenuItem toolstripItem = sender as System.Windows.Forms.ToolStripMenuItem;
+                    dr = toolstripItem.Tag as DataRow;
+                    lReportTemplateID = Convert.ToInt64(dr["ReportTemplateID"]);
+                    lReportTypeID = Convert.ToInt64(dr["ReportTypeID"]);
+                }
+                else if (sender is LBToolStripReportViewButton)
+                {
+                    LBToolStripReportViewButton btnViewReport = sender as LBToolStripReportViewButton;
+                    dr = btnViewReport.Tag as DataRow;
+                    lReportTemplateID = Convert.ToInt64(dr["ReportTemplateID"]);
+                    lReportTypeID = Convert.ToInt64(dr["ReportTypeID"]);
+                }
+
+                ReportRequestArgs args = new Report.ReportRequestArgs(lReportTemplateID, lReportTypeID, null, null);
+                OnReportRequest(args);
+                if (args.DSDataSource == null && args.RecordDR == null)
+                {
+                    LB.WinFunction.LBCommonHelper.ShowCommonMessage("未设置数据源，编辑报表失败！");
+                }
+                else
+                {
+                    ReportHelper.OpenReportDialog(enRequestReportActionType.DirectPrint,args);
+                }
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
             }
         }
 
@@ -233,7 +327,7 @@ namespace LB.Controls
                 }
                 else
                 {
-                    ReportHelper.OpenReportDialog(args);
+                    ReportHelper.OpenReportDialog(enRequestReportActionType.Preview,args);
                 }
             }
             catch (Exception ex)

@@ -33,22 +33,24 @@ namespace LB.SysConfig
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUserManager));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grdMain = new LB.Controls.LBDataGridView(this.components);
-            this.LoginName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserSex = new LB.Controls.LBDataGridViewComboBoxColumn();
-            this.UserType = new LB.Controls.LBDataGridViewComboBoxColumn();
-            this.ChangeTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.skinToolStrip1 = new CCWin.SkinControl.SkinToolStrip();
             this.btnClose = new LB.Controls.LBToolStripButton(this.components);
             this.btnSave = new LB.Controls.LBToolStripButton(this.components);
-            this.btnAdd = new LB.Controls.LBToolStripButton(this.components);
             this.btnReflesh = new LB.Controls.LBToolStripButton(this.components);
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.Delete = new LB.Controls.LBDataGridViewButtonColumn();
+            this.ChangeTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserType = new LB.Controls.LBDataGridViewComboBoxColumn();
+            this.UserSex = new LB.Controls.LBDataGridViewComboBoxColumn();
+            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LoginName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAdd = new LB.Controls.LBToolStripButton(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.grdMain)).BeginInit();
             this.skinToolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -68,16 +70,17 @@ namespace LB.SysConfig
             this.UserName,
             this.UserSex,
             this.UserType,
-            this.ChangeTime});
+            this.ChangeTime,
+            this.Delete});
             this.grdMain.ColumnSelectForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 12F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(188)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdMain.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 12F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(188)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdMain.DefaultCellStyle = dataGridViewCellStyle5;
             this.grdMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.grdMain.EnableHeadersVisualStyles = false;
@@ -91,59 +94,18 @@ namespace LB.SysConfig
             this.grdMain.Name = "grdMain";
             this.grdMain.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.grdMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdMain.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdMain.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.grdMain.RowTemplate.Height = 23;
-            this.grdMain.Size = new System.Drawing.Size(557, 293);
+            this.grdMain.Size = new System.Drawing.Size(649, 293);
             this.grdMain.TabIndex = 1;
             this.grdMain.TitleBack = null;
             this.grdMain.TitleBackColorBegin = System.Drawing.Color.White;
             this.grdMain.TitleBackColorEnd = System.Drawing.SystemColors.ActiveBorder;
-            // 
-            // LoginName
-            // 
-            this.LoginName.DataPropertyName = "LoginName";
-            this.LoginName.HeaderText = "登录账户";
-            this.LoginName.Name = "LoginName";
-            // 
-            // UserName
-            // 
-            this.UserName.DataPropertyName = "UserName";
-            this.UserName.HeaderText = "用户名称";
-            this.UserName.Name = "UserName";
-            // 
-            // UserSex
-            // 
-            this.UserSex.DataPropertyName = "UserSex";
-            this.UserSex.FieldName = "UserSex";
-            this.UserSex.HeaderText = "性别";
-            this.UserSex.Name = "UserSex";
-            this.UserSex.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.UserSex.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // UserType
-            // 
-            this.UserType.DataPropertyName = "UserType";
-            this.UserType.FieldName = "UserType";
-            this.UserType.HeaderText = "账户类型";
-            this.UserType.Name = "UserType";
-            this.UserType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // ChangeTime
-            // 
-            this.ChangeTime.DataPropertyName = "ChangeTime";
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = null;
-            this.ChangeTime.DefaultCellStyle = dataGridViewCellStyle3;
-            this.ChangeTime.HeaderText = "修改时间";
-            this.ChangeTime.Name = "ChangeTime";
-            this.ChangeTime.ReadOnly = true;
-            this.ChangeTime.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ChangeTime.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // skinToolStrip1
             // 
@@ -190,7 +152,7 @@ namespace LB.SysConfig
             this.skinToolStrip1.Location = new System.Drawing.Point(0, 0);
             this.skinToolStrip1.Name = "skinToolStrip1";
             this.skinToolStrip1.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            this.skinToolStrip1.Size = new System.Drawing.Size(557, 40);
+            this.skinToolStrip1.Size = new System.Drawing.Size(649, 40);
             this.skinToolStrip1.SkinAllColor = true;
             this.skinToolStrip1.TabIndex = 0;
             this.skinToolStrip1.Text = "skinToolStrip1";
@@ -214,22 +176,12 @@ namespace LB.SysConfig
             // 
             this.btnSave.Image = global::LB.Properties.Resources.btnNewSave3;
             this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSave.LBPermissionCode = "";
+            this.btnSave.LBPermissionCode = "PMUserManager_Edit";
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(36, 37);
             this.btnSave.Text = "保存";
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::LB.Properties.Resources.btnOpenAdd;
-            this.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAdd.LBPermissionCode = "PMUserManager_Add";
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(72, 37);
-            this.btnAdd.Text = "添加新用户";
-            this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnReflesh
             // 
@@ -247,6 +199,68 @@ namespace LB.SysConfig
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 40);
             // 
+            // Delete
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.NullValue = "删除";
+            this.Delete.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Delete.HeaderText = "删除";
+            this.Delete.LBPermissionCode = "PMUserManager_Del";
+            this.Delete.Name = "Delete";
+            this.Delete.Width = 60;
+            // 
+            // ChangeTime
+            // 
+            this.ChangeTime.DataPropertyName = "ChangeTime";
+            dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
+            this.ChangeTime.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ChangeTime.HeaderText = "修改时间";
+            this.ChangeTime.Name = "ChangeTime";
+            this.ChangeTime.ReadOnly = true;
+            this.ChangeTime.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ChangeTime.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // UserType
+            // 
+            this.UserType.DataPropertyName = "UserType";
+            this.UserType.FieldName = "UserType";
+            this.UserType.HeaderText = "账户类型";
+            this.UserType.Name = "UserType";
+            this.UserType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // UserSex
+            // 
+            this.UserSex.DataPropertyName = "UserSex";
+            this.UserSex.FieldName = "UserSex";
+            this.UserSex.HeaderText = "性别";
+            this.UserSex.Name = "UserSex";
+            this.UserSex.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.UserSex.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // UserName
+            // 
+            this.UserName.DataPropertyName = "UserName";
+            this.UserName.HeaderText = "用户名称";
+            this.UserName.Name = "UserName";
+            // 
+            // LoginName
+            // 
+            this.LoginName.DataPropertyName = "LoginName";
+            this.LoginName.HeaderText = "登录账户";
+            this.LoginName.Name = "LoginName";
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::LB.Properties.Resources.btnOpenAdd;
+            this.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAdd.LBPermissionCode = "PMUserManager_Add";
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(72, 37);
+            this.btnAdd.Text = "添加新用户";
+            this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // frmUserManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -255,7 +269,7 @@ namespace LB.SysConfig
             this.Controls.Add(this.skinToolStrip1);
             this.LBPageTitle = "用户及权限管理";
             this.Name = "frmUserManager";
-            this.Size = new System.Drawing.Size(557, 333);
+            this.Size = new System.Drawing.Size(649, 333);
             ((System.ComponentModel.ISupportInitialize)(this.grdMain)).EndInit();
             this.skinToolStrip1.ResumeLayout(false);
             this.skinToolStrip1.PerformLayout();
@@ -270,13 +284,14 @@ namespace LB.SysConfig
         private Controls.LBToolStripButton btnClose;
         private Controls.LBToolStripButton btnSave;
         private LBDataGridView grdMain;
-        private LBToolStripButton btnAdd;
+        private LBToolStripButton btnReflesh;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.DataGridViewTextBoxColumn LoginName;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserName;
         private LBDataGridViewComboBoxColumn UserSex;
         private LBDataGridViewComboBoxColumn UserType;
         private System.Windows.Forms.DataGridViewTextBoxColumn ChangeTime;
-        private LBToolStripButton btnReflesh;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private LBDataGridViewButtonColumn Delete;
+        private LBToolStripButton btnAdd;
     }
 }

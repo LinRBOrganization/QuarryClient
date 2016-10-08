@@ -40,15 +40,19 @@
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel1 = new System.Windows.Forms.Panel();
             this.grdMain = new LB.Controls.LBDataGridView(this.components);
-            this.PermissionDataName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PermissionCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BtnDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tvPermission = new System.Windows.Forms.TreeView();
             this.cmsPermission = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btnAddPermission = new System.Windows.Forms.ToolStripMenuItem();
             this.btnEditPermission = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDeletePermission = new System.Windows.Forms.ToolStripMenuItem();
             this.btnMovePermission = new System.Windows.Forms.ToolStripMenuItem();
+            this.PermissionDataName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PermissionCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PermissionSPType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PermissionViewType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PermissionType = new LB.Controls.LBDataGridViewComboBoxColumn();
+            this.BtnDelete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.LogFieldName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMain)).BeginInit();
@@ -62,7 +66,7 @@
             this.btnSave});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(808, 40);
+            this.toolStrip1.Size = new System.Drawing.Size(989, 40);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -102,7 +106,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(293, 40);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(515, 331);
+            this.panel1.Size = new System.Drawing.Size(696, 331);
             this.panel1.TabIndex = 3;
             // 
             // grdMain
@@ -125,7 +129,11 @@
             this.grdMain.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.PermissionDataName,
             this.PermissionCode,
-            this.BtnDelete});
+            this.PermissionSPType,
+            this.PermissionViewType,
+            this.PermissionType,
+            this.BtnDelete,
+            this.LogFieldName});
             this.grdMain.ColumnSelectForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
@@ -153,34 +161,11 @@
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.grdMain.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.grdMain.RowTemplate.Height = 23;
-            this.grdMain.Size = new System.Drawing.Size(515, 331);
+            this.grdMain.Size = new System.Drawing.Size(696, 331);
             this.grdMain.TabIndex = 2;
             this.grdMain.TitleBack = null;
             this.grdMain.TitleBackColorBegin = System.Drawing.Color.White;
             this.grdMain.TitleBackColorEnd = System.Drawing.SystemColors.ActiveBorder;
-            // 
-            // PermissionDataName
-            // 
-            this.PermissionDataName.DataPropertyName = "PermissionDataName";
-            this.PermissionDataName.HeaderText = "权限名称";
-            this.PermissionDataName.Name = "PermissionDataName";
-            this.PermissionDataName.Width = 200;
-            // 
-            // PermissionCode
-            // 
-            this.PermissionCode.DataPropertyName = "PermissionCode";
-            this.PermissionCode.HeaderText = "权限码";
-            this.PermissionCode.Name = "PermissionCode";
-            this.PermissionCode.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.PermissionCode.Width = 150;
-            // 
-            // BtnDelete
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.NullValue = "删除";
-            this.BtnDelete.DefaultCellStyle = dataGridViewCellStyle3;
-            this.BtnDelete.HeaderText = "删除";
-            this.BtnDelete.Name = "BtnDelete";
             // 
             // tvPermission
             // 
@@ -231,6 +216,56 @@
             this.btnMovePermission.Text = "移至其他目录";
             this.btnMovePermission.Click += new System.EventHandler(this.btnMovePermission_Click);
             // 
+            // PermissionDataName
+            // 
+            this.PermissionDataName.DataPropertyName = "PermissionDataName";
+            this.PermissionDataName.HeaderText = "权限名称";
+            this.PermissionDataName.Name = "PermissionDataName";
+            this.PermissionDataName.Width = 120;
+            // 
+            // PermissionCode
+            // 
+            this.PermissionCode.DataPropertyName = "PermissionCode";
+            this.PermissionCode.HeaderText = "权限码";
+            this.PermissionCode.Name = "PermissionCode";
+            this.PermissionCode.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.PermissionCode.Width = 150;
+            // 
+            // PermissionSPType
+            // 
+            this.PermissionSPType.DataPropertyName = "PermissionSPType";
+            this.PermissionSPType.HeaderText = "SP号";
+            this.PermissionSPType.Name = "PermissionSPType";
+            // 
+            // PermissionViewType
+            // 
+            this.PermissionViewType.DataPropertyName = "PermissionViewType";
+            this.PermissionViewType.HeaderText = "视图号";
+            this.PermissionViewType.Name = "PermissionViewType";
+            // 
+            // PermissionType
+            // 
+            this.PermissionType.DataPropertyName = "PermissionType";
+            this.PermissionType.FieldName = "PermissionType";
+            this.PermissionType.HeaderText = "类型";
+            this.PermissionType.Name = "PermissionType";
+            // 
+            // BtnDelete
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.NullValue = "删除";
+            this.BtnDelete.DefaultCellStyle = dataGridViewCellStyle3;
+            this.BtnDelete.HeaderText = "删除";
+            this.BtnDelete.Name = "BtnDelete";
+            this.BtnDelete.Width = 60;
+            // 
+            // LogFieldName
+            // 
+            this.LogFieldName.DataPropertyName = "LogFieldName";
+            this.LogFieldName.HeaderText = "日志记录字段";
+            this.LogFieldName.Name = "LogFieldName";
+            this.LogFieldName.Width = 200;
+            // 
             // frmPermissionConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -241,7 +276,7 @@
             this.Controls.Add(this.toolStrip1);
             this.LBPageTitle = "权限设置";
             this.Name = "frmPermissionConfig";
-            this.Size = new System.Drawing.Size(808, 371);
+            this.Size = new System.Drawing.Size(989, 371);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -268,6 +303,10 @@
         private System.Windows.Forms.ToolStripMenuItem btnEditPermission;
         private System.Windows.Forms.DataGridViewTextBoxColumn PermissionDataName;
         private System.Windows.Forms.DataGridViewTextBoxColumn PermissionCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PermissionSPType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PermissionViewType;
+        private Controls.LBDataGridViewComboBoxColumn PermissionType;
         private System.Windows.Forms.DataGridViewButtonColumn BtnDelete;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LogFieldName;
     }
 }

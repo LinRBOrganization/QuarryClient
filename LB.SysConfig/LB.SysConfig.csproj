@@ -65,6 +65,12 @@
     <Compile Include="SysConfig\frmChangePassword.Designer.cs">
       <DependentUpon>frmChangePassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="SysConfig\frmLogManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SysConfig\frmLogManager.Designer.cs">
+      <DependentUpon>frmLogManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="SysConfig\frmUserManager.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -82,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SysConfig\frmChangePassword.resx">
       <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SysConfig\frmLogManager.resx">
+      <DependentUpon>frmLogManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SysConfig\frmUserManager.resx">
       <DependentUpon>frmUserManager.cs</DependentUpon>
