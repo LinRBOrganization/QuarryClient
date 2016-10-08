@@ -159,9 +159,35 @@ namespace LB.Controls.LBTextBox
 			InitializeComponent();
             this.lblTitle.SizeChanged += lblTitle_SizeChanged;
             this.lblTitle.TextChanged += lblTitle_TextChanged;
+            this.lblTitle.VisibleChanged += LblTitle_VisibleChanged;
+            this.SizeChanged += CoolTextBox_SizeChanged;
 			// TODO: Add any initialization after the InitializeComponent call
 
 		}
+
+        private void CoolTextBox_SizeChanged(object sender, EventArgs e)
+        {
+            if (!this.lblTitle.Visible)
+            {
+                this.autoCompleteTextBox1.Width = this.Width;
+            }
+            else
+            {
+                this.autoCompleteTextBox1.Width = this.Width - this.lblTitle.Width - 5;
+            }
+        }
+
+        private void LblTitle_VisibleChanged(object sender, EventArgs e)
+        {
+            if (!this.lblTitle.Visible)
+            {
+                this.autoCompleteTextBox1.Width = this.Width;
+            }
+            else
+            {
+                this.autoCompleteTextBox1.Width = this.Width - this.lblTitle.Width - 5;
+            }
+        }
 
         void lblTitle_TextChanged(object sender, EventArgs e)
         {
@@ -288,6 +314,19 @@ namespace LB.Controls.LBTextBox
             {
                 this.lblTitle.Text = value;
                 
+            }
+        }
+        
+        public bool LBTitleVisible
+        {
+            get
+            {
+                return this.lblTitle.Visible;
+            }
+            set
+            {
+                this.lblTitle.Visible = value;
+
             }
         }
 	}
