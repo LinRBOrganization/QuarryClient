@@ -30,6 +30,8 @@ namespace LB.SysConfig
             this.txtUserSex.DataSource = LB.Common.LBConst.GetConstData("UserSex");//读取用户类型常量列表
             this.txtUserSex.DisplayMember = "ConstText";
             this.txtUserSex.ValueMember = "ConstValue";
+
+            ReadFieldValue();
         }
 
         //保存
@@ -72,6 +74,22 @@ namespace LB.SysConfig
             catch (Exception ex)
             {
                 LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+
+        private void ReadFieldValue()
+        {
+            if (_UserID > 0)
+            {
+                DataTable dtUser = ExecuteSQL.CallView(100,"","UserID="+ _UserID,"");
+                if (dtUser.Rows.Count > 0)
+                {
+                    this.txtLoginName.Text = dtUser.Rows[0]["LoginName"].ToString().TrimEnd();
+                    this.txtUserName.Text= dtUser.Rows[0]["UserName"].ToString().TrimEnd();
+                    this.txtUserSex.SelectedValue = dtUser.Rows[0]["UserSex"];
+                    this.txtUserType.SelectedValue= dtUser.Rows[0]["UserType"];
+                    this.txtUserPassword.Text = LBEncrypt.DESDecrypt(dtUser.Rows[0]["UserPassword"].ToString(), "linrubin");
+                }
             }
         }
 

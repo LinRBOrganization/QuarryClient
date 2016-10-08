@@ -14,6 +14,10 @@ namespace LB.Controls.Report
     public partial class frmEditReport : LBUIPageBase
     {
         private ReportRequestArgs mReportArgs;
+        private System.Drawing.Printing.PrinterSettings mSelectedPrinter = null;
+        private DataTable dtPaperType=null;
+        private DataTable dtPaperSources;				//纸张来源
+
         public frmEditReport( ReportRequestArgs reportArgs)
         {
             InitializeComponent();
@@ -23,9 +27,46 @@ namespace LB.Controls.Report
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+
+            this.txtPrinterName.SelectedValueChanged += TxtPrinterName_SelectedValueChanged;
+            this.rbAutoPaperType.CheckedChanged += RbAutoPaperType_CheckedChanged;
+            this.rbAutoPaperSize.CheckedChanged += RbAutoPaperSize_CheckedChanged;
+
+            InitPrinter();//加载打印机清单
+
             if (mReportArgs.ReportTemplateID > 0)
             {
                 ReadFieldValue();
+            }
+
+            SetPrintControlEnable();
+        }
+
+        private void RbAutoPaperSize_CheckedChanged(object sender, EventArgs e)
+        {
+            SetPrintControlEnable();
+        }
+
+        private void RbAutoPaperType_CheckedChanged(object sender, EventArgs e)
+        {
+            SetPrintControlEnable();
+        }
+
+        #region -- 事件 -- 
+
+        private void TxtPrinterName_SelectedValueChanged(object sender, EventArgs e)
+        {
+            SetPrintControlEnable();
+
+            try
+            {
+                string strPrinterName = txtPrinterName.Text;
+
+                InitPaperTypeSource(strPrinterName);
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
             }
         }
 
@@ -37,6 +78,79 @@ namespace LB.Controls.Report
 
                 this.txtReportPath.Text = ReportHelper.AddNewReport(args, this.txtReportTemplateName.Text);
 
+                #region -- 保存报表 -- 
+                if (mReportArgs.ReportTemplateID == 0)
+                {
+                    if (!File.Exists(this.txtReportPath.Text))
+                    {
+                        throw new Exception("报表文件不存在，无法保存！");
+                    }
+                    byte[] bReport = ReportHelper.ConvertToByte(this.txtReportPath.Text);
+                    LBDbParameterCollection parms = new LBDbParameterCollection();
+                    parms.Add(new LBParameter("ReportTemplateID", enLBDbType.Int64, 0));
+                    parms.Add(new LBParameter("ReportTemplateName", enLBDbType.String, this.txtReportTemplateName.Text));
+                    parms.Add(new LBParameter("TemplateFileTime", enLBDbType.DateTime, DateTime.Now));
+                    parms.Add(new LBParameter("TemplateSeq", enLBDbType.Int32, 0));
+                    parms.Add(new LBParameter("Description", enLBDbType.String, this.txtDescription.Text));
+                    parms.Add(new LBParameter("TemplateData", enLBDbType.Object, bReport));
+                    parms.Add(new LBParameter("ReportTypeID", enLBDbType.Int64, mReportArgs.ReportTypeID));
+                    parms.Add(new LBParameter("PrinterName", enLBDbType.String, this.txtPrinterName.Text));
+                    parms.Add(new LBParameter("MachineName", enLBDbType.String, LoginInfo.MachineName));
+                    parms.Add(new LBParameter("IsManualPaperType", enLBDbType.Boolean, rbManualPaperType.Checked));
+                    parms.Add(new LBParameter("PaperType", enLBDbType.String, this.txtPaperType.Text));
+                    parms.Add(new LBParameter("IsManualPaperSize", enLBDbType.Boolean, rbManualPaperSize.Checked));
+                    parms.Add(new LBParameter("PaperSizeHeight", enLBDbType.Int32, this.txtPaperSizeHeight.Text));
+                    parms.Add(new LBParameter("PaperSizeWidth", enLBDbType.Int32, this.txtPaperSizeWidth.Text));
+                    parms.Add(new LBParameter("IsPaperTransverse", enLBDbType.Boolean, rbPaperTransverse.Checked));
+                    DataSet dsReturn;
+                    Dictionary<string, object> dictResult;
+                    ExecuteSQL.CallSP(12000, parms, out dsReturn, out dictResult);
+
+                    if (dictResult.ContainsKey("ReportTemplateID"))
+                    {
+                        if (dictResult["ReportTemplateID"] != null)
+                        {
+                            mReportArgs.ReportTemplateID = Convert.ToInt64(dictResult["ReportTemplateID"]);
+                        }
+                    }
+                }
+                else
+                {
+                    byte[] bReport = null;
+                    DateTime dtTemplateFileTime = DateTime.Now;
+                    if (this.txtReportPath.Text.TrimEnd() != "")
+                    {
+                        if (!File.Exists(this.txtReportPath.Text))
+                        {
+                            throw new Exception("报表文件不存在，无法保存！");
+                        }
+                        bReport = ReportHelper.ConvertToByte(this.txtReportPath.Text);
+                        dtTemplateFileTime = File.GetLastWriteTime(this.txtReportPath.Text);
+                    }
+
+                    LBDbParameterCollection parms = new LBDbParameterCollection();
+                    parms.Add(new LBParameter("ReportTemplateID", enLBDbType.Int64, mReportArgs.ReportTemplateID));
+                    parms.Add(new LBParameter("ReportTemplateName", enLBDbType.String, this.txtReportTemplateName.Text));
+                    parms.Add(new LBParameter("TemplateFileTime", enLBDbType.DateTime, dtTemplateFileTime));
+                    parms.Add(new LBParameter("TemplateSeq", enLBDbType.Int32, 0));
+                    parms.Add(new LBParameter("Description", enLBDbType.String, this.txtDescription.Text));
+                    parms.Add(new LBParameter("TemplateData", enLBDbType.Object, bReport));
+                    parms.Add(new LBParameter("ReportTypeID", enLBDbType.Int64, mReportArgs.ReportTypeID));
+                    parms.Add(new LBParameter("PrinterName", enLBDbType.String, this.txtPrinterName.Text));
+                    parms.Add(new LBParameter("MachineName", enLBDbType.String, LoginInfo.MachineName));
+                    parms.Add(new LBParameter("IsManualPaperType", enLBDbType.Boolean, rbManualPaperType.Checked));
+                    parms.Add(new LBParameter("PaperType", enLBDbType.String, this.txtPaperType.Text));
+                    parms.Add(new LBParameter("IsManualPaperSize", enLBDbType.Boolean, rbManualPaperSize.Checked));
+                    parms.Add(new LBParameter("PaperSizeHeight", enLBDbType.Int32, this.txtPaperSizeHeight.Text));
+                    parms.Add(new LBParameter("PaperSizeWidth", enLBDbType.Int32, this.txtPaperSizeWidth.Text));
+                    parms.Add(new LBParameter("IsPaperTransverse", enLBDbType.Boolean, rbPaperTransverse.Checked));
+                    DataSet dsReturn;
+                    Dictionary<string, object> dictResult;
+                    ExecuteSQL.CallSP(12001, parms, out dsReturn, out dictResult);
+                }
+                #endregion -- 保存报表 --
+
+                LB.WinFunction.LBCommonHelper.ShowCommonMessage("保存成功！");
             }
             catch (Exception ex)
             {
@@ -69,53 +183,9 @@ namespace LB.Controls.Report
         {
             try
             {
-                if (this.txtReportPath.Text != "")
+                if (mReportArgs.ReportTemplateID > 0)
                 {
-                    if (mReportArgs.ReportTemplateID == 0)
-                    {
-                        if (!File.Exists(this.txtReportPath.Text))
-                        {
-                            throw new Exception("报表文件不存在，无法保存！");
-                        }
-                        byte[] bReport = ReportHelper.ConvertToByte(this.txtReportPath.Text);
-                        LBDbParameterCollection parms = new LBDbParameterCollection();
-                        parms.Add(new LBParameter("ReportTemplateID", enLBDbType.Int64, 0));
-                        parms.Add(new LBParameter("ReportTemplateName", enLBDbType.String, this.txtReportTemplateName.Text));
-                        parms.Add(new LBParameter("TemplateFileTime", enLBDbType.DateTime, DateTime.Now));
-                        parms.Add(new LBParameter("TemplateSeq", enLBDbType.Int32, 0));
-                        parms.Add(new LBParameter("Description", enLBDbType.String, this.txtDescription.Text));
-                        parms.Add(new LBParameter("TemplateData", enLBDbType.Object, bReport));
-                        parms.Add(new LBParameter("ReportTypeID", enLBDbType.Int64, mReportArgs.ReportTypeID));
-                        DataSet dsReturn;
-                        Dictionary<string, object> dictResult;
-                        ExecuteSQL.CallSP(12000, parms, out dsReturn, out dictResult);
-                    }
-                    else
-                    {
-                        byte[] bReport = null;
-                        DateTime dtTemplateFileTime = DateTime.Now;
-                        if (this.txtReportPath.Text.TrimEnd() != "")
-                        {
-                            if (!File.Exists(this.txtReportPath.Text))
-                            {
-                                throw new Exception("报表文件不存在，无法保存！");
-                            }
-                            bReport = ReportHelper.ConvertToByte(this.txtReportPath.Text);
-                            dtTemplateFileTime = File.GetLastWriteTime(this.txtReportPath.Text);
-                        }
-
-                        LBDbParameterCollection parms = new LBDbParameterCollection();
-                        parms.Add(new LBParameter("ReportTemplateID", enLBDbType.Int64, mReportArgs.ReportTemplateID));
-                        parms.Add(new LBParameter("ReportTemplateName", enLBDbType.String, this.txtReportTemplateName.Text));
-                        parms.Add(new LBParameter("TemplateFileTime", enLBDbType.DateTime, dtTemplateFileTime));
-                        parms.Add(new LBParameter("TemplateSeq", enLBDbType.Int32, 0));
-                        parms.Add(new LBParameter("Description", enLBDbType.String, this.txtDescription.Text));
-                        parms.Add(new LBParameter("TemplateData", enLBDbType.Object, bReport));
-                        parms.Add(new LBParameter("ReportTypeID", enLBDbType.Int64, mReportArgs.ReportTypeID));
-                        DataSet dsReturn;
-                        Dictionary<string, object> dictResult;
-                        ExecuteSQL.CallSP(12001, parms, out dsReturn, out dictResult);
-                    }
+                    ReportHelper.OpenReportDesign(mReportArgs);
                 }
             }
             catch (Exception ex)
@@ -140,6 +210,9 @@ namespace LB.Controls.Report
                 LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
             }
         }
+
+        #endregion -- 事件 -- 
+
         #region -- 读取并加载报表模板数据 --
 
         private void ReadFieldValue()
@@ -150,11 +223,166 @@ namespace LB.Controls.Report
                 DataRow drReport = dtReportTemplate.Rows[0];
                 this.txtReportTemplateName.Text = drReport["ReportTemplateName"].ToString();
                 this.txtDescription.Text = drReport["Description"].ToString();
+                this.txtPrinterName.SelectedValue = drReport["PrinterName"].ToString().TrimEnd();
+                this.txtPaperType.SelectedValue= drReport["PaperType"].ToString().TrimEnd();
+                this.txtPaperSizeHeight.Text = drReport["PaperSizeHeight"].ToString().TrimEnd();
+                this.txtPaperSizeWidth.Text= drReport["PaperSizeWidth"].ToString().TrimEnd();
+                this.rbManualPaperType.Checked = drReport["IsManualPaperType"] == DBNull.Value ? 
+                    false : Convert.ToBoolean(drReport["IsManualPaperType"]);
+                this.rbManualPaperSize.Checked = drReport["IsManualPaperSize"] == DBNull.Value ?
+                    false : Convert.ToBoolean(drReport["IsManualPaperSize"]);
+                this.rbPaperTransverse.Checked= drReport["IsPaperTransverse"] == DBNull.Value ?
+                    false : Convert.ToBoolean(drReport["IsPaperTransverse"]);
                 //this.txtReportPath.Text = Path.Combine(ReportHelper.ReportPath, drReport["ReportTemplateName"].ToString() + ".frx");
             }
         }
 
         #endregion
 
+        #region -- InitPrinter --
+
+        private void InitPrinter()
+        {
+            DataTable dtPrinter = new DataTable();
+            dtPrinter.Columns.Add("PrinterName", typeof(string));
+
+            System.Drawing.Printing.PrinterSettings.StringCollection printers = null;
+            try
+            {
+                printers = System.Drawing.Printing.PrinterSettings.InstalledPrinters;
+            }
+            catch
+            {
+                // 有时访问 System.Drawing.Printing.PrinterSettings.InstalledPrinters，会报出“RPC服务器不可用”的错误，忽略此错
+            }
+
+            dtPrinter.Rows.Add(dtPrinter.NewRow());
+            if (printers != null)
+            {
+                foreach (string strPrinterName in printers)
+                {
+                    DataRow drRow = dtPrinter.NewRow();
+                    drRow["PrinterName"] = strPrinterName;
+                    dtPrinter.Rows.Add(drRow);
+                }
+            }
+
+            this.txtPrinterName.DataSource = dtPrinter.DefaultView;
+            this.txtPrinterName.DisplayMember = "PrinterName";
+            this.txtPrinterName.ValueMember= "PrinterName";
+        }
+        /// <summary>
+        /// 纸张格式
+        /// </summary>
+        /// <param name="strPrinterName"></param>
+        private void InitPaperTypeSource(string strPrinterName)
+        {
+            if (strPrinterName != "")
+            {
+                if (mSelectedPrinter == null)
+                {
+                    mSelectedPrinter = new System.Drawing.Printing.PrinterSettings();
+                }
+                mSelectedPrinter.PrinterName = strPrinterName;
+                if (mSelectedPrinter.IsValid)
+                {
+                    if (dtPaperType == null)
+                    {
+                        dtPaperType = new DataTable();
+                        dtPaperType.Columns.Add("PaperType", typeof(string));
+                        dtPaperType.Columns.Add("PaperKind", typeof(int));
+                        dtPaperType.Columns.Add("PaperSizeHeight", typeof(int));
+                        dtPaperType.Columns.Add("PaperSizeWidth", typeof(int));
+                    }
+                    dtPaperType.Rows.Clear();
+                    foreach (System.Drawing.Printing.PaperSize pageSize in mSelectedPrinter.PaperSizes)
+                    {
+                        DataRow drPaperType = dtPaperType.NewRow();
+                        drPaperType["PaperType"] = pageSize.PaperName;
+                        drPaperType["PaperKind"] = Convert.ToInt32(pageSize.Kind);
+                        drPaperType["PaperSizeHeight"] = InchToMM(pageSize.Height);
+                        drPaperType["PaperSizeWidth"] = InchToMM(pageSize.Width);
+                        dtPaperType.Rows.Add(drPaperType);
+                    }
+
+                    if (dtPaperSources == null)
+                    {
+                        dtPaperSources = new DataTable();
+                        dtPaperSources.Columns.Add("PaperSourceName", typeof(string));
+                        dtPaperSources.Columns.Add("PaperSourceKind", typeof(string));
+                        dtPaperSources.Columns.Add("PaperSourceRawKind", typeof(int));
+                    }
+                    dtPaperSources.Rows.Clear();
+                    DataRow drPaperSourcesNew = dtPaperSources.NewRow();
+                    drPaperSourcesNew["PaperSourceName"] = "自动选择";
+                    drPaperSourcesNew["PaperSourceKind"] = "FormSource";
+                    drPaperSourcesNew["PaperSourceRawKind"] = 0;
+                    dtPaperSources.Rows.Add(drPaperSourcesNew);
+                    foreach (System.Drawing.Printing.PaperSource source in mSelectedPrinter.PaperSources)
+                    {
+                        if (source.Kind.ToString() == "FormSource")
+                        {
+                            continue;
+                        }
+                        DataRow drPaperSources = dtPaperSources.NewRow();
+                        drPaperSources["PaperSourceName"] = source.SourceName.ToString();
+                        drPaperSources["PaperSourceKind"] = source.Kind.ToString();
+                        drPaperSources["PaperSourceRawKind"] = source.RawKind;
+                        dtPaperSources.Rows.Add(drPaperSources);
+                    }
+
+                    txtPaperType.DisplayMember = txtPaperType.ValueMember = "PaperType";
+                    txtPaperType.DataSource = dtPaperType.DefaultView;
+
+                }
+                else
+                {
+                    LB.WinFunction.LBCommonHelper.ShowCommonMessage("所选打印机正处于脱机状态中");
+                    return;
+                }
+            }
+        }
+
+        #endregion
+
+        #region -- 打印机设置控件只读性控制 --
+
+        private void SetPrintControlEnable()
+        {
+            if(this.txtPrinterName.SelectedValue!=null&& this.txtPrinterName.SelectedValue.ToString() != "")
+            {
+                this.rbAutoPaperType.Enabled = true;
+                this.rbManualPaperType.Enabled = true;
+
+                this.txtPaperType.Enabled = !rbAutoPaperType.Checked;
+                this.rbAutoPaperSize.Enabled = !rbAutoPaperType.Checked;
+                this.rbManualPaperSize.Enabled = !rbAutoPaperType.Checked;
+                this.rbPaperLengthways.Enabled = !rbAutoPaperType.Checked;
+                this.rbPaperTransverse.Enabled = !rbAutoPaperType.Checked;
+
+                this.txtPaperSizeHeight.Enabled = !rbAutoPaperSize.Checked;
+                this.txtPaperSizeWidth.Enabled = !rbAutoPaperSize.Checked;
+            }
+            else
+            {
+                this.rbAutoPaperSize.Enabled = false;
+                this.rbAutoPaperType.Enabled = false;
+                this.rbManualPaperSize.Enabled = false;
+                this.rbManualPaperType.Enabled = false;
+                this.rbPaperLengthways.Enabled = false;
+                this.rbPaperTransverse.Enabled = false;
+                this.txtPaperType.Enabled = false;
+                this.txtPaperSizeHeight.Enabled = false;
+                this.txtPaperSizeWidth.Enabled = false;
+            }
+        }
+
+        #endregion
+
+        // 1英寸 = 2.54cm
+        private int InchToMM(int inch)
+        {
+            return (int)Math.Round(((decimal)inch * (decimal)254 / (decimal)1000), 0, MidpointRounding.AwayFromZero);
+        }
     }
 }

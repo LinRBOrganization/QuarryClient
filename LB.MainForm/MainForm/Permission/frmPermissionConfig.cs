@@ -12,6 +12,7 @@ namespace LB.MainForm.Permission
 {
     public partial class frmPermissionConfig : LBUIPageBase
     {
+        TreeNode mtnTop = null;
         private TreeNode mtnSelectedNode = null;
         public frmPermissionConfig()
         {
@@ -21,9 +22,40 @@ namespace LB.MainForm.Permission
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            this.grdMain.AutoGenerateColumns = false;
+            this.grdMain.LBLoadConst();
 
             BuildPermissionTree();
             this.grdMain.LBCellButtonClick += GrdMain_LBCellButtonClick;
+            this.grdMain.CellBeginEdit += GrdMain_CellBeginEdit;
+        }
+
+        private void GrdMain_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            try
+            {
+                if (this.mtnSelectedNode!=null && this.mtnSelectedNode.Tag != null)
+                {
+                    DataRow dr = this.mtnSelectedNode.Tag as DataRow;
+                    long lPermissionID = Convert.ToInt64(dr["PermissionID"]);
+                    if (lPermissionID == 0)
+                    {
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        e.Cancel = false;
+                    }
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
         }
 
         private void GrdMain_LBCellButtonClick(object sender, DataGridViewCellEventArgs e)
@@ -36,15 +68,15 @@ namespace LB.MainForm.Permission
                     if (dgvr.DataBoundItem != null)
                     {
                         DataRowView drv = dgvr.DataBoundItem as DataRowView;
-                        long lPermissionID = drv["PermissionID"] == DBNull.Value ?
-                            0 : Convert.ToInt64(drv["PermissionID"]);
-                        if (lPermissionID > 0)
+                        long lPermissionDataID = drv["PermissionDataID"] == DBNull.Value ?
+                            0 : Convert.ToInt64(drv["PermissionDataID"]);
+                        if (lPermissionDataID > 0)
                         {
                             if (LB.WinFunction.LBCommonHelper.ConfirmMessage("确定删除？", "提示", MessageBoxButtons.YesNo) ==
                                  DialogResult.Yes)
                             {
                                 LBDbParameterCollection parmCol = new LBDbParameterCollection();
-                                parmCol.Add(new LBParameter("PermissionID", enLBDbType.Int64, lPermissionID));
+                                parmCol.Add(new LBParameter("PermissionDataID", enLBDbType.Int64, lPermissionDataID));
                                 DataSet dsReturn;
                                 Dictionary<string, object> dictValue;
                                 try
@@ -83,7 +115,7 @@ namespace LB.MainForm.Permission
         {
             try
             {
-                if (this.mtnSelectedNode == null)
+                if (this.mtnSelectedNode == null&& this.mtnSelectedNode != mtnTop)
                 {
                     throw new Exception("请选择权限分类节点！");
                 }
@@ -117,6 +149,10 @@ namespace LB.MainForm.Permission
                         0 : Convert.ToInt64(drv["PermissionDataID"]);
                     string strPermissionCode = drv["PermissionCode"].ToString().TrimEnd();
                     string strPermissionDataName = drv["PermissionDataName"].ToString().TrimEnd();
+                    int iPermissionType = drv["PermissionType"] == DBNull.Value ? 0 : Convert.ToInt16(drv["PermissionType"]);
+                    int iPermissionSPType = drv["PermissionSPType"] == DBNull.Value ? 0 : Convert.ToInt16(drv["PermissionSPType"]);
+                    int iPermissionViewType= drv["PermissionViewType"] == DBNull.Value ? 0 : Convert.ToInt16(drv["PermissionViewType"]);
+                    string strLogFieldName = drv["LogFieldName"].ToString().TrimEnd();
 
                     if (strPermissionCode != "" && strPermissionDataName != "")
                     {
@@ -136,7 +172,11 @@ namespace LB.MainForm.Permission
                         parmCol.Add(new LBParameter("PermissionID", enLBDbType.Int64, lPermissionID));
                         parmCol.Add(new LBParameter("PermissionCode", enLBDbType.String, strPermissionCode));
                         parmCol.Add(new LBParameter("PermissionDataName", enLBDbType.String, strPermissionDataName));
-
+                        parmCol.Add(new LBParameter("PermissionType", enLBDbType.Int16, iPermissionType));
+                        parmCol.Add(new LBParameter("PermissionSPType", enLBDbType.Int32, iPermissionSPType));
+                        parmCol.Add(new LBParameter("PermissionViewType", enLBDbType.Int32, iPermissionViewType));
+                        parmCol.Add(new LBParameter("LogFieldName", enLBDbType.String, strLogFieldName));
+                        
                         DataSet dsReturn;
                         Dictionary<string, object> dictValue;
                         try
@@ -170,9 +210,18 @@ namespace LB.MainForm.Permission
 
         private void BuildPermissionTree()
         {
-            this.tvPermission.Nodes.Clear();
-            this.mtnSelectedNode = null;
             Dictionary<long, TreeNode> dictTreeNode = new Dictionary<long, TreeNode>();
+            if (mtnTop == null)
+            {
+                mtnTop = new TreeNode("所有权限");
+                this.tvPermission.Nodes.Add(mtnTop);
+            }
+
+            dictTreeNode.Add(0, mtnTop);
+
+            mtnTop.Nodes.Clear();
+            this.mtnSelectedNode = null;
+            
             DataTable dtPermission = ExecuteSQL.CallView(103,"","", "ParentPermissionID asc");
             foreach(DataRow dr in dtPermission.Rows)
             {
@@ -188,7 +237,7 @@ namespace LB.MainForm.Permission
                 }
                 else
                 {
-                    this.tvPermission.Nodes.Add(tnChild);
+                    mtnTop.Nodes.Add(tnChild);
                 }
                 dictTreeNode.Add(lPermissionID, tnChild);
             }
@@ -252,9 +301,14 @@ namespace LB.MainForm.Permission
             {
                 if (this.mtnSelectedNode != null)
                 {
-                    DataRow dr = this.mtnSelectedNode.Tag as DataRow;
-                    long lParentPermissionID = dr["PermissionID"] == DBNull.Value ? 
-                        0 : Convert.ToInt64(dr["PermissionID"]);
+                    long lParentPermissionID = 0;
+                    if (this.mtnSelectedNode != mtnTop)
+                    {
+                        DataRow dr = this.mtnSelectedNode.Tag as DataRow;
+                        lParentPermissionID = dr["PermissionID"] == DBNull.Value ?
+                            0 : Convert.ToInt64(dr["PermissionID"]);
+                    }
+                    
                     frmAddPermission frmPermission = new Permission.frmAddPermission(lParentPermissionID,0);
                     frmPermission.ShowDialog();
                     BuildPermissionTree();
@@ -270,7 +324,7 @@ namespace LB.MainForm.Permission
         {
             try
             {
-                if (this.mtnSelectedNode != null)
+                if (this.mtnSelectedNode != null && this.mtnSelectedNode != mtnTop)
                 {
                     DataRow dr = this.mtnSelectedNode.Tag as DataRow;
                     long lPermissionID = dr["PermissionID"] == DBNull.Value ?
@@ -293,7 +347,7 @@ namespace LB.MainForm.Permission
         {
             try
             {
-                if (this.mtnSelectedNode != null)
+                if (this.mtnSelectedNode != null && this.mtnSelectedNode != mtnTop)
                 {
                     DataRow dr = this.mtnSelectedNode.Tag as DataRow;
                     long lPermissionID = dr["PermissionID"] == DBNull.Value ?

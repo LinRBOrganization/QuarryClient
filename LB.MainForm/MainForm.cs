@@ -8,11 +8,15 @@ using System.Windows.Forms;
 using LB.Controls;
 using LB.MainForm.Permission;
 using LB.Page.Helper;
+using System.Threading;
+using LB.Common;
+using LB.SysConfig;
 
 namespace LB.MainForm
 {
     public partial class MainForm : LBForm
     {
+        //private Thread mThreadIniData;
         public bool bolIsCancel = false;
         public MainForm()
         {
@@ -20,6 +24,12 @@ namespace LB.MainForm
             LBShowForm.LBUIPageBaseAdded += LBShowForm_LBUIPageBaseAdded;
             this.tcMain.TabPageClosingEvent += TcMain_TabPageClosingEvent;
             this.tcMain.TabPageClosedEvent += TcMain_TabPageClosedEvent;
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            InitData();
         }
 
         #region -- 按钮事件  --
@@ -109,6 +119,21 @@ namespace LB.MainForm
                 LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
             }
         }
+
+        //操作日志管理
+        private void btnLogManager_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmLogManager frmLog = new frmLogManager();
+                LBShowForm.ShowMainPage(frmLog);
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+
         #endregion -- 按钮事件  --
 
         #region -- ShowMainPage --
@@ -223,7 +248,18 @@ namespace LB.MainForm
                 LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
             }
         }
-        
+
+        #endregion
+
+        #region -- InitData 读取全局数据 --
+
+        private void InitData()
+        {
+            LBPermission.ReadAllPermission();//加载所有权限信息
+
+            LBLog.AssemblyStart();
+        }
+
         #endregion
 
     }

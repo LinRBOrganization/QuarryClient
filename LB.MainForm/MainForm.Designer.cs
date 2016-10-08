@@ -1,4 +1,6 @@
-﻿namespace LB.MainForm
+﻿using LB.Controls;
+
+namespace LB.MainForm
 {
     partial class MainForm
     {
@@ -33,12 +35,13 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnDDSystemManager = new LB.Controls.LBToolStripDropDownButton(this.components);
             this.btnChangePassword = new LB.Controls.LBToolStripMenuItem(this.components);
-            this.btnUserManager = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnCancel = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmConfig = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnViewConfig = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnPermissionConfig = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnSQLBuilder = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnUserManager = new LB.Controls.LBToolStripMenuItem(this.components);
+            this.btnLogManager = new LB.Controls.LBToolStripMenuItem(this.components);
+            this.btnCancel = new LB.Controls.LBToolStripMenuItem(this.components);
+            this.tsmConfig = new LB.Controls.LBToolStripMenuItem(this.components);
+            this.btnViewConfig = new LB.Controls.LBToolStripMenuItem(this.components);
+            this.btnPermissionConfig = new LB.Controls.LBToolStripMenuItem(this.components);
+            this.btnSQLBuilder = new LB.Controls.LBToolStripMenuItem(this.components);
             this.tcMain = new LB.Controls.LBTabControl.LBMainTabControl(this.components);
             this.tpMain = new DMSkin.Metro.Controls.MetroTabPage();
             this.toolStrip1.SuspendLayout();
@@ -60,6 +63,7 @@
             this.btnDDSystemManager.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnChangePassword,
             this.btnUserManager,
+            this.btnLogManager,
             this.btnCancel,
             this.tsmConfig});
             this.btnDDSystemManager.Image = ((System.Drawing.Image)(resources.GetObject("btnDDSystemManager.Image")));
@@ -73,21 +77,31 @@
             // 
             this.btnChangePassword.LBPermissionCode = "PMChangePassword";
             this.btnChangePassword.Name = "btnChangePassword";
-            this.btnChangePassword.Size = new System.Drawing.Size(148, 22);
+            this.btnChangePassword.Size = new System.Drawing.Size(152, 22);
             this.btnChangePassword.Text = "修改密码";
             this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
             // 
             // btnUserManager
             // 
+            this.btnUserManager.LBPermissionCode = "PMUserManager_Query";
             this.btnUserManager.Name = "btnUserManager";
-            this.btnUserManager.Size = new System.Drawing.Size(148, 22);
+            this.btnUserManager.Size = new System.Drawing.Size(152, 22);
             this.btnUserManager.Text = "用户权限管理";
             this.btnUserManager.Click += new System.EventHandler(this.btnUserManager_Click);
             // 
+            // btnLogManager
+            // 
+            this.btnLogManager.LBPermissionCode = "LogManager_Query";
+            this.btnLogManager.Name = "btnLogManager";
+            this.btnLogManager.Size = new System.Drawing.Size(152, 22);
+            this.btnLogManager.Text = "操作日志";
+            this.btnLogManager.Click += new System.EventHandler(this.btnLogManager_Click);
+            // 
             // btnCancel
             // 
+            this.btnCancel.LBPermissionCode = "";
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(148, 22);
+            this.btnCancel.Size = new System.Drawing.Size(152, 22);
             this.btnCancel.Text = "注销";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -97,12 +111,14 @@
             this.btnViewConfig,
             this.btnPermissionConfig,
             this.btnSQLBuilder});
+            this.tsmConfig.LBPermissionCode = "";
             this.tsmConfig.Name = "tsmConfig";
-            this.tsmConfig.Size = new System.Drawing.Size(148, 22);
+            this.tsmConfig.Size = new System.Drawing.Size(152, 22);
             this.tsmConfig.Text = "开发配置管理";
             // 
             // btnViewConfig
             // 
+            this.btnViewConfig.LBPermissionCode = "";
             this.btnViewConfig.Name = "btnViewConfig";
             this.btnViewConfig.Size = new System.Drawing.Size(135, 22);
             this.btnViewConfig.Text = "视图配置";
@@ -110,6 +126,7 @@
             // 
             // btnPermissionConfig
             // 
+            this.btnPermissionConfig.LBPermissionCode = "";
             this.btnPermissionConfig.Name = "btnPermissionConfig";
             this.btnPermissionConfig.Size = new System.Drawing.Size(135, 22);
             this.btnPermissionConfig.Text = "权限配置";
@@ -117,6 +134,7 @@
             // 
             // btnSQLBuilder
             // 
+            this.btnSQLBuilder.LBPermissionCode = "";
             this.btnSQLBuilder.Name = "btnSQLBuilder";
             this.btnSQLBuilder.Size = new System.Drawing.Size(135, 22);
             this.btnSQLBuilder.Text = "SQL生成器";
@@ -175,14 +193,15 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private Controls.LBToolStripDropDownButton btnDDSystemManager;
         private Controls.LBToolStripMenuItem btnChangePassword;
-        private System.Windows.Forms.ToolStripMenuItem btnCancel;
-        private System.Windows.Forms.ToolStripMenuItem btnUserManager;
-        private System.Windows.Forms.ToolStripMenuItem tsmConfig;
-        private System.Windows.Forms.ToolStripMenuItem btnViewConfig;
-        private System.Windows.Forms.ToolStripMenuItem btnPermissionConfig;
-        private System.Windows.Forms.ToolStripMenuItem btnSQLBuilder;
+        private LBToolStripMenuItem btnCancel;
+        private LBToolStripMenuItem btnUserManager;
+        private LBToolStripMenuItem tsmConfig;
+        private LBToolStripMenuItem btnViewConfig;
+        private LBToolStripMenuItem btnPermissionConfig;
+        private LBToolStripMenuItem btnSQLBuilder;
         private Controls.LBTabControl.LBMainTabControl tcMain;
         private DMSkin.Metro.Controls.MetroTabPage tpMain;
+        private LBToolStripMenuItem btnLogManager;
     }
 }
 

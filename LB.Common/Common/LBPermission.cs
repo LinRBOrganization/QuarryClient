@@ -8,6 +8,17 @@ namespace LB.Common
 {
     public class LBPermission
     {
+        public static DataTable DTPermissionData;
+        public static DataTable DTPermission;
+        /// <summary>
+        /// 读取所有权限配置信息
+        /// </summary>
+        public static void ReadAllPermission()
+        {
+            DTPermission = ExecuteSQL.CallView(103);
+            DTPermissionData = ExecuteSQL.CallView(104);
+        }
+
         /// <summary>
         /// 校验用户权限，如果没有权限则报错
         /// </summary>
@@ -23,6 +34,11 @@ namespace LB.Common
                 if (!bolHasPermission)
                 {
                     throw new Exception("该用户没有【" + strPermissionName + "—>" + strPermissionDataName + "】权限！");
+                }
+                else
+                {
+                    //如果是查询动作，则记录到日志
+                    LBLog.InsertViewSysLog(strPermissionCode);
                 }
             }
         }
