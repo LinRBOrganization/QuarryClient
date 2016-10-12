@@ -39,6 +39,8 @@ namespace LB.MainForm
             try
             {
                 bolIsCancel = true;
+                LBShowForm.LBUIPageBaseAdded -= LBShowForm_LBUIPageBaseAdded;
+                this.Dispose();
                 this.Close();
             }
             catch (Exception ex)
@@ -134,6 +136,19 @@ namespace LB.MainForm
             }
         }
 
+        //备份设置
+        private void btnDBBackUp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmBackUpConfig frmBackUp = new frmBackUpConfig();
+                LBShowForm.ShowMainPage(frmBackUp);
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
         #endregion -- 按钮事件  --
 
         #region -- ShowMainPage --

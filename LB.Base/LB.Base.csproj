@@ -61,6 +61,7 @@
     <Compile Include="WinFunction\LoginInfo.cs" />
     <Compile Include="WinFunction\Report\ReportHelper.cs" />
     <Compile Include="WinFunction\Report\RequestReportArgs.cs" />
+    <Compile Include="WinFunction\SerializableDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

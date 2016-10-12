@@ -44,6 +44,7 @@ namespace LB.MainForm
             this.btnSQLBuilder = new LB.Controls.LBToolStripMenuItem(this.components);
             this.tcMain = new LB.Controls.LBTabControl.LBMainTabControl(this.components);
             this.tpMain = new DMSkin.Metro.Controls.MetroTabPage();
+            this.btnDBBackUp = new LB.Controls.LBToolStripMenuItem(this.components);
             this.toolStrip1.SuspendLayout();
             this.tcMain.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +63,7 @@ namespace LB.MainForm
             // 
             this.btnDDSystemManager.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnChangePassword,
+            this.btnDBBackUp,
             this.btnUserManager,
             this.btnLogManager,
             this.btnCancel,
@@ -120,7 +122,7 @@ namespace LB.MainForm
             // 
             this.btnViewConfig.LBPermissionCode = "";
             this.btnViewConfig.Name = "btnViewConfig";
-            this.btnViewConfig.Size = new System.Drawing.Size(135, 22);
+            this.btnViewConfig.Size = new System.Drawing.Size(152, 22);
             this.btnViewConfig.Text = "视图配置";
             this.btnViewConfig.Click += new System.EventHandler(this.btnViewConfig_Click);
             // 
@@ -128,7 +130,7 @@ namespace LB.MainForm
             // 
             this.btnPermissionConfig.LBPermissionCode = "";
             this.btnPermissionConfig.Name = "btnPermissionConfig";
-            this.btnPermissionConfig.Size = new System.Drawing.Size(135, 22);
+            this.btnPermissionConfig.Size = new System.Drawing.Size(152, 22);
             this.btnPermissionConfig.Text = "权限配置";
             this.btnPermissionConfig.Click += new System.EventHandler(this.btnPermissionConfig_Click);
             // 
@@ -136,7 +138,7 @@ namespace LB.MainForm
             // 
             this.btnSQLBuilder.LBPermissionCode = "";
             this.btnSQLBuilder.Name = "btnSQLBuilder";
-            this.btnSQLBuilder.Size = new System.Drawing.Size(135, 22);
+            this.btnSQLBuilder.Size = new System.Drawing.Size(152, 22);
             this.btnSQLBuilder.Text = "SQL生成器";
             this.btnSQLBuilder.Click += new System.EventHandler(this.btnSQLBuilder_Click);
             // 
@@ -170,6 +172,14 @@ namespace LB.MainForm
             this.tpMain.VerticalScrollbarDM_HighlightOnWheel = false;
             this.tpMain.VerticalScrollbarSize = 10;
             // 
+            // btnDBBackUp
+            // 
+            this.btnDBBackUp.LBPermissionCode = "DBBackUp_Query";
+            this.btnDBBackUp.Name = "btnDBBackUp";
+            this.btnDBBackUp.Size = new System.Drawing.Size(152, 22);
+            this.btnDBBackUp.Text = "帐套备份设置";
+            this.btnDBBackUp.Click += new System.EventHandler(this.btnDBBackUp_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -202,6 +212,7 @@ namespace LB.MainForm
         private Controls.LBTabControl.LBMainTabControl tcMain;
         private DMSkin.Metro.Controls.MetroTabPage tpMain;
         private LBToolStripMenuItem btnLogManager;
+        private LBToolStripMenuItem btnDBBackUp;
     }
 }
 

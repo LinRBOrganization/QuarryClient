@@ -59,7 +59,7 @@ namespace LB.SysConfig
 
                     DataSet dsReturn;
                     DataTable dtOut;
-                    LB.WinFunction.ExecuteSQL.CallSP(1000, dtSP, out dsReturn, out dtOut);
+                    LB.WinFunction.ExecuteSQL.CallSP(10003, dtSP, out dsReturn, out dtOut);
 
                     LB.WinFunction.LBCommonHelper.ShowCommonMessage("密码修改成功！");
                     this.Close();

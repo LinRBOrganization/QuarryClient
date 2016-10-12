@@ -88,8 +88,9 @@ namespace LB.SysConfig
                     this.txtUserName.Text= dtUser.Rows[0]["UserName"].ToString().TrimEnd();
                     this.txtUserSex.SelectedValue = dtUser.Rows[0]["UserSex"];
                     this.txtUserType.SelectedValue= dtUser.Rows[0]["UserType"];
-                    this.txtUserPassword.Text = LBEncrypt.DESDecrypt(dtUser.Rows[0]["UserPassword"].ToString(), "linrubin");
+                    //this.txtUserPassword.Text = LBEncrypt.DESDecrypt(dtUser.Rows[0]["UserPassword"].ToString(), "linrubin");
                 }
+                this.txtUserPassword.Enabled = false;
             }
         }
 
@@ -118,7 +119,7 @@ namespace LB.SysConfig
             drNew["UserID"] = _UserID;
             drNew["LoginName"] = this.txtLoginName.Text;
             drNew["UserName"] = this.txtUserName.Text;
-            drNew["UserPassword"] = this.txtUserPassword.Text;
+            //drNew["UserPassword"] = this.txtUserPassword.Text;
             drNew["UserSex"] = this.txtUserSex.SelectedValue;
             drNew["UserType"] = this.txtUserType.SelectedValue;
             dtSPIN.Rows.Add(drNew);
@@ -130,6 +131,7 @@ namespace LB.SysConfig
             {
                 long.TryParse(dtResult.Rows[0]["UserID"].ToString(), out _UserID);
             }
+            this.txtUserPassword.Enabled = false;
             LB.WinFunction.LBCommonHelper.ShowCommonMessage("保存成功！");
         }
 

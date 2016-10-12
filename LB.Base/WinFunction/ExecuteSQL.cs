@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
 namespace LB.WinFunction
@@ -26,7 +27,27 @@ namespace LB.WinFunction
             LBWebService.LBWebService webservice = new LBWebService.LBWebService();
             string strErrorMsg;
             bool bolIsError;
-            dsReturn = webservice.RunProcedure(iSPType, LoginInfo.LoginName, dtInput, out dtOut, out strErrorMsg, out bolIsError);
+
+            List<Dictionary<object, object>> lstDictValue = new List<Dictionary<object, object>>();
+            Dictionary<object, object> dictDataType = new Dictionary<object, object>();
+            foreach (DataRow dr in dtInput.Rows)
+            {
+                Dictionary<object, object> dict = new Dictionary<object, object>();
+                foreach (DataColumn dc in dtInput.Columns)
+                {
+                    dict.Add(dc.ColumnName, dr[dc.ColumnName]);
+                    if (!dictDataType.ContainsKey(dc.ColumnName))
+                    {
+                        dictDataType.Add(dc.ColumnName, dc.DataType.ToString());
+                    }
+                }
+                lstDictValue.Add(dict);
+            }
+
+            byte[] bSerialValue = SerializeObject(lstDictValue);
+            byte[] bSerialDataType = SerializeObject(dictDataType);
+            
+            dsReturn = webservice.RunProcedure(iSPType, LoginInfo.LoginName, bSerialValue,bSerialDataType, out dtOut, out strErrorMsg, out bolIsError);
             if (bolIsError)
             {
                 throw new Exception(strErrorMsg);
@@ -36,6 +57,39 @@ namespace LB.WinFunction
                 CallSPArgs args = new Args.CallSPArgs(iSPType, dtInput);
                 CallSPEvent(args);
             }
+        }
+
+        public static byte[] SerializeObject(object pObj)
+        {
+            if (pObj == null)
+                return null;
+            System.IO.MemoryStream memoryStream = new System.IO.MemoryStream();
+            BinaryFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(memoryStream, pObj);
+            memoryStream.Position = 0;
+            byte[] read = new byte[memoryStream.Length];
+            memoryStream.Read(read, 0, read.Length);
+            memoryStream.Close();
+            return read;
+        }
+
+        public static object DeserializeObject(byte[] pBytes)
+        {
+            object newOjb = null;
+            if (pBytes == null)
+            {
+                return newOjb;
+            }
+
+
+            System.IO.MemoryStream memoryStream = new System.IO.MemoryStream(pBytes);
+            memoryStream.Position = 0;
+            BinaryFormatter formatter = new BinaryFormatter();
+            newOjb = formatter.Deserialize(memoryStream);
+            memoryStream.Close();
+
+
+            return newOjb;
         }
 
         /// <summary>
