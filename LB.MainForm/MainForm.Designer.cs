@@ -44,6 +44,8 @@ namespace LB.MainForm
             this.btnSQLBuilder = new LB.Controls.LBToolStripMenuItem(this.components);
             this.tcMain = new LB.Controls.LBTabControl.LBMainTabControl(this.components);
             this.tpMain = new DMSkin.Metro.Controls.MetroTabPage();
+            this.btnDDBaseManager = new LB.Controls.LBToolStripDropDownButton(this.components);
+            this.btnItemBaseManager = new LB.Controls.LBToolStripMenuItem(this.components);
             this.toolStrip1.SuspendLayout();
             this.tcMain.SuspendLayout();
             this.SuspendLayout();
@@ -51,7 +53,8 @@ namespace LB.MainForm
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnDDSystemManager});
+            this.btnDDSystemManager,
+            this.btnDDBaseManager});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(803, 25);
@@ -170,6 +173,25 @@ namespace LB.MainForm
             this.tpMain.VerticalScrollbarDM_HighlightOnWheel = false;
             this.tpMain.VerticalScrollbarSize = 10;
             // 
+            // btnDDBaseManager
+            // 
+            this.btnDDBaseManager.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnItemBaseManager});
+            this.btnDDBaseManager.Image = ((System.Drawing.Image)(resources.GetObject("btnDDBaseManager.Image")));
+            this.btnDDBaseManager.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDDBaseManager.LBPermissionCode = "PMSystemManager";
+            this.btnDDBaseManager.Name = "btnDDBaseManager";
+            this.btnDDBaseManager.Size = new System.Drawing.Size(109, 22);
+            this.btnDDBaseManager.Text = "基础资料管理";
+            // 
+            // btnItemBaseManager
+            // 
+            this.btnItemBaseManager.LBPermissionCode = "PMChangePassword";
+            this.btnItemBaseManager.Name = "btnItemBaseManager";
+            this.btnItemBaseManager.Size = new System.Drawing.Size(152, 22);
+            this.btnItemBaseManager.Text = "物料管理";
+            this.btnItemBaseManager.Click += new System.EventHandler(this.btnItemBaseManager_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -202,6 +224,8 @@ namespace LB.MainForm
         private Controls.LBTabControl.LBMainTabControl tcMain;
         private DMSkin.Metro.Controls.MetroTabPage tpMain;
         private LBToolStripMenuItem btnLogManager;
+        private LBToolStripDropDownButton btnDDBaseManager;
+        private LBToolStripMenuItem btnItemBaseManager;
     }
 }
 

@@ -1,6 +1,6 @@
 ﻿namespace LB.MM
 {
-    partial class frmDevelopViewConfig
+    partial class frmItemBaseManager
     {
         /// <summary>
         /// Required designer variable.
@@ -29,13 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDevelopViewConfig));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItemBaseManager));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnSave = new LB.Controls.LBToolStripButton(this.components);
+            this.btnAddItemBase = new LB.Controls.LBToolStripButton(this.components);
+            this.btnEditItemBase = new LB.Controls.LBToolStripButton(this.components);
+            this.btnReflush = new LB.Controls.LBToolStripButton(this.components);
+            this.btnTableSetting = new LB.Controls.LBToolStripButton(this.components);
+            this.btnSort = new LB.Controls.LBToolStripButton(this.components);
             this.grdMain = new LB.Controls.LBDataGridView(this.components);
             this.SysViewType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SysViewName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,13 +55,10 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.lbToolStripButton1 = new LB.Controls.LBToolStripButton(this.components);
-            this.lbToolStripButton3 = new LB.Controls.LBToolStripButton(this.components);
-            this.lbToolStripButton2 = new LB.Controls.LBToolStripButton(this.components);
-            this.lbToolStripButton4 = new LB.Controls.LBToolStripButton(this.components);
-            this.lbToolStripButton5 = new LB.Controls.LBToolStripButton(this.components);
-            this.lbToolStripButton6 = new LB.Controls.LBToolStripButton(this.components);
-            this.lbToolStripButton7 = new LB.Controls.LBToolStripButton(this.components);
+            this.btnAddItemType = new LB.Controls.LBToolStripButton(this.components);
+            this.btnDeleteItemType = new LB.Controls.LBToolStripButton(this.components);
+            this.btnEditItemType = new LB.Controls.LBToolStripButton(this.components);
+            this.btnDeleteItemBase = new LB.Controls.LBToolStripButton(this.components);
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMain)).BeginInit();
             this.panel1.SuspendLayout();
@@ -71,26 +72,67 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnSave,
-            this.lbToolStripButton7,
-            this.lbToolStripButton6,
-            this.lbToolStripButton5,
-            this.lbToolStripButton4});
+            this.btnAddItemBase,
+            this.btnEditItemBase,
+            this.btnDeleteItemBase,
+            this.btnReflush,
+            this.btnTableSetting,
+            this.btnSort});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(398, 40);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // btnSave
+            // btnAddItemBase
             // 
-            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSave.LBPermissionCode = "";
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(60, 37);
-            this.btnSave.Text = "添加货物";
-            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAddItemBase.Image = ((System.Drawing.Image)(resources.GetObject("btnAddItemBase.Image")));
+            this.btnAddItemBase.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAddItemBase.LBPermissionCode = "";
+            this.btnAddItemBase.Name = "btnAddItemBase";
+            this.btnAddItemBase.Size = new System.Drawing.Size(60, 37);
+            this.btnAddItemBase.Text = "添加货物";
+            this.btnAddItemBase.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // btnEditItemBase
+            // 
+            this.btnEditItemBase.Image = ((System.Drawing.Image)(resources.GetObject("btnEditItemBase.Image")));
+            this.btnEditItemBase.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEditItemBase.LBPermissionCode = "";
+            this.btnEditItemBase.Name = "btnEditItemBase";
+            this.btnEditItemBase.Size = new System.Drawing.Size(60, 37);
+            this.btnEditItemBase.Text = "打开编辑";
+            this.btnEditItemBase.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // btnReflush
+            // 
+            this.btnReflush.Image = ((System.Drawing.Image)(resources.GetObject("btnReflush.Image")));
+            this.btnReflush.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnReflush.LBPermissionCode = "";
+            this.btnReflush.Name = "btnReflush";
+            this.btnReflush.Size = new System.Drawing.Size(36, 37);
+            this.btnReflush.Text = "刷新";
+            this.btnReflush.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // btnTableSetting
+            // 
+            this.btnTableSetting.Image = ((System.Drawing.Image)(resources.GetObject("btnTableSetting.Image")));
+            this.btnTableSetting.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnTableSetting.LBPermissionCode = "";
+            this.btnTableSetting.Name = "btnTableSetting";
+            this.btnTableSetting.Size = new System.Drawing.Size(60, 37);
+            this.btnTableSetting.Text = "表格设置";
+            this.btnTableSetting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // btnSort
+            // 
+            this.btnSort.Image = ((System.Drawing.Image)(resources.GetObject("btnSort.Image")));
+            this.btnSort.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSort.LBPermissionCode = "";
+            this.btnSort.Name = "btnSort";
+            this.btnSort.Size = new System.Drawing.Size(36, 37);
+            this.btnSort.Text = "排序";
+            this.btnSort.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // grdMain
             // 
@@ -232,6 +274,7 @@
             this.txtFilter.BackColor = System.Drawing.Color.Transparent;
             this.txtFilter.BorderColor = System.Drawing.Color.LightSteelBlue;
             this.txtFilter.LBTitle = "关键字";
+            this.txtFilter.LBTitleVisible = true;
             this.txtFilter.Location = new System.Drawing.Point(9, 11);
             this.txtFilter.Margin = new System.Windows.Forms.Padding(0);
             this.txtFilter.Name = "txtFilter";
@@ -271,92 +314,62 @@
             // toolStrip2
             // 
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lbToolStripButton1,
-            this.lbToolStripButton3,
-            this.lbToolStripButton2});
+            this.btnAddItemType,
+            this.btnDeleteItemType,
+            this.btnEditItemType});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(200, 40);
             this.toolStrip2.TabIndex = 4;
             this.toolStrip2.Text = "toolStrip2";
             // 
-            // lbToolStripButton1
+            // btnAddItemType
             // 
-            this.lbToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("lbToolStripButton1.Image")));
-            this.lbToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.lbToolStripButton1.LBPermissionCode = "";
-            this.lbToolStripButton1.Name = "lbToolStripButton1";
-            this.lbToolStripButton1.Size = new System.Drawing.Size(60, 37);
-            this.lbToolStripButton1.Text = "添加分类";
-            this.lbToolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAddItemType.Image = ((System.Drawing.Image)(resources.GetObject("btnAddItemType.Image")));
+            this.btnAddItemType.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAddItemType.LBPermissionCode = "";
+            this.btnAddItemType.Name = "btnAddItemType";
+            this.btnAddItemType.Size = new System.Drawing.Size(60, 37);
+            this.btnAddItemType.Text = "添加分类";
+            this.btnAddItemType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // lbToolStripButton3
+            // btnDeleteItemType
             // 
-            this.lbToolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("lbToolStripButton3.Image")));
-            this.lbToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.lbToolStripButton3.LBPermissionCode = "";
-            this.lbToolStripButton3.Name = "lbToolStripButton3";
-            this.lbToolStripButton3.Size = new System.Drawing.Size(60, 37);
-            this.lbToolStripButton3.Text = "删除分类";
-            this.lbToolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnDeleteItemType.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteItemType.Image")));
+            this.btnDeleteItemType.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDeleteItemType.LBPermissionCode = "";
+            this.btnDeleteItemType.Name = "btnDeleteItemType";
+            this.btnDeleteItemType.Size = new System.Drawing.Size(60, 37);
+            this.btnDeleteItemType.Text = "删除分类";
+            this.btnDeleteItemType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // lbToolStripButton2
+            // btnEditItemType
             // 
-            this.lbToolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("lbToolStripButton2.Image")));
-            this.lbToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.lbToolStripButton2.LBPermissionCode = "";
-            this.lbToolStripButton2.Name = "lbToolStripButton2";
-            this.lbToolStripButton2.Size = new System.Drawing.Size(48, 37);
-            this.lbToolStripButton2.Text = "修改类";
-            this.lbToolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnEditItemType.Image = ((System.Drawing.Image)(resources.GetObject("btnEditItemType.Image")));
+            this.btnEditItemType.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEditItemType.LBPermissionCode = "";
+            this.btnEditItemType.Name = "btnEditItemType";
+            this.btnEditItemType.Size = new System.Drawing.Size(60, 37);
+            this.btnEditItemType.Text = "修改分类";
+            this.btnEditItemType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // lbToolStripButton4
+            // btnDeleteItemBase
             // 
-            this.lbToolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("lbToolStripButton4.Image")));
-            this.lbToolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.lbToolStripButton4.LBPermissionCode = "";
-            this.lbToolStripButton4.Name = "lbToolStripButton4";
-            this.lbToolStripButton4.Size = new System.Drawing.Size(36, 37);
-            this.lbToolStripButton4.Text = "排序";
-            this.lbToolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnDeleteItemBase.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteItemBase.Image")));
+            this.btnDeleteItemBase.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDeleteItemBase.LBPermissionCode = "";
+            this.btnDeleteItemBase.Name = "btnDeleteItemBase";
+            this.btnDeleteItemBase.Size = new System.Drawing.Size(60, 37);
+            this.btnDeleteItemBase.Text = "打开编辑";
+            this.btnDeleteItemBase.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // lbToolStripButton5
-            // 
-            this.lbToolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("lbToolStripButton5.Image")));
-            this.lbToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.lbToolStripButton5.LBPermissionCode = "";
-            this.lbToolStripButton5.Name = "lbToolStripButton5";
-            this.lbToolStripButton5.Size = new System.Drawing.Size(60, 37);
-            this.lbToolStripButton5.Text = "表格设置";
-            this.lbToolStripButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // lbToolStripButton6
-            // 
-            this.lbToolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("lbToolStripButton6.Image")));
-            this.lbToolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.lbToolStripButton6.LBPermissionCode = "";
-            this.lbToolStripButton6.Name = "lbToolStripButton6";
-            this.lbToolStripButton6.Size = new System.Drawing.Size(36, 37);
-            this.lbToolStripButton6.Text = "刷新";
-            this.lbToolStripButton6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // lbToolStripButton7
-            // 
-            this.lbToolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("lbToolStripButton7.Image")));
-            this.lbToolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.lbToolStripButton7.LBPermissionCode = "";
-            this.lbToolStripButton7.Name = "lbToolStripButton7";
-            this.lbToolStripButton7.Size = new System.Drawing.Size(60, 37);
-            this.lbToolStripButton7.Text = "打开编辑";
-            this.lbToolStripButton7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // frmDevelopViewConfig
+            // frmItemBaseManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
             this.LBPageTitle = "视图配置";
-            this.Name = "frmDevelopViewConfig";
+            this.Name = "frmItemBaseManager";
             this.Size = new System.Drawing.Size(602, 345);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -377,7 +390,7 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private Controls.LBToolStripButton btnSave;
+        private Controls.LBToolStripButton btnAddItemBase;
         private Controls.LBDataGridView grdMain;
         private System.Windows.Forms.Panel panel1;
         private Controls.LBTextBox.CoolTextBox txtFilter;
@@ -393,12 +406,13 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.ToolStrip toolStrip2;
-        private Controls.LBToolStripButton lbToolStripButton1;
-        private Controls.LBToolStripButton lbToolStripButton3;
-        private Controls.LBToolStripButton lbToolStripButton2;
-        private Controls.LBToolStripButton lbToolStripButton7;
-        private Controls.LBToolStripButton lbToolStripButton6;
-        private Controls.LBToolStripButton lbToolStripButton5;
-        private Controls.LBToolStripButton lbToolStripButton4;
+        private Controls.LBToolStripButton btnAddItemType;
+        private Controls.LBToolStripButton btnDeleteItemType;
+        private Controls.LBToolStripButton btnEditItemType;
+        private Controls.LBToolStripButton btnEditItemBase;
+        private Controls.LBToolStripButton btnReflush;
+        private Controls.LBToolStripButton btnTableSetting;
+        private Controls.LBToolStripButton btnSort;
+        private Controls.LBToolStripButton btnDeleteItemBase;
     }
 }

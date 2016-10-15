@@ -145,6 +145,10 @@
       <Project>{12978718-afcb-4ab2-b00f-cdbd3c2aaa23}</Project>
       <Name>LB.Login</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LB.MM\LB.MM.csproj">
+      <Project>{9d7aa750-894d-4710-a89d-4e1c7cad957e}</Project>
+      <Name>LB.MM</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LB.SysConfig\LB.SysConfig.csproj">
       <Project>{948f87ee-5644-4cb5-afa2-c8aeeb1470c2}</Project>
       <Name>LB.SysConfig</Name>
