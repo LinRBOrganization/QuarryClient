@@ -159,6 +159,12 @@
   <ItemGroup>
     <None Include="Resources\btnDelete.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnBalanceApportion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnConfig.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

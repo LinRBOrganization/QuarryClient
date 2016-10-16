@@ -33,6 +33,16 @@ namespace LB.MainForm
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tcMain = new LB.Controls.LBTabControl.LBMainTabControl(this.components);
+            this.tpMain = new DMSkin.Metro.Controls.MetroTabPage();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblLoginName = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblLoginTime = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblConnectStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.btnDDSystemManager = new LB.Controls.LBToolStripDropDownButton(this.components);
             this.btnChangePassword = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnDBBackUp = new LB.Controls.LBToolStripMenuItem(this.components);
@@ -43,16 +53,9 @@ namespace LB.MainForm
             this.btnViewConfig = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnPermissionConfig = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnSQLBuilder = new LB.Controls.LBToolStripMenuItem(this.components);
-            this.tcMain = new LB.Controls.LBTabControl.LBMainTabControl(this.components);
-            this.tpMain = new DMSkin.Metro.Controls.MetroTabPage();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblLoginName = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
-            this.lblLoginTime = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblConnectStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnDropDownReceive = new LB.Controls.LBToolStripDropDownButton(this.components);
+            this.btnRPReceive = new LB.Controls.LBToolStripMenuItem(this.components);
+            this.btnRPReceiveList = new LB.Controls.LBToolStripMenuItem(this.components);
             this.toolStrip1.SuspendLayout();
             this.tcMain.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -61,103 +64,13 @@ namespace LB.MainForm
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnDDSystemManager});
+            this.btnDDSystemManager,
+            this.btnDropDownReceive});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(893, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // btnDDSystemManager
-            // 
-            this.btnDDSystemManager.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnChangePassword,
-            this.btnDBBackUp,
-            this.btnUserManager,
-            this.btnLogManager,
-            this.btnCancel,
-            this.tsmConfig});
-            this.btnDDSystemManager.Image = ((System.Drawing.Image)(resources.GetObject("btnDDSystemManager.Image")));
-            this.btnDDSystemManager.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDDSystemManager.LBPermissionCode = "PMSystemManager";
-            this.btnDDSystemManager.Name = "btnDDSystemManager";
-            this.btnDDSystemManager.Size = new System.Drawing.Size(85, 22);
-            this.btnDDSystemManager.Text = "系统管理";
-            // 
-            // btnChangePassword
-            // 
-            this.btnChangePassword.LBPermissionCode = "PMChangePassword";
-            this.btnChangePassword.Name = "btnChangePassword";
-            this.btnChangePassword.Size = new System.Drawing.Size(148, 22);
-            this.btnChangePassword.Text = "修改密码";
-            this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
-            // 
-            // btnDBBackUp
-            // 
-            this.btnDBBackUp.LBPermissionCode = "DBBackUp_Query";
-            this.btnDBBackUp.Name = "btnDBBackUp";
-            this.btnDBBackUp.Size = new System.Drawing.Size(148, 22);
-            this.btnDBBackUp.Text = "帐套备份设置";
-            this.btnDBBackUp.Click += new System.EventHandler(this.btnDBBackUp_Click);
-            // 
-            // btnUserManager
-            // 
-            this.btnUserManager.LBPermissionCode = "PMUserManager_Query";
-            this.btnUserManager.Name = "btnUserManager";
-            this.btnUserManager.Size = new System.Drawing.Size(148, 22);
-            this.btnUserManager.Text = "用户权限管理";
-            this.btnUserManager.Click += new System.EventHandler(this.btnUserManager_Click);
-            // 
-            // btnLogManager
-            // 
-            this.btnLogManager.LBPermissionCode = "LogManager_Query";
-            this.btnLogManager.Name = "btnLogManager";
-            this.btnLogManager.Size = new System.Drawing.Size(148, 22);
-            this.btnLogManager.Text = "操作日志";
-            this.btnLogManager.Click += new System.EventHandler(this.btnLogManager_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.LBPermissionCode = "";
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(148, 22);
-            this.btnCancel.Text = "注销";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // tsmConfig
-            // 
-            this.tsmConfig.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnViewConfig,
-            this.btnPermissionConfig,
-            this.btnSQLBuilder});
-            this.tsmConfig.LBPermissionCode = "";
-            this.tsmConfig.Name = "tsmConfig";
-            this.tsmConfig.Size = new System.Drawing.Size(148, 22);
-            this.tsmConfig.Text = "开发配置管理";
-            // 
-            // btnViewConfig
-            // 
-            this.btnViewConfig.LBPermissionCode = "";
-            this.btnViewConfig.Name = "btnViewConfig";
-            this.btnViewConfig.Size = new System.Drawing.Size(135, 22);
-            this.btnViewConfig.Text = "视图配置";
-            this.btnViewConfig.Click += new System.EventHandler(this.btnViewConfig_Click);
-            // 
-            // btnPermissionConfig
-            // 
-            this.btnPermissionConfig.LBPermissionCode = "";
-            this.btnPermissionConfig.Name = "btnPermissionConfig";
-            this.btnPermissionConfig.Size = new System.Drawing.Size(135, 22);
-            this.btnPermissionConfig.Text = "权限配置";
-            this.btnPermissionConfig.Click += new System.EventHandler(this.btnPermissionConfig_Click);
-            // 
-            // btnSQLBuilder
-            // 
-            this.btnSQLBuilder.LBPermissionCode = "";
-            this.btnSQLBuilder.Name = "btnSQLBuilder";
-            this.btnSQLBuilder.Size = new System.Drawing.Size(135, 22);
-            this.btnSQLBuilder.Text = "SQL生成器";
-            this.btnSQLBuilder.Click += new System.EventHandler(this.btnSQLBuilder_Click);
             // 
             // tcMain
             // 
@@ -221,15 +134,12 @@ namespace LB.MainForm
             this.lblLoginName.Size = new System.Drawing.Size(92, 22);
             this.lblLoginName.Text = "阿斯顿";
             // 
-            // toolStripSplitButton1
+            // toolStripStatusLabel3
             // 
-            this.toolStripSplitButton1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
-            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
-            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(16, 25);
-            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
+            this.toolStripStatusLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(78, 22);
+            this.toolStripStatusLabel3.Text = "登录时间:";
             // 
             // lblLoginTime
             // 
@@ -238,13 +148,6 @@ namespace LB.MainForm
             this.lblLoginTime.Name = "lblLoginTime";
             this.lblLoginTime.Size = new System.Drawing.Size(161, 22);
             this.lblLoginTime.Text = "2016-10-14 20:30    ";
-            // 
-            // toolStripStatusLabel3
-            // 
-            this.toolStripStatusLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(78, 22);
-            this.toolStripStatusLabel3.Text = "登录时间:";
             // 
             // toolStripStatusLabel4
             // 
@@ -260,6 +163,135 @@ namespace LB.MainForm
             this.lblConnectStatus.Name = "lblConnectStatus";
             this.lblConnectStatus.Size = new System.Drawing.Size(42, 22);
             this.lblConnectStatus.Text = "正常";
+            // 
+            // toolStripSplitButton1
+            // 
+            this.toolStripSplitButton1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
+            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(16, 4);
+            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
+            // 
+            // btnDDSystemManager
+            // 
+            this.btnDDSystemManager.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnChangePassword,
+            this.btnDBBackUp,
+            this.btnUserManager,
+            this.btnLogManager,
+            this.btnCancel,
+            this.tsmConfig});
+            this.btnDDSystemManager.Image = global::LB.MainForm.Properties.Resources.btnConfig;
+            this.btnDDSystemManager.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDDSystemManager.LBPermissionCode = "PMSystemManager";
+            this.btnDDSystemManager.Name = "btnDDSystemManager";
+            this.btnDDSystemManager.Size = new System.Drawing.Size(85, 22);
+            this.btnDDSystemManager.Text = "系统管理";
+            // 
+            // btnChangePassword
+            // 
+            this.btnChangePassword.LBPermissionCode = "PMChangePassword";
+            this.btnChangePassword.Name = "btnChangePassword";
+            this.btnChangePassword.Size = new System.Drawing.Size(152, 22);
+            this.btnChangePassword.Text = "修改密码";
+            this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
+            // 
+            // btnDBBackUp
+            // 
+            this.btnDBBackUp.LBPermissionCode = "DBBackUp_Query";
+            this.btnDBBackUp.Name = "btnDBBackUp";
+            this.btnDBBackUp.Size = new System.Drawing.Size(152, 22);
+            this.btnDBBackUp.Text = "帐套备份设置";
+            this.btnDBBackUp.Click += new System.EventHandler(this.btnDBBackUp_Click);
+            // 
+            // btnUserManager
+            // 
+            this.btnUserManager.LBPermissionCode = "PMUserManager_Query";
+            this.btnUserManager.Name = "btnUserManager";
+            this.btnUserManager.Size = new System.Drawing.Size(152, 22);
+            this.btnUserManager.Text = "用户权限管理";
+            this.btnUserManager.Click += new System.EventHandler(this.btnUserManager_Click);
+            // 
+            // btnLogManager
+            // 
+            this.btnLogManager.LBPermissionCode = "LogManager_Query";
+            this.btnLogManager.Name = "btnLogManager";
+            this.btnLogManager.Size = new System.Drawing.Size(152, 22);
+            this.btnLogManager.Text = "操作日志";
+            this.btnLogManager.Click += new System.EventHandler(this.btnLogManager_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.LBPermissionCode = "";
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(152, 22);
+            this.btnCancel.Text = "注销";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // tsmConfig
+            // 
+            this.tsmConfig.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnViewConfig,
+            this.btnPermissionConfig,
+            this.btnSQLBuilder});
+            this.tsmConfig.LBPermissionCode = "";
+            this.tsmConfig.Name = "tsmConfig";
+            this.tsmConfig.Size = new System.Drawing.Size(152, 22);
+            this.tsmConfig.Text = "开发配置管理";
+            // 
+            // btnViewConfig
+            // 
+            this.btnViewConfig.LBPermissionCode = "";
+            this.btnViewConfig.Name = "btnViewConfig";
+            this.btnViewConfig.Size = new System.Drawing.Size(135, 22);
+            this.btnViewConfig.Text = "视图配置";
+            this.btnViewConfig.Click += new System.EventHandler(this.btnViewConfig_Click);
+            // 
+            // btnPermissionConfig
+            // 
+            this.btnPermissionConfig.LBPermissionCode = "";
+            this.btnPermissionConfig.Name = "btnPermissionConfig";
+            this.btnPermissionConfig.Size = new System.Drawing.Size(135, 22);
+            this.btnPermissionConfig.Text = "权限配置";
+            this.btnPermissionConfig.Click += new System.EventHandler(this.btnPermissionConfig_Click);
+            // 
+            // btnSQLBuilder
+            // 
+            this.btnSQLBuilder.LBPermissionCode = "";
+            this.btnSQLBuilder.Name = "btnSQLBuilder";
+            this.btnSQLBuilder.Size = new System.Drawing.Size(135, 22);
+            this.btnSQLBuilder.Text = "SQL生成器";
+            this.btnSQLBuilder.Click += new System.EventHandler(this.btnSQLBuilder_Click);
+            // 
+            // btnDropDownReceive
+            // 
+            this.btnDropDownReceive.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnRPReceive,
+            this.btnRPReceiveList});
+            this.btnDropDownReceive.Image = global::LB.MainForm.Properties.Resources.btnBalanceApportion;
+            this.btnDropDownReceive.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDropDownReceive.LBPermissionCode = "";
+            this.btnDropDownReceive.Name = "btnDropDownReceive";
+            this.btnDropDownReceive.Size = new System.Drawing.Size(85, 22);
+            this.btnDropDownReceive.Text = "收款管理";
+            // 
+            // btnRPReceive
+            // 
+            this.btnRPReceive.LBPermissionCode = "";
+            this.btnRPReceive.Name = "btnRPReceive";
+            this.btnRPReceive.Size = new System.Drawing.Size(152, 22);
+            this.btnRPReceive.Text = "充值";
+            this.btnRPReceive.Click += new System.EventHandler(this.btnRPReceive_Click);
+            // 
+            // btnRPReceiveList
+            // 
+            this.btnRPReceiveList.LBPermissionCode = "";
+            this.btnRPReceiveList.Name = "btnRPReceiveList";
+            this.btnRPReceiveList.Size = new System.Drawing.Size(152, 22);
+            this.btnRPReceiveList.Text = "充值记录";
+            this.btnRPReceiveList.Click += new System.EventHandler(this.btnRPReceiveList_Click);
             // 
             // MainForm
             // 
@@ -305,6 +337,9 @@ namespace LB.MainForm
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
         private System.Windows.Forms.ToolStripStatusLabel lblConnectStatus;
+        private LBToolStripDropDownButton btnDropDownReceive;
+        private LBToolStripMenuItem btnRPReceive;
+        private LBToolStripMenuItem btnRPReceiveList;
     }
 }
 
