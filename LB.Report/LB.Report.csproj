@@ -38,15 +38,15 @@
     <Reference Include="DMSkin">
       <HintPath>..\..\..\QuarryProject\WebClient\LB.MainForm\bin\Debug\DMSkin.dll</HintPath>
     </Reference>
-    <Reference Include="FastReport, Version=2013.2.5.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FastReport, Version=2015.3.3.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\LB.MainForm\bin\Debug\FastReport.dll</HintPath>
     </Reference>
-    <Reference Include="FastReport.Bars, Version=2013.2.5.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FastReport.Bars, Version=2015.3.3.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\LB.MainForm\bin\Debug\FastReport.Bars.dll</HintPath>
     </Reference>
-    <Reference Include="FastReport.Editor, Version=2013.2.5.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="FastReport.Editor, Version=2015.3.3.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\LB.MainForm\bin\Debug\FastReport.Editor.dll</HintPath>
     </Reference>
