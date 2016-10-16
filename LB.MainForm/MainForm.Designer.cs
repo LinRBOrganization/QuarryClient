@@ -77,9 +77,10 @@ namespace LB.MainForm
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnDDSystemManager,
-            this.btnDDBaseManager});
+            this.btnDDBaseManager,
             this.btnDDSystemManager,
-            this.btnDropDownReceive});
+            this.btnDropDownReceive });
+
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(893, 25);
@@ -324,7 +325,6 @@ namespace LB.MainForm
             this.btnItemBaseManager.Name = "btnItemBaseManager";
             this.btnItemBaseManager.Size = new System.Drawing.Size(152, 22);
             this.btnItemBaseManager.Text = "物料管理";
-            this.btnItemBaseManager.Click += new System.EventHandler(this.btnItemBaseManager_Click);
             // 
             // MainForm
             // 

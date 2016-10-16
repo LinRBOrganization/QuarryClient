@@ -12,9 +12,20 @@ namespace LB.RPReceive
 {
     public partial class frmEditReceiveBill : LBUIPageBase
     {
-        public frmEditReceiveBill(long l)
+        private long mlReceiveBillHeaderID;
+        public frmEditReceiveBill(long lReceiveBillHeaderID)
         {
             InitializeComponent();
+            mlReceiveBillHeaderID = lReceiveBillHeaderID;
         }
+
+        #region -- 根据单据状态显示或者隐藏相关按钮 --
+
+        private void SetButtonStatus()
+        {
+
+        }
+
+        #endregion
     }
 }

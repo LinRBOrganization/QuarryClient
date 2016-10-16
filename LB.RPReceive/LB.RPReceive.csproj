@@ -7,7 +7,7 @@
     <ProjectGuid>{A6740FE0-03AB-40E9-A2FD-B4F7A904DC36}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LB</RootNamespace>
+    <RootNamespace>LB.RPReceive</RootNamespace>
     <AssemblyName>LB.RPReceive</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -42,6 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="RPReceive\frmEditReceiveBill.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -70,6 +75,39 @@
       <Project>{bb3a2964-6a7e-479a-b180-b156fbcc868b}</Project>
       <Name>LB.StyleResource</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RPReceive\frmEditReceiveBill.resx">
+      <DependentUpon>frmEditReceiveBill.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnApprove.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnClearAll.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnClose.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnOpenAdd.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnRedo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnSave.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnUnApprove.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnDelete.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
