@@ -11,12 +11,13 @@ using LB.Page.Helper;
 using System.Threading;
 using LB.Common;
 using LB.SysConfig;
+using LB.WinFunction;
 
 namespace LB.MainForm
 {
     public partial class MainForm : LBForm
     {
-        //private Thread mThreadIniData;
+        private Thread mThreadStatus;
         public bool bolIsCancel = false;
         public MainForm()
         {
@@ -30,6 +31,19 @@ namespace LB.MainForm
         {
             base.OnLoad(e);
             InitData();
+
+            mThreadStatus = new Thread(TestServerConnectStatus);
+            mThreadStatus.Start();
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            if(this.mThreadStatus.ThreadState== ThreadState.Running)
+            {
+                this.mThreadStatus.Abort();
+            }
         }
 
         #region -- 按钮事件  --
@@ -271,8 +285,56 @@ namespace LB.MainForm
         private void InitData()
         {
             LBPermission.ReadAllPermission();//加载所有权限信息
-
+            SetLoginStatus();//设置状态栏信息
             LBLog.AssemblyStart();
+        }
+
+        #endregion
+
+        #region -- 状态栏信息 --
+
+        private void SetLoginStatus()
+        {
+            this.lblLoginTime.Text = LoginInfo.LoginTime.ToString("yyyy-MM-dd HH:mm");
+            this.lblLoginName.Text = LoginInfo.LoginName;
+        }
+
+        private delegate void setRichTexBox(string s);
+        private void TestServerConnectStatus()
+        {
+            while (true)
+            {
+                try
+                {
+                    bool bolConnected = ExecuteSQL.TestConnectStatus();
+                    if (bolConnected)
+                    {
+                        this.Invoke((MethodInvoker)delegate {
+                            this.lblConnectStatus.Text = "正常";
+                            this.lblConnectStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+                        });
+
+                    }
+                    else
+                    {
+                        this.Invoke((MethodInvoker)delegate {
+                            this.lblConnectStatus.Text = "异常";
+                            this.lblConnectStatus.ForeColor = Color.Red;
+                        });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    this.Invoke((MethodInvoker)delegate {
+                        this.lblConnectStatus.Text = "异常";
+                        this.lblConnectStatus.ForeColor = Color.Red;
+                    });
+                }
+                finally
+                {
+                    Thread.Sleep(1000 * 10);
+                }
+            }
         }
 
         #endregion

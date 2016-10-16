@@ -55,9 +55,15 @@ namespace LB.Controls
         {
             get
             {
-                return this.SelectedValue==null|| 
-                    this.SelectedValue.ToString().TrimEnd()==""|| 
-                    this.Text.TrimEnd() == "" ? true : false;
+                if (this.Text.TrimEnd() != "")
+                {
+                    return false;
+                }
+                if (this.SelectedValue != null)
+                {
+                    return false;
+                }
+                return true;
             }
         }
     }

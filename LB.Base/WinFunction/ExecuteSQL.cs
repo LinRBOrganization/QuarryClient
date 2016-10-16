@@ -189,5 +189,15 @@ namespace LB.WinFunction
             }
             return dtResult;
         }
+
+        /// <summary>
+        /// 测试连接状态
+        /// </summary>
+        /// <returns></returns>
+        public static bool TestConnectStatus()
+        {
+            LBWebService.LBWebService webservice = new LBWebService.LBWebService();
+            return webservice.ConnectServer();
+        }
     }
 }

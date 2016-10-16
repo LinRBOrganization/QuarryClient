@@ -25,6 +25,8 @@ namespace LB.SysConfig
         {
             base.OnLoad(e);
 
+            this.txtBackUpType.SelectedValueChanged += TxtBackUpType_SelectedValueChanged;
+
             this.txtBackUpType.DataSource = LB.Common.LBConst.GetConstData("BackUpType");//读取备份类型常量列表
             this.txtBackUpType.DisplayMember = "ConstText";
             this.txtBackUpType.ValueMember = "ConstValue";
@@ -34,6 +36,28 @@ namespace LB.SysConfig
             this.txtBackUpWeek.ValueMember = "ConstValue";
 
             ReadFieldValue();
+        }
+
+        private void TxtBackUpType_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int iBackUpType = LBConverter.ToInt32(this.txtBackUpType.SelectedValue);
+                if (iBackUpType == 1)//每天备份，将周设置隐藏
+                {
+                    this.lblBackUpWeek.Visible = false;
+                    this.txtBackUpWeek.Visible = false;
+                }
+                else
+                {
+                    this.lblBackUpWeek.Visible = true;
+                    this.txtBackUpWeek.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -56,6 +80,11 @@ namespace LB.SysConfig
 
                 int iBackUpFileMaxNum;
                 int.TryParse(this.txtBackUpFileMaxNum.Text.TrimEnd(), out iBackUpFileMaxNum);
+                if (iBackUpFileMaxNum <= 0)
+                {
+                    LB.WinFunction.LBCommonHelper.ShowCommonMessage("[最大备份帐套数必须大于0]");
+                    return;
+                }
 
                 int iSPType = mlBackUpConfigID > 0 ? 13201 : 13200;
 
@@ -67,7 +96,6 @@ namespace LB.SysConfig
                 parmCol.Add(new LBParameter("BackUpMinu", enLBDbType.Int32, this.txtBackUpMinu.Text));
                 parmCol.Add(new LBParameter("IsEffect", enLBDbType.Boolean, this.chkIsEffect.Checked));
                 parmCol.Add(new LBParameter("BackUpFileMaxNum", enLBDbType.Int32, iBackUpFileMaxNum));
-                parmCol.Add(new LBParameter("BackUpPath", enLBDbType.String, this.txtBackUpPath.Text));
                 parmCol.Add(new LBParameter("BackUpName", enLBDbType.String, this.txtBackUpName.Text));
                 DataSet dsReturn;
                 Dictionary<string, object> dictValue;
@@ -88,7 +116,7 @@ namespace LB.SysConfig
         {
             try
             {
-                if (LB.WinFunction.LBCommonHelper.ConfirmMessage("是否确认删除该用户？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (LB.WinFunction.LBCommonHelper.ConfirmMessage("是否确认备份方案？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     if (mlBackUpConfigID > 0)
                     {
@@ -132,7 +160,6 @@ namespace LB.SysConfig
                     this.txtBackUpMinu.Text = iBackUpMinu.ToString();
                     this.txtBackUpWeek.SelectedValue = iBackUpWeek;
                     this.txtBackUpType.SelectedValue = iBackUpType;
-                    this.txtBackUpPath.Text = strBackUpPath;
                     this.txtBackUpName.Text = strBackUpName;
                     this.chkIsEffect.Checked = bolIsEffect;
                 }

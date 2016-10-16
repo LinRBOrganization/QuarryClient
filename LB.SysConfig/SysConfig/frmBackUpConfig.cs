@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using LB.Controls;
 using LB.WinFunction;
 using LB.Page.Helper;
+using LB.Common;
 
 namespace LB.SysConfig
 {
@@ -154,7 +155,40 @@ namespace LB.SysConfig
         {
             try
             {
-                
+                this.grdMain.CurrentCell = null;
+                this.grdMain.EndEdit();
+
+                bool bolIsDeleted = false;
+                if (LB.WinFunction.LBCommonHelper.ConfirmMessage("是否确认备份方案？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    foreach (DataGridViewRow dgvr in this.grdMain.Rows)
+                    {
+                        bool bolSelected = LBConverter.ToBoolean(dgvr.Cells["Selected"].Value);
+                        if (bolSelected)
+                        {
+                            DataRowView drv = dgvr.DataBoundItem as DataRowView;
+                            long lBackUpConfigID = LBConverter.ToInt64(drv["BackUpConfigID"]);
+                            if (lBackUpConfigID > 0)
+                            {
+                                LBDbParameterCollection parmCol = new LBDbParameterCollection();
+                                parmCol.Add(new LBParameter("BackUpConfigID", enLBDbType.Int64, lBackUpConfigID));
+                                DataSet dsReturn;
+                                Dictionary<string, object> dictValue;
+                                ExecuteSQL.CallSP(13202, parmCol, out dsReturn, out dictValue);
+                                bolIsDeleted = true;
+                            }
+                        }
+                    }
+                    if (bolIsDeleted)
+                    {
+                        LB.WinFunction.LBCommonHelper.ShowCommonMessage("删除成功！");
+                        LoadBackUpConfig();
+                    }
+                    else
+                    {
+                        LB.WinFunction.LBCommonHelper.ShowCommonMessage("请选择需要删除的数据行！");
+                    }
+                }
             }
             catch (Exception ex)
             {

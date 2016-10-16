@@ -50,9 +50,6 @@ namespace LB.SysConfig
             this.txtBackUpWeek = new LB.Controls.LBMetroComboBox(this.components);
             this.lblBackUpWeek = new CCWin.SkinControl.SkinLabel();
             this.chkIsEffect = new DMSkin.Metro.Controls.MetroCheckBox();
-            this.skinLabel6 = new CCWin.SkinControl.SkinLabel();
-            this.txtBackUpPath = new LB.Controls.LBSkinTextBox(this.components);
-            this.metroDMButton1 = new DMSkin.MetroDMButton();
             this.skinLabel7 = new CCWin.SkinControl.SkinLabel();
             this.txtBackUpFileMaxNum = new LB.Controls.LBSkinTextBox(this.components);
             this.skinToolStrip1.SuspendLayout();
@@ -287,9 +284,7 @@ namespace LB.SysConfig
             this.txtBackUpMinu.ItemHeight = 24;
             this.txtBackUpMinu.Items.AddRange(new object[] {
             "0",
-            "15",
-            "30",
-            "45"});
+            "30"});
             this.txtBackUpMinu.Location = new System.Drawing.Point(480, 79);
             this.txtBackUpMinu.Name = "txtBackUpMinu";
             this.txtBackUpMinu.Size = new System.Drawing.Size(67, 30);
@@ -378,89 +373,12 @@ namespace LB.SysConfig
             this.chkIsEffect.TabIndex = 14;
             this.chkIsEffect.Text = "是否生效";
             // 
-            // skinLabel6
-            // 
-            this.skinLabel6.BackColor = System.Drawing.Color.Transparent;
-            this.skinLabel6.BorderColor = System.Drawing.Color.White;
-            this.skinLabel6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel6.Location = new System.Drawing.Point(15, 223);
-            this.skinLabel6.Name = "skinLabel6";
-            this.skinLabel6.Size = new System.Drawing.Size(110, 32);
-            this.skinLabel6.TabIndex = 15;
-            this.skinLabel6.Text = "选择备份路径";
-            this.skinLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtBackUpPath
-            // 
-            this.txtBackUpPath.BackColor = System.Drawing.Color.Transparent;
-            this.txtBackUpPath.CanBeEmpty = false;
-            this.txtBackUpPath.Caption = "备份路径";
-            this.txtBackUpPath.DownBack = null;
-            this.txtBackUpPath.Icon = null;
-            this.txtBackUpPath.IconIsButton = false;
-            this.txtBackUpPath.IconMouseState = CCWin.SkinClass.ControlState.Normal;
-            this.txtBackUpPath.IsPasswordChat = '\0';
-            this.txtBackUpPath.IsSystemPasswordChar = false;
-            this.txtBackUpPath.Lines = new string[0];
-            this.txtBackUpPath.Location = new System.Drawing.Point(147, 227);
-            this.txtBackUpPath.Margin = new System.Windows.Forms.Padding(0);
-            this.txtBackUpPath.MaxLength = 32767;
-            this.txtBackUpPath.MinimumSize = new System.Drawing.Size(28, 28);
-            this.txtBackUpPath.MouseBack = null;
-            this.txtBackUpPath.MouseState = CCWin.SkinClass.ControlState.Normal;
-            this.txtBackUpPath.Multiline = false;
-            this.txtBackUpPath.Name = "txtBackUpPath";
-            this.txtBackUpPath.NormlBack = null;
-            this.txtBackUpPath.Padding = new System.Windows.Forms.Padding(5);
-            this.txtBackUpPath.ReadOnly = false;
-            this.txtBackUpPath.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtBackUpPath.Size = new System.Drawing.Size(388, 28);
-            // 
-            // 
-            // 
-            this.txtBackUpPath.SkinTxt.AccessibleName = "";
-            this.txtBackUpPath.SkinTxt.AutoCompleteCustomSource.AddRange(new string[] {
-            "asdfasdf",
-            "adsfasdf"});
-            this.txtBackUpPath.SkinTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.txtBackUpPath.SkinTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtBackUpPath.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBackUpPath.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBackUpPath.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
-            this.txtBackUpPath.SkinTxt.Location = new System.Drawing.Point(5, 5);
-            this.txtBackUpPath.SkinTxt.Name = "BaseText";
-            this.txtBackUpPath.SkinTxt.Size = new System.Drawing.Size(378, 18);
-            this.txtBackUpPath.SkinTxt.TabIndex = 0;
-            this.txtBackUpPath.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
-            this.txtBackUpPath.SkinTxt.WaterText = "";
-            this.txtBackUpPath.TabIndex = 16;
-            this.txtBackUpPath.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtBackUpPath.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
-            this.txtBackUpPath.WaterText = "";
-            this.txtBackUpPath.WordWrap = true;
-            // 
-            // metroDMButton1
-            // 
-            this.metroDMButton1.BackColor = System.Drawing.Color.Transparent;
-            this.metroDMButton1.DownImage = ((System.Drawing.Image)(resources.GetObject("metroDMButton1.DownImage")));
-            this.metroDMButton1.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Bold);
-            this.metroDMButton1.Image = null;
-            this.metroDMButton1.IsShowBorder = true;
-            this.metroDMButton1.Location = new System.Drawing.Point(538, 227);
-            this.metroDMButton1.MoveImage = ((System.Drawing.Image)(resources.GetObject("metroDMButton1.MoveImage")));
-            this.metroDMButton1.Name = "metroDMButton1";
-            this.metroDMButton1.NormalImage = ((System.Drawing.Image)(resources.GetObject("metroDMButton1.NormalImage")));
-            this.metroDMButton1.Size = new System.Drawing.Size(72, 32);
-            this.metroDMButton1.TabIndex = 17;
-            this.metroDMButton1.Text = "选择路径";
-            this.metroDMButton1.UseVisualStyleBackColor = false;
-            // 
             // skinLabel7
             // 
             this.skinLabel7.BackColor = System.Drawing.Color.Transparent;
             this.skinLabel7.BorderColor = System.Drawing.Color.White;
             this.skinLabel7.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.skinLabel7.Location = new System.Drawing.Point(5, 270);
+            this.skinLabel7.Location = new System.Drawing.Point(11, 235);
             this.skinLabel7.Name = "skinLabel7";
             this.skinLabel7.Size = new System.Drawing.Size(560, 32);
             this.skinLabel7.TabIndex = 18;
@@ -480,7 +398,7 @@ namespace LB.SysConfig
             this.txtBackUpFileMaxNum.IsSystemPasswordChar = false;
             this.txtBackUpFileMaxNum.Lines = new string[] {
         "50"};
-            this.txtBackUpFileMaxNum.Location = new System.Drawing.Point(568, 274);
+            this.txtBackUpFileMaxNum.Location = new System.Drawing.Point(574, 239);
             this.txtBackUpFileMaxNum.Margin = new System.Windows.Forms.Padding(0);
             this.txtBackUpFileMaxNum.MaxLength = 32767;
             this.txtBackUpFileMaxNum.MinimumSize = new System.Drawing.Size(28, 28);
@@ -525,9 +443,6 @@ namespace LB.SysConfig
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.txtBackUpFileMaxNum);
             this.Controls.Add(this.skinLabel7);
-            this.Controls.Add(this.metroDMButton1);
-            this.Controls.Add(this.txtBackUpPath);
-            this.Controls.Add(this.skinLabel6);
             this.Controls.Add(this.chkIsEffect);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.skinLabel2);
@@ -535,7 +450,7 @@ namespace LB.SysConfig
             this.Controls.Add(this.skinToolStrip1);
             this.LBPageTitle = "编辑备份方案";
             this.Name = "frmEditBackUp";
-            this.Size = new System.Drawing.Size(629, 310);
+            this.Size = new System.Drawing.Size(629, 281);
             this.skinToolStrip1.ResumeLayout(false);
             this.skinToolStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -564,9 +479,6 @@ namespace LB.SysConfig
         private LBMetroComboBox txtBackUpMinu;
         private CCWin.SkinControl.SkinLabel skinLabel5;
         private DMSkin.Metro.Controls.MetroCheckBox chkIsEffect;
-        private CCWin.SkinControl.SkinLabel skinLabel6;
-        private LBSkinTextBox txtBackUpPath;
-        private DMSkin.MetroDMButton metroDMButton1;
         private CCWin.SkinControl.SkinLabel skinLabel7;
         private LBSkinTextBox txtBackUpFileMaxNum;
     }

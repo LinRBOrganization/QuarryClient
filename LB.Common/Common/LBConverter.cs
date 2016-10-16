@@ -56,6 +56,11 @@ namespace LB.Common
             }
             else
             {
+                int iValue;
+                int.TryParse(Value.ToString(), out iValue);
+                if (iValue > 0)
+                    return true;
+
                 bool bolValue;
                 bool.TryParse(Value.ToString(), out bolValue);
                 return bolValue;
