@@ -11,8 +11,8 @@ namespace LB.Controls.LBTextBox
 	/// <summary>
 	/// Summary description for CoolTextBox.
 	/// </summary>
-	public class CoolTextBox : System.Windows.Forms.UserControl
-	{
+	public class CoolTextBox : System.Windows.Forms.UserControl, ILBTextBox
+    {
 		private Color borderColor = Color.LightSteelBlue;
 		public Color BorderColor
 		{
@@ -329,5 +329,42 @@ namespace LB.Controls.LBTextBox
 
             }
         }
-	}
+
+        private bool _CanBeEmpty = true;
+        [Description("是否可为空")]
+        public bool CanBeEmpty
+        {
+            get
+            {
+                return _CanBeEmpty;
+            }
+            set
+            {
+                _CanBeEmpty = value;
+            }
+        }
+
+        private string _Caption = "";
+        [Description("控件名称")]
+        public string Caption
+        {
+            get
+            {
+                return _Caption;
+            }
+            set
+            {
+                _Caption = value;
+            }
+        }
+
+        [Description("值是否为空")]
+        public bool IsEmptyValue
+        {
+            get
+            {
+                return this.Text.TrimEnd() == "" ? true : false;
+            }
+        }
+    }
 }

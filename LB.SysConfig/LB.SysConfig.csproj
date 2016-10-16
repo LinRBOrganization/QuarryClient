@@ -59,11 +59,23 @@
     <Compile Include="SysConfig\frmAddUser.Designer.cs">
       <DependentUpon>frmAddUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="SysConfig\frmBackUpConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SysConfig\frmBackUpConfig.Designer.cs">
+      <DependentUpon>frmBackUpConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="SysConfig\frmChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SysConfig\frmChangePassword.Designer.cs">
       <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SysConfig\frmEditBackUp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SysConfig\frmEditBackUp.Designer.cs">
+      <DependentUpon>frmEditBackUp.cs</DependentUpon>
     </Compile>
     <Compile Include="SysConfig\frmLogManager.cs">
       <SubType>UserControl</SubType>
@@ -77,6 +89,12 @@
     <Compile Include="SysConfig\frmUserManager.Designer.cs">
       <DependentUpon>frmUserManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="SysConfig\frmUserPermission.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SysConfig\frmUserPermission.Designer.cs">
+      <DependentUpon>frmUserPermission.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -86,14 +104,23 @@
     <EmbeddedResource Include="SysConfig\frmAddUser.resx">
       <DependentUpon>frmAddUser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SysConfig\frmBackUpConfig.resx">
+      <DependentUpon>frmBackUpConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SysConfig\frmChangePassword.resx">
       <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SysConfig\frmEditBackUp.resx">
+      <DependentUpon>frmEditBackUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SysConfig\frmLogManager.resx">
       <DependentUpon>frmLogManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SysConfig\frmUserManager.resx">
       <DependentUpon>frmUserManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SysConfig\frmUserPermission.resx">
+      <DependentUpon>frmUserPermission.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

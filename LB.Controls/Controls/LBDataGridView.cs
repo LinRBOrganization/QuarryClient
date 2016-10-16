@@ -1,4 +1,5 @@
 ﻿using CCWin.SkinControl;
+using LB.Common;
 using LB.WinFunction;
 using System;
 using System.Collections.Generic;
@@ -36,13 +37,37 @@ namespace LB.Controls
 
         private void LBDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
+            try
             {
-                if(this[e.ColumnIndex,e.RowIndex] is DataGridViewButtonCell)
+                if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
                 {
-                    if (LBCellButtonClick != null)
-                        LBCellButtonClick(sender, e);
+                    if (this[e.ColumnIndex, e.RowIndex] is DataGridViewButtonCell)
+                    {
+                        DataGridViewColumn dc = this.Columns[e.ColumnIndex];
+                        if (dc is LBDataGridViewButtonColumn)
+                        {
+                            LBDataGridViewButtonColumn buttonColumn = dc as LBDataGridViewButtonColumn;
+                            if (buttonColumn.LBPermissionCode != "")
+                            {
+                                try
+                                {
+                                    LBPermission.VerifyUserPermission(buttonColumn.LBPermissionCode);
+                                }
+                                catch (Exception ex)
+                                {
+                                    LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+                                    return;
+                                }
+                            }
+                        }
+                        if (LBCellButtonClick != null)
+                            LBCellButtonClick(sender, e);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
             }
         }
 

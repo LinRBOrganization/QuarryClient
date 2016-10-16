@@ -24,6 +24,7 @@ namespace LB.SysConfig
             this.grdMain.DataError += delegate (object sender, DataGridViewDataErrorEventArgs e) { };
             this.grdMain.LBCellButtonClick += GrdMain_LBCellButtonClick;
             this.grdMain.CellDoubleClick += GrdMain_CellDoubleClick;
+
             LoadDataSource();//加载数据源
         }
 
@@ -93,6 +94,26 @@ namespace LB.SysConfig
                                     dgvr.ErrorText = ex.Message;
                                 }
                             }
+                        }
+                        else
+                        {
+                            this.grdMain.Rows.Remove(dgvr);
+                        }
+                    }
+                }
+                else if (this.grdMain.Columns[e.ColumnIndex].Name.Equals("btnSetUserPermission"))//设置用户权限
+                {
+                    DataGridViewRow dgvr = this.grdMain.Rows[e.RowIndex];
+                    if (dgvr.DataBoundItem != null)
+                    {
+                        DataRowView drv = dgvr.DataBoundItem as DataRowView;
+                        long lUserID = drv["UserID"] == DBNull.Value ?
+                            0 : Convert.ToInt64(drv["UserID"]);
+
+                        if (lUserID > 0)
+                        {
+                            frmUserPermission frmPermission = new frmUserPermission(lUserID);
+                            LBShowForm.ShowDialog(frmPermission);
                         }
                         else
                         {

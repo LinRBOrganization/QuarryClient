@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\LBConst.cs" />
+    <Compile Include="Common\LBConverter.cs" />
     <Compile Include="Common\LBLog.cs" />
     <Compile Include="Common\LBPermission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

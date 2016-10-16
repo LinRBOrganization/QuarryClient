@@ -121,7 +121,48 @@ namespace LB.Controls
             }
         }
 
-        
+        #region--校验控件是否为空 --
+        /// <summary>
+        /// 校验控件是否为空
+        /// </summary>
+        public void VerifyTextBoxIsEmpty()
+        {
+            List<ILBTextBox> lstControl = new List<ILBTextBox>();
+            CollectionAllVisibleTextBox(this.Controls, ref lstControl);
+
+            StringBuilder strMsg = new StringBuilder();
+            foreach(ILBTextBox txtBox in lstControl)
+            {
+                strMsg.AppendLine("控件<"+txtBox.Caption+">值不能为空！");
+            }
+
+            if (strMsg.ToString() != "")
+                throw new Exception(strMsg.ToString());
+        }
+
+        private void CollectionAllVisibleTextBox(ControlCollection controls, ref List<ILBTextBox> lstControl)
+        {
+            foreach(Control ctl in controls)
+            {
+                if(ctl.Visible && ctl is ILBTextBox)
+                {
+                    ILBTextBox txtBox = ctl as ILBTextBox;
+                    if (!txtBox.CanBeEmpty)
+                    {
+                        if (txtBox.IsEmptyValue)
+                        {
+                            lstControl.Add(txtBox);
+                        }
+                    }
+                }
+                else
+                {
+                    CollectionAllVisibleTextBox(ctl.Controls, ref lstControl);
+                }
+            }
+        }
+        #endregion
+
         protected virtual void OnInitToolStripControl(ToolStripReportArgs args)
         {
             mToolStrip = args.LBToolStrip;

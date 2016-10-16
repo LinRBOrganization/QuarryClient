@@ -64,6 +64,7 @@
     <Compile Include="Controls\Args\ToolStripReportArgs.cs" />
     <Compile Include="Controls\Helper\LBEnum.cs" />
     <Compile Include="Controls\Helper\LBShowForm.cs" />
+    <Compile Include="Controls\ILBTextBox.cs" />
     <Compile Include="Controls\LBBillForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +85,18 @@
     </Compile>
     <Compile Include="Controls\LBForm.Designer.cs">
       <DependentUpon>LBForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LBMetroComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\LBMetroComboBox.Designer.cs">
+      <DependentUpon>LBMetroComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LBSkinTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\LBSkinTextBox.Designer.cs">
+      <DependentUpon>LBSkinTextBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\LBTabControl\LBMainTabControl.cs">
       <SubType>Component</SubType>
