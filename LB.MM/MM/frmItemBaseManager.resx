@@ -121,7 +121,7 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnSave.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnAddItemBase.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFwSURBVDhPrVOhdgIxEOQT+gl8wsmTkchIZGRlJDISeRIZ
@@ -133,7 +133,7 @@
         SlRgE6ZXl1O9vrwhIweU9IHcgElzWApkZtcJcNgK/OUf/QVxjjxbF1cHNwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="lbToolStripButton7.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnEditItemBase.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFwSURBVDhPrVOhdgIxEOQT+gl8wsmTkchIZGRlJDISeRIZ
@@ -145,7 +145,7 @@
         SlRgE6ZXl1O9vrwhIweU9IHcgElzWApkZtcJcNgK/OUf/QVxjjxbF1cHNwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="lbToolStripButton6.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnDeleteItemBase.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFwSURBVDhPrVOhdgIxEOQT+gl8wsmTkchIZGRlJDISeRIZ
@@ -157,7 +157,7 @@
         SlRgE6ZXl1O9vrwhIweU9IHcgElzWApkZtcJcNgK/OUf/QVxjjxbF1cHNwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="lbToolStripButton5.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnReflush.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFwSURBVDhPrVOhdgIxEOQT+gl8wsmTkchIZGRlJDISeRIZ
@@ -169,7 +169,19 @@
         SlRgE6ZXl1O9vrwhIweU9IHcgElzWApkZtcJcNgK/OUf/QVxjjxbF1cHNwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="lbToolStripButton4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnTableSetting.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFwSURBVDhPrVOhdgIxEOQT+gl8wsmTkchIZGRlJDISeRIZ
+        iYwroiISeaKiMrIysm47swdcuNKadt+bx3uXzOzMblit/qPSqYoiXXCsEiNwKDIMF+yLhADsRvGEH+XW
+        m8ScBZfl16qfInabxW2T4rvAvv4oQHKtVYzN0nUOQo1AhGU6oMVHdSWXjyqdTYhRxNo4O2BeCngcLKsl
+        j+8Q2CTNfy+AYakADtpakvNYZG2iuOeFACdNAR5c6xE5n4s89RBwWexmmCMMWFE+CVYJEQd1XsC0dWDI
+        TNvsfCPzrBXg8FKCABAj11klYCPT3otG83CnnUG2EL0XwMNIx5lstx4XGziPeKEhQ8CEOQJfVtuZZDwS
+        6YwRTn4sVdwuoCs7kxwXArAYD3gHF9sUINnvBikgc/8+DPhGYpx++9YB8mluZF5zYJ3BQLMi51HymWuz
+        SlRgE6ZXl1O9vrwhIweU9IHcgElzWApkZtcJcNgK/OUf/QVxjjxbF1cHNwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="btnSort.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFwSURBVDhPrVOhdgIxEOQT+gl8wsmTkchIZGRlJDISeRIZ
@@ -208,7 +220,7 @@
   <metadata name="toolStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>127, 17</value>
   </metadata>
-  <data name="lbToolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnAddItemType.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFwSURBVDhPrVOhdgIxEOQT+gl8wsmTkchIZGRlJDISeRIZ
@@ -220,7 +232,7 @@
         SlRgE6ZXl1O9vrwhIweU9IHcgElzWApkZtcJcNgK/OUf/QVxjjxbF1cHNwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="lbToolStripButton3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnDeleteItemType.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFwSURBVDhPrVOhdgIxEOQT+gl8wsmTkchIZGRlJDISeRIZ
@@ -232,7 +244,7 @@
         SlRgE6ZXl1O9vrwhIweU9IHcgElzWApkZtcJcNgK/OUf/QVxjjxbF1cHNwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="lbToolStripButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnEditItemType.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFwSURBVDhPrVOhdgIxEOQT+gl8wsmTkchIZGRlJDISeRIZ

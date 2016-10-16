@@ -11,6 +11,7 @@ using LB.Page.Helper;
 using System.Threading;
 using LB.Common;
 using LB.SysConfig;
+using LB.MM;
 using LB.WinFunction;
 
 namespace LB.MainForm
