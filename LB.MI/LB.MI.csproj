@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F53A2FCB-4279-4214-AF1C-857C1942995E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LB.MI</RootNamespace>
+    <AssemblyName>LB.MI</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CSkin">
+      <HintPath>..\LB.MainForm\bin\Debug\CSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="DMSkin">
+      <HintPath>..\LB.MainForm\bin\Debug\DMSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MI\frmItemBaseManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MI\frmItemBaseManager.designer.cs">
+      <DependentUpon>frmItemBaseManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MI\frmItemBaseManager.resx">
+      <DependentUpon>frmItemBaseManager.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LB.Base\LB.Base.csproj">
+      <Project>{739059d0-9d83-4881-b502-b08cca50a4e4}</Project>
+      <Name>LB.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LB.Common\LB.Common.csproj">
+      <Project>{88240f2e-3447-4a6e-a598-8fee981b5a4a}</Project>
+      <Name>LB.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LB.Controls\LB.Controls.csproj">
+      <Project>{04c9ad34-d6ab-4518-9701-9f991d3a8b60}</Project>
+      <Name>LB.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LB.StyleResource\LB.StyleResource.csproj">
+      <Project>{bb3a2964-6a7e-479a-b180-b156fbcc868b}</Project>
+      <Name>LB.StyleResource</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
