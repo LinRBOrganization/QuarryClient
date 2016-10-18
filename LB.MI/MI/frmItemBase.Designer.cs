@@ -33,7 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBackUpConfig));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItemBase));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grdMain = new LB.Controls.LBDataGridView(this.components);
             this.skinToolStrip1 = new CCWin.SkinControl.SkinToolStrip();
@@ -161,7 +161,6 @@
             // 
             // btnClose
             // 
-            this.btnClose.Image = global::LB.Properties.Resources.btnClose;
             this.btnClose.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnClose.LBPermissionCode = "";
             this.btnClose.Name = "btnClose";
@@ -172,7 +171,6 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Image = global::LB.Properties.Resources.btnOpenAdd;
             this.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAdd.LBPermissionCode = "PMUserManager_Edit";
             this.btnAdd.Name = "btnAdd";
@@ -183,7 +181,6 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Image = global::LB.Properties.Resources.btnDelete;
             this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDelete.LBPermissionCode = "PMUserManager_Edit";
             this.btnDelete.Name = "btnDelete";
