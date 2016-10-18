@@ -1,6 +1,6 @@
 ﻿namespace LB.MI
 {
-    partial class frmBackUpConfig
+    partial class frmItemBase
     {
         /// <summary> 
         /// 必需的设计器变量。

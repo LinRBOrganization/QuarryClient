@@ -13,9 +13,9 @@ using LB.Common;
 
 namespace LB.MI
 {
-    public partial class frmBackUpConfig : LBUIPageBase
+    public partial class frmItemBase : LBUIPageBase
     {
-        public frmBackUpConfig()
+        public frmItemBase()
         {
             InitializeComponent();
             this.grdMain.DataError += delegate (object sender, DataGridViewDataErrorEventArgs e) { };
