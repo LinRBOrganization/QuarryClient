@@ -33,16 +33,6 @@ namespace LB.MainForm
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tcMain = new LB.Controls.LBTabControl.LBMainTabControl(this.components);
-            this.tpMain = new DMSkin.Metro.Controls.MetroTabPage();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblLoginName = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblLoginTime = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblConnectStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.btnDDSystemManager = new LB.Controls.LBToolStripDropDownButton(this.components);
             this.btnChangePassword = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnDBBackUp = new LB.Controls.LBToolStripMenuItem(this.components);
@@ -53,21 +43,21 @@ namespace LB.MainForm
             this.btnViewConfig = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnPermissionConfig = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnSQLBuilder = new LB.Controls.LBToolStripMenuItem(this.components);
+            this.btnDDBaseManager = new LB.Controls.LBToolStripDropDownButton(this.components);
+            this.btnItemBaseManager = new LB.Controls.LBToolStripMenuItem(this.components);
+            this.btnDropDownReceive = new LB.Controls.LBToolStripDropDownButton(this.components);
+            this.btnRPReceive = new LB.Controls.LBToolStripMenuItem(this.components);
+            this.btnRPReceiveList = new LB.Controls.LBToolStripMenuItem(this.components);
             this.tcMain = new LB.Controls.LBTabControl.LBMainTabControl(this.components);
             this.tpMain = new DMSkin.Metro.Controls.MetroTabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblLoginName = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
-            this.lblLoginTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblLoginTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblConnectStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnDDBaseManager = new LB.Controls.LBToolStripDropDownButton(this.components);
-            this.btnItemBaseManager = new LB.Controls.LBToolStripMenuItem(this.components);
-            this.btnDropDownReceive = new LB.Controls.LBToolStripDropDownButton(this.components);
-            this.btnRPReceive = new LB.Controls.LBToolStripMenuItem(this.components);
-            this.btnRPReceiveList = new LB.Controls.LBToolStripMenuItem(this.components);
             this.toolStrip1.SuspendLayout();
             this.tcMain.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -77,117 +67,13 @@ namespace LB.MainForm
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnDDSystemManager,
-            this.btnDDBaseManager,
-            this.btnDDSystemManager,
-            this.btnDropDownReceive });
-
+            this.btnDropDownReceive,
+            this.btnDDBaseManager});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(893, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // tcMain
-            // 
-            this.tcMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.tcMain.Controls.Add(this.tpMain);
-            this.tcMain.Cursor = System.Windows.Forms.Cursors.Default;
-            this.tcMain.DM_FontSize = DMSkin.Metro.MetroTabControlSize.Tall;
-            this.tcMain.DM_UseSelectable = true;
-            this.tcMain.DM_UseStyleColors = true;
-            this.tcMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tcMain.Location = new System.Drawing.Point(0, 25);
-            this.tcMain.Name = "tcMain";
-            this.tcMain.SelectedIndex = 0;
-            this.tcMain.Size = new System.Drawing.Size(893, 325);
-            this.tcMain.Style = DMSkin.Metro.MetroColorStyle.Blue;
-            this.tcMain.TabIndex = 1;
-            // 
-            // tpMain
-            // 
-            this.tpMain.HorizontalScrollbarBarColor = true;
-            this.tpMain.HorizontalScrollbarDM_HighlightOnWheel = false;
-            this.tpMain.HorizontalScrollbarSize = 10;
-            this.tpMain.Location = new System.Drawing.Point(4, 46);
-            this.tpMain.Name = "tpMain";
-            this.tpMain.Size = new System.Drawing.Size(885, 275);
-            this.tpMain.Style = DMSkin.Metro.MetroColorStyle.Blue;
-            this.tpMain.TabIndex = 0;
-            this.tpMain.Text = "主界面";
-            this.tpMain.VerticalScrollbarBarColor = true;
-            this.tpMain.VerticalScrollbarDM_HighlightOnWheel = false;
-            this.tpMain.VerticalScrollbarSize = 10;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.lblLoginName,
-            this.toolStripSplitButton1,
-            this.toolStripStatusLabel3,
-            this.lblLoginTime,
-            this.toolStripStatusLabel4,
-            this.lblConnectStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 350);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(893, 27);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(122, 22);
-            this.toolStripStatusLabel1.Text = "当前登录用户：";
-            // 
-            // lblLoginName
-            // 
-            this.lblLoginName.AutoSize = false;
-            this.lblLoginName.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.lblLoginName.Name = "lblLoginName";
-            this.lblLoginName.Size = new System.Drawing.Size(92, 22);
-            this.lblLoginName.Text = "阿斯顿";
-            // 
-            // toolStripStatusLabel3
-            // 
-            this.toolStripStatusLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(78, 22);
-            this.toolStripStatusLabel3.Text = "登录时间:";
-            // 
-            // lblLoginTime
-            // 
-            this.lblLoginTime.AutoSize = false;
-            this.lblLoginTime.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.lblLoginTime.Name = "lblLoginTime";
-            this.lblLoginTime.Size = new System.Drawing.Size(161, 22);
-            this.lblLoginTime.Text = "2016-10-14 20:30    ";
-            // 
-            // toolStripStatusLabel4
-            // 
-            this.toolStripStatusLabel4.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(126, 22);
-            this.toolStripStatusLabel4.Text = "服务器连接状态:";
-            // 
-            // lblConnectStatus
-            // 
-            this.lblConnectStatus.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
-            this.lblConnectStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lblConnectStatus.Name = "lblConnectStatus";
-            this.lblConnectStatus.Size = new System.Drawing.Size(42, 22);
-            this.lblConnectStatus.Text = "正常";
-            // 
-            // toolStripSplitButton1
-            // 
-            this.toolStripSplitButton1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
-            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
-            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(16, 4);
-            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
             // 
             // btnDDSystemManager
             // 
@@ -280,6 +166,25 @@ namespace LB.MainForm
             this.btnSQLBuilder.Text = "SQL生成器";
             this.btnSQLBuilder.Click += new System.EventHandler(this.btnSQLBuilder_Click);
             // 
+            // btnDDBaseManager
+            // 
+            this.btnDDBaseManager.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnItemBaseManager});
+            this.btnDDBaseManager.Image = ((System.Drawing.Image)(resources.GetObject("btnDDBaseManager.Image")));
+            this.btnDDBaseManager.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDDBaseManager.LBPermissionCode = "PMSystemManager";
+            this.btnDDBaseManager.Name = "btnDDBaseManager";
+            this.btnDDBaseManager.Size = new System.Drawing.Size(109, 22);
+            this.btnDDBaseManager.Text = "基础资料管理";
+            // 
+            // btnItemBaseManager
+            // 
+            this.btnItemBaseManager.LBPermissionCode = "PMChangePassword";
+            this.btnItemBaseManager.Name = "btnItemBaseManager";
+            this.btnItemBaseManager.Size = new System.Drawing.Size(152, 22);
+            this.btnItemBaseManager.Text = "物料管理";
+            this.btnItemBaseManager.Click += new System.EventHandler(this.btnItemBaseManager_Click);
+            // 
             // btnDropDownReceive
             // 
             this.btnDropDownReceive.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -308,23 +213,107 @@ namespace LB.MainForm
             this.btnRPReceiveList.Text = "充值记录";
             this.btnRPReceiveList.Click += new System.EventHandler(this.btnRPReceiveList_Click);
             // 
-            // btnDDBaseManager
+            // tcMain
             // 
-            this.btnDDBaseManager.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnItemBaseManager});
-            this.btnDDBaseManager.Image = ((System.Drawing.Image)(resources.GetObject("btnDDBaseManager.Image")));
-            this.btnDDBaseManager.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDDBaseManager.LBPermissionCode = "PMSystemManager";
-            this.btnDDBaseManager.Name = "btnDDBaseManager";
-            this.btnDDBaseManager.Size = new System.Drawing.Size(109, 22);
-            this.btnDDBaseManager.Text = "基础资料管理";
+            this.tcMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.tcMain.Controls.Add(this.tpMain);
+            this.tcMain.Cursor = System.Windows.Forms.Cursors.Default;
+            this.tcMain.DM_FontSize = DMSkin.Metro.MetroTabControlSize.Tall;
+            this.tcMain.DM_UseSelectable = true;
+            this.tcMain.DM_UseStyleColors = true;
+            this.tcMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tcMain.Location = new System.Drawing.Point(0, 25);
+            this.tcMain.Name = "tcMain";
+            this.tcMain.SelectedIndex = 0;
+            this.tcMain.Size = new System.Drawing.Size(893, 325);
+            this.tcMain.Style = DMSkin.Metro.MetroColorStyle.Blue;
+            this.tcMain.TabIndex = 1;
             // 
-            // btnItemBaseManager
+            // tpMain
             // 
-            this.btnItemBaseManager.LBPermissionCode = "PMChangePassword";
-            this.btnItemBaseManager.Name = "btnItemBaseManager";
-            this.btnItemBaseManager.Size = new System.Drawing.Size(152, 22);
-            this.btnItemBaseManager.Text = "物料管理";
+            this.tpMain.HorizontalScrollbarBarColor = true;
+            this.tpMain.HorizontalScrollbarDM_HighlightOnWheel = false;
+            this.tpMain.HorizontalScrollbarSize = 10;
+            this.tpMain.Location = new System.Drawing.Point(4, 46);
+            this.tpMain.Name = "tpMain";
+            this.tpMain.Size = new System.Drawing.Size(885, 275);
+            this.tpMain.Style = DMSkin.Metro.MetroColorStyle.Blue;
+            this.tpMain.TabIndex = 0;
+            this.tpMain.Text = "主界面";
+            this.tpMain.VerticalScrollbarBarColor = true;
+            this.tpMain.VerticalScrollbarDM_HighlightOnWheel = false;
+            this.tpMain.VerticalScrollbarSize = 10;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.lblLoginName,
+            this.toolStripSplitButton1,
+            this.toolStripStatusLabel3,
+            this.lblLoginTime,
+            this.toolStripStatusLabel4,
+            this.lblConnectStatus});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 350);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(893, 27);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(122, 22);
+            this.toolStripStatusLabel1.Text = "当前登录用户：";
+            // 
+            // lblLoginName
+            // 
+            this.lblLoginName.AutoSize = false;
+            this.lblLoginName.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.lblLoginName.Name = "lblLoginName";
+            this.lblLoginName.Size = new System.Drawing.Size(92, 22);
+            this.lblLoginName.Text = "阿斯顿";
+            // 
+            // toolStripSplitButton1
+            // 
+            this.toolStripSplitButton1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
+            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(16, 25);
+            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(78, 22);
+            this.toolStripStatusLabel3.Text = "登录时间:";
+            // 
+            // lblLoginTime
+            // 
+            this.lblLoginTime.AutoSize = false;
+            this.lblLoginTime.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.lblLoginTime.Name = "lblLoginTime";
+            this.lblLoginTime.Size = new System.Drawing.Size(161, 22);
+            this.lblLoginTime.Text = "2016-10-14 20:30    ";
+            // 
+            // toolStripStatusLabel4
+            // 
+            this.toolStripStatusLabel4.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(126, 22);
+            this.toolStripStatusLabel4.Text = "服务器连接状态:";
+            // 
+            // lblConnectStatus
+            // 
+            this.lblConnectStatus.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold);
+            this.lblConnectStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.lblConnectStatus.Name = "lblConnectStatus";
+            this.lblConnectStatus.Size = new System.Drawing.Size(42, 22);
+            this.lblConnectStatus.Text = "正常";
             // 
             // MainForm
             // 

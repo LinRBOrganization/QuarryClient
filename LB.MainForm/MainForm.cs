@@ -12,6 +12,7 @@ using System.Threading;
 using LB.Common;
 using LB.SysConfig;
 using LB.WinFunction;
+using LB.MI;
 
 namespace LB.MainForm
 {
@@ -183,6 +184,19 @@ namespace LB.MainForm
             try
             {
                 
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+
+        private void btnItemBaseManager_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmItemBaseManager frmItemBaseMag = new frmItemBaseManager();
+                LBShowForm.ShowMainPage(frmItemBaseMag);
             }
             catch (Exception ex)
             {

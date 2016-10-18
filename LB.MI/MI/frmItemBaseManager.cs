@@ -8,7 +8,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace LB.MM
+namespace LB.MI
 {
     public partial class frmItemBaseManager : LBUIPageBase
     {
@@ -245,8 +245,8 @@ or Description like '%{0}%'", this.txtFilter.Text.TrimEnd());
 
         private void BuildTree()
         {
-            string strFieldNames = "ItemTypeID,ItemTypeName";
-            DataTable dt = ExecuteSQL.CallView(200, strFieldNames, "", "ItemTypeID");
+            string strSQL = "select ItemTypeID,ItemTypeName from dbo.DbItemType";
+            DataTable dt = ExecuteSQL.CallDirectSQL(strSQL);
             TreeNode tnTop = new TreeNode("物料分类");
             foreach (DataRow dr in dt.Rows)
             {
@@ -254,6 +254,8 @@ or Description like '%{0}%'", this.txtFilter.Text.TrimEnd());
                 tn.Tag = dr;
                 tnTop.Nodes.Add(tn);
             }
+            treeView1.Nodes.Add(tnTop);
+            tnTop.ExpandAll();
         }
     }
 }

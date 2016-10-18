@@ -1,4 +1,4 @@
-﻿namespace LB.MM
+﻿namespace LB.MI
 {
     partial class frmItemBaseManager
     {
