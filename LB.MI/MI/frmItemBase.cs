@@ -35,19 +35,6 @@ namespace LB.MI
         {
             try
             {
-                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-                {
-                    DataRowView drvSelect = this.grdMain.Rows[e.RowIndex].DataBoundItem as DataRowView;
-                    long lBackUpConfigID = drvSelect["BackUpConfigID"]==DBNull.Value?
-                        0: Convert.ToInt64(drvSelect["BackUpConfigID"]);
-                    if (lBackUpConfigID > 0)
-                    {
-                        frmEditBackUp frm = new SysConfig.frmEditBackUp(lBackUpConfigID);
-                        LBShowForm.ShowDialog(frm);
-
-                        LoadBackUpConfig();
-                    }
-                }
             }
             catch (Exception ex)
             {
@@ -140,10 +127,6 @@ namespace LB.MI
         {
             try
             {
-                frmEditBackUp frm = new SysConfig.frmEditBackUp(0);
-                LBShowForm.ShowDialog(frm);
-
-                LoadBackUpConfig();
             }
             catch (Exception ex)
             {
