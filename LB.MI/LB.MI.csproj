@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MI\frmItemBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MI\frmItemBase.Designer.cs">
+      <DependentUpon>frmItemBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="MI\frmItemBaseManager.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -56,6 +62,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="MI\frmItemBase.resx">
+      <DependentUpon>frmItemBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MI\frmItemBaseManager.resx">
       <DependentUpon>frmItemBaseManager.cs</DependentUpon>
     </EmbeddedResource>

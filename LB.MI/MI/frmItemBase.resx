@@ -117,4 +117,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="Selected.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="BackUpName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="BackUpType.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="BackUpTime.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="BackUpPath.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="IsEffect.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="skinToolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="skinToolStrip1.BaseItemDown" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAECSURBVEhLrdS5SoNBAEXhH0REBBFEBeu8hLWFnYVlEEXEBUFcEVFQs5GNvEGaVKmCRar8TSoh
+        bxXPeYc7cIo7xVdMMQVnl46oGkpLszgpy/JluVz+JNLSFD7lokYroWqawmeMOq2GqmsKnzMatBaqoSl8
+        wWjSeqimpvAlo0UboVqawleMNm2GamsKXzM6tBWqoyl8y+jSdqiupvAdo0c7oXqawveMPu2F6msKPzAG
+        tB9qoCn8xBjSQaihprAf0IgOQ400hV8ZYzoONdYUfmNMqBpqoin8zpjSTaippvAHY0a+daKZpvAnY07f
+        oeaawo+LxeKXi79EWprCFXqmr1BYReUfjg4wNoJsNCkAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="skinToolStrip1.BaseItemMouse" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAEBSURBVEhLrdI5SoNRAEXhNCIiiBBEELIQCysLuzjiGIkD4gJcgNgKZiQhvZAiTao0qcIPaVLY
+        /euJ5+zhPjjFfcVXPF6FU6UjqofS0qyclGX5u16v/xJpaQqfcrGi71ArTeEzxpI+Qy01hc8ZC/oItdAU
+        vmDM6T3UXFP4kjGj+1AzTeErxpTqoaaawteMCR2HmmgK3zDGdBhqrCl8yxjRQaiRprAPPqT9UENN4QfG
+        gPZCDTSFGw6qhhJuCD8y+rQbqq8p3GT0aCdUT1P4idGl7VBdTeFnRoe2QnU0hV8YbdoM1dYUfmW0aCNU
+        S1P4riiKLy5+EmlpCtfID/0WCqtS+wcPADfU1vc0LQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="btnReflesh.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAG8SURBVDhPrZFrK0NxHMfnDcieeuYV8Ba8CE9FSEjulzS3
+        KJHMvVBuy2WjWUgyUm7JA2zEJib3Wa3DtmN2/Tr/33bW+fNAyrc+nc6D7+d3+h7Vv2Vw24MO/fWvVLcs
+        I17h078pQE44HEYwGITf74coinh/98DlfsPp1SsJ+g2Wn5K+dRei0SihDHv7CALeAGC9E0mQNeeGVnfE
+        S7QrT4hEIoQcZdklAscOHwlk4tVYuo239OlyyvcrkDSSREzaluhpcQI7h4DJBFQ1mXhB17wdoVDoR1kJ
+        EzCOn4FKjZEXdExZEQgESJIyoaarTh8S12XB4SNw8ACUNSzygvaxI3jEmIAVZb5/wb5U3rkDSuvmeUHr
+        0C4E72cCpWTvQSDY9S0HYL4BSqpneEFzzyacgp9QXmWw4oZDwLJNGvASWLUDReXTvKCxcw2PbpGQi8nj
+        auguTkiQOp2WEDAKS8d5QUObCTevPkJ5XSbdkEkC/XmMguJRXlDfsoCrFy/BCmx99jszpGK2uRWz5wKM
+        F4DOGiOvcJgX1GpmcXbvIdja5luBFmejbUijsetMMBMX5OQP8IKaeh3+QnZuryRQqb4AAIVSCpHzfYUA
+        AAAASUVORK5CYII=
+</value>
+  </data>
 </root>

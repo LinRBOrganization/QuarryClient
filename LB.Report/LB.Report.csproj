@@ -32,11 +32,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSkin">
-      <HintPath>..\..\..\QuarryProject\WebClient\LB.MainForm\bin\Debug\CSkin.dll</HintPath>
+    <Reference Include="CSkin, Version=16.1.14.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LB.MainForm\bin\Debug\CSkin.dll</HintPath>
     </Reference>
-    <Reference Include="DMSkin">
-      <HintPath>..\..\..\QuarryProject\WebClient\LB.MainForm\bin\Debug\DMSkin.dll</HintPath>
+    <Reference Include="DMSkin, Version=0.3.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LB.MainForm\bin\Debug\DMSkin.dll</HintPath>
     </Reference>
     <Reference Include="FastReport, Version=2015.3.3.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
