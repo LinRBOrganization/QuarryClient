@@ -12,6 +12,7 @@ using System.Threading;
 using LB.Common;
 using LB.SysConfig;
 using LB.WinFunction;
+using LB.RPReceive;
 using LB.MI;
 
 namespace LB.MainForm
@@ -20,6 +21,7 @@ namespace LB.MainForm
     {
         private Thread mThreadStatus;
         public bool bolIsCancel = false;
+        private bool bolIsClosing = false;
         public MainForm()
         {
             InitializeComponent();
@@ -37,14 +39,26 @@ namespace LB.MainForm
             mThreadStatus.Start();
         }
 
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            if (LB.WinFunction.LBCommonHelper.ConfirmMessage("是否确认退出系统？", "提示", MessageBoxButtons.YesNo) != DialogResult.Yes)
+            {
+                e.Cancel = true;
+                return;   
+            }
+
+            if (this.mThreadStatus.ThreadState != ThreadState.Stopped ||
+            this.mThreadStatus.ThreadState != ThreadState.StopRequested)
+            {
+                bolIsClosing = true;
+                this.mThreadStatus.Abort();
+            }
+        }
+
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-
-            if(this.mThreadStatus.ThreadState== ThreadState.Running)
-            {
-                this.mThreadStatus.Abort();
-            }
         }
 
         #region -- 按钮事件  --
@@ -170,7 +184,8 @@ namespace LB.MainForm
         {
             try
             {
-                
+                frmEditReceiveBill frmReceive = new frmEditReceiveBill(0);
+                LBShowForm.ShowDialog(frmReceive);
             }
             catch (Exception ex)
             {
@@ -344,6 +359,10 @@ namespace LB.MainForm
         {
             while (true)
             {
+                if (bolIsClosing)
+                {
+                    break;
+                }
                 try
                 {
                     bool bolConnected = ExecuteSQL.TestConnectStatus();
@@ -353,7 +372,6 @@ namespace LB.MainForm
                             this.lblConnectStatus.Text = "正常";
                             this.lblConnectStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
                         });
-
                     }
                     else
                     {
@@ -372,7 +390,7 @@ namespace LB.MainForm
                 }
                 finally
                 {
-                    Thread.Sleep(1000 * 10);
+                    Thread.Sleep(1000 * 2);
                 }
             }
         }

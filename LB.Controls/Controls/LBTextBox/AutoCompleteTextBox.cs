@@ -137,7 +137,7 @@ namespace LB.Controls.LBTextBox
 		[System.ComponentModel.Editor(typeof(AutoCompleteEntryCollection.AutoCompleteEntryCollectionEditor), typeof(System.Drawing.Design.UITypeEditor))]
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		[Browsable(false)]
-		public AutoCompleteEntryCollection Items
+		internal AutoCompleteEntryCollection Items
 		{
 			get
 			{
@@ -266,9 +266,95 @@ namespace LB.Controls.LBTextBox
 			}
 		}
 
-		#endregion
+        private bool _IsAllowNotExists = false;
+        [Description("是否允许输入不存在的内容")]
+        public bool IsAllowNotExists
+        {
+            get
+            {
+                return _IsAllowNotExists;
+            }
+            set
+            {
+                _IsAllowNotExists = value; ;
+            }
+        }
 
-		public AutoCompleteTextBox()
+        private DataView _DataSource = null;
+        [Description("可查询数据源")]
+        public DataView PopDataSource
+        {
+            get
+            {
+                return _DataSource;
+            }
+            set
+            {
+                _DataSource = value;
+                if (_DataSource != null)
+                {
+                    foreach(DataRowView drv in _DataSource)
+                    {
+                        string strDisplayName = "";
+                        if (_DataSource.Table.Columns.Contains(TextColumnName))
+                        {
+                            strDisplayName = drv[TextColumnName].ToString().TrimEnd();
+                        }
+                        this.Items.Add(new AutoCompleteEntry(strDisplayName, drv, ""));
+                    }
+                }
+            }
+        }
+
+        private string _IDColumnName = "";
+        [Description("ID字段")]
+        public string IDColumnName
+        {
+            get
+            {
+                return _IDColumnName;
+            }
+            set
+            {
+                _IDColumnName = value;
+            }
+        }
+
+        private string _TextColumnName = "";
+        [Description("Text字段")]
+        public string TextColumnName
+        {
+            get
+            {
+                return _TextColumnName;
+            }
+            set
+            {
+                _TextColumnName = value;
+            }
+        }
+
+        public object SelectedItemID
+        {
+            get
+            {
+                object objID = null;
+                if (this.selectedEntry != null)
+                {
+                    if (this.selectedEntry.DataBindItem.DataView.Table.Columns.Contains(IDColumnName))
+                    {
+                        return this.selectedEntry.DataBindItem[IDColumnName];
+                    }
+                }
+                return null;
+            }
+        }
+
+        private AutoCompleteEntry selectedEntry = null;
+
+        #endregion
+
+        public AutoCompleteTextBox()
 		{
 			// Create the form that will hold the list
 			this.popup = new Form();
@@ -409,18 +495,52 @@ namespace LB.Controls.LBTextBox
 			if (!(this.Focused || this.popup.Focused || this.list.Focused))
 			{
 				this.HideList();
-			}
+
+                if (!IsAllowNotExists)//校验改信息是否存在
+                {
+                    if (this.Text.TrimEnd() != "")
+                    {
+                        this.selectedEntry = null;
+                        bool bolExists = false;
+                        foreach (AutoCompleteEntry entry in this.Items)
+                        {
+                            if (entry.DisplayName == this.Text.TrimEnd())
+                            {
+                                bolExists = true;
+                                this.selectedEntry = entry;
+                                break;
+                            }
+                        }
+                        if (!bolExists)
+                        {
+                            if (LB.WinFunction.LBCommonHelper.ConfirmMessage("所选择的内容不存在,请重新输入！", "提示", MessageBoxButtons.YesNo) ==
+                                DialogResult.Yes)
+                            {
+                                this.Focus();
+                            }
+                            else
+                            {
+                                this.Text = "";
+                            }
+                        }
+                    }
+                }
+            }
 		}
 
 		protected virtual void SelectCurrentItem()
 		{
 			if (this.list.SelectedIndex == -1)
 			{
-				return;
+                this.selectedEntry = null;
+
+                return;
 			}
 
 			this.Focus();
-			this.Text = this.list.SelectedItem.ToString();
+            this.selectedEntry = this.Items[this.list.SelectedIndex] as AutoCompleteEntry;
+
+            this.Text = this.list.SelectedItem.ToString();
 			if (this.Text.Length > 0)
 			{
 				this.SelectionStart = this.Text.Length;
@@ -590,5 +710,6 @@ namespace LB.Controls.LBTextBox
 			}
 		}
 
+        
 	}
 }

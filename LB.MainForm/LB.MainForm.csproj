@@ -145,6 +145,10 @@
       <Project>{12978718-afcb-4ab2-b00f-cdbd3c2aaa23}</Project>
       <Name>LB.Login</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LB.RPReceive\LB.RPReceive.csproj">
+      <Project>{a6740fe0-03ab-40e9-a2fd-b4f7a904dc36}</Project>
+      <Name>LB.RPReceive</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LB.MI\LB.MI.csproj">
       <Project>{f53a2fcb-4279-4214-af1c-857c1942995e}</Project>
       <Name>LB.MI</Name>
