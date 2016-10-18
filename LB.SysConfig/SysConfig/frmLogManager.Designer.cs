@@ -160,7 +160,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Image = global::LB.Properties.Resources.btnDelete;
+            this.btnDelete.Image = global::LB.SysConfig.Properties.Resources.btnDelete;
             this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDelete.LBPermissionCode = "LogManager_Delete";
             this.btnDelete.Name = "btnDelete";
@@ -171,7 +171,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Image = global::LB.Properties.Resources.btnClose;
+            this.btnClose.Image = global::LB.SysConfig.Properties.Resources.btnClose;
             this.btnClose.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnClose.LBPermissionCode = "";
             this.btnClose.Name = "btnClose";

@@ -7,7 +7,7 @@
     <ProjectGuid>{948F87EE-5644-4CB5-AFA2-C8AEEB1470C2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LB</RootNamespace>
+    <RootNamespace>LB.SysConfig</RootNamespace>
     <AssemblyName>LB.SysConfig</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -98,7 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="SysConfig\frmAddUser.resx">

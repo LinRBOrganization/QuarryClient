@@ -105,7 +105,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Image = global::LB.Properties.Resources.btnClose;
+            this.btnClose.Image = global::LB.SysConfig.Properties.Resources.btnClose;
             this.btnClose.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnClose.LBPermissionCode = "";
             this.btnClose.Name = "btnClose";
@@ -116,7 +116,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Image = global::LB.Properties.Resources.btnNewSave3;
+            this.btnSave.Image = global::LB.SysConfig.Properties.Resources.btnNewSave3;
             this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSave.LBPermissionCode = "";
             this.btnSave.Name = "btnSave";

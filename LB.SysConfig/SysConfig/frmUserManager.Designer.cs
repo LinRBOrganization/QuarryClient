@@ -167,7 +167,7 @@ namespace LB.SysConfig
             // 
             // btnClose
             // 
-            this.btnClose.Image = global::LB.Properties.Resources.btnClose;
+            this.btnClose.Image = global::LB.SysConfig.Properties.Resources.btnClose;
             this.btnClose.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnClose.LBPermissionCode = "";
             this.btnClose.Name = "btnClose";
@@ -178,7 +178,7 @@ namespace LB.SysConfig
             // 
             // btnSave
             // 
-            this.btnSave.Image = global::LB.Properties.Resources.btnNewSave3;
+            this.btnSave.Image = global::LB.SysConfig.Properties.Resources.btnNewSave3;
             this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSave.LBPermissionCode = "PMUserManager_Edit";
             this.btnSave.Name = "btnSave";
@@ -189,7 +189,7 @@ namespace LB.SysConfig
             // 
             // btnAdd
             // 
-            this.btnAdd.Image = global::LB.Properties.Resources.btnOpenAdd;
+            this.btnAdd.Image = global::LB.SysConfig.Properties.Resources.btnOpenAdd;
             this.btnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAdd.LBPermissionCode = "PMUserManager_Add";
             this.btnAdd.Name = "btnAdd";

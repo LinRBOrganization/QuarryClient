@@ -47,12 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MI\frmBackUpConfig.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MI\frmBackUpConfig.Designer.cs">
-      <DependentUpon>frmBackUpConfig.cs</DependentUpon>
-    </Compile>
     <Compile Include="MI\frmItemBaseManager.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -62,9 +56,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MI\frmBackUpConfig.resx">
-      <DependentUpon>frmBackUpConfig.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MI\frmItemBaseManager.resx">
       <DependentUpon>frmItemBaseManager.cs</DependentUpon>
     </EmbeddedResource>
