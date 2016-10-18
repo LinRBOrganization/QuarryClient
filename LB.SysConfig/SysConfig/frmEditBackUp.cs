@@ -116,7 +116,7 @@ namespace LB.SysConfig
         {
             try
             {
-                if (LB.WinFunction.LBCommonHelper.ConfirmMessage("是否确认备份方案？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (LB.WinFunction.LBCommonHelper.ConfirmMessage("是否确认删除备份方案？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     if (mlBackUpConfigID > 0)
                     {

@@ -33,16 +33,6 @@ namespace LB.MainForm
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tcMain = new LB.Controls.LBTabControl.LBMainTabControl(this.components);
-            this.tpMain = new DMSkin.Metro.Controls.MetroTabPage();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblLoginName = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblLoginTime = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblConnectStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.btnDDSystemManager = new LB.Controls.LBToolStripDropDownButton(this.components);
             this.btnChangePassword = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnDBBackUp = new LB.Controls.LBToolStripMenuItem(this.components);

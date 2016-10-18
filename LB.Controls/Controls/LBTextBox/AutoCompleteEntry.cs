@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Data;
 
 namespace LB.Controls.LBTextBox
 {
@@ -36,15 +37,26 @@ namespace LB.Controls.LBTextBox
 			}
 		}
 
-		public AutoCompleteEntry()
+        private DataRowView _DataBindItem;
+        public DataRowView DataBindItem
+        {
+            get
+            {
+                return _DataBindItem;
+            }
+        }
+
+        public AutoCompleteEntry()
 		{
 		}
 
-		public AutoCompleteEntry(string name, params string[] matchList)
+		public AutoCompleteEntry(string name, DataRowView drvSource, params string[] matchList)
 		{
 			this.displayName = name;
 			this.matchStrings = matchList;
-		}
+            this._DataBindItem = drvSource;
+
+        }
 
 		public override string ToString()
 		{
