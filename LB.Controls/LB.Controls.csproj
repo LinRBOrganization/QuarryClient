@@ -49,7 +49,7 @@
     </Reference>
     <Reference Include="FastReport.Editor, Version=2015.3.3.0, Culture=neutral, PublicKeyToken=db7e5ce63278458c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\LB.MM\bin\Debug\FastReport.Editor.dll</HintPath>
+      <HintPath>..\LB.MainForm\bin\Debug\FastReport.Editor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
