@@ -37,6 +37,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnAddItemBase = new LB.Controls.LBToolStripButton(this.components);
             this.btnEditItemBase = new LB.Controls.LBToolStripButton(this.components);
+            this.btnDeleteItemBase = new LB.Controls.LBToolStripButton(this.components);
             this.btnReflush = new LB.Controls.LBToolStripButton(this.components);
             this.btnTableSetting = new LB.Controls.LBToolStripButton(this.components);
             this.btnSort = new LB.Controls.LBToolStripButton(this.components);
@@ -47,6 +48,7 @@
             this.ItemRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UOMName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ChangeBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ChangeTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -58,7 +60,6 @@
             this.btnAddItemType = new LB.Controls.LBToolStripButton(this.components);
             this.btnDeleteItemType = new LB.Controls.LBToolStripButton(this.components);
             this.btnEditItemType = new LB.Controls.LBToolStripButton(this.components);
-            this.btnDeleteItemBase = new LB.Controls.LBToolStripButton(this.components);
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMain)).BeginInit();
             this.panel1.SuspendLayout();
@@ -104,6 +105,16 @@
             this.btnEditItemBase.Text = "打开编辑";
             this.btnEditItemBase.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
+            // btnDeleteItemBase
+            // 
+            this.btnDeleteItemBase.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteItemBase.Image")));
+            this.btnDeleteItemBase.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDeleteItemBase.LBPermissionCode = "";
+            this.btnDeleteItemBase.Name = "btnDeleteItemBase";
+            this.btnDeleteItemBase.Size = new System.Drawing.Size(60, 37);
+            this.btnDeleteItemBase.Text = "删除货物";
+            this.btnDeleteItemBase.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
             // btnReflush
             // 
             this.btnReflush.Image = ((System.Drawing.Image)(resources.GetObject("btnReflush.Image")));
@@ -123,6 +134,7 @@
             this.btnTableSetting.Size = new System.Drawing.Size(60, 37);
             this.btnTableSetting.Text = "表格设置";
             this.btnTableSetting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnTableSetting.Visible = false;
             // 
             // btnSort
             // 
@@ -133,6 +145,7 @@
             this.btnSort.Size = new System.Drawing.Size(36, 37);
             this.btnSort.Text = "排序";
             this.btnSort.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSort.Visible = false;
             // 
             // grdMain
             // 
@@ -158,6 +171,7 @@
             this.ItemRate,
             this.UOMName,
             this.ItemTypeName,
+            this.ItemID,
             this.ChangeBy,
             this.ChangeTime});
             this.grdMain.ColumnSelectForeColor = System.Drawing.SystemColors.HighlightText;
@@ -195,49 +209,64 @@
             // SysViewType
             // 
             this.SysViewType.DataPropertyName = "ItemCode";
-            this.SysViewType.HeaderText = "货物编码(kg/m3)";
+            this.SysViewType.HeaderText = "货物编码";
             this.SysViewType.Name = "SysViewType";
+            this.SysViewType.ReadOnly = true;
             // 
             // SysViewName
             // 
             this.SysViewName.DataPropertyName = "ItemName";
             this.SysViewName.HeaderText = "货物名称";
             this.SysViewName.Name = "SysViewName";
+            this.SysViewName.ReadOnly = true;
             // 
             // ItemMode
             // 
             this.ItemMode.HeaderText = "规格";
             this.ItemMode.Name = "ItemMode";
+            this.ItemMode.ReadOnly = true;
             this.ItemMode.Width = 50;
             // 
             // ItemRate
             // 
-            this.ItemRate.HeaderText = "比重";
+            this.ItemRate.HeaderText = "比重(kg/m3)";
             this.ItemRate.Name = "ItemRate";
+            this.ItemRate.ReadOnly = true;
             this.ItemRate.Width = 50;
             // 
             // UOMName
             // 
             this.UOMName.HeaderText = "单位";
             this.UOMName.Name = "UOMName";
+            this.UOMName.ReadOnly = true;
             this.UOMName.Width = 50;
             // 
             // ItemTypeName
             // 
             this.ItemTypeName.HeaderText = "物料分类";
             this.ItemTypeName.Name = "ItemTypeName";
+            this.ItemTypeName.ReadOnly = true;
             this.ItemTypeName.Width = 60;
+            // 
+            // ItemID
+            // 
+            this.ItemID.HeaderText = "流水号";
+            this.ItemID.Name = "ItemID";
+            this.ItemID.ReadOnly = true;
+            this.ItemID.Visible = false;
             // 
             // ChangeBy
             // 
             this.ChangeBy.HeaderText = "修改人";
             this.ChangeBy.Name = "ChangeBy";
+            this.ChangeBy.ReadOnly = true;
             this.ChangeBy.Width = 80;
             // 
             // ChangeTime
             // 
             this.ChangeTime.HeaderText = "修改时间";
             this.ChangeTime.Name = "ChangeTime";
+            this.ChangeTime.ReadOnly = true;
             this.ChangeTime.Width = 80;
             // 
             // panel1
@@ -273,6 +302,8 @@
             // 
             this.txtFilter.BackColor = System.Drawing.Color.Transparent;
             this.txtFilter.BorderColor = System.Drawing.Color.LightSteelBlue;
+            this.txtFilter.CanBeEmpty = true;
+            this.txtFilter.Caption = "";
             this.txtFilter.LBTitle = "关键字";
             this.txtFilter.LBTitleVisible = true;
             this.txtFilter.Location = new System.Drawing.Point(9, 11);
@@ -353,16 +384,6 @@
             this.btnEditItemType.Text = "修改分类";
             this.btnEditItemType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // btnDeleteItemBase
-            // 
-            this.btnDeleteItemBase.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteItemBase.Image")));
-            this.btnDeleteItemBase.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDeleteItemBase.LBPermissionCode = "";
-            this.btnDeleteItemBase.Name = "btnDeleteItemBase";
-            this.btnDeleteItemBase.Size = new System.Drawing.Size(60, 37);
-            this.btnDeleteItemBase.Text = "打开编辑";
-            this.btnDeleteItemBase.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
             // frmItemBaseManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -395,14 +416,6 @@
         private System.Windows.Forms.Panel panel1;
         private Controls.LBTextBox.CoolTextBox txtFilter;
         private Controls.LBSkinButton btnSearch;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SysViewType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SysViewName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemMode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemRate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UOMName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemTypeName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ChangeBy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ChangeTime;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.ToolStrip toolStrip2;
@@ -414,5 +427,14 @@
         private Controls.LBToolStripButton btnTableSetting;
         private Controls.LBToolStripButton btnSort;
         private Controls.LBToolStripButton btnDeleteItemBase;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SysViewType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SysViewName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemMode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UOMName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemTypeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ChangeBy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ChangeTime;
     }
 }

@@ -7,6 +7,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using LB.Page.Helper;
+using LB.Common;
 
 namespace LB.MI
 {
@@ -33,6 +35,7 @@ namespace LB.MI
             btnReflush.Click += btnReflush_Click;
             btnTableSetting.Click += btnTableSetting_Click;
             btnSort.Click += btnSort_Click;
+            treeView1.AfterSelect += this.treeView1_AfterSelect;
         }
 
         private void btnSort_Click(object sender, EventArgs e)
@@ -87,6 +90,18 @@ namespace LB.MI
         {
             try
             {
+                long lItemID = 0;
+                if (grdMain.CurrentRow != null)
+                {
+                    DataRowView drv = grdMain.CurrentRow.DataBoundItem as DataRowView;
+                    lItemID = LBConverter.ToInt64(drv["ItemID"]);
+                }
+                if (lItemID == 0)
+                {
+                    return;
+                }
+                frmItemBase frmIB = new frmItemBase(lItemID);
+                LBShowForm.ShowDialog(frmIB);
                 ReSearchData();
             }
             catch (Exception ex)
@@ -99,6 +114,8 @@ namespace LB.MI
         {
             try
             {
+                frmItemBase frmIB = new frmItemBase(0);
+                LBShowForm.ShowDialog(frmIB);
                 ReSearchData();
             }
             catch (Exception ex)
@@ -159,65 +176,65 @@ namespace LB.MI
         {
             try
             {
-                this.grdMain.CurrentCell = null;
-                this.grdMain.EndEdit();
-                DataView dvResult = this.grdMain.DataSource as DataView;
+                //this.grdMain.CurrentCell = null;
+                //this.grdMain.EndEdit();
+                //DataView dvResult = this.grdMain.DataSource as DataView;
                 
-                foreach (DataGridViewRow dgvr in this.grdMain.Rows)
-                {
-                    if (dgvr.DataBoundItem == null)
-                        continue;
+                //foreach (DataGridViewRow dgvr in this.grdMain.Rows)
+                //{
+                //    if (dgvr.DataBoundItem == null)
+                //        continue;
 
-                    DataRowView drv = dgvr.DataBoundItem as DataRowView;
+                //    DataRowView drv = dgvr.DataBoundItem as DataRowView;
 
-                    if(drv.Row.RowState!= DataRowState.Added &&
-                       drv.Row.RowState != DataRowState.Modified)
-                    {
-                        continue;
-                    }
+                //    if(drv.Row.RowState!= DataRowState.Added &&
+                //       drv.Row.RowState != DataRowState.Modified)
+                //    {
+                //        continue;
+                //    }
 
-                    long lSysViewTypeID = drv["SysViewTypeID"] == DBNull.Value ? 
-                        0 : Convert.ToInt64(drv["SysViewTypeID"]);
-                    string strSysViewType = drv["SysViewType"].ToString().TrimEnd();
-                    string strSysViewName = drv["SysViewName"].ToString().TrimEnd();
+                //    long lSysViewTypeID = drv["SysViewTypeID"] == DBNull.Value ? 
+                //        0 : Convert.ToInt64(drv["SysViewTypeID"]);
+                //    string strSysViewType = drv["SysViewType"].ToString().TrimEnd();
+                //    string strSysViewName = drv["SysViewName"].ToString().TrimEnd();
 
-                    if (strSysViewType != "" && strSysViewName != "")
-                    {
-                        int iSPType = 9000;//Insert
-                        LBDbParameterCollection parmCol = new LBDbParameterCollection();
+                //    if (strSysViewType != "" && strSysViewName != "")
+                //    {
+                //        int iSPType = 9000;//Insert
+                //        LBDbParameterCollection parmCol = new LBDbParameterCollection();
 
-                        if (lSysViewTypeID > 0)
-                        {
-                            parmCol.Add(new LBParameter("SysViewTypeID", enLBDbType.Int64, lSysViewTypeID));
-                            iSPType = 9001;//Update
-                        }
-                        else
-                        {
-                            parmCol.Add(new LBParameter("SysViewTypeID", enLBDbType.Int64, lSysViewTypeID,true));
-                        }
+                //        if (lSysViewTypeID > 0)
+                //        {
+                //            parmCol.Add(new LBParameter("SysViewTypeID", enLBDbType.Int64, lSysViewTypeID));
+                //            iSPType = 9001;//Update
+                //        }
+                //        else
+                //        {
+                //            parmCol.Add(new LBParameter("SysViewTypeID", enLBDbType.Int64, lSysViewTypeID,true));
+                //        }
 
-                        parmCol.Add(new LBParameter("SysViewType", enLBDbType.String, strSysViewType));
-                        parmCol.Add(new LBParameter("SysViewName", enLBDbType.String, strSysViewName));
+                //        parmCol.Add(new LBParameter("SysViewType", enLBDbType.String, strSysViewType));
+                //        parmCol.Add(new LBParameter("SysViewName", enLBDbType.String, strSysViewName));
 
-                        DataSet dsReturn;
-                        Dictionary<string, object> dictValue;
-                        try
-                        {
-                            ExecuteSQL.CallSP(iSPType, parmCol, out dsReturn, out dictValue);
-                            dgvr.ErrorText = "";
-                            if (dictValue.ContainsKey("SysViewTypeID"))
-                            {
-                                drv["SysViewTypeID"] = dictValue["SysViewTypeID"];
-                            }
-                        }
-                        catch(Exception ex)
-                        {
-                            dgvr.ErrorText = ex.Message;
-                        }
-                    }
-                }
-                dvResult.Table.AcceptChanges();
-                LB.WinFunction.LBCommonHelper.ShowCommonMessage("保存成功！");
+                //        DataSet dsReturn;
+                //        Dictionary<string, object> dictValue;
+                //        try
+                //        {
+                //            ExecuteSQL.CallSP(iSPType, parmCol, out dsReturn, out dictValue);
+                //            dgvr.ErrorText = "";
+                //            if (dictValue.ContainsKey("SysViewTypeID"))
+                //            {
+                //                drv["SysViewTypeID"] = dictValue["SysViewTypeID"];
+                //            }
+                //        }
+                //        catch(Exception ex)
+                //        {
+                //            dgvr.ErrorText = ex.Message;
+                //        }
+                //    }
+                //}
+                //dvResult.Table.AcceptChanges();
+                //LB.WinFunction.LBCommonHelper.ShowCommonMessage("保存成功！");
             }
             catch (Exception ex)
             {
@@ -229,16 +246,25 @@ namespace LB.MI
         {
             string strFilter = "";
             string strSQL = "select * from dbo.Db_v_ItemBase";
+            if (treeView1.SelectedNode != null && treeView1.SelectedNode.Parent != null)
+            {
+                DataRow dr = treeView1.SelectedNode.Tag as DataRow;
+                strFilter = "ItemTypeID = "+ dr["ItemTypeID"].ToString();
+            }
             if (this.txtFilter.Text.TrimEnd() != "")
             {
-                strFilter = string.Format(@"ItemTypeName like '%{0}%'
+                strFilter += string.Format(@"ItemTypeName like '%{0}%'
 or ItemCode like '%{0}%'
 or ItemName like '%{0}%'
 or ItemMode like '%{0}%'
 or UOMName like '%{0}%'
 or Description like '%{0}%'", this.txtFilter.Text.TrimEnd());
-                strSQL += " where "+ strFilter;
             }
+            if (strFilter != "")
+            {
+                strSQL += " where " + strFilter;
+            }
+
             DataTable dtView = ExecuteSQL.CallDirectSQL(strSQL);
             this.grdMain.DataSource = dtView.DefaultView;
         }
@@ -256,6 +282,18 @@ or Description like '%{0}%'", this.txtFilter.Text.TrimEnd());
             }
             treeView1.Nodes.Add(tnTop);
             tnTop.ExpandAll();
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            try
+            {
+                ReSearchData();
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
         }
     }
 }

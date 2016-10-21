@@ -60,6 +60,11 @@
       <DependentUpon>frmItemBaseManager.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MI\frmItemBase.resx">
@@ -67,6 +72,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MI\frmItemBaseManager.resx">
       <DependentUpon>frmItemBaseManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +94,10 @@
     <ProjectReference Include="..\LB.StyleResource\LB.StyleResource.csproj">
       <Project>{bb3a2964-6a7e-479a-b180-b156fbcc868b}</Project>
       <Name>LB.StyleResource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LB.SysConfig\LB.SysConfig.csproj">
+      <Project>{948f87ee-5644-4cb5-afa2-c8aeeb1470c2}</Project>
+      <Name>LB.SysConfig</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
