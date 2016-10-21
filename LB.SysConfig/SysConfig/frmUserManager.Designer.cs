@@ -46,15 +46,18 @@ namespace LB.SysConfig
             this.btnAdd = new LB.Controls.LBToolStripButton(this.components);
             this.btnReflesh = new LB.Controls.LBToolStripButton(this.components);
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.ctlSearcher1 = new LB.Controls.Searcher.CtlSearcher();
+            this.txtSearchText = new LB.Controls.LBSkinTextBox(this.components);
             this.LoginName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserSex = new LB.Controls.LBDataGridViewComboBoxColumn();
-            this.UserType = new LB.Controls.LBDataGridViewComboBoxColumn();
+            this.UserSexName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ChangeTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete = new LB.Controls.LBDataGridViewButtonColumn();
             this.btnSetUserPermission = new LB.Controls.LBDataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdMain)).BeginInit();
             this.skinToolStrip1.SuspendLayout();
+            this.ctlSearcher1.SuspendLayout();
             this.SuspendLayout();
             // 
             // grdMain
@@ -71,8 +74,8 @@ namespace LB.SysConfig
             this.grdMain.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.LoginName,
             this.UserName,
-            this.UserSex,
-            this.UserType,
+            this.UserSexName,
+            this.UserTypeName,
             this.ChangeTime,
             this.Delete,
             this.btnSetUserPermission});
@@ -94,7 +97,7 @@ namespace LB.SysConfig
             this.grdMain.HeadSelectBackColor = System.Drawing.Color.Empty;
             this.grdMain.HeadSelectForeColor = System.Drawing.Color.Empty;
             this.grdMain.LineNumberForeColor = System.Drawing.Color.MidnightBlue;
-            this.grdMain.Location = new System.Drawing.Point(0, 40);
+            this.grdMain.Location = new System.Drawing.Point(0, 86);
             this.grdMain.Name = "grdMain";
             this.grdMain.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.grdMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -105,7 +108,7 @@ namespace LB.SysConfig
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.grdMain.RowsDefaultCellStyle = dataGridViewCellStyle7;
             this.grdMain.RowTemplate.Height = 23;
-            this.grdMain.Size = new System.Drawing.Size(755, 293);
+            this.grdMain.Size = new System.Drawing.Size(755, 247);
             this.grdMain.TabIndex = 1;
             this.grdMain.TitleBack = null;
             this.grdMain.TitleBackColorBegin = System.Drawing.Color.White;
@@ -214,6 +217,65 @@ namespace LB.SysConfig
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 40);
             // 
+            // ctlSearcher1
+            // 
+            this.ctlSearcher1.Controls.Add(this.txtSearchText);
+            this.ctlSearcher1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ctlSearcher1.Location = new System.Drawing.Point(0, 40);
+            this.ctlSearcher1.Name = "ctlSearcher1";
+            this.ctlSearcher1.Size = new System.Drawing.Size(755, 46);
+            this.ctlSearcher1.TabIndex = 5;
+            // 
+            // txtSearchText
+            // 
+            this.txtSearchText.BackColor = System.Drawing.Color.Transparent;
+            this.txtSearchText.CanBeEmpty = true;
+            this.txtSearchText.Caption = "备注";
+            this.txtSearchText.DownBack = null;
+            this.txtSearchText.Icon = null;
+            this.txtSearchText.IconIsButton = false;
+            this.txtSearchText.IconMouseState = CCWin.SkinClass.ControlState.Normal;
+            this.txtSearchText.IsPasswordChat = '\0';
+            this.txtSearchText.IsSystemPasswordChar = false;
+            this.txtSearchText.Lines = new string[0];
+            this.txtSearchText.Location = new System.Drawing.Point(301, 10);
+            this.txtSearchText.Margin = new System.Windows.Forms.Padding(0);
+            this.txtSearchText.MaxLength = 32767;
+            this.txtSearchText.MinimumSize = new System.Drawing.Size(28, 28);
+            this.txtSearchText.MouseBack = null;
+            this.txtSearchText.MouseState = CCWin.SkinClass.ControlState.Normal;
+            this.txtSearchText.Multiline = false;
+            this.txtSearchText.Name = "txtSearchText";
+            this.txtSearchText.NormlBack = null;
+            this.txtSearchText.Padding = new System.Windows.Forms.Padding(5);
+            this.txtSearchText.ReadOnly = false;
+            this.txtSearchText.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtSearchText.Size = new System.Drawing.Size(130, 28);
+            // 
+            // 
+            // 
+            this.txtSearchText.SkinTxt.AccessibleName = "";
+            this.txtSearchText.SkinTxt.AutoCompleteCustomSource.AddRange(new string[] {
+            "asdfasdf",
+            "adsfasdf"});
+            this.txtSearchText.SkinTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtSearchText.SkinTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtSearchText.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSearchText.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSearchText.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
+            this.txtSearchText.SkinTxt.Location = new System.Drawing.Point(5, 5);
+            this.txtSearchText.SkinTxt.Name = "BaseText";
+            this.txtSearchText.SkinTxt.Size = new System.Drawing.Size(120, 18);
+            this.txtSearchText.SkinTxt.TabIndex = 0;
+            this.txtSearchText.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.txtSearchText.SkinTxt.WaterText = "";
+            this.txtSearchText.TabIndex = 24;
+            this.txtSearchText.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtSearchText.Visible = false;
+            this.txtSearchText.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.txtSearchText.WaterText = "";
+            this.txtSearchText.WordWrap = true;
+            // 
             // LoginName
             // 
             this.LoginName.DataPropertyName = "LoginName";
@@ -226,22 +288,20 @@ namespace LB.SysConfig
             this.UserName.HeaderText = "用户名称";
             this.UserName.Name = "UserName";
             // 
-            // UserSex
+            // UserSexName
             // 
-            this.UserSex.DataPropertyName = "UserSex";
-            this.UserSex.FieldName = "UserSex";
-            this.UserSex.HeaderText = "性别";
-            this.UserSex.Name = "UserSex";
-            this.UserSex.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.UserSex.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.UserSexName.DataPropertyName = "UserSexName";
+            this.UserSexName.HeaderText = "性别";
+            this.UserSexName.Name = "UserSexName";
+            this.UserSexName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // UserType
+            // UserTypeName
             // 
-            this.UserType.DataPropertyName = "UserType";
-            this.UserType.FieldName = "UserType";
-            this.UserType.HeaderText = "账户类型";
-            this.UserType.Name = "UserType";
-            this.UserType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.UserTypeName.DataPropertyName = "UserTypeName";
+            this.UserTypeName.HeaderText = "账户类型";
+            this.UserTypeName.Name = "UserTypeName";
+            this.UserTypeName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.UserTypeName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // ChangeTime
             // 
@@ -280,6 +340,7 @@ namespace LB.SysConfig
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.grdMain);
+            this.Controls.Add(this.ctlSearcher1);
             this.Controls.Add(this.skinToolStrip1);
             this.LBPageTitle = "用户及权限管理";
             this.Name = "frmUserManager";
@@ -287,6 +348,8 @@ namespace LB.SysConfig
             ((System.ComponentModel.ISupportInitialize)(this.grdMain)).EndInit();
             this.skinToolStrip1.ResumeLayout(false);
             this.skinToolStrip1.PerformLayout();
+            this.ctlSearcher1.ResumeLayout(false);
+            this.ctlSearcher1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,10 +364,12 @@ namespace LB.SysConfig
         private LBToolStripButton btnReflesh;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private LBToolStripButton btnAdd;
+        private Controls.Searcher.CtlSearcher ctlSearcher1;
+        private LBSkinTextBox txtSearchText;
         private System.Windows.Forms.DataGridViewTextBoxColumn LoginName;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserName;
-        private LBDataGridViewComboBoxColumn UserSex;
-        private LBDataGridViewComboBoxColumn UserType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserSexName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserTypeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ChangeTime;
         private LBDataGridViewButtonColumn Delete;
         private LBDataGridViewButtonColumn btnSetUserPermission;

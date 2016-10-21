@@ -47,6 +47,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MI\frmCarEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MI\frmCarEdit.Designer.cs">
+      <DependentUpon>frmCarEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MI\frmCustomerEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MI\frmCustomerEdit.Designer.cs">
+      <DependentUpon>frmCustomerEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MI\frmCustomerManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MI\frmCustomerManager.Designer.cs">
+      <DependentUpon>frmCustomerManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="MI\frmItemBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -60,13 +78,31 @@
       <DependentUpon>frmItemBaseManager.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="MI\frmCarEdit.resx">
+      <DependentUpon>frmCarEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MI\frmCustomerEdit.resx">
+      <DependentUpon>frmCustomerEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MI\frmCustomerManager.resx">
+      <DependentUpon>frmCustomerManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MI\frmItemBase.resx">
       <DependentUpon>frmItemBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MI\frmItemBaseManager.resx">
       <DependentUpon>frmItemBaseManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

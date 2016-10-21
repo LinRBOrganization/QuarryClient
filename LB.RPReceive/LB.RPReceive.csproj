@@ -59,6 +59,12 @@
     <Compile Include="RPReceive\frmEditReceiveBill.Designer.cs">
       <DependentUpon>frmEditReceiveBill.cs</DependentUpon>
     </Compile>
+    <Compile Include="RPReceive\frmReceiveBillQuery.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RPReceive\frmReceiveBillQuery.Designer.cs">
+      <DependentUpon>frmReceiveBillQuery.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LB.Base\LB.Base.csproj">
@@ -89,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RPReceive\frmEditReceiveBill.resx">
       <DependentUpon>frmEditReceiveBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RPReceive\frmReceiveBillQuery.resx">
+      <DependentUpon>frmReceiveBillQuery.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

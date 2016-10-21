@@ -20,12 +20,12 @@ namespace LB.SysConfig
         {
             InitializeComponent();
             this.grdMain.AutoGenerateColumns = false;
-            this.grdMain.LBLoadConst();
+            //this.grdMain.LBLoadConst();
             this.grdMain.DataError += delegate (object sender, DataGridViewDataErrorEventArgs e) { };
             this.grdMain.LBCellButtonClick += GrdMain_LBCellButtonClick;
             this.grdMain.CellDoubleClick += GrdMain_CellDoubleClick;
 
-            LoadDataSource();//加载数据源
+            
         }
 
         private void GrdMain_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -131,12 +131,15 @@ namespace LB.SysConfig
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            
+            LoadDataSource();//加载数据源
+
+            this.ctlSearcher1.SetGridView(this.grdMain, "UserName");
         }
 
         private void LoadDataSource()
         {
-            DataTable dtUser = ExecuteSQL.CallView(100);
+            string strFilter = this.ctlSearcher1.GetFilter();
+            DataTable dtUser = ExecuteSQL.CallView(100,"", strFilter,"");
             this.grdMain.DataSource = dtUser.DefaultView;
         }
 

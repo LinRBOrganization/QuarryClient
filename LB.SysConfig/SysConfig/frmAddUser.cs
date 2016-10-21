@@ -119,7 +119,14 @@ namespace LB.SysConfig
             drNew["UserID"] = _UserID;
             drNew["LoginName"] = this.txtLoginName.Text;
             drNew["UserName"] = this.txtUserName.Text;
-            //drNew["UserPassword"] = this.txtUserPassword.Text;
+            if (_UserID == 0)
+            {
+                if (this.txtUserPassword.Text == "")
+                {
+                    throw new Exception("初始密码不能为空！");
+                }
+                drNew["UserPassword"] = LoginInfo.EncryptPassword(this.txtUserPassword.Text);
+            }
             drNew["UserSex"] = this.txtUserSex.SelectedValue;
             drNew["UserType"] = this.txtUserType.SelectedValue;
             dtSPIN.Rows.Add(drNew);

@@ -29,6 +29,7 @@ namespace LB.RPReceive
 
             InitCustomerList();
 
+            ReadFieldValue();
         }
 
         private void InitCustomerList()
@@ -37,6 +38,34 @@ namespace LB.RPReceive
             this.txtCustomerID.TextBox.IDColumnName = "CustomerID";
             this.txtCustomerID.TextBox.TextColumnName = "CustomerName";
             this.txtCustomerID.TextBox.PopDataSource = dtCustom.DefaultView;
+        }
+
+        private void ReadFieldValue()
+        {
+            if (mlReceiveBillHeaderID > 0)
+            {
+                DataTable dtHeader = ExecuteSQL.CallView(111,"", "ReceiveBillHeaderID="+ mlReceiveBillHeaderID,"");
+                if (dtHeader.Rows.Count > 0)
+                {
+                    DataRow drHeader = dtHeader.Rows[0];
+                    bool bolIsApprove = LBConverter.ToBoolean(drHeader["IsApprove"]);
+                    bool bolIsCancel = LBConverter.ToBoolean(drHeader["IsCancel"]);
+                    this.txtBillDate.Text = LBConverter.ToString(drHeader["BillDate"]);
+                    this.txtBillStatus.Text= bolIsApprove?"已审核":
+                    (bolIsCancel?"已作废":("未审核"));
+                    this.txtCustomerID.TextBox.SelectedItemID = drHeader["CustomerID"].ToString();
+                    this.txtDescription.Text = drHeader["Description"].ToString();
+                    this.txtReceiveAmount.Text = drHeader["ReceiveAmount"].ToString();
+                    this.txtReceiveBillCode.Text = drHeader["ReceiveBillCode"].ToString();
+
+                    this.txtChangedBy.Text = drHeader["ChangedBy"].ToString();
+                    this.txtChangeTime.Text = drHeader["ChangeTime"].ToString();
+                    this.txtApproveBy.Text = drHeader["ApproveBy"].ToString();
+                    this.txtApproveTime.Text = drHeader["ApproveTime"].ToString();
+                    this.txtCancelBy.Text = drHeader["CancelBy"].ToString();
+                    this.txtCancelTime.Text = drHeader["CancelTime"].ToString();
+                }
+            }
         }
 
         #region -- 根据单据状态显示或者隐藏相关按钮 --
@@ -340,8 +369,7 @@ namespace LB.RPReceive
             long lCustomerID = LBConverter.ToInt64(this.txtCustomerID.TextBox.SelectedItemID);
             if (lCustomerID == 0)
             {
-                LB.WinFunction.LBCommonHelper.ShowCommonMessage("请输入正确的客户名称！");
-                return;
+                throw new Exception("请输入正确的客户名称！");
             }
 
             LBDbParameterCollection parmCol = new LBDbParameterCollection();

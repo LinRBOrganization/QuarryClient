@@ -157,6 +157,12 @@
     <Compile Include="Controls\Report\ReportCommon.cs" />
     <Compile Include="Controls\Report\ReportHelper.cs" />
     <Compile Include="Controls\Report\ReportRequestArgs.cs" />
+    <Compile Include="Controls\Searcher\CtlSearcher.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Searcher\CtlSearcher.Designer.cs">
+      <DependentUpon>CtlSearcher.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TestForm1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Report\frmReport.resx">
       <DependentUpon>frmReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Searcher\CtlSearcher.resx">
+      <DependentUpon>CtlSearcher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\TestForm1.resx">
       <DependentUpon>TestForm1.cs</DependentUpon>

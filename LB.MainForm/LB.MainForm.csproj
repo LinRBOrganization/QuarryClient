@@ -173,6 +173,12 @@
   <ItemGroup>
     <None Include="Resources\btnConfig.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MenuIcon031.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MenuIcon_销售管理.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

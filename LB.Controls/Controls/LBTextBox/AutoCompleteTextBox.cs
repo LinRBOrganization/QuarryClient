@@ -348,6 +348,24 @@ namespace LB.Controls.LBTextBox
                 }
                 return null;
             }
+            set
+            {
+                if (value!=null&& value.ToString()!="" && _DataSource != null)
+                {
+                    if (_DataSource.Table.Columns.Contains(IDColumnName)&& _DataSource.Table.Columns.Contains(TextColumnName))
+                    {
+                        foreach (AutoCompleteEntry entry in this.items)
+                        {
+                            if (entry.DataBindItem[IDColumnName].ToString() == value.ToString())
+                            {
+                                this.Text = entry.DataBindItem[TextColumnName].ToString();
+                                selectedEntry = entry;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private AutoCompleteEntry selectedEntry = null;

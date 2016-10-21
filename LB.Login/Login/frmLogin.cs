@@ -98,5 +98,17 @@ namespace LB.Login
                 LBCommonHelper.DealWithErrorMessage(ex);
             }
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
     }
 }

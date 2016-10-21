@@ -14,6 +14,8 @@ using LB.SysConfig;
 using LB.WinFunction;
 using LB.RPReceive;
 using LB.MI;
+using LB.RPReceive.RPReceive;
+using LB.MI.MI;
 
 namespace LB.MainForm
 {
@@ -69,7 +71,7 @@ namespace LB.MainForm
             {
                 bolIsCancel = true;
                 LBShowForm.LBUIPageBaseAdded -= LBShowForm_LBUIPageBaseAdded;
-                this.Dispose();
+                //this.Dispose();
                 this.Close();
             }
             catch (Exception ex)
@@ -198,7 +200,8 @@ namespace LB.MainForm
         {
             try
             {
-                
+                frmReceiveBillQuery frmQuery = new frmReceiveBillQuery();
+                LBShowForm.ShowMainPage(frmQuery);
             }
             catch (Exception ex)
             {
@@ -218,6 +221,49 @@ namespace LB.MainForm
                 LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
             }
         }
+
+        //客户资料管理
+        private void btnCustomerManager_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmCustomerManager frmCustomer = new frmCustomerManager();
+                LBShowForm.ShowMainPage(frmCustomer);
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+
+        //添加车辆
+        private void btnAddCar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmCarEdit frmCar = new frmCarEdit(0, 0);
+                LBShowForm.ShowDialog(frmCar);
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+
+        //添加客户
+        private void btnAddCustomer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmCustomerEdit frmCustomer = new frmCustomerEdit( 0);
+                LBShowForm.ShowDialog(frmCustomer);
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+
         #endregion -- 按钮事件  --
 
         #region -- ShowMainPage --
@@ -383,6 +429,10 @@ namespace LB.MainForm
                 }
                 catch (Exception ex)
                 {
+                    if (bolIsClosing)
+                    {
+                        break;
+                    }
                     this.Invoke((MethodInvoker)delegate {
                         this.lblConnectStatus.Text = "异常";
                         this.lblConnectStatus.ForeColor = Color.Red;
@@ -394,6 +444,7 @@ namespace LB.MainForm
                 }
             }
         }
+
 
         #endregion
 
