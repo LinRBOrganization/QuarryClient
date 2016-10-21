@@ -122,6 +122,10 @@
       <Project>{bb3a2964-6a7e-479a-b180-b156fbcc868b}</Project>
       <Name>LB.StyleResource</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LB.SysConfig\LB.SysConfig.csproj">
+      <Project>{948f87ee-5644-4cb5-afa2-c8aeeb1470c2}</Project>
+      <Name>LB.SysConfig</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -15,90 +15,30 @@ namespace LB.MI
 {
     public partial class frmItemBase : LBUIPageBase
     {
-        public frmItemBase()
+        private long mlItemID = 0;
+        public frmItemBase(long lItemID)
         {
             InitializeComponent();
-            this.grdMain.DataError += delegate (object sender, DataGridViewDataErrorEventArgs e) { };
+            mlItemID = lItemID;
         }
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            this.grdMain.AutoGenerateColumns = false;
-            this.grdMain.LBLoadConst();
-            LoadBackUpConfig();
 
-            this.grdMain.CellDoubleClick += GrdMain_CellDoubleClick;
+            string strSQL = "select UOMID,UOMName from dbo.DbUOM";
+            this.txtUOMID.DataSource = ExecuteSQL.CallDirectSQL(strSQL);//读取备份类型常量列表
+            this.txtUOMID.DisplayMember = "UOMName";
+            this.txtUOMID.ValueMember = "UOMID";
+
+            strSQL = "select ItemTypeID,ItemTypeName from dbo.DbItemType";
+            this.txtItemTypeID.DataSource = ExecuteSQL.CallDirectSQL(strSQL);//读取星期常量列表
+            this.txtItemTypeID.DisplayMember = "ItemTypeName";
+            this.txtItemTypeID.ValueMember = "ItemTypeID";
+
+            ReadFieldValue();
         }
-
-        private void GrdMain_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-            }
-            catch (Exception ex)
-            {
-                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
-            }
-        }
-
-        /// <summary>
-        /// 读取备份方案数据
-        /// </summary>
-        private void LoadBackUpConfig()
-        {
-            DataTable dtBackUp = ExecuteSQL.CallView(108);
-            dtBackUp.Columns.Add("BackUpTime", typeof(string));
-            foreach(DataRow dr in dtBackUp.Rows)
-            {
-                string strBackUpTime = "";
-                int iBackUpType = dr["BackUpType"] == DBNull.Value ? 0 : Convert.ToInt32(dr["BackUpType"]);
-                int iBackUpWeek = dr["BackUpWeek"] == DBNull.Value ? 0 : Convert.ToInt32(dr["BackUpWeek"]);
-                int iBackUpHour = dr["BackUpHour"] == DBNull.Value ? 0 : Convert.ToInt32(dr["BackUpHour"]);
-                int iBackUpMinu = dr["BackUpMinu"] == DBNull.Value ? 0 : Convert.ToInt32(dr["BackUpMinu"]);
-
-                if (iBackUpType == 0)
-                {
-                    if (iBackUpWeek == 1)
-                    {
-                        strBackUpTime = "周一";
-                    }
-                    else if (iBackUpWeek == 2)
-                    {
-                        strBackUpTime = "周二";
-                    }
-                    else if (iBackUpWeek == 3)
-                    {
-                        strBackUpTime = "周三";
-                    }
-                    else if (iBackUpWeek == 4)
-                    {
-                        strBackUpTime = "周四";
-                    }
-                    else if (iBackUpWeek == 5)
-                    {
-                        strBackUpTime = "周五";
-                    }
-                    else if (iBackUpWeek == 6)
-                    {
-                        strBackUpTime = "周六";
-                    }
-                    else if (iBackUpWeek == 7)
-                    {
-                        strBackUpTime = "周日";
-                    }
-                }
-                if (strBackUpTime != "")
-                {
-                    strBackUpTime += "  ";
-                }
-                strBackUpTime += iBackUpHour + ":" + iBackUpMinu;
-                dr["BackUpTime"] = strBackUpTime;
-            }
-
-            this.grdMain.DataSource = dtBackUp.DefaultView;
-        }
-
+        
         private void btnClose_Click(object sender, EventArgs e)
         {
             try
@@ -111,22 +51,33 @@ namespace LB.MI
             }
         }
 
-        private void btnReflesh_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                LoadBackUpConfig();
-            }
-            catch (Exception ex)
-            {
-                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
-            }
-        }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
+                this.VerifyTextBoxIsEmpty();//校验控件值是否为空
+                
+                int iSPType = mlItemID > 0 ? 20301 : 20300;
+
+                LBDbParameterCollection parmCol = new LBDbParameterCollection();
+                parmCol.Add(new LBParameter("ItemID", enLBDbType.Int64, mlItemID));
+                parmCol.Add(new LBParameter("ItemTypeID", enLBDbType.Int64, this.txtItemTypeID.SelectedValue));
+                parmCol.Add(new LBParameter("ItemCode", enLBDbType.String, this.txtItemCode.Text));
+                parmCol.Add(new LBParameter("ItemName", enLBDbType.String, this.txtItemName.Text));
+                parmCol.Add(new LBParameter("ItemMode", enLBDbType.String, this.txtItemMode.Text));
+                parmCol.Add(new LBParameter("ItemRate", enLBDbType.Decimal, LBConverter.ToDecimal(this.txtItemRate.Text)));
+                parmCol.Add(new LBParameter("UOMID", enLBDbType.Int64, this.txtUOMID.SelectedValue));
+                parmCol.Add(new LBParameter("Description", enLBDbType.String, this.txtDescription.Text));
+                parmCol.Add(new LBParameter("IsForbid", enLBDbType.Boolean, this.chkIsForbid.Checked));
+                DataSet dsReturn;
+                Dictionary<string, object> dictValue;
+                ExecuteSQL.CallSP(iSPType, parmCol, out dsReturn, out dictValue);
+                if (dictValue.ContainsKey("ItemID"))
+                {
+                    long.TryParse(dictValue["ItemID"].ToString(), out mlItemID);
+                }
+                LB.WinFunction.LBCommonHelper.ShowCommonMessage("保存成功！");
             }
             catch (Exception ex)
             {
@@ -138,44 +89,54 @@ namespace LB.MI
         {
             try
             {
-                this.grdMain.CurrentCell = null;
-                this.grdMain.EndEdit();
-
-                bool bolIsDeleted = false;
-                if (LB.WinFunction.LBCommonHelper.ConfirmMessage("是否确认备份方案？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (LB.WinFunction.LBCommonHelper.ConfirmMessage("是否确认物料？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    foreach (DataGridViewRow dgvr in this.grdMain.Rows)
+                    if (mlItemID > 0)
                     {
-                        bool bolSelected = LBConverter.ToBoolean(dgvr.Cells["Selected"].Value);
-                        if (bolSelected)
-                        {
-                            DataRowView drv = dgvr.DataBoundItem as DataRowView;
-                            long lBackUpConfigID = LBConverter.ToInt64(drv["BackUpConfigID"]);
-                            if (lBackUpConfigID > 0)
-                            {
-                                LBDbParameterCollection parmCol = new LBDbParameterCollection();
-                                parmCol.Add(new LBParameter("BackUpConfigID", enLBDbType.Int64, lBackUpConfigID));
-                                DataSet dsReturn;
-                                Dictionary<string, object> dictValue;
-                                ExecuteSQL.CallSP(13202, parmCol, out dsReturn, out dictValue);
-                                bolIsDeleted = true;
-                            }
-                        }
+                        LBDbParameterCollection parmCol = new LBDbParameterCollection();
+                        parmCol.Add(new LBParameter("ItemID", enLBDbType.Int64, mlItemID));
+                        DataSet dsReturn;
+                        Dictionary<string, object> dictValue;
+                        ExecuteSQL.CallSP(20302, parmCol, out dsReturn, out dictValue);
                     }
-                    if (bolIsDeleted)
-                    {
-                        LB.WinFunction.LBCommonHelper.ShowCommonMessage("删除成功！");
-                        LoadBackUpConfig();
-                    }
-                    else
-                    {
-                        LB.WinFunction.LBCommonHelper.ShowCommonMessage("请选择需要删除的数据行！");
-                    }
+                    this.Close();
                 }
             }
             catch (Exception ex)
             {
                 LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+
+        /// <summary>
+        /// 读取控件参数值
+        /// </summary>
+        private void ReadFieldValue()
+        {
+            if (mlItemID > 0)
+            {
+                DataTable dtBackUp = ExecuteSQL.CallView(201, "", "ItemID=" + mlItemID, "");
+                if (dtBackUp.Rows.Count > 0)
+                {
+                    DataRow dr = dtBackUp.Rows[0];
+                    string strItemCode = LBConverter.ToString(dr["ItemCode"]);
+                    string strItemName = LBConverter.ToString(dr["ItemName"]);
+                    string strItemMode = LBConverter.ToString(dr["ItemMode"]);
+                    decimal dItemRate = LBConverter.ToDecimal(dr["ItemRate"]);
+                    long lUOMID = LBConverter.ToInt32(dr["UOMID"]);
+                    long lItemTypeID = LBConverter.ToInt32(dr["ItemTypeID"]);
+                    string strDescription = LBConverter.ToString(dr["Description"]);
+                    bool bIsForbid = LBConverter.ToBoolean(dr["IsForbid"]);
+
+                    this.txtItemCode.Text = strItemCode;
+                    this.txtItemName.Text = strItemName;
+                    this.txtItemMode.Text = strItemMode;
+                    this.txtItemRate.Text = dItemRate.ToString();
+                    this.txtUOMID.SelectedValue = lUOMID;
+                    this.txtItemTypeID.SelectedValue = lItemTypeID;
+                    this.txtDescription.Text = strDescription;
+                    this.chkIsForbid.Checked = bIsForbid;
+                }
             }
         }
     }
