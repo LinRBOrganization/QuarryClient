@@ -59,6 +59,12 @@
     <Compile Include="MI\frmCustomerEdit.Designer.cs">
       <DependentUpon>frmCustomerEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="MI\frmItemType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MI\frmItemType.designer.cs">
+      <DependentUpon>frmItemType.cs</DependentUpon>
+    </Compile>
     <Compile Include="MI\frmUOMManager.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -108,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MI\frmCustomerEdit.resx">
       <DependentUpon>frmCustomerEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MI\frmItemType.resx">
+      <DependentUpon>frmItemType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MI\frmUOMManager.resx">
       <DependentUpon>frmUOMManager.cs</DependentUpon>
