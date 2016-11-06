@@ -25,7 +25,7 @@ namespace LB.MI
             BuildTree();
             //加载视图配置数据源
             ReSearchData();
-
+            
             btnAddItemType.Click += btnAddItemType_Click;
             btnEditItemType.Click += btnEditItemType_Click;
             btnDeleteItemType.Click += btnDeleteItemType_Click;
@@ -35,7 +35,31 @@ namespace LB.MI
             btnReflush.Click += btnReflush_Click;
             btnTableSetting.Click += btnTableSetting_Click;
             btnSort.Click += btnSort_Click;
-            treeView1.AfterSelect += this.treeView1_AfterSelect;
+            tvItemType.AfterSelect += this.tvItemType_AfterSelect;
+            this.grdMain.CellDoubleClick += GrdMain_CellDoubleClick;
+        }
+
+        private void GrdMain_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                {
+                    DataRowView drvSelect = this.grdMain.Rows[e.RowIndex].DataBoundItem as DataRowView;
+                    long lItemID = LBConverter.ToInt64(drvSelect["ItemID"]);
+                    if (lItemID > 0)
+                    {
+                        frmItemBase frm = new frmItemBase(lItemID);
+                        LBShowForm.ShowDialog(frm);
+
+                        ReSearchData();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
         }
 
         private void btnSort_Click(object sender, EventArgs e)
@@ -128,7 +152,24 @@ namespace LB.MI
         {
             try
             {
-                ReSearchData();
+                if (tvItemType.SelectedNode == null || tvItemType.SelectedNode.Tag == null)
+                {
+                    return;
+                }
+                DataRow dr = tvItemType.SelectedNode.Tag as DataRow;
+                long lItemTypeID = LBConverter.ToInt64(dr["ItemTypeID"]);
+                if (LB.WinFunction.LBCommonHelper.ConfirmMessage("是否确认物料类型？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    if (lItemTypeID > 0)
+                    {
+                        LBDbParameterCollection parmCol = new LBDbParameterCollection();
+                        parmCol.Add(new LBParameter("ItemTypeID", enLBDbType.Int64, lItemTypeID));
+                        DataSet dsReturn;
+                        Dictionary<string, object> dictValue;
+                        ExecuteSQL.CallSP(20102, parmCol, out dsReturn, out dictValue);
+                    }
+                    BuildTree();
+                }
             }
             catch (Exception ex)
             {
@@ -140,7 +181,14 @@ namespace LB.MI
         {
             try
             {
-                ReSearchData();
+                if (tvItemType.SelectedNode == null || tvItemType.SelectedNode.Tag == null)
+                {
+                    return;
+                }
+                DataRow dr = tvItemType.SelectedNode.Tag as DataRow;
+                frmItemType frm = new frmItemType(LBConverter.ToInt64(dr["ItemTypeID"]));
+                LBShowForm.ShowDialog(frm);
+                BuildTree();
             }
             catch (Exception ex)
             {
@@ -152,7 +200,9 @@ namespace LB.MI
         {
             try
             {
-                ReSearchData();
+                frmItemType frm = new frmItemType(0);
+                LBShowForm.ShowDialog(frm);
+                BuildTree();
             }
             catch (Exception ex)
             {
@@ -246,9 +296,9 @@ namespace LB.MI
         {
             string strFilter = "";
             string strSQL = "select * from dbo.Db_v_ItemBase";
-            if (treeView1.SelectedNode != null && treeView1.SelectedNode.Parent != null)
+            if (tvItemType.SelectedNode != null && tvItemType.SelectedNode.Parent != null)
             {
-                DataRow dr = treeView1.SelectedNode.Tag as DataRow;
+                DataRow dr = tvItemType.SelectedNode.Tag as DataRow;
                 strFilter = "ItemTypeID = "+ dr["ItemTypeID"].ToString();
             }
             if (this.txtFilter.Text.TrimEnd() != "")
@@ -271,6 +321,7 @@ or Description like '%{0}%'", this.txtFilter.Text.TrimEnd());
 
         private void BuildTree()
         {
+            tvItemType.Nodes.Clear();
             string strSQL = "select ItemTypeID,ItemTypeName from dbo.DbItemType";
             DataTable dt = ExecuteSQL.CallDirectSQL(strSQL);
             TreeNode tnTop = new TreeNode("物料分类");
@@ -280,11 +331,11 @@ or Description like '%{0}%'", this.txtFilter.Text.TrimEnd());
                 tn.Tag = dr;
                 tnTop.Nodes.Add(tn);
             }
-            treeView1.Nodes.Add(tnTop);
+            tvItemType.Nodes.Add(tnTop);
             tnTop.ExpandAll();
         }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        private void tvItemType_AfterSelect(object sender, TreeViewEventArgs e)
         {
             try
             {

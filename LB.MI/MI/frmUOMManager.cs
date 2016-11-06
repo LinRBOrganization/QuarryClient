@@ -14,9 +14,9 @@ using LB.Page.Helper;
 
 namespace LB.MI
 {
-    public partial class frmCustomerManager : LBUIPageBase
+    public partial class frmUOMManager : LBUIPageBase
     {
-        public frmCustomerManager()
+        public frmUOMManager()
         {
             InitializeComponent();
             this.grdMain.CellDoubleClick += GrdMain_CellDoubleClick;
@@ -27,14 +27,16 @@ namespace LB.MI
             base.OnLoad(e);
 
             LoadDataSource();
-            this.ctlSearcher1.SetGridView(this.grdMain, "CustomerName");
         }
 
         private void LoadDataSource()
         {
-            string strFilter = this.ctlSearcher1.GetFilter();
-            DataTable dtUser = ExecuteSQL.CallView(112, "", strFilter, "");
-            this.grdMain.DataSource = dtUser.DefaultView;
+            string strSQL = "select * from dbo.DbUOM";
+            DataTable dtView = ExecuteSQL.CallDirectSQL(strSQL);
+            //this.grdMain.DataSource = dtView.DefaultView;
+            //string strFilter = this.ctlSearcher1.GetFilter();
+            //DataTable dtUser = ExecuteSQL.CallView(112, "", strFilter, "");
+            this.grdMain.DataSource = dtView.DefaultView;
         }
 
         private void GrdMain_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -43,16 +45,16 @@ namespace LB.MI
             {
                 if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
                 {
-                    DataRowView drvSelect = this.grdMain.Rows[e.RowIndex].DataBoundItem as DataRowView;
-                    long lCustomerID = drvSelect["CustomerID"] == DBNull.Value ?
-                        0 : Convert.ToInt64(drvSelect["CustomerID"]);
-                    if (lCustomerID > 0)
-                    {
-                        frmCustomerEdit frm = new frmCustomerEdit(lCustomerID);
-                        LBShowForm.ShowDialog(frm);
+                    //DataRowView drvSelect = this.grdMain.Rows[e.RowIndex].DataBoundItem as DataRowView;
+                    //long lCustomerID = drvSelect["CustomerID"] == DBNull.Value ?
+                    //    0 : Convert.ToInt64(drvSelect["CustomerID"]);
+                    //if (lCustomerID > 0)
+                    //{
+                    //    frmCustomerEdit frm = new frmCustomerEdit(lCustomerID);
+                    //    LBShowForm.ShowDialog(frm);
 
-                        LoadDataSource();
-                    }
+                    //    LoadDataSource();
+                    //}
                 }
             }
             catch (Exception ex)
@@ -67,8 +69,8 @@ namespace LB.MI
         {
             try
             {
-                frmCustomerEdit frmEdit = new frmCustomerEdit(0);
-                LBShowForm.ShowDialog(frmEdit);
+                //frmCustomerEdit frmEdit = new frmCustomerEdit(0);
+                //LBShowForm.ShowDialog(frmEdit);
                 LoadDataSource();
             }
             catch (Exception ex)

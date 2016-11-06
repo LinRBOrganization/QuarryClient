@@ -11,7 +11,7 @@ using LB.Common;
 using LB.WinFunction;
 using LB.Page.Helper;
 
-namespace LB.MI.MI
+namespace LB.MI
 {
     public partial class frmCustomerEdit : LBUIPageBase
     {

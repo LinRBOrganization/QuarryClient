@@ -10,7 +10,7 @@ using LB.Controls;
 using LB.WinFunction;
 using LB.Common;
 
-namespace LB.MI.MI
+namespace LB.MI
 {
     public partial class frmCarEdit : LBUIPageBase
     {

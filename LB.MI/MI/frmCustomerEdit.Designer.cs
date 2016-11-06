@@ -1,4 +1,4 @@
-﻿namespace LB.MI.MI
+﻿namespace LB.MI
 {
     partial class frmCustomerEdit
     {

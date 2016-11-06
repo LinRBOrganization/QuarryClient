@@ -15,7 +15,6 @@ using LB.WinFunction;
 using LB.RPReceive;
 using LB.MI;
 using LB.RPReceive.RPReceive;
-using LB.MI.MI;
 
 namespace LB.MainForm
 {
@@ -209,12 +208,27 @@ namespace LB.MainForm
             }
         }
 
+        //物料管理
         private void btnItemBaseManager_Click(object sender, EventArgs e)
         {
             try
             {
                 frmItemBaseManager frmItemBaseMag = new frmItemBaseManager();
                 LBShowForm.ShowMainPage(frmItemBaseMag);
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+
+        //计量单位管理
+        private void btnUOMManager_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmUOMManager frm = new frmUOMManager();
+                LBShowForm.ShowMainPage(frm);
             }
             catch (Exception ex)
             {
@@ -447,6 +461,5 @@ namespace LB.MainForm
 
 
         #endregion
-
     }
 }
