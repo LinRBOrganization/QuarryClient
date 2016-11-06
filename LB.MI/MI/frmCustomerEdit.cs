@@ -35,7 +35,7 @@ namespace LB.MI
                         0 : Convert.ToInt64(drvSelect["CarID"]);
                     if (lCarID > 0)
                     {
-                        frmCarEdit frmCar = new MI.frmCarEdit(mlCustomerID,lCarID);
+                        frmCarEdit frmCar = new frmCarEdit(mlCustomerID,lCarID);
                         LBShowForm.ShowDialog(frmCar);
 
                         LoadCarDataSource();
@@ -128,7 +128,7 @@ namespace LB.MI
                 if (mlCustomerID == 0)
                     throw new Exception("请先保存客户资料，再添加车辆！");
 
-                frmCarEdit frmCar = new MI.frmCarEdit(mlCustomerID,0);
+                frmCarEdit frmCar = new frmCarEdit(mlCustomerID,0);
                 LBShowForm.ShowDialog(frmCar);
                 LoadCarDataSource();
             }

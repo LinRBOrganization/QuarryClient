@@ -186,8 +186,8 @@ namespace LB.MI
                     return;
                 }
                 DataRow dr = tvItemType.SelectedNode.Tag as DataRow;
-                frmItemType frm = new frmItemType(LBConverter.ToInt64(dr["ItemTypeID"]));
-                LBShowForm.ShowDialog(frm);
+                /*frmItemType frm = new frmItemType(LBConverter.ToInt64(dr["ItemTypeID"]));
+                LBShowForm.ShowDialog(frm);*/
                 BuildTree();
             }
             catch (Exception ex)
@@ -200,8 +200,8 @@ namespace LB.MI
         {
             try
             {
-                frmItemType frm = new frmItemType(0);
-                LBShowForm.ShowDialog(frm);
+                /*frmItemType frm = new frmItemType(0);
+                LBShowForm.ShowDialog(frm);*/
                 BuildTree();
             }
             catch (Exception ex)
