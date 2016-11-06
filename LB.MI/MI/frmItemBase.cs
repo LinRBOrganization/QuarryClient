@@ -20,6 +20,7 @@ namespace LB.MI
         {
             InitializeComponent();
             mlItemID = lItemID;
+            btnDelete.Visible = mlItemID > 0;
         }
 
         protected override void OnLoad(EventArgs e)
@@ -78,6 +79,7 @@ namespace LB.MI
                     long.TryParse(dictValue["ItemID"].ToString(), out mlItemID);
                 }
                 LB.WinFunction.LBCommonHelper.ShowCommonMessage("保存成功！");
+                btnDelete.Visible = mlItemID > 0;
             }
             catch (Exception ex)
             {
@@ -115,7 +117,7 @@ namespace LB.MI
         {
             if (mlItemID > 0)
             {
-                DataTable dtBackUp = ExecuteSQL.CallView(201, "", "ItemID=" + mlItemID, "");
+                DataTable dtBackUp = ExecuteSQL.CallView(203, "", "ItemID=" + mlItemID, "");
                 if (dtBackUp.Rows.Count > 0)
                 {
                     DataRow dr = dtBackUp.Rows[0];
