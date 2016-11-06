@@ -101,5 +101,43 @@ namespace LB.Controls
             DataTable dtConst = ExecuteSQL.CallView(101, "ConstValue,ConstText", "FieldName='" + strFieldName + "'", "");
             return dtConst;
         }
+
+        /// <summary>
+        /// 隐藏相同信息的列值
+        /// </summary>
+        public void HiddenSaveColumnValue(params string[] columns)
+        {
+            List<string> lstColumns = new List<string>();
+            foreach(string strColumn in columns)
+            {
+                if (this.Columns.Contains(strColumn))
+                    lstColumns.Add(strColumn);
+            }
+
+            //bool bolIsFirst = true;//是否第一个匹配行
+            string strFirshValue = "";
+            foreach (DataGridViewRow dgvr in this.Rows)
+            {
+                string strKeyValue = "";
+                foreach (string strColunn in lstColumns)
+                {
+                    if (strKeyValue != "")
+                        strKeyValue += ";";
+                    strKeyValue += dgvr.Cells[strColunn].Value.ToString().TrimEnd();
+                }
+                if(strFirshValue!= strKeyValue)
+                {
+                    strFirshValue = strKeyValue;
+                    //bolIsFirst = true;
+                }
+                else
+                {
+                    foreach (string strColunn in lstColumns)
+                    {
+                        dgvr.Cells[strColunn].Value = null;
+                    }
+                }
+            }
+        }
     }
 }

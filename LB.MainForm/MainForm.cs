@@ -250,6 +250,20 @@ namespace LB.MainForm
             }
         }
 
+        private void btnChangePriceManager_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmModifyBillHeaderQuery frmModify = new frmModifyBillHeaderQuery();
+                LBShowForm.ShowMainPage(frmModify);
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+            
+        }
+
         //添加客户
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
@@ -448,5 +462,6 @@ namespace LB.MainForm
 
         #endregion
 
+        
     }
 }

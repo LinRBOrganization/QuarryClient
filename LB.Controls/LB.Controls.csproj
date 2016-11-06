@@ -62,6 +62,12 @@
     <Compile Include="Controls\Args\PageEventArgs.cs" />
     <Compile Include="Controls\Args\TabPageCloseEventArgs.cs" />
     <Compile Include="Controls\Args\ToolStripReportArgs.cs" />
+    <Compile Include="Controls\CtlFieldHeaderPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CtlFieldHeaderPanel.Designer.cs">
+      <DependentUpon>CtlFieldHeaderPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Helper\LBEnum.cs" />
     <Compile Include="Controls\Helper\LBShowForm.cs" />
     <Compile Include="Controls\ILBTextBox.cs" />
@@ -80,6 +86,12 @@
     <Compile Include="Controls\LBDataGridViewButtonCell.cs" />
     <Compile Include="Controls\LBDataGridViewButtonColumn.cs" />
     <Compile Include="Controls\LBDataGridViewComboBoxColumn.cs" />
+    <Compile Include="Controls\LBDateTimeTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\LBDateTimeTextBox.Designer.cs">
+      <DependentUpon>LBDateTimeTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\LBForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +210,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\CtlFieldHeaderPanel.resx">
+      <DependentUpon>CtlFieldHeaderPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\LBBillForm.resx">
       <DependentUpon>LBBillForm.cs</DependentUpon>
     </EmbeddedResource>

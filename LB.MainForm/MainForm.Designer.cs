@@ -45,6 +45,8 @@ namespace LB.MainForm
             this.btnSQLBuilder = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnDDBaseManager = new LB.Controls.LBToolStripDropDownButton(this.components);
             this.btnItemBaseManager = new LB.Controls.LBToolStripMenuItem(this.components);
+            this.单位管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.备注管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lbToolStripDropDownButton1 = new LB.Controls.LBToolStripDropDownButton(this.components);
             this.btnAddCustomer = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnCustomerManager = new LB.Controls.LBToolStripMenuItem(this.components);
@@ -56,6 +58,8 @@ namespace LB.MainForm
             this.btnRPReceive = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnRPReceiveList = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnAbort = new LB.Controls.LBToolStripDropDownButton(this.components);
+            this.版本信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.关于我们ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tcMain = new LB.Controls.LBTabControl.LBMainTabControl(this.components);
             this.tpMain = new DMSkin.Metro.Controls.MetroTabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -180,7 +184,9 @@ namespace LB.MainForm
             // btnDDBaseManager
             // 
             this.btnDDBaseManager.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnItemBaseManager});
+            this.btnItemBaseManager,
+            this.单位管理ToolStripMenuItem,
+            this.备注管理ToolStripMenuItem});
             this.btnDDBaseManager.Image = ((System.Drawing.Image)(resources.GetObject("btnDDBaseManager.Image")));
             this.btnDDBaseManager.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDDBaseManager.LBPermissionCode = "PMSystemManager";
@@ -192,9 +198,21 @@ namespace LB.MainForm
             // 
             this.btnItemBaseManager.LBPermissionCode = "PMChangePassword";
             this.btnItemBaseManager.Name = "btnItemBaseManager";
-            this.btnItemBaseManager.Size = new System.Drawing.Size(124, 22);
+            this.btnItemBaseManager.Size = new System.Drawing.Size(148, 22);
             this.btnItemBaseManager.Text = "物料管理";
             this.btnItemBaseManager.Click += new System.EventHandler(this.btnItemBaseManager_Click);
+            // 
+            // 单位管理ToolStripMenuItem
+            // 
+            this.单位管理ToolStripMenuItem.Name = "单位管理ToolStripMenuItem";
+            this.单位管理ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.单位管理ToolStripMenuItem.Text = "计量单位管理";
+            // 
+            // 备注管理ToolStripMenuItem
+            // 
+            this.备注管理ToolStripMenuItem.Name = "备注管理ToolStripMenuItem";
+            this.备注管理ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.备注管理ToolStripMenuItem.Text = "备注管理";
             // 
             // lbToolStripDropDownButton1
             // 
@@ -248,6 +266,7 @@ namespace LB.MainForm
             this.btnChangePriceManager.Name = "btnChangePriceManager";
             this.btnChangePriceManager.Size = new System.Drawing.Size(152, 22);
             this.btnChangePriceManager.Text = "调价单管理";
+            this.btnChangePriceManager.Click += new System.EventHandler(this.btnChangePriceManager_Click);
             // 
             // btnSalesManger
             // 
@@ -274,7 +293,7 @@ namespace LB.MainForm
             // 
             this.btnRPReceive.LBPermissionCode = "";
             this.btnRPReceive.Name = "btnRPReceive";
-            this.btnRPReceive.Size = new System.Drawing.Size(124, 22);
+            this.btnRPReceive.Size = new System.Drawing.Size(152, 22);
             this.btnRPReceive.Text = "充值";
             this.btnRPReceive.Click += new System.EventHandler(this.btnRPReceive_Click);
             // 
@@ -282,18 +301,33 @@ namespace LB.MainForm
             // 
             this.btnRPReceiveList.LBPermissionCode = "";
             this.btnRPReceiveList.Name = "btnRPReceiveList";
-            this.btnRPReceiveList.Size = new System.Drawing.Size(124, 22);
+            this.btnRPReceiveList.Size = new System.Drawing.Size(152, 22);
             this.btnRPReceiveList.Text = "充值记录";
             this.btnRPReceiveList.Click += new System.EventHandler(this.btnRPReceiveList_Click);
             // 
             // btnAbort
             // 
+            this.btnAbort.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.版本信息ToolStripMenuItem,
+            this.关于我们ToolStripMenuItem});
             this.btnAbort.Image = ((System.Drawing.Image)(resources.GetObject("btnAbort.Image")));
             this.btnAbort.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAbort.LBPermissionCode = "";
             this.btnAbort.Name = "btnAbort";
             this.btnAbort.Size = new System.Drawing.Size(61, 22);
             this.btnAbort.Text = "关于";
+            // 
+            // 版本信息ToolStripMenuItem
+            // 
+            this.版本信息ToolStripMenuItem.Name = "版本信息ToolStripMenuItem";
+            this.版本信息ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.版本信息ToolStripMenuItem.Text = "版本信息";
+            // 
+            // 关于我们ToolStripMenuItem
+            // 
+            this.关于我们ToolStripMenuItem.Name = "关于我们ToolStripMenuItem";
+            this.关于我们ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.关于我们ToolStripMenuItem.Text = "关于我们";
             // 
             // tcMain
             // 
@@ -454,6 +488,10 @@ namespace LB.MainForm
         private LBToolStripMenuItem btnChangePriceManager;
         private LBToolStripDropDownButton btnSalesManger;
         private LBToolStripDropDownButton btnAbort;
+        private System.Windows.Forms.ToolStripMenuItem 版本信息ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 关于我们ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 单位管理ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 备注管理ToolStripMenuItem;
     }
 }
 

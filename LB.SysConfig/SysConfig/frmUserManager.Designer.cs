@@ -35,11 +35,18 @@ namespace LB.SysConfig
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUserManager));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUserManager));
             this.grdMain = new LB.Controls.LBDataGridView(this.components);
+            this.LoginName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserSexName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ChangeTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delete = new LB.Controls.LBDataGridViewButtonColumn();
+            this.btnSetUserPermission = new LB.Controls.LBDataGridViewButtonColumn();
             this.skinToolStrip1 = new CCWin.SkinControl.SkinToolStrip();
             this.btnClose = new LB.Controls.LBToolStripButton(this.components);
             this.btnSave = new LB.Controls.LBToolStripButton(this.components);
@@ -48,13 +55,6 @@ namespace LB.SysConfig
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ctlSearcher1 = new LB.Controls.Searcher.CtlSearcher();
             this.txtSearchText = new LB.Controls.LBSkinTextBox(this.components);
-            this.LoginName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserSexName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ChangeTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Delete = new LB.Controls.LBDataGridViewButtonColumn();
-            this.btnSetUserPermission = new LB.Controls.LBDataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdMain)).BeginInit();
             this.skinToolStrip1.SuspendLayout();
             this.ctlSearcher1.SuspendLayout();
@@ -69,6 +69,7 @@ namespace LB.SysConfig
             this.grdMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.grdMain.ColumnFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.grdMain.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.grdMain.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.grdMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdMain.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -113,6 +114,65 @@ namespace LB.SysConfig
             this.grdMain.TitleBack = null;
             this.grdMain.TitleBackColorBegin = System.Drawing.Color.White;
             this.grdMain.TitleBackColorEnd = System.Drawing.SystemColors.ActiveBorder;
+            // 
+            // LoginName
+            // 
+            this.LoginName.DataPropertyName = "LoginName";
+            this.LoginName.HeaderText = "登录账户";
+            this.LoginName.Name = "LoginName";
+            // 
+            // UserName
+            // 
+            this.UserName.DataPropertyName = "UserName";
+            this.UserName.HeaderText = "用户名称";
+            this.UserName.Name = "UserName";
+            // 
+            // UserSexName
+            // 
+            this.UserSexName.DataPropertyName = "UserSexName";
+            this.UserSexName.HeaderText = "性别";
+            this.UserSexName.Name = "UserSexName";
+            this.UserSexName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // UserTypeName
+            // 
+            this.UserTypeName.DataPropertyName = "UserTypeName";
+            this.UserTypeName.HeaderText = "账户类型";
+            this.UserTypeName.Name = "UserTypeName";
+            this.UserTypeName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.UserTypeName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ChangeTime
+            // 
+            this.ChangeTime.DataPropertyName = "ChangeTime";
+            dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
+            this.ChangeTime.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ChangeTime.HeaderText = "修改时间";
+            this.ChangeTime.Name = "ChangeTime";
+            this.ChangeTime.ReadOnly = true;
+            this.ChangeTime.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ChangeTime.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Delete
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.NullValue = "删除";
+            this.Delete.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Delete.HeaderText = "删除";
+            this.Delete.LBPermissionCode = "PMUserManager_Del";
+            this.Delete.Name = "Delete";
+            this.Delete.Width = 60;
+            // 
+            // btnSetUserPermission
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.NullValue = "设置权限";
+            this.btnSetUserPermission.DefaultCellStyle = dataGridViewCellStyle5;
+            this.btnSetUserPermission.HeaderText = "设置用户权限";
+            this.btnSetUserPermission.LBPermissionCode = "PMUserManager_Permission";
+            this.btnSetUserPermission.Name = "btnSetUserPermission";
+            this.btnSetUserPermission.Width = 120;
             // 
             // skinToolStrip1
             // 
@@ -275,65 +335,6 @@ namespace LB.SysConfig
             this.txtSearchText.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
             this.txtSearchText.WaterText = "";
             this.txtSearchText.WordWrap = true;
-            // 
-            // LoginName
-            // 
-            this.LoginName.DataPropertyName = "LoginName";
-            this.LoginName.HeaderText = "登录账户";
-            this.LoginName.Name = "LoginName";
-            // 
-            // UserName
-            // 
-            this.UserName.DataPropertyName = "UserName";
-            this.UserName.HeaderText = "用户名称";
-            this.UserName.Name = "UserName";
-            // 
-            // UserSexName
-            // 
-            this.UserSexName.DataPropertyName = "UserSexName";
-            this.UserSexName.HeaderText = "性别";
-            this.UserSexName.Name = "UserSexName";
-            this.UserSexName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // UserTypeName
-            // 
-            this.UserTypeName.DataPropertyName = "UserTypeName";
-            this.UserTypeName.HeaderText = "账户类型";
-            this.UserTypeName.Name = "UserTypeName";
-            this.UserTypeName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.UserTypeName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ChangeTime
-            // 
-            this.ChangeTime.DataPropertyName = "ChangeTime";
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = null;
-            this.ChangeTime.DefaultCellStyle = dataGridViewCellStyle3;
-            this.ChangeTime.HeaderText = "修改时间";
-            this.ChangeTime.Name = "ChangeTime";
-            this.ChangeTime.ReadOnly = true;
-            this.ChangeTime.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ChangeTime.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Delete
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.NullValue = "删除";
-            this.Delete.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Delete.HeaderText = "删除";
-            this.Delete.LBPermissionCode = "PMUserManager_Del";
-            this.Delete.Name = "Delete";
-            this.Delete.Width = 60;
-            // 
-            // btnSetUserPermission
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.NullValue = "设置权限";
-            this.btnSetUserPermission.DefaultCellStyle = dataGridViewCellStyle5;
-            this.btnSetUserPermission.HeaderText = "设置用户权限";
-            this.btnSetUserPermission.LBPermissionCode = "PMUserManager_Permission";
-            this.btnSetUserPermission.Name = "btnSetUserPermission";
-            this.btnSetUserPermission.Width = 120;
             // 
             // frmUserManager
             // 
