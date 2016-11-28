@@ -91,7 +91,7 @@ namespace LB.MI
         {
             try
             {
-                if (LB.WinFunction.LBCommonHelper.ConfirmMessage("是否确认物料？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (LB.WinFunction.LBCommonHelper.ConfirmMessage("是否确认删除物料？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     if (mlItemID > 0)
                     {

@@ -198,20 +198,21 @@ namespace LB.MainForm
             // 
             this.btnItemBaseManager.LBPermissionCode = "PMChangePassword";
             this.btnItemBaseManager.Name = "btnItemBaseManager";
-            this.btnItemBaseManager.Size = new System.Drawing.Size(148, 22);
+            this.btnItemBaseManager.Size = new System.Drawing.Size(152, 22);
             this.btnItemBaseManager.Text = "物料管理";
             this.btnItemBaseManager.Click += new System.EventHandler(this.btnItemBaseManager_Click);
             // 
             // 单位管理ToolStripMenuItem
             // 
             this.单位管理ToolStripMenuItem.Name = "单位管理ToolStripMenuItem";
-            this.单位管理ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.单位管理ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.单位管理ToolStripMenuItem.Text = "计量单位管理";
+            this.单位管理ToolStripMenuItem.Click += new System.EventHandler(this.btnUOMManager_Click);
             // 
             // 备注管理ToolStripMenuItem
             // 
             this.备注管理ToolStripMenuItem.Name = "备注管理ToolStripMenuItem";
-            this.备注管理ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.备注管理ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.备注管理ToolStripMenuItem.Text = "备注管理";
             // 
             // lbToolStripDropDownButton1
@@ -233,7 +234,7 @@ namespace LB.MainForm
             // 
             this.btnAddCustomer.LBPermissionCode = "";
             this.btnAddCustomer.Name = "btnAddCustomer";
-            this.btnAddCustomer.Size = new System.Drawing.Size(152, 22);
+            this.btnAddCustomer.Size = new System.Drawing.Size(148, 22);
             this.btnAddCustomer.Text = "添加客户";
             this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
             // 
@@ -241,7 +242,7 @@ namespace LB.MainForm
             // 
             this.btnCustomerManager.LBPermissionCode = "";
             this.btnCustomerManager.Name = "btnCustomerManager";
-            this.btnCustomerManager.Size = new System.Drawing.Size(152, 22);
+            this.btnCustomerManager.Size = new System.Drawing.Size(148, 22);
             this.btnCustomerManager.Text = "客户资料管理";
             this.btnCustomerManager.Click += new System.EventHandler(this.btnCustomerManager_Click);
             // 
@@ -249,7 +250,7 @@ namespace LB.MainForm
             // 
             this.btnAddCar.LBPermissionCode = "";
             this.btnAddCar.Name = "btnAddCar";
-            this.btnAddCar.Size = new System.Drawing.Size(152, 22);
+            this.btnAddCar.Size = new System.Drawing.Size(148, 22);
             this.btnAddCar.Text = "添加车辆";
             this.btnAddCar.Click += new System.EventHandler(this.btnAddCar_Click);
             // 
@@ -257,14 +258,14 @@ namespace LB.MainForm
             // 
             this.btnAddChangePriceBill.LBPermissionCode = "";
             this.btnAddChangePriceBill.Name = "btnAddChangePriceBill";
-            this.btnAddChangePriceBill.Size = new System.Drawing.Size(152, 22);
+            this.btnAddChangePriceBill.Size = new System.Drawing.Size(148, 22);
             this.btnAddChangePriceBill.Text = "添加调价单";
             // 
             // btnChangePriceManager
             // 
             this.btnChangePriceManager.LBPermissionCode = "";
             this.btnChangePriceManager.Name = "btnChangePriceManager";
-            this.btnChangePriceManager.Size = new System.Drawing.Size(152, 22);
+            this.btnChangePriceManager.Size = new System.Drawing.Size(148, 22);
             this.btnChangePriceManager.Text = "调价单管理";
             this.btnChangePriceManager.Click += new System.EventHandler(this.btnChangePriceManager_Click);
             // 
@@ -293,7 +294,7 @@ namespace LB.MainForm
             // 
             this.btnRPReceive.LBPermissionCode = "";
             this.btnRPReceive.Name = "btnRPReceive";
-            this.btnRPReceive.Size = new System.Drawing.Size(152, 22);
+            this.btnRPReceive.Size = new System.Drawing.Size(124, 22);
             this.btnRPReceive.Text = "充值";
             this.btnRPReceive.Click += new System.EventHandler(this.btnRPReceive_Click);
             // 
@@ -301,7 +302,7 @@ namespace LB.MainForm
             // 
             this.btnRPReceiveList.LBPermissionCode = "";
             this.btnRPReceiveList.Name = "btnRPReceiveList";
-            this.btnRPReceiveList.Size = new System.Drawing.Size(152, 22);
+            this.btnRPReceiveList.Size = new System.Drawing.Size(124, 22);
             this.btnRPReceiveList.Text = "充值记录";
             this.btnRPReceiveList.Click += new System.EventHandler(this.btnRPReceiveList_Click);
             // 
