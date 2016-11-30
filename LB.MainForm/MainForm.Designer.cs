@@ -43,17 +43,22 @@ namespace LB.MainForm
             this.btnViewConfig = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnPermissionConfig = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnSQLBuilder = new LB.Controls.LBToolStripMenuItem(this.components);
+            this.btnDropDownDevice = new LB.Controls.LBToolStripDropDownButton(this.components);
+            this.btnWeightDevice = new LB.Controls.LBToolStripMenuItem(this.components);
+            this.btnCameraDevice = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnDDBaseManager = new LB.Controls.LBToolStripDropDownButton(this.components);
             this.btnItemBaseManager = new LB.Controls.LBToolStripMenuItem(this.components);
-            this.单位管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.备注管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnUOMManager = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDescriptionManager = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnCarWeightManager = new LB.Controls.LBToolStripMenuItem(this.components);
             this.lbToolStripDropDownButton1 = new LB.Controls.LBToolStripDropDownButton(this.components);
             this.btnAddCustomer = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnCustomerManager = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnAddCar = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnAddChangePriceBill = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnChangePriceManager = new LB.Controls.LBToolStripMenuItem(this.components);
-            this.btnSalesManger = new LB.Controls.LBToolStripDropDownButton(this.components);
+            this.lbToolStripDropDownButton2 = new LB.Controls.LBToolStripDropDownButton(this.components);
+            this.btnSaleInOutManager = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnDropDownReceive = new LB.Controls.LBToolStripDropDownButton(this.components);
             this.btnRPReceive = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnRPReceiveList = new LB.Controls.LBToolStripMenuItem(this.components);
@@ -79,9 +84,10 @@ namespace LB.MainForm
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnDDSystemManager,
+            this.btnDropDownDevice,
             this.btnDDBaseManager,
             this.lbToolStripDropDownButton1,
-            this.btnSalesManger,
+            this.lbToolStripDropDownButton2,
             this.btnDropDownReceive,
             this.btnAbort});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -110,7 +116,7 @@ namespace LB.MainForm
             // 
             this.btnChangePassword.LBPermissionCode = "PMChangePassword";
             this.btnChangePassword.Name = "btnChangePassword";
-            this.btnChangePassword.Size = new System.Drawing.Size(148, 22);
+            this.btnChangePassword.Size = new System.Drawing.Size(152, 22);
             this.btnChangePassword.Text = "修改密码";
             this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
             // 
@@ -118,7 +124,7 @@ namespace LB.MainForm
             // 
             this.btnDBBackUp.LBPermissionCode = "DBBackUp_Query";
             this.btnDBBackUp.Name = "btnDBBackUp";
-            this.btnDBBackUp.Size = new System.Drawing.Size(148, 22);
+            this.btnDBBackUp.Size = new System.Drawing.Size(152, 22);
             this.btnDBBackUp.Text = "帐套备份设置";
             this.btnDBBackUp.Click += new System.EventHandler(this.btnDBBackUp_Click);
             // 
@@ -126,7 +132,7 @@ namespace LB.MainForm
             // 
             this.btnUserManager.LBPermissionCode = "PMUserManager_Query";
             this.btnUserManager.Name = "btnUserManager";
-            this.btnUserManager.Size = new System.Drawing.Size(148, 22);
+            this.btnUserManager.Size = new System.Drawing.Size(152, 22);
             this.btnUserManager.Text = "用户权限管理";
             this.btnUserManager.Click += new System.EventHandler(this.btnUserManager_Click);
             // 
@@ -134,7 +140,7 @@ namespace LB.MainForm
             // 
             this.btnLogManager.LBPermissionCode = "LogManager_Query";
             this.btnLogManager.Name = "btnLogManager";
-            this.btnLogManager.Size = new System.Drawing.Size(148, 22);
+            this.btnLogManager.Size = new System.Drawing.Size(152, 22);
             this.btnLogManager.Text = "操作日志";
             this.btnLogManager.Click += new System.EventHandler(this.btnLogManager_Click);
             // 
@@ -142,7 +148,7 @@ namespace LB.MainForm
             // 
             this.btnCancel.LBPermissionCode = "";
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(148, 22);
+            this.btnCancel.Size = new System.Drawing.Size(152, 22);
             this.btnCancel.Text = "注销";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -154,7 +160,7 @@ namespace LB.MainForm
             this.btnSQLBuilder});
             this.tsmConfig.LBPermissionCode = "";
             this.tsmConfig.Name = "tsmConfig";
-            this.tsmConfig.Size = new System.Drawing.Size(148, 22);
+            this.tsmConfig.Size = new System.Drawing.Size(152, 22);
             this.tsmConfig.Text = "开发配置管理";
             // 
             // btnViewConfig
@@ -181,12 +187,41 @@ namespace LB.MainForm
             this.btnSQLBuilder.Text = "SQL生成器";
             this.btnSQLBuilder.Click += new System.EventHandler(this.btnSQLBuilder_Click);
             // 
+            // btnDropDownDevice
+            // 
+            this.btnDropDownDevice.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnWeightDevice,
+            this.btnCameraDevice});
+            this.btnDropDownDevice.Image = ((System.Drawing.Image)(resources.GetObject("btnDropDownDevice.Image")));
+            this.btnDropDownDevice.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDropDownDevice.LBPermissionCode = "";
+            this.btnDropDownDevice.Name = "btnDropDownDevice";
+            this.btnDropDownDevice.Size = new System.Drawing.Size(85, 22);
+            this.btnDropDownDevice.Text = "设备管理";
+            // 
+            // btnWeightDevice
+            // 
+            this.btnWeightDevice.LBPermissionCode = "";
+            this.btnWeightDevice.Name = "btnWeightDevice";
+            this.btnWeightDevice.Size = new System.Drawing.Size(148, 22);
+            this.btnWeightDevice.Text = "地磅仪表设置";
+            this.btnWeightDevice.Click += new System.EventHandler(this.btnWeightDevice_Click);
+            // 
+            // btnCameraDevice
+            // 
+            this.btnCameraDevice.LBPermissionCode = "";
+            this.btnCameraDevice.Name = "btnCameraDevice";
+            this.btnCameraDevice.Size = new System.Drawing.Size(148, 22);
+            this.btnCameraDevice.Text = "摄像头设置";
+            this.btnCameraDevice.Click += new System.EventHandler(this.btnCameraDevice_Click);
+            // 
             // btnDDBaseManager
             // 
             this.btnDDBaseManager.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnItemBaseManager,
-            this.单位管理ToolStripMenuItem,
-            this.备注管理ToolStripMenuItem});
+            this.btnUOMManager,
+            this.btnDescriptionManager,
+            this.btnCarWeightManager});
             this.btnDDBaseManager.Image = ((System.Drawing.Image)(resources.GetObject("btnDDBaseManager.Image")));
             this.btnDDBaseManager.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDDBaseManager.LBPermissionCode = "PMSystemManager";
@@ -202,17 +237,27 @@ namespace LB.MainForm
             this.btnItemBaseManager.Text = "物料管理";
             this.btnItemBaseManager.Click += new System.EventHandler(this.btnItemBaseManager_Click);
             // 
-            // 单位管理ToolStripMenuItem
+            // btnUOMManager
             // 
-            this.单位管理ToolStripMenuItem.Name = "单位管理ToolStripMenuItem";
-            this.单位管理ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.单位管理ToolStripMenuItem.Text = "计量单位管理";
+            this.btnUOMManager.Name = "btnUOMManager";
+            this.btnUOMManager.Size = new System.Drawing.Size(148, 22);
+            this.btnUOMManager.Text = "计量单位管理";
+            this.btnUOMManager.Click += new System.EventHandler(this.btnUOMManager_Click);
             // 
-            // 备注管理ToolStripMenuItem
+            // btnDescriptionManager
             // 
-            this.备注管理ToolStripMenuItem.Name = "备注管理ToolStripMenuItem";
-            this.备注管理ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.备注管理ToolStripMenuItem.Text = "备注管理";
+            this.btnDescriptionManager.Name = "btnDescriptionManager";
+            this.btnDescriptionManager.Size = new System.Drawing.Size(148, 22);
+            this.btnDescriptionManager.Text = "备注管理";
+            this.btnDescriptionManager.Click += new System.EventHandler(this.btnDescriptionManager_Click);
+            // 
+            // btnCarWeightManager
+            // 
+            this.btnCarWeightManager.LBPermissionCode = "";
+            this.btnCarWeightManager.Name = "btnCarWeightManager";
+            this.btnCarWeightManager.Size = new System.Drawing.Size(148, 22);
+            this.btnCarWeightManager.Text = "车辆皮重管理";
+            this.btnCarWeightManager.Click += new System.EventHandler(this.btnCarWeightManager_Click);
             // 
             // lbToolStripDropDownButton1
             // 
@@ -233,7 +278,7 @@ namespace LB.MainForm
             // 
             this.btnAddCustomer.LBPermissionCode = "";
             this.btnAddCustomer.Name = "btnAddCustomer";
-            this.btnAddCustomer.Size = new System.Drawing.Size(152, 22);
+            this.btnAddCustomer.Size = new System.Drawing.Size(148, 22);
             this.btnAddCustomer.Text = "添加客户";
             this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
             // 
@@ -241,7 +286,7 @@ namespace LB.MainForm
             // 
             this.btnCustomerManager.LBPermissionCode = "";
             this.btnCustomerManager.Name = "btnCustomerManager";
-            this.btnCustomerManager.Size = new System.Drawing.Size(152, 22);
+            this.btnCustomerManager.Size = new System.Drawing.Size(148, 22);
             this.btnCustomerManager.Text = "客户资料管理";
             this.btnCustomerManager.Click += new System.EventHandler(this.btnCustomerManager_Click);
             // 
@@ -249,7 +294,7 @@ namespace LB.MainForm
             // 
             this.btnAddCar.LBPermissionCode = "";
             this.btnAddCar.Name = "btnAddCar";
-            this.btnAddCar.Size = new System.Drawing.Size(152, 22);
+            this.btnAddCar.Size = new System.Drawing.Size(148, 22);
             this.btnAddCar.Text = "添加车辆";
             this.btnAddCar.Click += new System.EventHandler(this.btnAddCar_Click);
             // 
@@ -257,25 +302,36 @@ namespace LB.MainForm
             // 
             this.btnAddChangePriceBill.LBPermissionCode = "";
             this.btnAddChangePriceBill.Name = "btnAddChangePriceBill";
-            this.btnAddChangePriceBill.Size = new System.Drawing.Size(152, 22);
+            this.btnAddChangePriceBill.Size = new System.Drawing.Size(148, 22);
             this.btnAddChangePriceBill.Text = "添加调价单";
+            this.btnAddChangePriceBill.Click += new System.EventHandler(this.btnAddChangePriceBill_Click);
             // 
             // btnChangePriceManager
             // 
             this.btnChangePriceManager.LBPermissionCode = "";
             this.btnChangePriceManager.Name = "btnChangePriceManager";
-            this.btnChangePriceManager.Size = new System.Drawing.Size(152, 22);
+            this.btnChangePriceManager.Size = new System.Drawing.Size(148, 22);
             this.btnChangePriceManager.Text = "调价单管理";
             this.btnChangePriceManager.Click += new System.EventHandler(this.btnChangePriceManager_Click);
             // 
-            // btnSalesManger
+            // lbToolStripDropDownButton2
             // 
-            this.btnSalesManger.Image = global::LB.MainForm.Properties.Resources.MenuIcon_销售管理;
-            this.btnSalesManger.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSalesManger.LBPermissionCode = "";
-            this.btnSalesManger.Name = "btnSalesManger";
-            this.btnSalesManger.Size = new System.Drawing.Size(85, 22);
-            this.btnSalesManger.Text = "销售管理";
+            this.lbToolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnSaleInOutManager});
+            this.lbToolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("lbToolStripDropDownButton2.Image")));
+            this.lbToolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.lbToolStripDropDownButton2.LBPermissionCode = "";
+            this.lbToolStripDropDownButton2.Name = "lbToolStripDropDownButton2";
+            this.lbToolStripDropDownButton2.Size = new System.Drawing.Size(85, 22);
+            this.lbToolStripDropDownButton2.Text = "销售管理";
+            // 
+            // btnSaleInOutManager
+            // 
+            this.btnSaleInOutManager.LBPermissionCode = "";
+            this.btnSaleInOutManager.Name = "btnSaleInOutManager";
+            this.btnSaleInOutManager.Size = new System.Drawing.Size(148, 22);
+            this.btnSaleInOutManager.Text = "销售磅单管理";
+            this.btnSaleInOutManager.Click += new System.EventHandler(this.btnSaleInOutManager_Click);
             // 
             // btnDropDownReceive
             // 
@@ -293,7 +349,7 @@ namespace LB.MainForm
             // 
             this.btnRPReceive.LBPermissionCode = "";
             this.btnRPReceive.Name = "btnRPReceive";
-            this.btnRPReceive.Size = new System.Drawing.Size(152, 22);
+            this.btnRPReceive.Size = new System.Drawing.Size(124, 22);
             this.btnRPReceive.Text = "充值";
             this.btnRPReceive.Click += new System.EventHandler(this.btnRPReceive_Click);
             // 
@@ -301,7 +357,7 @@ namespace LB.MainForm
             // 
             this.btnRPReceiveList.LBPermissionCode = "";
             this.btnRPReceiveList.Name = "btnRPReceiveList";
-            this.btnRPReceiveList.Size = new System.Drawing.Size(152, 22);
+            this.btnRPReceiveList.Size = new System.Drawing.Size(124, 22);
             this.btnRPReceiveList.Text = "充值记录";
             this.btnRPReceiveList.Click += new System.EventHandler(this.btnRPReceiveList_Click);
             // 
@@ -486,12 +542,17 @@ namespace LB.MainForm
         private LBToolStripMenuItem btnAddCar;
         private LBToolStripMenuItem btnAddChangePriceBill;
         private LBToolStripMenuItem btnChangePriceManager;
-        private LBToolStripDropDownButton btnSalesManger;
         private LBToolStripDropDownButton btnAbort;
         private System.Windows.Forms.ToolStripMenuItem 版本信息ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 关于我们ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 单位管理ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 备注管理ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem btnUOMManager;
+        private System.Windows.Forms.ToolStripMenuItem btnDescriptionManager;
+        private LBToolStripDropDownButton btnDropDownDevice;
+        private LBToolStripMenuItem btnWeightDevice;
+        private LBToolStripMenuItem btnCameraDevice;
+        private LBToolStripMenuItem btnCarWeightManager;
+        private LBToolStripDropDownButton lbToolStripDropDownButton2;
+        private LBToolStripMenuItem btnSaleInOutManager;
     }
 }
 

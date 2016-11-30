@@ -11,11 +11,15 @@ using LB.WinFunction;
 using LB.Controls.Args;
 using LB.Controls.Report;
 using LB.Page.Helper;
+using LB.Common;
+using static LB.Common.Args.LBQueryFilterArgs;
+using LB.Common.Args;
 
 namespace LB.MI.MI
 {
     public partial class frmModifyBillHeaderQuery : LBUIPageBase
     {
+        public event GetCustomFilterEventHandle GetCustomFilterEvent;
         public frmModifyBillHeaderQuery()
         {
             InitializeComponent();
@@ -27,11 +31,49 @@ namespace LB.MI.MI
 
             LoadDataSource();
             this.ctlSearcher1.SetGridView(this.grdMain, "CustomerName");
+
+            this.grdMain.CellDoubleClick += GrdMain_CellDoubleClick;
+        }
+
+        private void GrdMain_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
+                {
+                    DataRowView drv = this.grdMain.Rows[e.RowIndex].DataBoundItem as DataRowView;
+                    long lModifyBillHeaderID = LBConverter.ToInt64(drv["ModifyBillHeaderID"]);
+                    if (lModifyBillHeaderID > 0)
+                    {
+                        frmModifyBillHeaderEdit frmEdit = new MI.frmModifyBillHeaderEdit(lModifyBillHeaderID);
+                        frmEdit.PageAutoSize = true;
+                        LBShowForm.ShowDialog(frmEdit);
+                    }
+                }
+                LoadDataSource();
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
         }
 
         private void LoadDataSource()
         {
             string strFilter = this.ctlSearcher1.GetFilter();
+
+            if (GetCustomFilterEvent != null)
+            {
+                LBQueryFilterArgs args = new LBQueryFilterArgs();
+                GetCustomFilterEvent(args);
+                if (args.Filter != "")
+                {
+                    if (strFilter != "")
+                        strFilter += " and ";
+                    strFilter += args.Filter;
+                }
+            }
+
             DataTable dtUser = ExecuteSQL.CallView(114, "", strFilter, "");
             this.grdMain.DataSource = dtUser.DefaultView;
 
@@ -45,7 +87,7 @@ namespace LB.MI.MI
         protected override void OnInitToolStripControl(ToolStripReportArgs args)
         {
             args.LBToolStrip = skinToolStrip1;
-            args.ReportTypeID = 3;//客户管理
+            args.ReportTypeID = 4;//调价单序时簿
             base.OnInitToolStripControl(args);
 
         }
@@ -54,7 +96,7 @@ namespace LB.MI.MI
         {
             base.OnReportRequest(args);
             DataTable dtSource = ((DataView)this.grdMain.DataSource).Table.Copy();
-            dtSource.TableName = "T003";
+            dtSource.TableName = "T004";
             DataSet dsSource = new DataSet("Report");
             dsSource.Tables.Add(dtSource);
             args.DSDataSource = dsSource;
@@ -81,6 +123,7 @@ namespace LB.MI.MI
             try
             {
                 frmModifyBillHeaderEdit frm = new frmModifyBillHeaderEdit(0);
+                frm.PageAutoSize = true;
                 LBShowForm.ShowDialog(frm);
             }
             catch (Exception ex)
@@ -102,6 +145,6 @@ namespace LB.MI.MI
         }
 
         #endregion -- 按钮事件 --
-
+        
     }
 }

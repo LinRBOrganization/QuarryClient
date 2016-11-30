@@ -64,7 +64,6 @@
             this.ChangeBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ChangeTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.skinToolStrip1.SuspendLayout();
-            this.ctlSearcher1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMain)).BeginInit();
             this.SuspendLayout();
             // 
@@ -185,7 +184,6 @@
             // 
             // ctlSearcher1
             // 
-            this.ctlSearcher1.Controls.Add(this.txtSearchText);
             this.ctlSearcher1.Dock = System.Windows.Forms.DockStyle.Top;
             this.ctlSearcher1.Location = new System.Drawing.Point(0, 40);
             this.ctlSearcher1.Name = "ctlSearcher1";
@@ -204,7 +202,7 @@
             this.txtSearchText.IsPasswordChat = '\0';
             this.txtSearchText.IsSystemPasswordChar = false;
             this.txtSearchText.Lines = new string[0];
-            this.txtSearchText.Location = new System.Drawing.Point(301, 10);
+            this.txtSearchText.Location = new System.Drawing.Point(349, 55);
             this.txtSearchText.Margin = new System.Windows.Forms.Padding(0);
             this.txtSearchText.MaxLength = 32767;
             this.txtSearchText.MinimumSize = new System.Drawing.Size(28, 28);
@@ -449,13 +447,12 @@
             this.Controls.Add(this.grdMain);
             this.Controls.Add(this.ctlSearcher1);
             this.Controls.Add(this.skinToolStrip1);
+            this.Controls.Add(this.txtSearchText);
             this.LBPageTitle = "客户资料管理";
             this.Name = "frmCustomerManager";
             this.Size = new System.Drawing.Size(819, 310);
             this.skinToolStrip1.ResumeLayout(false);
             this.skinToolStrip1.PerformLayout();
-            this.ctlSearcher1.ResumeLayout(false);
-            this.ctlSearcher1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMain)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

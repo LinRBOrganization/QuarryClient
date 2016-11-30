@@ -42,6 +42,12 @@
             this.btnCopy = new LB.Controls.LBToolStripButton(this.components);
             this.btnReflesh = new LB.Controls.LBToolStripButton(this.components);
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnApprove = new LB.Controls.LBToolStripButton(this.components);
+            this.btnUnApprove = new LB.Controls.LBToolStripButton(this.components);
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnCancel = new LB.Controls.LBToolStripButton(this.components);
+            this.btnUnCancel = new LB.Controls.LBToolStripButton(this.components);
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAddCar = new LB.Controls.LBToolStripButton(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtCustomerID = new LB.Controls.LBTextBox.CoolTextBox();
@@ -58,28 +64,24 @@
             this.ctlFieldHeaderPanel1 = new LB.Controls.CtlFieldHeaderPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.grdMain = new LB.Controls.LBDataGridView(this.components);
+            this.skinToolStrip2 = new CCWin.SkinControl.SkinToolStrip();
+            this.btnAddDetail = new LB.Controls.LBToolStripButton(this.components);
+            this.btnDeleteDetail = new LB.Controls.LBToolStripButton(this.components);
+            this.ItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemMode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UOMName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CalculateType = new LB.Controls.LBDataGridViewComboBoxColumn();
-            this.CarID = new LB.Controls.LBDataGridViewComboBoxColumn();
+            this.CarNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CraeteBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ChangeBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ChangeTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.skinToolStrip2 = new CCWin.SkinControl.SkinToolStrip();
-            this.btnAddDetail = new LB.Controls.LBToolStripButton(this.components);
-            this.btnDeleteDetail = new LB.Controls.LBToolStripButton(this.components);
-            this.btnApprove = new LB.Controls.LBToolStripButton(this.components);
-            this.btnUnApprove = new LB.Controls.LBToolStripButton(this.components);
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnCancel = new LB.Controls.LBToolStripButton(this.components);
-            this.btnUnCancel = new LB.Controls.LBToolStripButton(this.components);
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.skinToolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMain)).BeginInit();
@@ -202,6 +204,7 @@
             this.btnCopy.Size = new System.Drawing.Size(36, 37);
             this.btnCopy.Text = "复制";
             this.btnCopy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
             // btnReflesh
             // 
@@ -212,11 +215,66 @@
             this.btnReflesh.Size = new System.Drawing.Size(36, 37);
             this.btnReflesh.Text = "刷新";
             this.btnReflesh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnReflesh.Click += new System.EventHandler(this.btnReflesh_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 40);
+            // 
+            // btnApprove
+            // 
+            this.btnApprove.Image = ((System.Drawing.Image)(resources.GetObject("btnApprove.Image")));
+            this.btnApprove.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnApprove.LBPermissionCode = "";
+            this.btnApprove.Name = "btnApprove";
+            this.btnApprove.Size = new System.Drawing.Size(36, 37);
+            this.btnApprove.Text = "审核";
+            this.btnApprove.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnApprove.Click += new System.EventHandler(this.btnApprove_Click);
+            // 
+            // btnUnApprove
+            // 
+            this.btnUnApprove.Image = ((System.Drawing.Image)(resources.GetObject("btnUnApprove.Image")));
+            this.btnUnApprove.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnUnApprove.LBPermissionCode = "";
+            this.btnUnApprove.Name = "btnUnApprove";
+            this.btnUnApprove.Size = new System.Drawing.Size(60, 37);
+            this.btnUnApprove.Text = "取消审核";
+            this.btnUnApprove.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnUnApprove.Click += new System.EventHandler(this.btnUnApprove_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 40);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
+            this.btnCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCancel.LBPermissionCode = "";
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(36, 37);
+            this.btnCancel.Text = "作废";
+            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnUnCancel
+            // 
+            this.btnUnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnUnCancel.Image")));
+            this.btnUnCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnUnCancel.LBPermissionCode = "";
+            this.btnUnCancel.Name = "btnUnCancel";
+            this.btnUnCancel.Size = new System.Drawing.Size(60, 37);
+            this.btnUnCancel.Text = "取消作废";
+            this.btnUnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnUnCancel.Click += new System.EventHandler(this.btnUnCancel_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 40);
             // 
             // btnAddCar
             // 
@@ -617,12 +675,14 @@
             this.grdMain.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.grdMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdMain.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ItemID,
             this.ItemCode,
             this.ItemName,
             this.ItemMode,
             this.UOMName,
             this.ItemRate,
             this.CalculateType,
+            this.CarNum,
             this.CarID,
             this.Price,
             this.Description,
@@ -664,96 +724,6 @@
             this.grdMain.TitleBack = null;
             this.grdMain.TitleBackColorBegin = System.Drawing.Color.White;
             this.grdMain.TitleBackColorEnd = System.Drawing.SystemColors.ActiveBorder;
-            // 
-            // ItemCode
-            // 
-            this.ItemCode.DataPropertyName = "ItemCode";
-            this.ItemCode.HeaderText = "物料编码";
-            this.ItemCode.Name = "ItemCode";
-            this.ItemCode.ReadOnly = true;
-            // 
-            // ItemName
-            // 
-            this.ItemName.DataPropertyName = "ItemName";
-            this.ItemName.HeaderText = "物料名称";
-            this.ItemName.Name = "ItemName";
-            this.ItemName.ReadOnly = true;
-            // 
-            // ItemMode
-            // 
-            this.ItemMode.DataPropertyName = "ItemMode";
-            this.ItemMode.HeaderText = "物料规格";
-            this.ItemMode.Name = "ItemMode";
-            this.ItemMode.ReadOnly = true;
-            // 
-            // UOMName
-            // 
-            this.UOMName.DataPropertyName = "UOMName";
-            this.UOMName.HeaderText = "单位";
-            this.UOMName.Name = "UOMName";
-            this.UOMName.ReadOnly = true;
-            // 
-            // ItemRate
-            // 
-            this.ItemRate.DataPropertyName = "ItemRate";
-            this.ItemRate.HeaderText = "比重(KG/m2)";
-            this.ItemRate.Name = "ItemRate";
-            this.ItemRate.ReadOnly = true;
-            this.ItemRate.Width = 120;
-            // 
-            // CalculateType
-            // 
-            this.CalculateType.DataPropertyName = "CalculateType";
-            this.CalculateType.FieldName = "";
-            this.CalculateType.HeaderText = "计价方式";
-            this.CalculateType.Name = "CalculateType";
-            // 
-            // CarID
-            // 
-            this.CarID.DataPropertyName = "CarID";
-            this.CarID.FieldName = "";
-            this.CarID.HeaderText = "车号";
-            this.CarID.Name = "CarID";
-            // 
-            // Price
-            // 
-            this.Price.DataPropertyName = "Price";
-            this.Price.HeaderText = "单价";
-            this.Price.Name = "Price";
-            // 
-            // Description
-            // 
-            this.Description.DataPropertyName = "Description";
-            this.Description.HeaderText = "备注";
-            this.Description.Name = "Description";
-            // 
-            // CraeteBy
-            // 
-            this.CraeteBy.DataPropertyName = "CraeteBy";
-            this.CraeteBy.HeaderText = "创建人";
-            this.CraeteBy.Name = "CraeteBy";
-            this.CraeteBy.ReadOnly = true;
-            // 
-            // CreateTime
-            // 
-            this.CreateTime.DataPropertyName = "CreateTime";
-            this.CreateTime.HeaderText = "创建时间";
-            this.CreateTime.Name = "CreateTime";
-            this.CreateTime.ReadOnly = true;
-            // 
-            // ChangeBy
-            // 
-            this.ChangeBy.DataPropertyName = "ChangeBy";
-            this.ChangeBy.HeaderText = "修改人";
-            this.ChangeBy.Name = "ChangeBy";
-            this.ChangeBy.ReadOnly = true;
-            // 
-            // ChangeTime
-            // 
-            this.ChangeTime.DataPropertyName = "ChangeTime";
-            this.ChangeTime.HeaderText = "修改时间";
-            this.ChangeTime.Name = "ChangeTime";
-            this.ChangeTime.ReadOnly = true;
             // 
             // skinToolStrip2
             // 
@@ -829,59 +799,112 @@
             this.btnDeleteDetail.Text = "添加明细行";
             this.btnDeleteDetail.Click += new System.EventHandler(this.btnDeleteDetail_Click);
             // 
-            // btnApprove
+            // ItemID
             // 
-            this.btnApprove.Image = ((System.Drawing.Image)(resources.GetObject("btnApprove.Image")));
-            this.btnApprove.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnApprove.LBPermissionCode = "";
-            this.btnApprove.Name = "btnApprove";
-            this.btnApprove.Size = new System.Drawing.Size(36, 37);
-            this.btnApprove.Text = "审核";
-            this.btnApprove.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnApprove.Click += new System.EventHandler(this.btnApprove_Click);
+            this.ItemID.DataPropertyName = "ItemID";
+            this.ItemID.HeaderText = "ItemID";
+            this.ItemID.Name = "ItemID";
+            this.ItemID.Visible = false;
             // 
-            // btnUnApprove
+            // ItemCode
             // 
-            this.btnUnApprove.Image = ((System.Drawing.Image)(resources.GetObject("btnUnApprove.Image")));
-            this.btnUnApprove.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnUnApprove.LBPermissionCode = "";
-            this.btnUnApprove.Name = "btnUnApprove";
-            this.btnUnApprove.Size = new System.Drawing.Size(60, 37);
-            this.btnUnApprove.Text = "取消审核";
-            this.btnUnApprove.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnUnApprove.Click += new System.EventHandler(this.btnUnApprove_Click);
+            this.ItemCode.DataPropertyName = "ItemCode";
+            this.ItemCode.HeaderText = "物料编码";
+            this.ItemCode.Name = "ItemCode";
+            this.ItemCode.ReadOnly = true;
             // 
-            // toolStripSeparator2
+            // ItemName
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 40);
+            this.ItemName.DataPropertyName = "ItemName";
+            this.ItemName.HeaderText = "物料名称";
+            this.ItemName.Name = "ItemName";
+            this.ItemName.ReadOnly = true;
             // 
-            // btnCancel
+            // ItemMode
             // 
-            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
-            this.btnCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCancel.LBPermissionCode = "";
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(36, 37);
-            this.btnCancel.Text = "作废";
-            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.ItemMode.DataPropertyName = "ItemMode";
+            this.ItemMode.HeaderText = "物料规格";
+            this.ItemMode.Name = "ItemMode";
+            this.ItemMode.ReadOnly = true;
             // 
-            // btnUnCancel
+            // UOMName
             // 
-            this.btnUnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnUnCancel.Image")));
-            this.btnUnCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnUnCancel.LBPermissionCode = "";
-            this.btnUnCancel.Name = "btnUnCancel";
-            this.btnUnCancel.Size = new System.Drawing.Size(60, 37);
-            this.btnUnCancel.Text = "取消作废";
-            this.btnUnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnUnCancel.Click += new System.EventHandler(this.btnUnCancel_Click);
+            this.UOMName.DataPropertyName = "UOMName";
+            this.UOMName.HeaderText = "单位";
+            this.UOMName.Name = "UOMName";
+            this.UOMName.ReadOnly = true;
             // 
-            // toolStripSeparator3
+            // ItemRate
             // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 40);
+            this.ItemRate.DataPropertyName = "ItemRate";
+            this.ItemRate.HeaderText = "比重(KG/m2)";
+            this.ItemRate.Name = "ItemRate";
+            this.ItemRate.ReadOnly = true;
+            this.ItemRate.Width = 120;
+            // 
+            // CalculateType
+            // 
+            this.CalculateType.DataPropertyName = "CalculateType";
+            this.CalculateType.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.CalculateType.FieldName = "CalculateType";
+            this.CalculateType.HeaderText = "计价方式";
+            this.CalculateType.Name = "CalculateType";
+            // 
+            // CarNum
+            // 
+            this.CarNum.DataPropertyName = "CarNum";
+            this.CarNum.HeaderText = "车号";
+            this.CarNum.Name = "CarNum";
+            this.CarNum.ReadOnly = true;
+            this.CarNum.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.CarNum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // CarID
+            // 
+            this.CarID.DataPropertyName = "CarID";
+            this.CarID.HeaderText = "CarID";
+            this.CarID.Name = "CarID";
+            this.CarID.Visible = false;
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            this.Price.HeaderText = "单价";
+            this.Price.Name = "Price";
+            // 
+            // Description
+            // 
+            this.Description.DataPropertyName = "Description";
+            this.Description.HeaderText = "备注";
+            this.Description.Name = "Description";
+            // 
+            // CraeteBy
+            // 
+            this.CraeteBy.DataPropertyName = "CraeteBy";
+            this.CraeteBy.HeaderText = "创建人";
+            this.CraeteBy.Name = "CraeteBy";
+            this.CraeteBy.ReadOnly = true;
+            // 
+            // CreateTime
+            // 
+            this.CreateTime.DataPropertyName = "CreateTime";
+            this.CreateTime.HeaderText = "创建时间";
+            this.CreateTime.Name = "CreateTime";
+            this.CreateTime.ReadOnly = true;
+            // 
+            // ChangeBy
+            // 
+            this.ChangeBy.DataPropertyName = "ChangeBy";
+            this.ChangeBy.HeaderText = "修改人";
+            this.ChangeBy.Name = "ChangeBy";
+            this.ChangeBy.ReadOnly = true;
+            // 
+            // ChangeTime
+            // 
+            this.ChangeTime.DataPropertyName = "ChangeTime";
+            this.ChangeTime.HeaderText = "修改时间";
+            this.ChangeTime.Name = "ChangeTime";
+            this.ChangeTime.ReadOnly = true;
             // 
             // frmModifyBillHeaderEdit
             // 
@@ -929,19 +952,6 @@
         private Controls.LBSkinTextBox txtApproveBy;
         private Controls.LBDateTimeTextBox txtApproveTime;
         private Controls.LBDataGridView grdMain;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemMode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UOMName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemRate;
-        private Controls.LBDataGridViewComboBoxColumn CalculateType;
-        private Controls.LBDataGridViewComboBoxColumn CarID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CraeteBy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CreateTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ChangeBy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ChangeTime;
         private CCWin.SkinControl.SkinToolStrip skinToolStrip2;
         private Controls.LBToolStripButton btnAddDetail;
         private Controls.LBToolStripButton btnDeleteDetail;
@@ -952,5 +962,20 @@
         private Controls.LBToolStripButton btnCancel;
         private Controls.LBToolStripButton btnUnCancel;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemMode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UOMName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemRate;
+        private Controls.LBDataGridViewComboBoxColumn CalculateType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CarNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CarID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CraeteBy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CreateTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ChangeBy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ChangeTime;
     }
 }

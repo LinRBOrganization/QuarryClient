@@ -53,6 +53,18 @@
     <Compile Include="MI\frmCarEdit.Designer.cs">
       <DependentUpon>frmCarEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="MI\frmCarQuery.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MI\frmCarQuery.Designer.cs">
+      <DependentUpon>frmCarQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MI\frmCarWeightManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MI\frmCarWeightManager.Designer.cs">
+      <DependentUpon>frmCarWeightManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="MI\frmCustomerEdit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -64,6 +76,12 @@
     </Compile>
     <Compile Include="MI\frmItemType.designer.cs">
       <DependentUpon>frmItemType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MI\frmSaleCarInOutBillManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MI\frmSaleCarInOutBillManager.Designer.cs">
+      <DependentUpon>frmSaleCarInOutBillManager.cs</DependentUpon>
     </Compile>
     <Compile Include="MI\frmUOMManager.cs">
       <SubType>UserControl</SubType>
@@ -112,11 +130,20 @@
     <EmbeddedResource Include="MI\frmCarEdit.resx">
       <DependentUpon>frmCarEdit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MI\frmCarQuery.resx">
+      <DependentUpon>frmCarQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MI\frmCarWeightManager.resx">
+      <DependentUpon>frmCarWeightManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MI\frmCustomerEdit.resx">
       <DependentUpon>frmCustomerEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MI\frmItemType.resx">
       <DependentUpon>frmItemType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MI\frmSaleCarInOutBillManager.resx">
+      <DependentUpon>frmSaleCarInOutBillManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MI\frmUOMManager.resx">
       <DependentUpon>frmUOMManager.cs</DependentUpon>

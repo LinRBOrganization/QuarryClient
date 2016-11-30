@@ -74,13 +74,13 @@ namespace LB.Controls.Report
         {
             try
             {
-                ReportRequestArgs args = new ReportRequestArgs(0,mReportArgs.ReportTypeID,mReportArgs.DSDataSource,mReportArgs.RecordDR);
-
-                this.txtReportPath.Text = ReportHelper.AddNewReport(args, this.txtReportTemplateName.Text);
-
                 #region -- 保存报表 -- 
                 if (mReportArgs.ReportTemplateID == 0)
                 {
+                    ReportRequestArgs args = new ReportRequestArgs(0, mReportArgs.ReportTypeID, mReportArgs.DSDataSource, mReportArgs.RecordDR);
+
+                    this.txtReportPath.Text = ReportHelper.AddNewReport(args, this.txtReportTemplateName.Text);
+
                     if (!File.Exists(this.txtReportPath.Text))
                     {
                         throw new Exception("报表文件不存在，无法保存！");
@@ -99,8 +99,10 @@ namespace LB.Controls.Report
                     parms.Add(new LBParameter("IsManualPaperType", enLBDbType.Boolean, rbManualPaperType.Checked));
                     parms.Add(new LBParameter("PaperType", enLBDbType.String, this.txtPaperType.Text));
                     parms.Add(new LBParameter("IsManualPaperSize", enLBDbType.Boolean, rbManualPaperSize.Checked));
-                    parms.Add(new LBParameter("PaperSizeHeight", enLBDbType.Int32, this.txtPaperSizeHeight.Text));
-                    parms.Add(new LBParameter("PaperSizeWidth", enLBDbType.Int32, this.txtPaperSizeWidth.Text));
+                    if(this.txtPaperSizeHeight.Text!="")
+                        parms.Add(new LBParameter("PaperSizeHeight", enLBDbType.Int32, this.txtPaperSizeHeight.Text));
+                    if (this.txtPaperSizeWidth.Text != "")
+                        parms.Add(new LBParameter("PaperSizeWidth", enLBDbType.Int32, this.txtPaperSizeWidth.Text));
                     parms.Add(new LBParameter("IsPaperTransverse", enLBDbType.Boolean, rbPaperTransverse.Checked));
                     DataSet dsReturn;
                     Dictionary<string, object> dictResult;
@@ -116,16 +118,19 @@ namespace LB.Controls.Report
                 }
                 else
                 {
+                    string strReportFile;
+                    bool bolExists = ReportHelper.RefleshClientReport(mReportArgs.ReportTemplateID, out strReportFile);
+
                     byte[] bReport = null;
                     DateTime dtTemplateFileTime = DateTime.Now;
-                    if (this.txtReportPath.Text.TrimEnd() != "")
+                    if (bolExists)
                     {
-                        if (!File.Exists(this.txtReportPath.Text))
-                        {
-                            throw new Exception("报表文件不存在，无法保存！");
-                        }
-                        bReport = ReportHelper.ConvertToByte(this.txtReportPath.Text);
-                        dtTemplateFileTime = File.GetLastWriteTime(this.txtReportPath.Text);
+                        bReport = ReportHelper.ConvertToByte(strReportFile);
+                        dtTemplateFileTime = File.GetLastWriteTime(strReportFile);
+                    }
+                    else
+                    {
+                        throw new Exception("报表文件不存在，无法保存！");
                     }
 
                     LBDbParameterCollection parms = new LBDbParameterCollection();
@@ -141,8 +146,10 @@ namespace LB.Controls.Report
                     parms.Add(new LBParameter("IsManualPaperType", enLBDbType.Boolean, rbManualPaperType.Checked));
                     parms.Add(new LBParameter("PaperType", enLBDbType.String, this.txtPaperType.Text));
                     parms.Add(new LBParameter("IsManualPaperSize", enLBDbType.Boolean, rbManualPaperSize.Checked));
-                    parms.Add(new LBParameter("PaperSizeHeight", enLBDbType.Int32, this.txtPaperSizeHeight.Text));
-                    parms.Add(new LBParameter("PaperSizeWidth", enLBDbType.Int32, this.txtPaperSizeWidth.Text));
+                    if (this.txtPaperSizeHeight.Text != "")
+                        parms.Add(new LBParameter("PaperSizeHeight", enLBDbType.Int32, this.txtPaperSizeHeight.Text));
+                    if (this.txtPaperSizeWidth.Text != "")
+                        parms.Add(new LBParameter("PaperSizeWidth", enLBDbType.Int32, this.txtPaperSizeWidth.Text));
                     parms.Add(new LBParameter("IsPaperTransverse", enLBDbType.Boolean, rbPaperTransverse.Checked));
                     DataSet dsReturn;
                     Dictionary<string, object> dictResult;

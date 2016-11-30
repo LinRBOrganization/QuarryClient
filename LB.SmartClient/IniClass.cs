@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LB.SmartClient
 {
-    class IniClass
+    public class IniClass
     {
         // 声明INI文件的写操作函数 WritePrivateProfileString()  
 

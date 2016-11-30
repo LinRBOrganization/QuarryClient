@@ -26,7 +26,7 @@ namespace LB.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:27222/LBWebService.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://211.149.203.13:2020/LBWebService.asmx")]
         public string LB_Base_LBWebService_LBWebService {
             get {
                 return ((string)(this["LB_Base_LBWebService_LBWebService"]));

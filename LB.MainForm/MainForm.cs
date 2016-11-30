@@ -16,6 +16,7 @@ using LB.RPReceive;
 using LB.MI;
 using LB.RPReceive.RPReceive;
 using LB.MI.MI;
+using LB.SysConfig.SysConfig;
 
 namespace LB.MainForm
 {
@@ -293,6 +294,87 @@ namespace LB.MainForm
             }
         }
 
+        //备注管理
+        private void btnDescriptionManager_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmDescriptionManager frm = new frmDescriptionManager();
+                LBShowForm.ShowMainPage(frm);
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+
+
+        private void btnWeightDevice_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmWeightDecive frmDevice = new frmWeightDecive();
+                LBShowForm.ShowMainPage(frmDevice);
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+
+        private void btnCameraDevice_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmCameraConfig frmDevice = new frmCameraConfig();
+                LBShowForm.ShowMainPage(frmDevice);
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+
+        private void btnCarWeightManager_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmCarWeightManager frmDevice = new frmCarWeightManager();
+                LBShowForm.ShowMainPage(frmDevice);
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+
+
+        private void btnSaleInOutManager_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmSaleCarInOutBillManager frmBill = new frmSaleCarInOutBillManager();
+                LBShowForm.ShowMainPage(frmBill);
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+
+        private void btnAddChangePriceBill_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmModifyBillHeaderEdit frm = new frmModifyBillHeaderEdit(0);
+                frm.PageAutoSize = true;
+                LBShowForm.ShowDialog(frm);
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
         #endregion -- 按钮事件  --
 
         #region -- ShowMainPage --
@@ -477,5 +559,6 @@ namespace LB.MainForm
 
         #endregion
 
+       
     }
 }

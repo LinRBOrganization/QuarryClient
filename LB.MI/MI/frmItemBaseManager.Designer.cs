@@ -42,15 +42,6 @@
             this.btnTableSetting = new LB.Controls.LBToolStripButton(this.components);
             this.btnSort = new LB.Controls.LBToolStripButton(this.components);
             this.grdMain = new LB.Controls.LBDataGridView(this.components);
-            this.ItemCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemMode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UOMName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ChangeBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ChangeTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSearch = new LB.Controls.LBSkinButton(this.components);
             this.txtFilter = new LB.Controls.LBTextBox.CoolTextBox();
@@ -60,6 +51,17 @@
             this.btnAddItemType = new LB.Controls.LBToolStripButton(this.components);
             this.btnDeleteItemType = new LB.Controls.LBToolStripButton(this.components);
             this.btnEditItemType = new LB.Controls.LBToolStripButton(this.components);
+            this.btnReturn = new LB.Controls.LBToolStripButton(this.components);
+            this.LBSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ItemCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemMode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UOMName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ChangeBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ChangeTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMain)).BeginInit();
             this.panel1.SuspendLayout();
@@ -78,10 +80,11 @@
             this.btnDeleteItemBase,
             this.btnReflush,
             this.btnTableSetting,
-            this.btnSort});
+            this.btnSort,
+            this.btnReturn});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(398, 40);
+            this.toolStrip1.Size = new System.Drawing.Size(634, 40);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -167,6 +170,7 @@
             this.grdMain.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.grdMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdMain.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.LBSelected,
             this.ItemCode,
             this.ItemName,
             this.ItemMode,
@@ -194,7 +198,6 @@
             this.grdMain.LineNumberForeColor = System.Drawing.Color.MidnightBlue;
             this.grdMain.Location = new System.Drawing.Point(0, 45);
             this.grdMain.Name = "grdMain";
-            this.grdMain.ReadOnly = true;
             this.grdMain.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.grdMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -203,11 +206,144 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.grdMain.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.grdMain.RowTemplate.Height = 23;
-            this.grdMain.Size = new System.Drawing.Size(398, 300);
+            this.grdMain.Size = new System.Drawing.Size(634, 300);
             this.grdMain.TabIndex = 1;
             this.grdMain.TitleBack = null;
             this.grdMain.TitleBackColorBegin = System.Drawing.Color.White;
             this.grdMain.TitleBackColorEnd = System.Drawing.SystemColors.ActiveBorder;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.toolStrip1);
+            this.panel1.Controls.Add(this.btnSearch);
+            this.panel1.Controls.Add(this.txtFilter);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(634, 45);
+            this.panel1.TabIndex = 2;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.BackColor = System.Drawing.Color.Transparent;
+            this.btnSearch.BaseColor = System.Drawing.Color.LightGray;
+            this.btnSearch.BorderColor = System.Drawing.Color.Gray;
+            this.btnSearch.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.btnSearch.DownBack = null;
+            this.btnSearch.LBPermissionCode = "";
+            this.btnSearch.Location = new System.Drawing.Point(207, 11);
+            this.btnSearch.MouseBack = null;
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.NormlBack = null;
+            this.btnSearch.Size = new System.Drawing.Size(75, 28);
+            this.btnSearch.TabIndex = 1;
+            this.btnSearch.Text = "查询";
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtFilter
+            // 
+            this.txtFilter.BackColor = System.Drawing.Color.Transparent;
+            this.txtFilter.BorderColor = System.Drawing.Color.LightSteelBlue;
+            this.txtFilter.CanBeEmpty = true;
+            this.txtFilter.Caption = "";
+            this.txtFilter.LBTitle = "关键字";
+            this.txtFilter.LBTitleVisible = true;
+            this.txtFilter.Location = new System.Drawing.Point(9, 11);
+            this.txtFilter.Margin = new System.Windows.Forms.Padding(0);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.PopupWidth = 120;
+            this.txtFilter.SelectedItemBackColor = System.Drawing.SystemColors.Highlight;
+            this.txtFilter.SelectedItemForeColor = System.Drawing.SystemColors.HighlightText;
+            this.txtFilter.Size = new System.Drawing.Size(184, 25);
+            this.txtFilter.TabIndex = 0;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.tvItemType);
+            this.splitContainer1.Panel1.Controls.Add(this.toolStrip2);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.grdMain);
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
+            this.splitContainer1.Size = new System.Drawing.Size(838, 345);
+            this.splitContainer1.SplitterDistance = 200;
+            this.splitContainer1.TabIndex = 3;
+            // 
+            // tvItemType
+            // 
+            this.tvItemType.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvItemType.Location = new System.Drawing.Point(0, 40);
+            this.tvItemType.Name = "tvItemType";
+            this.tvItemType.Size = new System.Drawing.Size(200, 305);
+            this.tvItemType.TabIndex = 3;
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnAddItemType,
+            this.btnDeleteItemType,
+            this.btnEditItemType});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(200, 40);
+            this.toolStrip2.TabIndex = 4;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // btnAddItemType
+            // 
+            this.btnAddItemType.Image = ((System.Drawing.Image)(resources.GetObject("btnAddItemType.Image")));
+            this.btnAddItemType.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAddItemType.LBPermissionCode = "";
+            this.btnAddItemType.Name = "btnAddItemType";
+            this.btnAddItemType.Size = new System.Drawing.Size(60, 37);
+            this.btnAddItemType.Text = "添加分类";
+            this.btnAddItemType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // btnDeleteItemType
+            // 
+            this.btnDeleteItemType.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteItemType.Image")));
+            this.btnDeleteItemType.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDeleteItemType.LBPermissionCode = "";
+            this.btnDeleteItemType.Name = "btnDeleteItemType";
+            this.btnDeleteItemType.Size = new System.Drawing.Size(60, 37);
+            this.btnDeleteItemType.Text = "删除分类";
+            this.btnDeleteItemType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // btnEditItemType
+            // 
+            this.btnEditItemType.Image = ((System.Drawing.Image)(resources.GetObject("btnEditItemType.Image")));
+            this.btnEditItemType.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEditItemType.LBPermissionCode = "";
+            this.btnEditItemType.Name = "btnEditItemType";
+            this.btnEditItemType.Size = new System.Drawing.Size(60, 37);
+            this.btnEditItemType.Text = "修改分类";
+            this.btnEditItemType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // btnReturn
+            // 
+            this.btnReturn.Image = ((System.Drawing.Image)(resources.GetObject("btnReturn.Image")));
+            this.btnReturn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnReturn.LBPermissionCode = "";
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Size = new System.Drawing.Size(72, 37);
+            this.btnReturn.Text = "返回选中行";
+            this.btnReturn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
+            // 
+            // LBSelected
+            // 
+            this.LBSelected.HeaderText = "选择";
+            this.LBSelected.Name = "LBSelected";
+            this.LBSelected.Width = 60;
             // 
             // ItemCode
             // 
@@ -279,122 +415,6 @@
             this.ChangeTime.ReadOnly = true;
             this.ChangeTime.Width = 80;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.toolStrip1);
-            this.panel1.Controls.Add(this.btnSearch);
-            this.panel1.Controls.Add(this.txtFilter);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(398, 45);
-            this.panel1.TabIndex = 2;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.BackColor = System.Drawing.Color.Transparent;
-            this.btnSearch.BaseColor = System.Drawing.Color.LightGray;
-            this.btnSearch.BorderColor = System.Drawing.Color.Gray;
-            this.btnSearch.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.btnSearch.DownBack = null;
-            this.btnSearch.LBPermissionCode = "";
-            this.btnSearch.Location = new System.Drawing.Point(207, 11);
-            this.btnSearch.MouseBack = null;
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.NormlBack = null;
-            this.btnSearch.Size = new System.Drawing.Size(75, 28);
-            this.btnSearch.TabIndex = 1;
-            this.btnSearch.Text = "查询";
-            this.btnSearch.UseVisualStyleBackColor = false;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // txtFilter
-            // 
-            this.txtFilter.BackColor = System.Drawing.Color.Transparent;
-            this.txtFilter.BorderColor = System.Drawing.Color.LightSteelBlue;
-            this.txtFilter.CanBeEmpty = true;
-            this.txtFilter.Caption = "";
-            this.txtFilter.LBTitle = "关键字";
-            this.txtFilter.LBTitleVisible = true;
-            this.txtFilter.Location = new System.Drawing.Point(9, 11);
-            this.txtFilter.Margin = new System.Windows.Forms.Padding(0);
-            this.txtFilter.Name = "txtFilter";
-            this.txtFilter.PopupWidth = 120;
-            this.txtFilter.SelectedItemBackColor = System.Drawing.SystemColors.Highlight;
-            this.txtFilter.SelectedItemForeColor = System.Drawing.SystemColors.HighlightText;
-            this.txtFilter.Size = new System.Drawing.Size(184, 25);
-            this.txtFilter.TabIndex = 0;
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.tvItemType);
-            this.splitContainer1.Panel1.Controls.Add(this.toolStrip2);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.grdMain);
-            this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Size = new System.Drawing.Size(602, 345);
-            this.splitContainer1.SplitterDistance = 200;
-            this.splitContainer1.TabIndex = 3;
-            // 
-            // tvItemType
-            // 
-            this.tvItemType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tvItemType.Location = new System.Drawing.Point(0, 40);
-            this.tvItemType.Name = "tvItemType";
-            this.tvItemType.Size = new System.Drawing.Size(200, 305);
-            this.tvItemType.TabIndex = 3;
-            // 
-            // toolStrip2
-            // 
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnAddItemType,
-            this.btnDeleteItemType,
-            this.btnEditItemType});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(200, 40);
-            this.toolStrip2.TabIndex = 4;
-            this.toolStrip2.Text = "toolStrip2";
-            // 
-            // btnAddItemType
-            // 
-            this.btnAddItemType.Image = ((System.Drawing.Image)(resources.GetObject("btnAddItemType.Image")));
-            this.btnAddItemType.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAddItemType.LBPermissionCode = "";
-            this.btnAddItemType.Name = "btnAddItemType";
-            this.btnAddItemType.Size = new System.Drawing.Size(60, 37);
-            this.btnAddItemType.Text = "添加分类";
-            this.btnAddItemType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // btnDeleteItemType
-            // 
-            this.btnDeleteItemType.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteItemType.Image")));
-            this.btnDeleteItemType.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDeleteItemType.LBPermissionCode = "";
-            this.btnDeleteItemType.Name = "btnDeleteItemType";
-            this.btnDeleteItemType.Size = new System.Drawing.Size(60, 37);
-            this.btnDeleteItemType.Text = "删除分类";
-            this.btnDeleteItemType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // btnEditItemType
-            // 
-            this.btnEditItemType.Image = ((System.Drawing.Image)(resources.GetObject("btnEditItemType.Image")));
-            this.btnEditItemType.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEditItemType.LBPermissionCode = "";
-            this.btnEditItemType.Name = "btnEditItemType";
-            this.btnEditItemType.Size = new System.Drawing.Size(60, 37);
-            this.btnEditItemType.Text = "修改分类";
-            this.btnEditItemType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
             // frmItemBaseManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -402,7 +422,7 @@
             this.Controls.Add(this.splitContainer1);
             this.LBPageTitle = "物料管理";
             this.Name = "frmItemBaseManager";
-            this.Size = new System.Drawing.Size(602, 345);
+            this.Size = new System.Drawing.Size(838, 345);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMain)).EndInit();
@@ -431,6 +451,15 @@
         private System.Windows.Forms.ToolStrip toolStrip2;
         private Controls.LBToolStripButton btnTableSetting;
         private Controls.LBToolStripButton btnSort;
+        private Controls.LBToolStripButton btnAddItemBase;
+        private Controls.LBToolStripButton btnEditItemBase;
+        private Controls.LBToolStripButton btnReflush;
+        private Controls.LBToolStripButton btnDeleteItemBase;
+        private Controls.LBToolStripButton btnAddItemType;
+        private Controls.LBToolStripButton btnDeleteItemType;
+        private Controls.LBToolStripButton btnEditItemType;
+        private Controls.LBToolStripButton btnReturn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn LBSelected;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemMode;
@@ -440,12 +469,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ChangeBy;
         private System.Windows.Forms.DataGridViewTextBoxColumn ChangeTime;
-        private Controls.LBToolStripButton btnAddItemBase;
-        private Controls.LBToolStripButton btnEditItemBase;
-        private Controls.LBToolStripButton btnReflush;
-        private Controls.LBToolStripButton btnDeleteItemBase;
-        private Controls.LBToolStripButton btnAddItemType;
-        private Controls.LBToolStripButton btnDeleteItemType;
-        private Controls.LBToolStripButton btnEditItemType;
     }
 }

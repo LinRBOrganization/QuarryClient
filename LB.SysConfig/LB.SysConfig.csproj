@@ -65,11 +65,29 @@
     <Compile Include="SysConfig\frmBackUpConfig.Designer.cs">
       <DependentUpon>frmBackUpConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="SysConfig\frmCameraConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SysConfig\frmCameraConfig.Designer.cs">
+      <DependentUpon>frmCameraConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="SysConfig\frmChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SysConfig\frmChangePassword.Designer.cs">
       <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SysConfig\frmDescriptionAdd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SysConfig\frmDescriptionAdd.Designer.cs">
+      <DependentUpon>frmDescriptionAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SysConfig\frmDescriptionManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SysConfig\frmDescriptionManager.Designer.cs">
+      <DependentUpon>frmDescriptionManager.cs</DependentUpon>
     </Compile>
     <Compile Include="SysConfig\frmEditBackUp.cs">
       <SubType>UserControl</SubType>
@@ -95,6 +113,18 @@
     <Compile Include="SysConfig\frmUserPermission.Designer.cs">
       <DependentUpon>frmUserPermission.cs</DependentUpon>
     </Compile>
+    <Compile Include="SysConfig\frmWeightConfigType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SysConfig\frmWeightConfigType.Designer.cs">
+      <DependentUpon>frmWeightConfigType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SysConfig\frmWeightDecive.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SysConfig\frmWeightDecive.Designer.cs">
+      <DependentUpon>frmWeightDecive.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -107,8 +137,17 @@
     <EmbeddedResource Include="SysConfig\frmBackUpConfig.resx">
       <DependentUpon>frmBackUpConfig.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SysConfig\frmCameraConfig.resx">
+      <DependentUpon>frmCameraConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SysConfig\frmChangePassword.resx">
       <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SysConfig\frmDescriptionAdd.resx">
+      <DependentUpon>frmDescriptionAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SysConfig\frmDescriptionManager.resx">
+      <DependentUpon>frmDescriptionManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SysConfig\frmEditBackUp.resx">
       <DependentUpon>frmEditBackUp.cs</DependentUpon>
@@ -121,6 +160,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SysConfig\frmUserPermission.resx">
       <DependentUpon>frmUserPermission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SysConfig\frmWeightConfigType.resx">
+      <DependentUpon>frmWeightConfigType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SysConfig\frmWeightDecive.resx">
+      <DependentUpon>frmWeightDecive.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

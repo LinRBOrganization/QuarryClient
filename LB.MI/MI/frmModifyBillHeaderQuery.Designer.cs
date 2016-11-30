@@ -34,10 +34,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.ctlSearcher1 = new LB.Controls.Searcher.CtlSearcher();
-            this.txtSearchDropDown = new LB.Controls.LBMetroComboBox(this.components);
-            this.txtSearchText = new LB.Controls.LBSkinTextBox(this.components);
-            this.lbSkinTextBox1 = new LB.Controls.LBSkinTextBox(this.components);
             this.skinToolStrip1 = new CCWin.SkinControl.SkinToolStrip();
             this.btnClose = new LB.Controls.LBToolStripButton(this.components);
             this.btnAdd = new LB.Controls.LBToolStripButton(this.components);
@@ -61,136 +57,10 @@
             this.CreateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ChangeBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ChangeTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ctlSearcher1.SuspendLayout();
+            this.ctlSearcher1 = new LB.Controls.Searcher.CtlSearcher();
             this.skinToolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMain)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ctlSearcher1
-            // 
-            this.ctlSearcher1.Controls.Add(this.txtSearchDropDown);
-            this.ctlSearcher1.Controls.Add(this.txtSearchText);
-            this.ctlSearcher1.Controls.Add(this.lbSkinTextBox1);
-            this.ctlSearcher1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctlSearcher1.Location = new System.Drawing.Point(0, 40);
-            this.ctlSearcher1.Name = "ctlSearcher1";
-            this.ctlSearcher1.Size = new System.Drawing.Size(865, 46);
-            this.ctlSearcher1.TabIndex = 7;
-            // 
-            // txtSearchDropDown
-            // 
-            this.txtSearchDropDown.CanBeEmpty = true;
-            this.txtSearchDropDown.Caption = "";
-            this.txtSearchDropDown.DM_UseSelectable = true;
-            this.txtSearchDropDown.FormattingEnabled = true;
-            this.txtSearchDropDown.ItemHeight = 24;
-            this.txtSearchDropDown.Location = new System.Drawing.Point(629, 9);
-            this.txtSearchDropDown.Name = "txtSearchDropDown";
-            this.txtSearchDropDown.Size = new System.Drawing.Size(117, 30);
-            this.txtSearchDropDown.Style = DMSkin.Metro.MetroColorStyle.Blue;
-            this.txtSearchDropDown.TabIndex = 29;
-            this.txtSearchDropDown.Theme = DMSkin.Metro.MetroThemeStyle.Light;
-            this.txtSearchDropDown.Visible = false;
-            // 
-            // txtSearchText
-            // 
-            this.txtSearchText.BackColor = System.Drawing.Color.Transparent;
-            this.txtSearchText.CanBeEmpty = true;
-            this.txtSearchText.Caption = "备注";
-            this.txtSearchText.DownBack = null;
-            this.txtSearchText.Icon = null;
-            this.txtSearchText.IconIsButton = false;
-            this.txtSearchText.IconMouseState = CCWin.SkinClass.ControlState.Normal;
-            this.txtSearchText.IsPasswordChat = '\0';
-            this.txtSearchText.IsSystemPasswordChar = false;
-            this.txtSearchText.Lines = new string[0];
-            this.txtSearchText.Location = new System.Drawing.Point(301, 10);
-            this.txtSearchText.Margin = new System.Windows.Forms.Padding(0);
-            this.txtSearchText.MaxLength = 32767;
-            this.txtSearchText.MinimumSize = new System.Drawing.Size(28, 28);
-            this.txtSearchText.MouseBack = null;
-            this.txtSearchText.MouseState = CCWin.SkinClass.ControlState.Normal;
-            this.txtSearchText.Multiline = false;
-            this.txtSearchText.Name = "txtSearchText";
-            this.txtSearchText.NormlBack = null;
-            this.txtSearchText.Padding = new System.Windows.Forms.Padding(5);
-            this.txtSearchText.ReadOnly = false;
-            this.txtSearchText.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtSearchText.Size = new System.Drawing.Size(130, 28);
-            // 
-            // 
-            // 
-            this.txtSearchText.SkinTxt.AccessibleName = "";
-            this.txtSearchText.SkinTxt.AutoCompleteCustomSource.AddRange(new string[] {
-            "asdfasdf",
-            "adsfasdf"});
-            this.txtSearchText.SkinTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.txtSearchText.SkinTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtSearchText.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSearchText.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtSearchText.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
-            this.txtSearchText.SkinTxt.Location = new System.Drawing.Point(5, 5);
-            this.txtSearchText.SkinTxt.Name = "BaseText";
-            this.txtSearchText.SkinTxt.Size = new System.Drawing.Size(120, 18);
-            this.txtSearchText.SkinTxt.TabIndex = 0;
-            this.txtSearchText.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
-            this.txtSearchText.SkinTxt.WaterText = "";
-            this.txtSearchText.TabIndex = 24;
-            this.txtSearchText.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtSearchText.Visible = false;
-            this.txtSearchText.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
-            this.txtSearchText.WaterText = "";
-            this.txtSearchText.WordWrap = true;
-            // 
-            // lbSkinTextBox1
-            // 
-            this.lbSkinTextBox1.BackColor = System.Drawing.Color.Transparent;
-            this.lbSkinTextBox1.CanBeEmpty = true;
-            this.lbSkinTextBox1.Caption = "备注";
-            this.lbSkinTextBox1.DownBack = null;
-            this.lbSkinTextBox1.Icon = null;
-            this.lbSkinTextBox1.IconIsButton = false;
-            this.lbSkinTextBox1.IconMouseState = CCWin.SkinClass.ControlState.Normal;
-            this.lbSkinTextBox1.IsPasswordChat = '\0';
-            this.lbSkinTextBox1.IsSystemPasswordChar = false;
-            this.lbSkinTextBox1.Lines = new string[0];
-            this.lbSkinTextBox1.Location = new System.Drawing.Point(301, 10);
-            this.lbSkinTextBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.lbSkinTextBox1.MaxLength = 32767;
-            this.lbSkinTextBox1.MinimumSize = new System.Drawing.Size(28, 28);
-            this.lbSkinTextBox1.MouseBack = null;
-            this.lbSkinTextBox1.MouseState = CCWin.SkinClass.ControlState.Normal;
-            this.lbSkinTextBox1.Multiline = false;
-            this.lbSkinTextBox1.Name = "lbSkinTextBox1";
-            this.lbSkinTextBox1.NormlBack = null;
-            this.lbSkinTextBox1.Padding = new System.Windows.Forms.Padding(5);
-            this.lbSkinTextBox1.ReadOnly = false;
-            this.lbSkinTextBox1.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.lbSkinTextBox1.Size = new System.Drawing.Size(130, 28);
-            // 
-            // 
-            // 
-            this.lbSkinTextBox1.SkinTxt.AccessibleName = "";
-            this.lbSkinTextBox1.SkinTxt.AutoCompleteCustomSource.AddRange(new string[] {
-            "asdfasdf",
-            "adsfasdf"});
-            this.lbSkinTextBox1.SkinTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.lbSkinTextBox1.SkinTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.lbSkinTextBox1.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lbSkinTextBox1.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbSkinTextBox1.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
-            this.lbSkinTextBox1.SkinTxt.Location = new System.Drawing.Point(5, 5);
-            this.lbSkinTextBox1.SkinTxt.Name = "BaseText";
-            this.lbSkinTextBox1.SkinTxt.Size = new System.Drawing.Size(120, 18);
-            this.lbSkinTextBox1.SkinTxt.TabIndex = 0;
-            this.lbSkinTextBox1.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
-            this.lbSkinTextBox1.SkinTxt.WaterText = "";
-            this.lbSkinTextBox1.TabIndex = 24;
-            this.lbSkinTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.lbSkinTextBox1.Visible = false;
-            this.lbSkinTextBox1.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
-            this.lbSkinTextBox1.WaterText = "";
-            this.lbSkinTextBox1.WordWrap = true;
             // 
             // skinToolStrip1
             // 
@@ -351,7 +221,7 @@
             this.grdMain.HeadSelectBackColor = System.Drawing.Color.Empty;
             this.grdMain.HeadSelectForeColor = System.Drawing.Color.Empty;
             this.grdMain.LineNumberForeColor = System.Drawing.Color.MidnightBlue;
-            this.grdMain.Location = new System.Drawing.Point(0, 86);
+            this.grdMain.Location = new System.Drawing.Point(0, 89);
             this.grdMain.Name = "grdMain";
             this.grdMain.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.grdMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -362,7 +232,7 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.grdMain.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.grdMain.RowTemplate.Height = 23;
-            this.grdMain.Size = new System.Drawing.Size(865, 342);
+            this.grdMain.Size = new System.Drawing.Size(865, 339);
             this.grdMain.TabIndex = 8;
             this.grdMain.TitleBack = null;
             this.grdMain.TitleBackColorBegin = System.Drawing.Color.White;
@@ -473,6 +343,14 @@
             this.ChangeTime.Name = "ChangeTime";
             this.ChangeTime.ReadOnly = true;
             // 
+            // ctlSearcher1
+            // 
+            this.ctlSearcher1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ctlSearcher1.Location = new System.Drawing.Point(0, 40);
+            this.ctlSearcher1.Name = "ctlSearcher1";
+            this.ctlSearcher1.Size = new System.Drawing.Size(865, 49);
+            this.ctlSearcher1.TabIndex = 9;
+            // 
             // frmModifyBillHeaderQuery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -483,8 +361,6 @@
             this.LBPageTitle = "调价单维护";
             this.Name = "frmModifyBillHeaderQuery";
             this.Size = new System.Drawing.Size(865, 428);
-            this.ctlSearcher1.ResumeLayout(false);
-            this.ctlSearcher1.PerformLayout();
             this.skinToolStrip1.ResumeLayout(false);
             this.skinToolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMain)).EndInit();
@@ -494,11 +370,6 @@
         }
 
         #endregion
-
-        private Controls.Searcher.CtlSearcher ctlSearcher1;
-        private Controls.LBMetroComboBox txtSearchDropDown;
-        private Controls.LBSkinTextBox txtSearchText;
-        private Controls.LBSkinTextBox lbSkinTextBox1;
         private CCWin.SkinControl.SkinToolStrip skinToolStrip1;
         private Controls.LBToolStripButton btnClose;
         private Controls.LBToolStripButton btnAdd;
@@ -522,5 +393,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CreateTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn ChangeBy;
         private System.Windows.Forms.DataGridViewTextBoxColumn ChangeTime;
+        private Controls.Searcher.CtlSearcher ctlSearcher1;
     }
 }

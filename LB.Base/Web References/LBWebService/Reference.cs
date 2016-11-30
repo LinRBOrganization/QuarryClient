@@ -21,8 +21,9 @@ namespace LB.LBWebService {
     using System.Xml.Serialization;
     using System.ComponentModel;
     using System.Data;
-    
-    
+    using WinFunction;
+
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -49,8 +50,8 @@ namespace LB.LBWebService {
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
-        public LBWebService() {
-            this.Url = global::LB.Properties.Settings.Default.LB_Base_LBWebService_LBWebService;
+        public LBWebService(string strLink) {
+            this.Url = strLink;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;

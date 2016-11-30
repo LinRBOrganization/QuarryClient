@@ -388,10 +388,10 @@
   </wsdl:binding>
   <wsdl:service name="LBWebService">
     <wsdl:port name="LBWebServiceSoap" binding="tns:LBWebServiceSoap">
-      <soap:address location="http://localhost:27222/LBWebService.asmx" />
+      <soap:address location="http://211.149.203.13:2020/LBWebService.asmx" />
     </wsdl:port>
     <wsdl:port name="LBWebServiceSoap12" binding="tns:LBWebServiceSoap12">
-      <soap12:address location="http://localhost:27222/LBWebService.asmx" />
+      <soap12:address location="http://211.149.203.13:2020/LBWebService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

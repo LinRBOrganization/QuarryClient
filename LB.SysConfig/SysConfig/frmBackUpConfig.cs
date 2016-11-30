@@ -42,7 +42,7 @@ namespace LB.SysConfig
                         0: Convert.ToInt64(drvSelect["BackUpConfigID"]);
                     if (lBackUpConfigID > 0)
                     {
-                        frmEditBackUp frm = new SysConfig.frmEditBackUp(lBackUpConfigID);
+                        frmEditBackUp frm = new frmEditBackUp(lBackUpConfigID);
                         LBShowForm.ShowDialog(frm);
 
                         LoadBackUpConfig();
@@ -140,7 +140,7 @@ namespace LB.SysConfig
         {
             try
             {
-                frmEditBackUp frm = new SysConfig.frmEditBackUp(0);
+                frmEditBackUp frm = new frmEditBackUp(0);
                 LBShowForm.ShowDialog(frm);
 
                 LoadBackUpConfig();

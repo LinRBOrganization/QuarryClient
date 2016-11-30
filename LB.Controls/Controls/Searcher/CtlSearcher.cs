@@ -15,7 +15,24 @@ namespace LB.Controls.Searcher
         public CtlSearcher()
         {
             InitializeComponent();
+            
+
             this.txtColumnName.SelectedIndexChanged += TxtColumnName_SelectedIndexChanged;
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            this.skinLabel1.Top = 9;
+            this.lblSearch.Top = 9;
+            this.txtColumnName.Top = 9;
+            this.txtSearchDropDown.Top = 9;
+            this.txtSearchText.Top = 9;
+            this.txtSearchText.Size = new Size(this.txtSearchText.Width,28);
+            this.skinLabel1.Height = 32;
+            this.lblSearch.Height = 32;
+            this.Height = 47;
         }
 
         private void TxtColumnName_SelectedIndexChanged(object sender, EventArgs e)
@@ -131,7 +148,7 @@ namespace LB.Controls.Searcher
         public string GetFilter()
         {
             string strFilter = "";
-            if (this.txtColumnName.SelectedItem != null)
+            if (this.txtColumnName.SelectedItem != null&& this.txtSearchText.Text.TrimEnd()!="")
             {
                 DataRowView drItem = this.txtColumnName.SelectedItem as DataRowView;
                 string strColumnName = drItem["ColumnName"].ToString().TrimEnd();

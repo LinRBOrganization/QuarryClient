@@ -1,9 +1,13 @@
-﻿using FastReport.Data;
+﻿using FastReport;
+using FastReport.Data;
 using FastReport.Utils;
+using LB.Common;
+using LB.Page.Helper;
 using LB.WinFunction;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing.Printing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -207,16 +211,21 @@ namespace LB.Controls.Report
 
             // 加载模板
             FastReport.Report report = null;
-            Form frm = null;
+            
+            //Form frm = null;
             try
             {
-                frm = new Form();
+                //frm = new Form();
                 report = new FastReport.Report();
                 report.Load(strFileFullName);
                 // 纸张设置
                 //SetPaperAuto(report, iReportTemplateID);
 
                 BuildParmsAndData(e, report, enBuildParmsAndDataActionType.SetValue);
+
+                //ReportPreviewer previewer = new Report.ReportPreviewer(report);
+
+                SetPrintSettings(report, lReportTemplateID);
 
                 if (eActionType == enRequestReportActionType.Preview)//预览
                 {
@@ -226,8 +235,8 @@ namespace LB.Controls.Report
                     //frm.Show();
 
                     //report.Show(true, frm);
-
-                    report.Show(false);
+                    //LBShowForm.ShowDialog(previewer);
+                    report.Show(true);
                 }
                 else if (eActionType == enRequestReportActionType.DirectPrint)//直接打印
                 {
@@ -242,10 +251,10 @@ namespace LB.Controls.Report
                     if (report != null)
                     {
                         report.Dispose();
-                        if (frm != null)
-                        {
-                            frm.Close();
-                        }
+                        //if (frm != null)
+                        //{
+                        //    frm.Close();
+                        //}
                     }
                 }
                 catch
@@ -423,6 +432,54 @@ namespace LB.Controls.Report
             
         }
         #endregion -- 报表文件与byte[]的相互转换 --
+
+        private static void SetPrintSettings(FastReport.Report report, long lReportTemplateID)
+        {
+            DataTable dtReportTemplate = ExecuteSQL.CallView(105, "", "ReportTemplateID=" + lReportTemplateID, "");
+            if (dtReportTemplate.Rows.Count > 0)
+            {
+                DataRow drReport = dtReportTemplate.Rows[0];
+
+                string strPrinterName = drReport["PrinterName"].ToString().TrimEnd();
+                string strPaperType = drReport["PaperType"].ToString().TrimEnd();
+                int PaperSizeHeight =LBConverter.ToInt32( drReport["PaperSizeHeight"]);
+                int PaperSizeWidth = LBConverter.ToInt32(drReport["PaperSizeWidth"]);
+                bool IsManualPaperType  = LBConverter.ToBoolean( drReport["IsManualPaperType"]);//自动识别纸张类型
+                bool IsManualPaperSize = LBConverter.ToBoolean(drReport["IsManualPaperSize"] );//自动识别纸张大小
+                bool IsPaperTransverse = LBConverter.ToBoolean(drReport["IsPaperTransverse"]);//是否纵向打印
+
+                if (strPrinterName != "")
+                {
+                    report.PrintSettings.Printer = strPrinterName;
+                    /*if (IsManualPaperType)
+                    {
+                        System.Drawing.Printing.PrinterSettings mSelectedPrinter = new System.Drawing.Printing.PrinterSettings();
+                        int iIndex = 0;
+                        foreach (System.Drawing.Printing.PaperSize pageSize in mSelectedPrinter.PaperSizes)
+                        {
+                            if (pageSize.PaperName.Equals(strPaperType))
+                            {
+                                //report.PrintSettings.PaperSource = Convert.ToInt32(pageSize.Kind);
+                                break;
+                            }
+                            iIndex++;
+                        }
+
+                        report.PrintSettings.PaperSource = iIndex;
+                    }
+
+                    if (IsManualPaperSize)
+                    {
+                        report.PrintSettings.PrintOnSheetHeight = PaperSizeHeight;
+                        report.PrintSettings.PrintOnSheetWidth = PaperSizeWidth;
+                    }
+
+                    report.PrintSettings.Duplex = IsPaperTransverse ? System.Drawing.Printing.Duplex.Vertical :
+                         System.Drawing.Printing.Duplex.Horizontal;
+                         */
+                }
+            }
+        }
     }
 
     //  public class ReportHelper

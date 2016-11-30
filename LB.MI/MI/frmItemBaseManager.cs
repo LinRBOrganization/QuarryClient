@@ -14,9 +14,18 @@ namespace LB.MI
 {
     public partial class frmItemBaseManager : LBUIPageBase
     {
+        //返回数据按钮是否可见
+        public bool NeedReturn
+        {
+            set
+            {
+                this.btnReturn.Visible = value;
+            }
+        }
         public frmItemBaseManager()
         {
             InitializeComponent();
+            this.btnReturn.Visible = false;
         }
 
         protected override void OnLoad(EventArgs e)
@@ -346,5 +355,38 @@ or Description like '%{0}%'", this.txtFilter.Text.TrimEnd());
                 LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
             }
         }
+
+        #region -- 返回数据行 --
+        public List<DataRow> LstReturn = new List<DataRow>();
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.grdMain.EndEdit();
+                this.grdMain.CurrentCell = null;
+                foreach(DataGridViewRow dgvr in this.grdMain.Rows)
+                {
+                    bool bolSelected = LBConverter.ToBoolean(dgvr.Cells["LBSelected"].Value);
+                    if (bolSelected)
+                    {
+                        DataRowView drv = dgvr.DataBoundItem as DataRowView;
+                        LstReturn.Add(drv.Row);
+                    }
+                }
+
+                if (LstReturn.Count == 0)
+                {
+                    throw new Exception("请选择有效的物料行！");
+                }
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+
+        #endregion -- 返回数据行 --
     }
 }

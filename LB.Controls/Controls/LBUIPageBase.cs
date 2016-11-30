@@ -379,7 +379,34 @@ namespace LB.Controls
 
         private void BtnReportViewSingle_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                DataRow dr = null;
+                long lReportTemplateID = 0;
+                long lReportTypeID = 0;
+                if (sender is LBToolStripReportViewButton)
+                {
+                    LBToolStripReportViewButton btnViewReport = sender as LBToolStripReportViewButton;
+                    dr = btnViewReport.Tag as DataRow;
+                    lReportTemplateID = Convert.ToInt64(dr["ReportTemplateID"]);
+                    lReportTypeID = Convert.ToInt64(dr["ReportTypeID"]);
+                }
+
+                ReportRequestArgs args = new Report.ReportRequestArgs(lReportTemplateID, lReportTypeID, null, null);
+                OnReportRequest(args);
+                if (args.DSDataSource == null && args.RecordDR == null)
+                {
+                    LB.WinFunction.LBCommonHelper.ShowCommonMessage("未设置数据源，编辑报表失败！");
+                }
+                else
+                {
+                    ReportHelper.OpenReportDialog(enRequestReportActionType.Preview, args);
+                }
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
         }
 
         protected virtual void OnReportRequest(ReportRequestArgs args)

@@ -30,10 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCustomerEdit));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.skinToolStrip1 = new CCWin.SkinControl.SkinToolStrip();
             this.btnClose = new LB.Controls.LBToolStripButton(this.components);
             this.btnAdd = new LB.Controls.LBToolStripButton(this.components);
@@ -85,12 +89,25 @@
             this.txtCustomerName = new LB.Controls.LBSkinTextBox(this.components);
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.grdMain = new LB.Controls.LBDataGridView(this.components);
+            this.ItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemMode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UOMName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CalculateType = new LB.Controls.LBDataGridViewComboBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.skinToolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCar)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdMain)).BeginInit();
             this.SuspendLayout();
             // 
             // skinToolStrip1
@@ -141,7 +158,7 @@
             this.skinToolStrip1.Location = new System.Drawing.Point(0, 0);
             this.skinToolStrip1.Name = "skinToolStrip1";
             this.skinToolStrip1.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            this.skinToolStrip1.Size = new System.Drawing.Size(786, 40);
+            this.skinToolStrip1.Size = new System.Drawing.Size(882, 40);
             this.skinToolStrip1.SkinAllColor = true;
             this.skinToolStrip1.TabIndex = 4;
             this.skinToolStrip1.Text = "skinToolStrip1";
@@ -240,7 +257,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 40);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(786, 485);
+            this.tabControl1.Size = new System.Drawing.Size(882, 485);
             this.tabControl1.TabIndex = 5;
             // 
             // tabPage1
@@ -273,7 +290,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 30);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(778, 451);
+            this.tabPage1.Size = new System.Drawing.Size(874, 451);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "客户基础信息";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1005,7 +1022,7 @@
             // 
             this.groupBox1.Controls.Add(this.grdCar);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox1.Location = new System.Drawing.Point(524, 3);
+            this.groupBox1.Location = new System.Drawing.Point(620, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(251, 445);
             this.groupBox1.TabIndex = 11;
@@ -1015,26 +1032,26 @@
             // grdCar
             // 
             this.grdCar.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(253)))));
-            this.grdCar.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(253)))));
+            this.grdCar.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.grdCar.BackgroundColor = System.Drawing.SystemColors.Window;
             this.grdCar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.grdCar.ColumnFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.grdCar.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F);
-            this.grdCar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("宋体", 9F);
+            this.grdCar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.grdCar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdCar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CarNum});
             this.grdCar.ColumnSelectForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(188)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdCar.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("宋体", 9F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(188)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdCar.DefaultCellStyle = dataGridViewCellStyle11;
             this.grdCar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdCar.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.grdCar.EnableHeadersVisualStyles = false;
@@ -1048,12 +1065,12 @@
             this.grdCar.Name = "grdCar";
             this.grdCar.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.grdCar.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdCar.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdCar.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.grdCar.RowTemplate.Height = 23;
             this.grdCar.Size = new System.Drawing.Size(245, 425);
             this.grdCar.TabIndex = 7;
@@ -1142,13 +1159,144 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.grdMain);
             this.tabPage3.Location = new System.Drawing.Point(4, 30);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(778, 451);
+            this.tabPage3.Size = new System.Drawing.Size(874, 451);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "货物价格列表";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // grdMain
+            // 
+            this.grdMain.AllowUserToAddRows = false;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(253)))));
+            this.grdMain.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            this.grdMain.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.grdMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.grdMain.ColumnFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.grdMain.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.grdMain.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            this.grdMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdMain.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ItemID,
+            this.ItemCode,
+            this.ItemName,
+            this.ItemMode,
+            this.UOMName,
+            this.ItemRate,
+            this.CalculateType,
+            this.dataGridViewTextBoxColumn1,
+            this.CarID,
+            this.Price});
+            this.grdMain.ColumnSelectForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("微软雅黑", 12F);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(188)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdMain.DefaultCellStyle = dataGridViewCellStyle15;
+            this.grdMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.grdMain.EnableHeadersVisualStyles = false;
+            this.grdMain.GridColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.grdMain.HeadFont = new System.Drawing.Font("微软雅黑", 12F);
+            this.grdMain.HeadForeColor = System.Drawing.Color.Empty;
+            this.grdMain.HeadSelectBackColor = System.Drawing.Color.Empty;
+            this.grdMain.HeadSelectForeColor = System.Drawing.Color.Empty;
+            this.grdMain.LineNumberForeColor = System.Drawing.Color.MidnightBlue;
+            this.grdMain.Location = new System.Drawing.Point(3, 3);
+            this.grdMain.Name = "grdMain";
+            this.grdMain.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.grdMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdMain.RowsDefaultCellStyle = dataGridViewCellStyle16;
+            this.grdMain.RowTemplate.Height = 23;
+            this.grdMain.Size = new System.Drawing.Size(868, 445);
+            this.grdMain.TabIndex = 10;
+            this.grdMain.TitleBack = null;
+            this.grdMain.TitleBackColorBegin = System.Drawing.Color.White;
+            this.grdMain.TitleBackColorEnd = System.Drawing.SystemColors.ActiveBorder;
+            // 
+            // ItemID
+            // 
+            this.ItemID.HeaderText = "ItemID";
+            this.ItemID.Name = "ItemID";
+            this.ItemID.Visible = false;
+            // 
+            // ItemCode
+            // 
+            this.ItemCode.DataPropertyName = "ItemCode";
+            this.ItemCode.HeaderText = "物料编码";
+            this.ItemCode.Name = "ItemCode";
+            this.ItemCode.ReadOnly = true;
+            // 
+            // ItemName
+            // 
+            this.ItemName.DataPropertyName = "ItemName";
+            this.ItemName.HeaderText = "物料名称";
+            this.ItemName.Name = "ItemName";
+            this.ItemName.ReadOnly = true;
+            // 
+            // ItemMode
+            // 
+            this.ItemMode.DataPropertyName = "ItemMode";
+            this.ItemMode.HeaderText = "物料规格";
+            this.ItemMode.Name = "ItemMode";
+            this.ItemMode.ReadOnly = true;
+            // 
+            // UOMName
+            // 
+            this.UOMName.DataPropertyName = "UOMName";
+            this.UOMName.HeaderText = "单位";
+            this.UOMName.Name = "UOMName";
+            this.UOMName.ReadOnly = true;
+            // 
+            // ItemRate
+            // 
+            this.ItemRate.DataPropertyName = "ItemRate";
+            this.ItemRate.HeaderText = "比重(KG/m2)";
+            this.ItemRate.Name = "ItemRate";
+            this.ItemRate.ReadOnly = true;
+            this.ItemRate.Width = 120;
+            // 
+            // CalculateType
+            // 
+            this.CalculateType.DataPropertyName = "CalculateType";
+            this.CalculateType.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.CalculateType.FieldName = "CalculateType";
+            this.CalculateType.HeaderText = "计价方式";
+            this.CalculateType.Name = "CalculateType";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "CarNum";
+            this.dataGridViewTextBoxColumn1.HeaderText = "车号";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // CarID
+            // 
+            this.CarID.HeaderText = "CarID";
+            this.CarID.Name = "CarID";
+            this.CarID.Visible = false;
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            this.Price.HeaderText = "单价";
+            this.Price.Name = "Price";
             // 
             // frmCustomerEdit
             // 
@@ -1158,7 +1306,7 @@
             this.Controls.Add(this.skinToolStrip1);
             this.LBPageTitle = "编辑用户信息";
             this.Name = "frmCustomerEdit";
-            this.Size = new System.Drawing.Size(786, 525);
+            this.Size = new System.Drawing.Size(882, 525);
             this.skinToolStrip1.ResumeLayout(false);
             this.skinToolStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -1166,6 +1314,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdCar)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdMain)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1224,5 +1374,16 @@
         private Controls.LBToolStripButton btnDelete;
         private Controls.LBDataGridView grdCar;
         private System.Windows.Forms.DataGridViewTextBoxColumn CarNum;
+        private Controls.LBDataGridView grdMain;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemMode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UOMName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemRate;
+        private Controls.LBDataGridViewComboBoxColumn CalculateType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CarID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
     }
 }

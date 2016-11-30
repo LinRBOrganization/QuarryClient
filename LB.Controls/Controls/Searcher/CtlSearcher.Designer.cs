@@ -29,70 +29,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.txtSearchText = new LB.Controls.LBSkinTextBox(this.components);
             this.lblSearch = new CCWin.SkinControl.SkinLabel();
             this.txtColumnName = new DMSkin.Metro.Controls.MetroComboBox();
             this.skinLabel1 = new CCWin.SkinControl.SkinLabel();
             this.chkIsCheck = new DMSkin.Metro.Controls.MetroCheckBox();
             this.txtSearchDropDown = new LB.Controls.LBMetroComboBox(this.components);
+            this.txtSearchText = new LB.Controls.LBSkinTextBox(this.components);
             this.SuspendLayout();
-            // 
-            // txtSearchText
-            // 
-            this.txtSearchText.BackColor = System.Drawing.Color.Transparent;
-            this.txtSearchText.CanBeEmpty = true;
-            this.txtSearchText.Caption = "备注";
-            this.txtSearchText.DownBack = null;
-            this.txtSearchText.Icon = null;
-            this.txtSearchText.IconIsButton = false;
-            this.txtSearchText.IconMouseState = CCWin.SkinClass.ControlState.Normal;
-            this.txtSearchText.IsPasswordChat = '\0';
-            this.txtSearchText.IsSystemPasswordChar = false;
-            this.txtSearchText.Lines = new string[0];
-            this.txtSearchText.Location = new System.Drawing.Point(301, 10);
-            this.txtSearchText.Margin = new System.Windows.Forms.Padding(0);
-            this.txtSearchText.MaxLength = 32767;
-            this.txtSearchText.MinimumSize = new System.Drawing.Size(28, 28);
-            this.txtSearchText.MouseBack = null;
-            this.txtSearchText.MouseState = CCWin.SkinClass.ControlState.Normal;
-            this.txtSearchText.Multiline = false;
-            this.txtSearchText.Name = "txtSearchText";
-            this.txtSearchText.NormlBack = null;
-            this.txtSearchText.Padding = new System.Windows.Forms.Padding(5);
-            this.txtSearchText.ReadOnly = false;
-            this.txtSearchText.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtSearchText.Size = new System.Drawing.Size(130, 28);
-            // 
-            // 
-            // 
-            this.txtSearchText.SkinTxt.AccessibleName = "";
-            this.txtSearchText.SkinTxt.AutoCompleteCustomSource.AddRange(new string[] {
-            "asdfasdf",
-            "adsfasdf"});
-            this.txtSearchText.SkinTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.txtSearchText.SkinTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtSearchText.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSearchText.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtSearchText.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
-            this.txtSearchText.SkinTxt.Location = new System.Drawing.Point(5, 5);
-            this.txtSearchText.SkinTxt.Name = "BaseText";
-            this.txtSearchText.SkinTxt.Size = new System.Drawing.Size(120, 18);
-            this.txtSearchText.SkinTxt.TabIndex = 0;
-            this.txtSearchText.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
-            this.txtSearchText.SkinTxt.WaterText = "";
-            this.txtSearchText.TabIndex = 24;
-            this.txtSearchText.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtSearchText.Visible = false;
-            this.txtSearchText.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
-            this.txtSearchText.WaterText = "";
-            this.txtSearchText.WordWrap = true;
             // 
             // lblSearch
             // 
             this.lblSearch.BackColor = System.Drawing.Color.Transparent;
             this.lblSearch.BorderColor = System.Drawing.Color.White;
             this.lblSearch.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.lblSearch.Location = new System.Drawing.Point(204, 9);
+            this.lblSearch.Location = new System.Drawing.Point(204, 7);
             this.lblSearch.Name = "lblSearch";
             this.lblSearch.Size = new System.Drawing.Size(94, 32);
             this.lblSearch.TabIndex = 23;
@@ -145,6 +95,55 @@
             this.txtSearchDropDown.TabIndex = 29;
             this.txtSearchDropDown.Visible = false;
             // 
+            // txtSearchText
+            // 
+            this.txtSearchText.BackColor = System.Drawing.Color.Transparent;
+            this.txtSearchText.CanBeEmpty = true;
+            this.txtSearchText.Caption = "备注";
+            this.txtSearchText.DownBack = null;
+            this.txtSearchText.Icon = null;
+            this.txtSearchText.IconIsButton = false;
+            this.txtSearchText.IconMouseState = CCWin.SkinClass.ControlState.Normal;
+            this.txtSearchText.IsPasswordChat = '\0';
+            this.txtSearchText.IsSystemPasswordChar = false;
+            this.txtSearchText.Lines = new string[0];
+            this.txtSearchText.Location = new System.Drawing.Point(301, 10);
+            this.txtSearchText.Margin = new System.Windows.Forms.Padding(0);
+            this.txtSearchText.MaxLength = 32767;
+            this.txtSearchText.MinimumSize = new System.Drawing.Size(28, 28);
+            this.txtSearchText.MouseBack = null;
+            this.txtSearchText.MouseState = CCWin.SkinClass.ControlState.Normal;
+            this.txtSearchText.Multiline = false;
+            this.txtSearchText.Name = "txtSearchText";
+            this.txtSearchText.NormlBack = null;
+            this.txtSearchText.Padding = new System.Windows.Forms.Padding(5);
+            this.txtSearchText.ReadOnly = false;
+            this.txtSearchText.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtSearchText.Size = new System.Drawing.Size(130, 28);
+            // 
+            // 
+            // 
+            this.txtSearchText.SkinTxt.AccessibleName = "";
+            this.txtSearchText.SkinTxt.AutoCompleteCustomSource.AddRange(new string[] {
+            "asdfasdf",
+            "adsfasdf"});
+            this.txtSearchText.SkinTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtSearchText.SkinTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtSearchText.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSearchText.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
+            this.txtSearchText.SkinTxt.Location = new System.Drawing.Point(0, 0);
+            this.txtSearchText.SkinTxt.Name = "BaseText";
+            this.txtSearchText.SkinTxt.TabIndex = 0;
+            this.txtSearchText.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.txtSearchText.SkinTxt.WaterText = "";
+            this.txtSearchText.SkinTxt.WordWrap = false;
+            this.txtSearchText.TabIndex = 24;
+            this.txtSearchText.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtSearchText.Visible = false;
+            this.txtSearchText.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.txtSearchText.WaterText = "";
+            this.txtSearchText.WordWrap = false;
+            // 
             // CtlSearcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -156,7 +155,7 @@
             this.Controls.Add(this.txtSearchText);
             this.Controls.Add(this.lblSearch);
             this.Name = "CtlSearcher";
-            this.Size = new System.Drawing.Size(829, 46);
+            this.Size = new System.Drawing.Size(829, 47);
             this.ResumeLayout(false);
             this.PerformLayout();
 

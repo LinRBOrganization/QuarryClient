@@ -134,7 +134,7 @@ namespace LB.Controls
                 {
                     foreach (string strColunn in lstColumns)
                     {
-                        dgvr.Cells[strColunn].Value = null;
+                        dgvr.Cells[strColunn].Value = DBNull.Value;
                     }
                 }
             }

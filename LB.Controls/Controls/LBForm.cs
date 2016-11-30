@@ -32,8 +32,8 @@ namespace LB.Controls
             this.AutoSize = !page.PageAutoSize;
             if (page.PageAutoSize)//当页签设置自定义大小-200
             {
-                this.Width = Screen.PrimaryScreen.Bounds.Width-200;
-                this.Height = Screen.PrimaryScreen.Bounds.Height - 200;
+                this.Width = Screen.PrimaryScreen.Bounds.Width-50;
+                this.Height = Screen.PrimaryScreen.Bounds.Height - 50;
             }
             else
             {

@@ -10,6 +10,7 @@ using LB.Controls;
 using LB.Common;
 using LB.WinFunction;
 using LB.Page.Helper;
+using LB.MI.MI;
 
 namespace LB.MI
 {
@@ -65,6 +66,10 @@ namespace LB.MI
             SetButtonStatus();
 
             LoadCarDataSource();//加载车辆清单
+            LoadModifyBillQuery();//添加单管理
+
+            this.grdMain.LBLoadConst();
+            LoadItemPrice(mlCustomerID);//客户物料价格表信息
         }
 
         #region -- 根据客户状态显示或者隐藏相关按钮 --
@@ -285,5 +290,49 @@ namespace LB.MI
         }
 
         #endregion -- 加载车辆数据 --
+
+        #region -- 加载调价单管理清单 --
+
+        private void LoadModifyBillQuery()
+        {
+            frmModifyBillHeaderQuery modifyQuery = new frmModifyBillHeaderQuery();
+            modifyQuery.GetCustomFilterEvent += ModifyQuery_GetCustomFilterEvent;
+            
+            tabPage2.Controls.Add(modifyQuery);
+            modifyQuery.Dock = DockStyle.Fill;
+        }
+
+        private void ModifyQuery_GetCustomFilterEvent(Common.Args.LBQueryFilterArgs e)
+        {
+            try
+            {
+                e.Filter = "CustomerID=" + mlCustomerID;
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+
+        #endregion
+
+        #region -- 加载物料价格信息 --
+
+        private void LoadItemPrice(long lCustomerID)
+        {
+            LBDbParameterCollection parmCol = new LBDbParameterCollection();
+            parmCol.Add(new LBParameter("CustomerID", enLBDbType.Int64, lCustomerID));
+
+            DataSet dsReturn;
+            Dictionary<string, object> dictValue;
+            ExecuteSQL.CallSP(13607, parmCol, out dsReturn, out dictValue);
+            if(dsReturn!=null && dsReturn.Tables.Count > 0)
+            {
+                dsReturn.Tables[0].DefaultView.Sort = "ItemName asc,CarID asc";
+                this.grdMain.DataSource = dsReturn.Tables[0].DefaultView;
+            }
+        }
+
+        #endregion -- 加载物料价格信息 --
     }
 }

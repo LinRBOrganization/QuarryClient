@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Windows.Forms;
 
 namespace LB.WinFunction
 {
@@ -24,7 +26,7 @@ namespace LB.WinFunction
             {
                 dtInput.TableName = "SPIN";
             }
-            LBWebService.LBWebService webservice = new LBWebService.LBWebService();
+            LBWebService.LBWebService webservice = GetLBWebService();
             string strErrorMsg;
             bool bolIsError;
 
@@ -121,7 +123,7 @@ namespace LB.WinFunction
             }
             dtSPIN.Rows.Add(drNew);
 
-            LBWebService.LBWebService webservice = new LBWebService.LBWebService();
+            LBWebService.LBWebService webservice = GetLBWebService();
             string strErrorMsg;
             bool bolIsError;
             DataTable dtOut;
@@ -151,7 +153,7 @@ namespace LB.WinFunction
         public static DataTable CallView(int iViewType,string strFieldNames,string strWhere ,string strOrderBy)
         {
             DataTable dtResult = null;
-            LBWebService.LBWebService webservice = new LBWebService.LBWebService();
+            LBWebService.LBWebService webservice = GetLBWebService();
             string strErrorMsg;
             bool bolIsError;
             dtResult = webservice.RunView(iViewType, LoginInfo.LoginName, strFieldNames, strWhere,strOrderBy, out strErrorMsg, out bolIsError);
@@ -179,7 +181,7 @@ namespace LB.WinFunction
         public static DataTable CallDirectSQL(string strSQL)
         {
             DataTable dtResult = null;
-            LBWebService.LBWebService webservice = new LBWebService.LBWebService();
+            LBWebService.LBWebService webservice = GetLBWebService();
             string strErrorMsg;
             bool bolIsError;
             dtResult = webservice.RunDirectSQL(LoginInfo.LoginName, strSQL, out strErrorMsg, out bolIsError);
@@ -196,8 +198,17 @@ namespace LB.WinFunction
         /// <returns></returns>
         public static bool TestConnectStatus()
         {
-            LBWebService.LBWebService webservice = new LBWebService.LBWebService();
+            LBWebService.LBWebService webservice = GetLBWebService();
             return webservice.ConnectServer();
+        }
+
+        private static LBWebService.LBWebService GetLBWebService()
+        {
+            string strWebLinkPath = Path.Combine(Application.StartupPath,"WebLink.ini");
+            IniClass iniClass = new WinFunction.IniClass(strWebLinkPath);
+            string strLink = iniClass.ReadValue("Link", "url");
+            LBWebService.LBWebService webservice = new LBWebService.LBWebService(strLink);
+            return webservice;
         }
     }
 }

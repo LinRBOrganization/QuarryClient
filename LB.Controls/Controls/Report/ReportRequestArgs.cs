@@ -28,6 +28,10 @@ namespace LB.Controls.Report
             {
                 return _RecordDR;
             }
+            set
+            {
+                _RecordDR = value;
+            }
         }
 
         private long _ReportTypeID;

@@ -36,10 +36,22 @@ namespace LB.SmartClient
             mTimer.Interval = 200;
             mTimer.Tick += MTimer_Tick;
             
-            LoadServerConfig();//读取服务器配置文件
+            //LoadServerConfig();//读取服务器配置文件
 
+            btnStart.PerformClick();
             /*mThread = new Thread(StartAction);
             mThread.Start();*/
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            mTimer.Enabled = false;
+            if (mThread.IsAlive)
+            {
+                mThread.Abort();
+            }
         }
 
         int miIndex = 0;
@@ -56,6 +68,8 @@ namespace LB.SmartClient
                 {
                     mstrMessage = "连接服务器失败，请检查服务器地址和端口是否正确！";
                     this.mTimer.Enabled = false;
+
+                    this.lblProcess.Text = mstrMessage;
                 }
                 else
                 {
@@ -93,6 +107,8 @@ namespace LB.SmartClient
             {
                 frmSetAddress frm = new SmartClient.frmSetAddress();
                 frm.ShowDialog();
+
+                LoadServerConfig();
             }
             catch (Exception ex)
             {
@@ -106,8 +122,8 @@ namespace LB.SmartClient
             string strServer;
             string strPort;
             ServerConfig.ReadConfigFile(out strServer, out strPort);
-            this.txtServerAddress.Text = "http://" + strServer + ":" + strPort;
-            string strUrl = this.txtServerAddress.Text + "//LBWebService.asmx";
+            SetTxtValue("http://" + strServer + ":" + strPort);
+            string strUrl = "http://" + strServer + ":" + strPort + "//LBWebService.asmx";
             webService = new Webservice.LBWebService(strUrl);
         }
 
@@ -128,115 +144,135 @@ namespace LB.SmartClient
 
         private void StartAction()
         {
-            #region -- 测试服务器连接情况 --
-            mActionStatus = enActionStatus.TestConnect;
-            bool bolIsConnected = false;
-            if (this.txtServerAddress.Text != "")
+            try
             {
-                bolIsConnected = webService.ConnectServer();
-            }
+                #region -- 测试服务器连接情况 --
+                mActionStatus = enActionStatus.TestConnect;
+                //Thread.Sleep(200);
+                LoadServerConfig();
 
-            if (bolIsConnected)//连接服务器成功
-            {
-                mActionStatus = enActionStatus.Connected;
-
-                #region -- 获取服务器上的最新程序信息 --
-                DataTable dtServer = webService.ReadClientFileInfo();
-                DataTable dtClient = GetLocalFile();//获取本地Client程序信息
-
-                //读取本地程序，与服务器程序进行对比，得出需求更新的程序清单
-                DataTable dtDiff;
-                bool bolIsNeedUpdate;
-                CompareClientInfo(dtClient, dtServer, out dtDiff,out mNeedUpdateFileSize, out bolIsNeedUpdate);
-
-                DoData(0);
-                SetProgressMaxNum(100);
-
-                #endregion -- 获取服务器上的最新程序信息 --
-
-                if (bolIsNeedUpdate)
+                bool bolIsConnected = false;
+                if (this.txtServerAddress.Text != "")
                 {
-                    SetProgressVisible(true);
-                    mActionStatus = enActionStatus.UpdateDLL;//更新程序
-                    mUpdatedFileSize = 0;
+                    bolIsConnected = webService.ConnectServer();
+                }
 
-                    string strStartUpPath =Path.Combine( Application.StartupPath,"Client");
-                    if (!Directory.Exists(strStartUpPath))
+                if (bolIsConnected)//连接服务器成功
+                {
+                    mActionStatus = enActionStatus.Connected;
+
+                    #region -- 获取服务器上的最新程序信息 --
+                    DataTable dtServer = webService.ReadClientFileInfo();
+                    DataTable dtClient = GetLocalFile();//获取本地Client程序信息
+
+                    //读取本地程序，与服务器程序进行对比，得出需求更新的程序清单
+                    DataTable dtDiff;
+                    bool bolIsNeedUpdate;
+                    CompareClientInfo(dtClient, dtServer, out dtDiff, out mNeedUpdateFileSize, out bolIsNeedUpdate);
+
+                    DoData(0);
+                    SetProgressMaxNum(100);
+
+                    #endregion -- 获取服务器上的最新程序信息 --
+
+                    if (bolIsNeedUpdate)
                     {
-                        Directory.CreateDirectory(strStartUpPath);
-                    }
+                        SetProgressVisible(true);
+                        mActionStatus = enActionStatus.UpdateDLL;//更新程序
+                        mUpdatedFileSize = 0;
 
-                    #region -- 分段下单程序 --
-                    int iMaxLength = 1024 * 5;
-                    foreach(DataRow dr in dtDiff.Rows)
-                    {
-                        string strFileName = dr["FileName"].ToString().TrimEnd();
-                        DateTime dtFileTime = Convert.ToDateTime(dr["FileTime"]);
-                        long lFileSize = Convert.ToInt64(dr["FileSize"]);
-
-                        string strFullName = Path.Combine(strStartUpPath, strFileName);
-                        mstrCurrentUpdateDLL = strFullName;//正在更新的程序
-
-                        FileInfo fi = new FileInfo(strFullName);
-
-                        if (!Directory.Exists(fi.DirectoryName))
+                        string strStartUpPath = Path.Combine(Application.StartupPath, "Client");
+                        if (!Directory.Exists(strStartUpPath))
                         {
-                            Directory.CreateDirectory(fi.DirectoryName);
+                            Directory.CreateDirectory(strStartUpPath);
                         }
 
-                        string strFullName_temp = strFullName + "_temp";
-                        if (File.Exists(strFullName_temp))
-                            File.Delete(strFullName_temp);
-
-                        int iSplitCount = (int)Math.Ceiling(lFileSize / (float)iMaxLength);
-                        //long lTotalSize = 0;
-                        for(int i=0;i< iSplitCount; i++)
+                        //在Client下创建Ini文件
+                        string strIniFile = Path.Combine(strStartUpPath, "WebLink.ini");
+                        if (!File.Exists(strIniFile))
                         {
-                            int iPosition = i * iMaxLength;
-                            if (lFileSize >= iPosition)
+                            File.Create(strIniFile);
+                        }
+
+                        IniClass iniWebLink = new IniClass(strIniFile);
+                        iniWebLink.WriteValue("Link", "url", this.txtServerAddress.Text);
+
+                        #region -- 分段下单程序 --
+                        int iMaxLength = 1024 * 100;
+                        foreach (DataRow dr in dtDiff.Rows)
+                        {
+                            string strFileName = dr["FileName"].ToString().TrimEnd();
+                            DateTime dtFileTime = Convert.ToDateTime(dr["FileTime"]);
+                            long lFileSize = Convert.ToInt64(dr["FileSize"]);
+
+                            string strFullName = Path.Combine(strStartUpPath, strFileName);
+                            mstrCurrentUpdateDLL = strFullName;//正在更新的程序
+
+                            FileInfo fi = new FileInfo(strFullName);
+
+                            if (!Directory.Exists(fi.DirectoryName))
                             {
-                                byte[] bFile = webService.ReadFileByte(strFileName, iPosition, iMaxLength);
-                                mUpdatedFileSize += bFile.Length;//计算已更新的程序大小
-                                using (FileStream fileStream = new FileStream(strFullName_temp, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Write))
-                                {
-                                    fileStream.Position = iPosition;
-                                    fileStream.Write(bFile, 0, bFile.Length);
-
-                                    fileStream.Flush();
-                                    fileStream.Close();
-                                }
-
-                                int iPercent = (int)(mUpdatedFileSize / (float)mNeedUpdateFileSize * 100);
-                                DoData(iPercent);
+                                Directory.CreateDirectory(fi.DirectoryName);
                             }
 
-                            if(i+1 == iSplitCount)
+                            string strFullName_temp = strFullName + "_temp";
+                            if (File.Exists(strFullName_temp))
+                                File.Delete(strFullName_temp);
+
+                            int iSplitCount = (int)Math.Ceiling(lFileSize / (float)iMaxLength);
+                            //long lTotalSize = 0;
+                            for (int i = 0; i < iSplitCount; i++)
                             {
-                                if (File.Exists(strFullName_temp))
+                                int iPosition = i * iMaxLength;
+                                if (lFileSize >= iPosition)
                                 {
-                                    if (File.Exists(strFullName))
-                                        File.Delete(strFullName);
-                                    File.Move(strFullName_temp, strFullName);
-                                    if (File.Exists(strFullName))
+                                    byte[] bFile = webService.ReadFileByte(strFileName, iPosition, iMaxLength);
+                                    mUpdatedFileSize += bFile.Length;//计算已更新的程序大小
+                                    using (FileStream fileStream = new FileStream(strFullName_temp, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.Write))
                                     {
-                                        FileInfo fiFile = new FileInfo(strFullName);
-                                        fiFile.LastWriteTime = dtFileTime;
+                                        fileStream.Position = iPosition;
+                                        fileStream.Write(bFile, 0, bFile.Length);
+
+                                        fileStream.Flush();
+                                        fileStream.Close();
+                                    }
+
+                                    int iPercent = (int)(mUpdatedFileSize / (float)mNeedUpdateFileSize * 100);
+                                    DoData(iPercent);
+                                }
+
+                                if (i + 1 == iSplitCount)
+                                {
+                                    if (File.Exists(strFullName_temp))
+                                    {
+                                        if (File.Exists(strFullName))
+                                            File.Delete(strFullName);
+                                        File.Move(strFullName_temp, strFullName);
+                                        if (File.Exists(strFullName))
+                                        {
+                                            FileInfo fiFile = new FileInfo(strFullName);
+                                            fiFile.LastWriteTime = dtFileTime;
+                                        }
                                     }
                                 }
                             }
                         }
+                        DoData(100);
+                        #endregion -- 分段下单程序 --
                     }
-                    DoData(100);
-                    #endregion -- 分段下单程序 --
-                }
 
-                mActionStatus = enActionStatus.Success;
+                    mActionStatus = enActionStatus.Success;
+                }
+                else
+                {
+                    mActionStatus = enActionStatus.Fail;
+                }
+                #endregion -- 测试服务器连接情况 --
             }
-            else
+            catch (Exception ex)
             {
                 mActionStatus = enActionStatus.Fail;
             }
-            #endregion -- 测试服务器连接情况 --
         }
 
         private void LoginSystem()
@@ -276,6 +312,9 @@ namespace LB.SmartClient
         private void GetChildFile(string strPath,ref DataTable dtFile)
         {
             string strClientPath = Path.Combine(Application.StartupPath, "Client");
+            if (!Directory.Exists(strClientPath))
+                Directory.CreateDirectory(strClientPath);
+
             FileInfo[] files = new DirectoryInfo(strPath).GetFiles();
             foreach(FileInfo fi in files)
             {
@@ -367,6 +406,19 @@ namespace LB.SmartClient
             else
             {
                 skinProgressBar1.Visible = bolVisible;
+            }
+        }
+
+        delegate void SetTxtValueDelegate(string strValue);
+        private void SetTxtValue(string strValue)
+        {
+            if (this.txtServerAddress.InvokeRequired)
+            {
+                txtServerAddress.Invoke(new SetTxtValueDelegate(SetTxtValue), strValue);
+            }
+            else
+            {
+                txtServerAddress.Text = strValue;
             }
         }
         #endregion

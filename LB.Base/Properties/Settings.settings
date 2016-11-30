@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="LB_Base_LBWebService_LBWebService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:27222/LBWebService.asmx</Value>
+      <Value Profile="(Default)">http://211.149.203.13:2020/LBWebService.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

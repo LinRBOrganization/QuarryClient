@@ -53,6 +53,7 @@
     </Compile>
     <Compile Include="WinFunction\Args\CallSPArgs.cs" />
     <Compile Include="WinFunction\ExecuteSQL.cs" />
+    <Compile Include="WinFunction\IniClass.cs" />
     <Compile Include="WinFunction\LBCommonHelper.cs" />
     <Compile Include="WinFunction\LBDbType.cs" />
     <Compile Include="WinFunction\LBParameter.cs" />
@@ -70,10 +71,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:27222/LBWebService.asmx">
+    <WebReferenceUrl Include="http://211.149.203.13:2020/">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\LBWebService\</RelPath>
-      <UpdateFromURL>http://localhost:27222/LBWebService.asmx</UpdateFromURL>
+      <UpdateFromURL>http://211.149.203.13:2020/</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

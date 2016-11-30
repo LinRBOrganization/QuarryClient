@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using LB.Controls;
 using LB.WinFunction;
+using System.Threading;
 
 namespace LB.Login
 {
@@ -54,8 +55,10 @@ namespace LB.Login
 
                 string strLoginName = this.txtLoginName.Text.TrimEnd();
                 string strPassword = this.txtPassword.Text.TrimEnd();
-
+                //Thread.Sleep(2000);
+                //throw new Exception("无法连接服务器，请检查网络是否畅通！");
                 bool bolPass = LoginInfo.VerifyLogin(strLoginName, strPassword);
+                
                 if (bolPass)
                 {
                     this.Close();
