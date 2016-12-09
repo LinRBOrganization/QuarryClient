@@ -11,6 +11,7 @@ using LB.WinFunction;
 using LB.Controls.Args;
 using LB.Controls.Report;
 using LB.Page.Helper;
+using LB.Common;
 
 namespace LB.MI
 {
@@ -19,20 +20,19 @@ namespace LB.MI
         public frmUOMManager()
         {
             InitializeComponent();
-            this.grdMain.CellDoubleClick += GrdMain_CellDoubleClick;
         }
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-
+            
             LoadDataSource();
+            this.grdMain.CellDoubleClick += GrdMain_CellDoubleClick;
         }
 
         private void LoadDataSource()
         {
-            string strSQL = "select * from dbo.DbUOM";
-            DataTable dtView = ExecuteSQL.CallDirectSQL(strSQL);
+            DataTable dtView = ExecuteSQL.CallView(202);
             //this.grdMain.DataSource = dtView.DefaultView;
             //string strFilter = this.ctlSearcher1.GetFilter();
             //DataTable dtUser = ExecuteSQL.CallView(112, "", strFilter, "");
@@ -45,16 +45,15 @@ namespace LB.MI
             {
                 if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
                 {
-                    //DataRowView drvSelect = this.grdMain.Rows[e.RowIndex].DataBoundItem as DataRowView;
-                    //long lCustomerID = drvSelect["CustomerID"] == DBNull.Value ?
-                    //    0 : Convert.ToInt64(drvSelect["CustomerID"]);
-                    //if (lCustomerID > 0)
-                    //{
-                    //    frmCustomerEdit frm = new frmCustomerEdit(lCustomerID);
-                    //    LBShowForm.ShowDialog(frm);
-
-                    //    LoadDataSource();
-                    //}
+                    DataRowView drvSelect = this.grdMain.Rows[e.RowIndex].DataBoundItem as DataRowView;
+                    long lUOMID = LBConverter.ToInt64(drvSelect["UOMID"]);
+                    if (lUOMID == 0)
+                    {
+                        return;
+                    }
+                    frmUOM frm = new frmUOM(lUOMID);
+                    LBShowForm.ShowDialog(frm);
+                    LoadDataSource();
                 }
             }
             catch (Exception ex)
@@ -63,14 +62,14 @@ namespace LB.MI
             }
         }
 
-        #region -- 添加用户 --
+        #region -- 添加单位 --
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                //frmCustomerEdit frmEdit = new frmCustomerEdit(0);
-                //LBShowForm.ShowDialog(frmEdit);
+                frmUOM frm = new frmUOM(0);
+                LBShowForm.ShowDialog(frm);
                 LoadDataSource();
             }
             catch (Exception ex)
@@ -107,7 +106,52 @@ namespace LB.MI
         {
             try
             {
-                
+                long lUOMID = 0;
+                if (grdMain.CurrentRow != null)
+                {
+                    DataRowView drv = grdMain.CurrentRow.DataBoundItem as DataRowView;
+                    lUOMID = LBConverter.ToInt64(drv["UOMID"]);
+                }
+                if (lUOMID == 0)
+                {
+                    return;
+                }
+                frmUOM frm = new frmUOM(lUOMID);
+                LBShowForm.ShowDialog(frm);
+                LoadDataSource();
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                long lUOMID = 0;
+                string strUOMName = "";
+                if (grdMain.CurrentRow != null)
+                {
+                    DataRowView drv = grdMain.CurrentRow.DataBoundItem as DataRowView;
+                    lUOMID = LBConverter.ToInt64(drv["UOMID"]);
+                    strUOMName = drv["UOMName"].ToString().TrimEnd();
+                }
+                if (lUOMID == 0)
+                {
+                    return;
+                }
+
+                if (LB.WinFunction.LBCommonHelper.ConfirmMessage("是否确认删除计量单位："+ strUOMName + "？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    LBDbParameterCollection parmCol = new LBDbParameterCollection();
+                    parmCol.Add(new LBParameter("UOMID", enLBDbType.Int64, lUOMID));
+                    DataSet dsReturn;
+                    Dictionary<string, object> dictValue;
+                    ExecuteSQL.CallSP(20202, parmCol, out dsReturn, out dictValue);
+                    LoadDataSource();
+                }
             }
             catch (Exception ex)
             {
@@ -126,28 +170,6 @@ namespace LB.MI
                 LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
             }
         }
-        #endregion -- 添加用户 --
-
-        #region -- 报表 --
-
-        protected override void OnInitToolStripControl(ToolStripReportArgs args)
-        {
-            args.LBToolStrip = skinToolStrip1;
-            args.ReportTypeID = 3;//客户管理
-            base.OnInitToolStripControl(args);
-
-        }
-
-        protected override void OnReportRequest(ReportRequestArgs args)
-        {
-            base.OnReportRequest(args);
-            DataTable dtSource = ((DataView)this.grdMain.DataSource).Table.Copy();
-            dtSource.TableName = "T003";
-            DataSet dsSource = new DataSet("Report");
-            dsSource.Tables.Add(dtSource);
-            args.DSDataSource = dsSource;
-        }
-
-        #endregion
+        #endregion -- 添加单位 --
     }
 }

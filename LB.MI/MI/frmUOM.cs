@@ -13,19 +13,23 @@ using LB.Common;
 
 namespace LB.MI
 {
-    public partial class frmItemType : LBUIPageBase
+    public partial class frmUOM : LBUIPageBase
     {
-        private long mlItemTypeID = 0;
-        public frmItemType(long lItemTypeID)
+        private long mlUOMID = 0;
+        public frmUOM(long lItemTypeID)
         {
             InitializeComponent();
-            mlItemTypeID = lItemTypeID;
-            btnDelete.Visible = mlItemTypeID > 0;
+            mlUOMID = lItemTypeID;
+            btnDelete.Visible = mlUOMID > 0;
         }
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+
+            this.txtUOMType.DataSource = LB.Common.LBConst.GetConstData("UOMType");//读取单位类型常量列表
+            this.txtUOMType.DisplayMember = "ConstText";
+            this.txtUOMType.ValueMember = "ConstValue";
 
             ReadFieldValue();
         }
@@ -49,20 +53,21 @@ namespace LB.MI
             {
                 this.VerifyTextBoxIsEmpty();//校验控件值是否为空
                 
-                int iSPType = mlItemTypeID > 0 ? 20101 : 20100;
+                int iSPType = mlUOMID > 0 ? 20201 : 20200;
 
                 LBDbParameterCollection parmCol = new LBDbParameterCollection();
-                parmCol.Add(new LBParameter("ItemTypeID", enLBDbType.Int64, mlItemTypeID));
-                parmCol.Add(new LBParameter("ItemTypeName", enLBDbType.String, this.txtItemTypeName.Text));
+                parmCol.Add(new LBParameter("UOMID", enLBDbType.Int64, mlUOMID));
+                parmCol.Add(new LBParameter("UOMName", enLBDbType.String, this.txtUOMName.Text));
+                parmCol.Add(new LBParameter("UOMType", enLBDbType.Int32, this.txtUOMType.SelectedValue));
                 DataSet dsReturn;
                 Dictionary<string, object> dictValue;
                 ExecuteSQL.CallSP(iSPType, parmCol, out dsReturn, out dictValue);
-                if (dictValue.ContainsKey("ItemTypeID"))
+                if (dictValue.ContainsKey("UOMID"))
                 {
-                    long.TryParse(dictValue["ItemTypeID"].ToString(), out mlItemTypeID);
+                    long.TryParse(dictValue["UOMID"].ToString(), out mlUOMID);
                 }
                 LB.WinFunction.LBCommonHelper.ShowCommonMessage("保存成功！");
-                btnDelete.Visible = mlItemTypeID > 0;
+                btnDelete.Visible = mlUOMID > 0;
             }
             catch (Exception ex)
             {
@@ -74,15 +79,15 @@ namespace LB.MI
         {
             try
             {
-                if (LB.WinFunction.LBCommonHelper.ConfirmMessage("是否确认删除物料类型？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (LB.WinFunction.LBCommonHelper.ConfirmMessage("是否确认删除计量单位？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    if (mlItemTypeID > 0)
+                    if (mlUOMID > 0)
                     {
                         LBDbParameterCollection parmCol = new LBDbParameterCollection();
-                        parmCol.Add(new LBParameter("ItemTypeID", enLBDbType.Int64, mlItemTypeID));
+                        parmCol.Add(new LBParameter("UOMID", enLBDbType.Int64, mlUOMID));
                         DataSet dsReturn;
                         Dictionary<string, object> dictValue;
-                        ExecuteSQL.CallSP(20102, parmCol, out dsReturn, out dictValue);
+                        ExecuteSQL.CallSP(20202, parmCol, out dsReturn, out dictValue);
                     }
                     this.Close();
                 }
@@ -98,16 +103,15 @@ namespace LB.MI
         /// </summary>
         private void ReadFieldValue()
         {
-            if (mlItemTypeID > 0)
+            if (mlUOMID > 0)
             {
-                string strSQL = "select * from dbo.DbItemType where ItemTypeID=" + mlItemTypeID;
+                string strSQL = "select * from dbo.DbUOM where UOMID=" + mlUOMID;
                 DataTable dt = ExecuteSQL.CallDirectSQL(strSQL);
                 if (dt.Rows.Count > 0)
                 {
                     DataRow dr = dt.Rows[0];
-                    this.txtItemTypeName.Text = LBConverter.ToString(dr["ItemTypeName"]);
-                    this.txtChangeBy.Text = LBConverter.ToString(dr["ChangeBy"]);
-                    this.txtChangeTime.Text = LBConverter.ToString(dr["ChangeTime"]);
+                    this.txtUOMName.Text = LBConverter.ToString(dr["UOMName"]);
+                    this.txtUOMType.SelectedValue = dr["UOMType"];
                 }
             }
         }

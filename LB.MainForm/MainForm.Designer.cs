@@ -233,7 +233,7 @@ namespace LB.MainForm
             // 
             this.btnItemBaseManager.LBPermissionCode = "PMChangePassword";
             this.btnItemBaseManager.Name = "btnItemBaseManager";
-            this.btnItemBaseManager.Size = new System.Drawing.Size(148, 22);
+            this.btnItemBaseManager.Size = new System.Drawing.Size(152, 22);
             this.btnItemBaseManager.Text = "物料管理";
             this.btnItemBaseManager.Click += new System.EventHandler(this.btnItemBaseManager_Click);
             // 

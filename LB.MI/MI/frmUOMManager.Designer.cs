@@ -36,14 +36,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.skinToolStrip1 = new CCWin.SkinControl.SkinToolStrip();
             this.btnAdd = new LB.Controls.LBToolStripButton(this.components);
+            this.btnOpenEdit = new LB.Controls.LBToolStripButton(this.components);
+            this.btnDelete = new LB.Controls.LBToolStripButton(this.components);
             this.btnReflesh = new LB.Controls.LBToolStripButton(this.components);
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.grdMain = new LB.Controls.LBDataGridView(this.components);
             this.UOMName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UOMType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UOMTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UOMID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnDelete = new LB.Controls.LBToolStripButton(this.components);
-            this.btnOpenEdit = new LB.Controls.LBToolStripButton(this.components);
             this.skinToolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMain)).BeginInit();
             this.SuspendLayout();
@@ -113,6 +113,28 @@
             this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // btnOpenEdit
+            // 
+            this.btnOpenEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenEdit.Image")));
+            this.btnOpenEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnOpenEdit.LBPermissionCode = "";
+            this.btnOpenEdit.Name = "btnOpenEdit";
+            this.btnOpenEdit.Size = new System.Drawing.Size(36, 37);
+            this.btnOpenEdit.Text = "编辑";
+            this.btnOpenEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnOpenEdit.Click += new System.EventHandler(this.btnOpenEdit_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDelete.LBPermissionCode = "PMUserManager_Edit";
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(36, 37);
+            this.btnDelete.Text = "删除";
+            this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // btnReflesh
             // 
             this.btnReflesh.Image = ((System.Drawing.Image)(resources.GetObject("btnReflesh.Image")));
@@ -143,7 +165,7 @@
             this.grdMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdMain.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.UOMName,
-            this.UOMType,
+            this.UOMTypeName,
             this.UOMID});
             this.grdMain.ColumnSelectForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -188,12 +210,13 @@
             this.UOMName.Name = "UOMName";
             this.UOMName.ReadOnly = true;
             // 
-            // UOMType
+            // UOMTypeName
             // 
-            this.UOMType.DataPropertyName = "UOMType";
-            this.UOMType.HeaderText = "单位类型";
-            this.UOMType.Name = "UOMType";
-            this.UOMType.ReadOnly = true;
+            this.UOMTypeName.DataPropertyName = "UOMTypeName";
+            this.UOMTypeName.HeaderText = "单位类型";
+            this.UOMTypeName.Name = "UOMTypeName";
+            this.UOMTypeName.ReadOnly = true;
+            this.UOMTypeName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // UOMID
             // 
@@ -202,27 +225,6 @@
             this.UOMID.Name = "UOMID";
             this.UOMID.ReadOnly = true;
             this.UOMID.Visible = false;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDelete.LBPermissionCode = "PMUserManager_Edit";
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(36, 37);
-            this.btnDelete.Text = "删除";
-            this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // btnOpenEdit
-            // 
-            this.btnOpenEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenEdit.Image")));
-            this.btnOpenEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnOpenEdit.LBPermissionCode = "";
-            this.btnOpenEdit.Name = "btnOpenEdit";
-            this.btnOpenEdit.Size = new System.Drawing.Size(36, 37);
-            this.btnOpenEdit.Text = "编辑";
-            this.btnOpenEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnOpenEdit.Click += new System.EventHandler(this.btnOpenEdit_Click);
             // 
             // frmUOMManager
             // 
@@ -248,10 +250,10 @@
         private Controls.LBToolStripButton btnReflesh;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private Controls.LBDataGridView grdMain;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UOMName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UOMType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UOMID;
         private Controls.LBToolStripButton btnOpenEdit;
         private Controls.LBToolStripButton btnDelete;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UOMName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UOMTypeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UOMID;
     }
 }
