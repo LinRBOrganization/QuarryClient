@@ -14,6 +14,8 @@ namespace LB.SysConfig.SysConfig
 {
     public partial class frmWeightConfigType : LBUIPageBase
     {
+        private int _OrgWeightType = 0;//原来磅房类型
+        public bool IsChangeWeightType = false;
         public frmWeightConfigType()
         {
             InitializeComponent();
@@ -42,8 +44,17 @@ namespace LB.SysConfig.SysConfig
                 DataSet dsReturn;
                 Dictionary<string, object> dictValue;
                 ExecuteSQL.CallSP(14200, parmCol, out dsReturn, out dictValue);
-
-                LB.WinFunction.LBCommonHelper.ShowCommonMessage("保存成功！");
+                
+                if (_OrgWeightType!= WeightType)
+                {
+                    IsChangeWeightType = true;
+                    LB.WinFunction.LBCommonHelper.ShowCommonMessage("保存成功！修改后需要注销并重新登录系统！");
+                    this.Close();
+                }
+                else
+                {
+                    LB.WinFunction.LBCommonHelper.ShowCommonMessage("保存成功！");
+                }
             }
             catch (Exception ex)
             {
@@ -69,6 +80,7 @@ namespace LB.SysConfig.SysConfig
             if (dtDesc.Rows.Count > 0)
             {
                 this.txtWeightType.SelectedValue = dtDesc.Rows[0]["WeightType"];
+                _OrgWeightType = LBConverter.ToInt32(dtDesc.Rows[0]["WeightType"]);
             }
         }
     }

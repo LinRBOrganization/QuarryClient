@@ -75,6 +75,12 @@
     <Compile Include="MainForm\CtlBaseInfoSelection.Designer.cs">
       <DependentUpon>CtlBaseInfoSelection.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainForm\frmAutoPrint.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainForm\frmAutoPrint.Designer.cs">
+      <DependentUpon>frmAutoPrint.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm\frmDevelopViewConfig.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -112,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm\CtlBaseInfoSelection.resx">
       <DependentUpon>CtlBaseInfoSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm\frmAutoPrint.resx">
+      <DependentUpon>frmAutoPrint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm\frmDevelopViewConfig.resx">
       <DependentUpon>frmDevelopViewConfig.cs</DependentUpon>

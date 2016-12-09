@@ -71,6 +71,12 @@
     <Compile Include="SysConfig\frmCameraConfig.Designer.cs">
       <DependentUpon>frmCameraConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="SysConfig\frmCarTareManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SysConfig\frmCarTareManager.Designer.cs">
+      <DependentUpon>frmCarTareManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="SysConfig\frmChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SysConfig\frmCameraConfig.resx">
       <DependentUpon>frmCameraConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SysConfig\frmCarTareManager.resx">
+      <DependentUpon>frmCarTareManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SysConfig\frmChangePassword.resx">
       <DependentUpon>frmChangePassword.cs</DependentUpon>

@@ -29,13 +29,56 @@ namespace LB.MainForm
         {
             InitializeComponent();
 
-            this.grdCar.Visible = false;
+            this.grdCarIn.Visible = false;
+            this.grdCarOut.Visible = false;
             this.grdCustomer.Visible = false;
             this.grdItem.Visible = false;
 
-            this.grdCar.CellClick += GrdCar_CellClick;
+            this.grdCarIn.CellClick += GrdCar_CellClick;
+            this.grdCarOut.CellClick += GrdCarOut_CellClick;
             this.grdCustomer.CellClick += GrdCustomer_CellClick;
             this.grdItem.CellClick += GrdItem_CellClick;
+
+            this.grdCarIn.CellFormatting += GrdCarIn_CellFormatting;
+            this.grdCarOut.CellFormatting += GrdCarOut_CellFormatting;
+        }
+
+        private void GrdCarOut_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                {
+                    int iCanOutBillCount = LBConverter.ToInt32(this.grdCarOut["CanOutBillCount", e.RowIndex].Value);
+                    if (iCanOutBillCount == 0)
+                    {
+                        e.CellStyle.BackColor = Color.OrangeRed;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+
+        private void GrdCarIn_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                {
+                    int iNotOutBillCount = LBConverter.ToInt32(this.grdCarIn["NotOutBillCount", e.RowIndex].Value);
+                    if (iNotOutBillCount > 0)
+                    {
+                        e.CellStyle.BackColor = Color.OrangeRed;
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
         }
 
         private void GrdItem_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -78,6 +121,26 @@ namespace LB.MainForm
             }
         }
 
+        private void GrdCarOut_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.ColumnIndex >= 0 && e.RowIndex >= 0)
+                {
+                    if (SelectedRowEvent != null)
+                    {
+                        DataRow drSelect = ((DataRowView)this.grdCarOut.Rows[e.RowIndex].DataBoundItem).Row;
+                        SelectedRowArgs args = new SelectedRowArgs(enBaseInfoType.CarOut, drSelect);
+                        SelectedRowEvent(args);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+
         private void GrdCar_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -86,8 +149,8 @@ namespace LB.MainForm
                 {
                     if (SelectedRowEvent != null)
                     {
-                        DataRow drSelect = ((DataRowView)this.grdCar.Rows[e.RowIndex].DataBoundItem).Row;
-                        SelectedRowArgs args = new SelectedRowArgs(enBaseInfoType.Car, drSelect);
+                        DataRow drSelect = ((DataRowView)this.grdCarIn.Rows[e.RowIndex].DataBoundItem).Row;
+                        SelectedRowArgs args = new SelectedRowArgs(enBaseInfoType.CarIn, drSelect);
                         SelectedRowEvent(args);
                     }
                 }
@@ -107,35 +170,51 @@ namespace LB.MainForm
                 //this.grdCustomer.Visible = false;
                 //this.grdItem.Visible = false;
             }
-            else if (eBaseInfoType == enBaseInfoType.Car)
+            else if (eBaseInfoType == enBaseInfoType.CarIn)
             {
-                this.grdCar.Visible = true;
-                this.grdCar.Dock = DockStyle.Fill;
+                this.grdCarIn.Visible = true;
+                this.grdCarIn.Dock = DockStyle.Fill;
                 this.grdCustomer.Visible = false;
                 this.grdItem.Visible = false;
+                this.grdCarOut.Visible = false;
+            }
+            else if (eBaseInfoType == enBaseInfoType.CarOut)
+            {
+                this.grdCarOut.Visible = true;
+                this.grdCarOut.Dock = DockStyle.Fill;
+                this.grdCustomer.Visible = false;
+                this.grdItem.Visible = false;
+                this.grdCarIn.Visible = false;
             }
             else if (eBaseInfoType == enBaseInfoType.Customer)
             {
-                this.grdCar.Visible = false;
+                this.grdCarIn.Visible = false;
                 this.grdCustomer.Visible = true;
                 this.grdCustomer.Dock = DockStyle.Fill;
                 this.grdItem.Visible = false;
+                this.grdCarOut.Visible = false;
             }
             else if (eBaseInfoType == enBaseInfoType.Item)
             {
-                this.grdCar.Visible = false;
+                this.grdCarIn.Visible = false;
                 this.grdCustomer.Visible = false;
                 this.grdItem.Visible = true;
                 this.grdItem.Dock = DockStyle.Fill;
+                this.grdCarOut.Visible = false;
             }
         }
 
         public void LoadDataSource(string strFilter)
         {
-            if (_BaseInfoType == enBaseInfoType.Car)
+            if (_BaseInfoType == enBaseInfoType.CarIn)
             {
-                DataTable dtData = ExecuteSQL.CallView(117, "", strFilter, "");
-                this.grdCar.DataSource = dtData.DefaultView;
+                DataTable dtData = ExecuteSQL.CallView(127, "", strFilter, "");
+                this.grdCarIn.DataSource = dtData.DefaultView;
+            }
+            else if (_BaseInfoType == enBaseInfoType.CarOut)
+            {
+                DataTable dtData = ExecuteSQL.CallView(127, "", strFilter, "");
+                this.grdCarOut.DataSource = dtData.DefaultView;
             }
             else if (_BaseInfoType == enBaseInfoType.Customer)
             {

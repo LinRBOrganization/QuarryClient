@@ -58,6 +58,7 @@ namespace LB.Controls.Report
 
     public class ReportHelper
     {
+        public static event EventHandler LBFinishReport;
         /// <summary>
         /// 报表文件保存路径
         /// </summary>
@@ -217,6 +218,7 @@ namespace LB.Controls.Report
             {
                 //frm = new Form();
                 report = new FastReport.Report();
+                report.FinishReport += Report_FinishReport;
                 report.Load(strFileFullName);
                 // 纸张设置
                 //SetPaperAuto(report, iReportTemplateID);
@@ -260,6 +262,14 @@ namespace LB.Controls.Report
                 catch
                 {
                 }
+            }
+        }
+
+        private static void Report_FinishReport(object sender, EventArgs e)
+        {
+            if (LBFinishReport != null)
+            {
+                LBFinishReport(sender, e);
             }
         }
 

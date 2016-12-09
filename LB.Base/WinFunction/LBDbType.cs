@@ -118,7 +118,11 @@ namespace LB.WinFunction
         //     100 毫微秒。时区值范围从 -14:00 到 +14:00。
         DateTimeOffset = 27,
 
-        NText=28
+        NText= 28,
+        //
+        // 摘要:
+        //Byte数组
+        Bytes = 29
     }
 
     public class LBDbType
@@ -153,6 +157,8 @@ namespace LB.WinFunction
                     return typeof(string);
                 case enLBDbType.Binary:
                     return typeof(Int16);
+                case enLBDbType.Bytes:
+                    return typeof(byte[]);
                 default:
                     return typeof(string);
             }

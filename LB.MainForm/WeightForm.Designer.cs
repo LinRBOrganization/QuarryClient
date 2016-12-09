@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WeightForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -42,12 +42,12 @@
             this.lbSkinButton8 = new LB.Controls.LBSkinButton(this.components);
             this.lbSkinButton9 = new LB.Controls.LBSkinButton(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.lbSkinButton6 = new LB.Controls.LBSkinButton(this.components);
+            this.btnRePrintReport = new LB.Controls.LBSkinButton(this.components);
             this.lbSkinButton5 = new LB.Controls.LBSkinButton(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnTotalWeight = new LB.Controls.LBSkinButton(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lbSkinButton3 = new LB.Controls.LBSkinButton(this.components);
+            this.btnCarTareManger = new LB.Controls.LBSkinButton(this.components);
             this.lbSkinButton2 = new LB.Controls.LBSkinButton(this.components);
             this.lbSkinButton1 = new LB.Controls.LBSkinButton(this.components);
             this.btnReadTareWeight = new LB.Controls.LBSkinButton(this.components);
@@ -58,6 +58,8 @@
             this.btnCancel = new System.Windows.Forms.ToolStripMenuItem();
             this.btnDeviceConfig = new LB.Controls.LBToolStripMenuItem(this.components);
             this.btnCameraConfig = new LB.Controls.LBToolStripMenuItem(this.components);
+            this.btnRoomManager = new LB.Controls.LBToolStripMenuItem(this.components);
+            this.btnWeightReportSet = new LB.Controls.LBToolStripMenuItem(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -69,11 +71,12 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.txtSaleCarOutBillID = new LB.Controls.LBSkinTextBox(this.components);
             this.txtBillDateOut = new CCWin.SkinControl.SkinLabel();
             this.txtBillDateIn = new CCWin.SkinControl.SkinLabel();
             this.txtSaleCarInBillID = new LB.Controls.LBSkinTextBox(this.components);
             this.txtDescription = new LB.Controls.LBSkinTextBox(this.components);
-            this.lbMetroComboBox1 = new LB.Controls.LBMetroComboBox(this.components);
+            this.txtBillStatus = new LB.Controls.LBMetroComboBox(this.components);
             this.txtSaleCarInBillCode = new LB.Controls.LBSkinTextBox(this.components);
             this.txtCalculateType = new LB.Controls.LBMetroComboBox(this.components);
             this.txtReceiveType = new LB.Controls.LBMetroComboBox(this.components);
@@ -90,7 +93,7 @@
             this.skinLabel5 = new CCWin.SkinControl.SkinLabel();
             this.skinLabel4 = new CCWin.SkinControl.SkinLabel();
             this.skinLabel1 = new CCWin.SkinControl.SkinLabel();
-            this.skinLabel3 = new CCWin.SkinControl.SkinLabel();
+            this.lblWeightTypeName = new CCWin.SkinControl.SkinLabel();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.txtAmount = new System.Windows.Forms.TextBox();
             this.txtPrice = new System.Windows.Forms.TextBox();
@@ -106,6 +109,7 @@
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.grdMain = new LB.Controls.LBDataGridView(this.components);
             this.SaleCarInBillCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SaleCarInBillID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BillStatus = new LB.Controls.LBDataGridViewComboBoxColumn();
             this.BillDateIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BillDateOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -124,7 +128,6 @@
             this.skinLabel19 = new CCWin.SkinControl.SkinLabel();
             this.txtBillDateFrom = new DMSkin.Metro.Controls.MetroDateTime();
             this.skinLabel18 = new CCWin.SkinControl.SkinLabel();
-            this.btnRoomManager = new LB.Controls.LBToolStripMenuItem(this.components);
             this.panel1.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -236,7 +239,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.lbSkinButton6);
+            this.groupBox3.Controls.Add(this.btnRePrintReport);
             this.groupBox3.Controls.Add(this.lbSkinButton5);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox3.Location = new System.Drawing.Point(433, 0);
@@ -246,23 +249,24 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "打印";
             // 
-            // lbSkinButton6
+            // btnRePrintReport
             // 
-            this.lbSkinButton6.BackColor = System.Drawing.Color.Transparent;
-            this.lbSkinButton6.BaseColor = System.Drawing.Color.LightGray;
-            this.lbSkinButton6.BorderColor = System.Drawing.Color.Gray;
-            this.lbSkinButton6.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.lbSkinButton6.DownBack = null;
-            this.lbSkinButton6.Font = new System.Drawing.Font("宋体", 10F);
-            this.lbSkinButton6.LBPermissionCode = "";
-            this.lbSkinButton6.Location = new System.Drawing.Point(89, 20);
-            this.lbSkinButton6.MouseBack = null;
-            this.lbSkinButton6.Name = "lbSkinButton6";
-            this.lbSkinButton6.NormlBack = null;
-            this.lbSkinButton6.Size = new System.Drawing.Size(77, 28);
-            this.lbSkinButton6.TabIndex = 5;
-            this.lbSkinButton6.Text = "补打小票";
-            this.lbSkinButton6.UseVisualStyleBackColor = false;
+            this.btnRePrintReport.BackColor = System.Drawing.Color.Transparent;
+            this.btnRePrintReport.BaseColor = System.Drawing.Color.LightGray;
+            this.btnRePrintReport.BorderColor = System.Drawing.Color.Gray;
+            this.btnRePrintReport.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.btnRePrintReport.DownBack = null;
+            this.btnRePrintReport.Font = new System.Drawing.Font("宋体", 10F);
+            this.btnRePrintReport.LBPermissionCode = "";
+            this.btnRePrintReport.Location = new System.Drawing.Point(89, 20);
+            this.btnRePrintReport.MouseBack = null;
+            this.btnRePrintReport.Name = "btnRePrintReport";
+            this.btnRePrintReport.NormlBack = null;
+            this.btnRePrintReport.Size = new System.Drawing.Size(77, 28);
+            this.btnRePrintReport.TabIndex = 5;
+            this.btnRePrintReport.Text = "补打小票";
+            this.btnRePrintReport.UseVisualStyleBackColor = false;
+            this.btnRePrintReport.Click += new System.EventHandler(this.btnRePrintReport_Click);
             // 
             // lbSkinButton5
             // 
@@ -314,7 +318,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.lbSkinButton3);
+            this.groupBox1.Controls.Add(this.btnCarTareManger);
             this.groupBox1.Controls.Add(this.lbSkinButton2);
             this.groupBox1.Controls.Add(this.lbSkinButton1);
             this.groupBox1.Controls.Add(this.btnReadTareWeight);
@@ -326,23 +330,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "皮重操作";
             // 
-            // lbSkinButton3
+            // btnCarTareManger
             // 
-            this.lbSkinButton3.BackColor = System.Drawing.Color.Transparent;
-            this.lbSkinButton3.BaseColor = System.Drawing.Color.LightGray;
-            this.lbSkinButton3.BorderColor = System.Drawing.Color.Gray;
-            this.lbSkinButton3.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.lbSkinButton3.DownBack = null;
-            this.lbSkinButton3.Font = new System.Drawing.Font("宋体", 10F);
-            this.lbSkinButton3.LBPermissionCode = "";
-            this.lbSkinButton3.Location = new System.Drawing.Point(247, 20);
-            this.lbSkinButton3.MouseBack = null;
-            this.lbSkinButton3.Name = "lbSkinButton3";
-            this.lbSkinButton3.NormlBack = null;
-            this.lbSkinButton3.Size = new System.Drawing.Size(69, 28);
-            this.lbSkinButton3.TabIndex = 5;
-            this.lbSkinButton3.Text = "皮重库";
-            this.lbSkinButton3.UseVisualStyleBackColor = false;
+            this.btnCarTareManger.BackColor = System.Drawing.Color.Transparent;
+            this.btnCarTareManger.BaseColor = System.Drawing.Color.LightGray;
+            this.btnCarTareManger.BorderColor = System.Drawing.Color.Gray;
+            this.btnCarTareManger.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.btnCarTareManger.DownBack = null;
+            this.btnCarTareManger.Font = new System.Drawing.Font("宋体", 10F);
+            this.btnCarTareManger.LBPermissionCode = "";
+            this.btnCarTareManger.Location = new System.Drawing.Point(246, 20);
+            this.btnCarTareManger.MouseBack = null;
+            this.btnCarTareManger.Name = "btnCarTareManger";
+            this.btnCarTareManger.NormlBack = null;
+            this.btnCarTareManger.Size = new System.Drawing.Size(69, 28);
+            this.btnCarTareManger.TabIndex = 5;
+            this.btnCarTareManger.Text = "皮重库";
+            this.btnCarTareManger.UseVisualStyleBackColor = false;
+            this.btnCarTareManger.Click += new System.EventHandler(this.btnCarTareManger_Click);
             // 
             // lbSkinButton2
             // 
@@ -430,7 +435,8 @@
             this.btnCancel,
             this.btnDeviceConfig,
             this.btnCameraConfig,
-            this.btnRoomManager});
+            this.btnRoomManager,
+            this.btnWeightReportSet});
             this.btnDDSystemManager.Image = ((System.Drawing.Image)(resources.GetObject("btnDDSystemManager.Image")));
             this.btnDDSystemManager.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDDSystemManager.LBPermissionCode = "PMSystemManager";
@@ -442,14 +448,14 @@
             // 
             this.btnChangePassword.LBPermissionCode = "PMChangePassword";
             this.btnChangePassword.Name = "btnChangePassword";
-            this.btnChangePassword.Size = new System.Drawing.Size(152, 22);
+            this.btnChangePassword.Size = new System.Drawing.Size(148, 22);
             this.btnChangePassword.Text = "修改密码";
             this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
             // 
             // btnCancel
             // 
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(152, 22);
+            this.btnCancel.Size = new System.Drawing.Size(148, 22);
             this.btnCancel.Text = "注销";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -457,7 +463,7 @@
             // 
             this.btnDeviceConfig.LBPermissionCode = "";
             this.btnDeviceConfig.Name = "btnDeviceConfig";
-            this.btnDeviceConfig.Size = new System.Drawing.Size(152, 22);
+            this.btnDeviceConfig.Size = new System.Drawing.Size(148, 22);
             this.btnDeviceConfig.Text = "地磅仪表设置";
             this.btnDeviceConfig.Click += new System.EventHandler(this.btnDeviceConfig_Click);
             // 
@@ -465,9 +471,25 @@
             // 
             this.btnCameraConfig.LBPermissionCode = "";
             this.btnCameraConfig.Name = "btnCameraConfig";
-            this.btnCameraConfig.Size = new System.Drawing.Size(152, 22);
+            this.btnCameraConfig.Size = new System.Drawing.Size(148, 22);
             this.btnCameraConfig.Text = "摄像头设置";
             this.btnCameraConfig.Click += new System.EventHandler(this.btnCameraConfig_Click);
+            // 
+            // btnRoomManager
+            // 
+            this.btnRoomManager.LBPermissionCode = "";
+            this.btnRoomManager.Name = "btnRoomManager";
+            this.btnRoomManager.Size = new System.Drawing.Size(148, 22);
+            this.btnRoomManager.Text = "磅房设置";
+            this.btnRoomManager.Click += new System.EventHandler(this.btnRoomManager_Click);
+            // 
+            // btnWeightReportSet
+            // 
+            this.btnWeightReportSet.LBPermissionCode = "";
+            this.btnWeightReportSet.Name = "btnWeightReportSet";
+            this.btnWeightReportSet.Size = new System.Drawing.Size(148, 22);
+            this.btnWeightReportSet.Text = "磅单报表设计";
+            this.btnWeightReportSet.Click += new System.EventHandler(this.btnWeightReportSet_Click);
             // 
             // panel2
             // 
@@ -594,11 +616,12 @@
             // 
             // groupBox8
             // 
+            this.groupBox8.Controls.Add(this.txtSaleCarOutBillID);
             this.groupBox8.Controls.Add(this.txtBillDateOut);
             this.groupBox8.Controls.Add(this.txtBillDateIn);
             this.groupBox8.Controls.Add(this.txtSaleCarInBillID);
             this.groupBox8.Controls.Add(this.txtDescription);
-            this.groupBox8.Controls.Add(this.lbMetroComboBox1);
+            this.groupBox8.Controls.Add(this.txtBillStatus);
             this.groupBox8.Controls.Add(this.txtSaleCarInBillCode);
             this.groupBox8.Controls.Add(this.txtCalculateType);
             this.groupBox8.Controls.Add(this.txtReceiveType);
@@ -615,13 +638,63 @@
             this.groupBox8.Controls.Add(this.skinLabel5);
             this.groupBox8.Controls.Add(this.skinLabel4);
             this.groupBox8.Controls.Add(this.skinLabel1);
-            this.groupBox8.Controls.Add(this.skinLabel3);
+            this.groupBox8.Controls.Add(this.lblWeightTypeName);
             this.groupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox8.Location = new System.Drawing.Point(0, 0);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(540, 307);
             this.groupBox8.TabIndex = 7;
             this.groupBox8.TabStop = false;
+            // 
+            // txtSaleCarOutBillID
+            // 
+            this.txtSaleCarOutBillID.BackColor = System.Drawing.Color.Transparent;
+            this.txtSaleCarOutBillID.CanBeEmpty = true;
+            this.txtSaleCarOutBillID.Caption = "";
+            this.txtSaleCarOutBillID.DownBack = null;
+            this.txtSaleCarOutBillID.Icon = null;
+            this.txtSaleCarOutBillID.IconIsButton = false;
+            this.txtSaleCarOutBillID.IconMouseState = CCWin.SkinClass.ControlState.Normal;
+            this.txtSaleCarOutBillID.IsPasswordChat = '\0';
+            this.txtSaleCarOutBillID.IsSystemPasswordChar = false;
+            this.txtSaleCarOutBillID.Lines = new string[0];
+            this.txtSaleCarOutBillID.Location = new System.Drawing.Point(18, 139);
+            this.txtSaleCarOutBillID.Margin = new System.Windows.Forms.Padding(0);
+            this.txtSaleCarOutBillID.MaxLength = 32767;
+            this.txtSaleCarOutBillID.MinimumSize = new System.Drawing.Size(28, 28);
+            this.txtSaleCarOutBillID.MouseBack = null;
+            this.txtSaleCarOutBillID.MouseState = CCWin.SkinClass.ControlState.Normal;
+            this.txtSaleCarOutBillID.Multiline = false;
+            this.txtSaleCarOutBillID.Name = "txtSaleCarOutBillID";
+            this.txtSaleCarOutBillID.NormlBack = null;
+            this.txtSaleCarOutBillID.Padding = new System.Windows.Forms.Padding(5);
+            this.txtSaleCarOutBillID.ReadOnly = false;
+            this.txtSaleCarOutBillID.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtSaleCarOutBillID.Size = new System.Drawing.Size(28, 28);
+            // 
+            // 
+            // 
+            this.txtSaleCarOutBillID.SkinTxt.AccessibleName = "";
+            this.txtSaleCarOutBillID.SkinTxt.AutoCompleteCustomSource.AddRange(new string[] {
+            "asdfasdf",
+            "adsfasdf"});
+            this.txtSaleCarOutBillID.SkinTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.txtSaleCarOutBillID.SkinTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtSaleCarOutBillID.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSaleCarOutBillID.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSaleCarOutBillID.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 9.75F);
+            this.txtSaleCarOutBillID.SkinTxt.Location = new System.Drawing.Point(5, 5);
+            this.txtSaleCarOutBillID.SkinTxt.Name = "BaseText";
+            this.txtSaleCarOutBillID.SkinTxt.Size = new System.Drawing.Size(18, 18);
+            this.txtSaleCarOutBillID.SkinTxt.TabIndex = 0;
+            this.txtSaleCarOutBillID.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.txtSaleCarOutBillID.SkinTxt.WaterText = "";
+            this.txtSaleCarOutBillID.TabIndex = 42;
+            this.txtSaleCarOutBillID.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtSaleCarOutBillID.Visible = false;
+            this.txtSaleCarOutBillID.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.txtSaleCarOutBillID.WaterText = "";
+            this.txtSaleCarOutBillID.WordWrap = true;
             // 
             // txtBillDateOut
             // 
@@ -630,7 +703,7 @@
             this.txtBillDateOut.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBillDateOut.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.txtBillDateOut.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtBillDateOut.Location = new System.Drawing.Point(372, 54);
+            this.txtBillDateOut.Location = new System.Drawing.Point(374, 56);
             this.txtBillDateOut.Name = "txtBillDateOut";
             this.txtBillDateOut.Size = new System.Drawing.Size(162, 21);
             this.txtBillDateOut.TabIndex = 41;
@@ -750,17 +823,18 @@
             this.txtDescription.WaterText = "";
             this.txtDescription.WordWrap = true;
             // 
-            // lbMetroComboBox1
+            // txtBillStatus
             // 
-            this.lbMetroComboBox1.CanBeEmpty = false;
-            this.lbMetroComboBox1.Caption = "每周";
-            this.lbMetroComboBox1.DM_UseSelectable = true;
-            this.lbMetroComboBox1.FormattingEnabled = true;
-            this.lbMetroComboBox1.ItemHeight = 24;
-            this.lbMetroComboBox1.Location = new System.Drawing.Point(372, 95);
-            this.lbMetroComboBox1.Name = "lbMetroComboBox1";
-            this.lbMetroComboBox1.Size = new System.Drawing.Size(162, 30);
-            this.lbMetroComboBox1.TabIndex = 37;
+            this.txtBillStatus.CanBeEmpty = false;
+            this.txtBillStatus.Caption = "每周";
+            this.txtBillStatus.DM_UseSelectable = true;
+            this.txtBillStatus.Enabled = false;
+            this.txtBillStatus.FormattingEnabled = true;
+            this.txtBillStatus.ItemHeight = 24;
+            this.txtBillStatus.Location = new System.Drawing.Point(372, 95);
+            this.txtBillStatus.Name = "txtBillStatus";
+            this.txtBillStatus.Size = new System.Drawing.Size(162, 30);
+            this.txtBillStatus.TabIndex = 37;
             // 
             // txtSaleCarInBillCode
             // 
@@ -1010,18 +1084,18 @@
             this.skinLabel1.Text = "第一次过磅";
             this.skinLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // skinLabel3
+            // lblWeightTypeName
             // 
-            this.skinLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.skinLabel3.BorderColor = System.Drawing.Color.White;
-            this.skinLabel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.skinLabel3.Font = new System.Drawing.Font("微软雅黑", 16F);
-            this.skinLabel3.Location = new System.Drawing.Point(3, 17);
-            this.skinLabel3.Name = "skinLabel3";
-            this.skinLabel3.Size = new System.Drawing.Size(534, 30);
-            this.skinLabel3.TabIndex = 10;
-            this.skinLabel3.Text = "磅单";
-            this.skinLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblWeightTypeName.BackColor = System.Drawing.Color.Transparent;
+            this.lblWeightTypeName.BorderColor = System.Drawing.Color.White;
+            this.lblWeightTypeName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblWeightTypeName.Font = new System.Drawing.Font("微软雅黑", 16F);
+            this.lblWeightTypeName.Location = new System.Drawing.Point(3, 17);
+            this.lblWeightTypeName.Name = "lblWeightTypeName";
+            this.lblWeightTypeName.Size = new System.Drawing.Size(534, 30);
+            this.lblWeightTypeName.TabIndex = 10;
+            this.lblWeightTypeName.Text = "磅单";
+            this.lblWeightTypeName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox7
             // 
@@ -1179,16 +1253,17 @@
             // 
             // grdMain
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(253)))));
-            this.grdMain.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(253)))));
+            this.grdMain.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.grdMain.BackgroundColor = System.Drawing.SystemColors.Window;
             this.grdMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.grdMain.ColumnFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.grdMain.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.grdMain.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.grdMain.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.grdMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdMain.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SaleCarInBillCode,
+            this.SaleCarInBillID,
             this.BillStatus,
             this.BillDateIn,
             this.BillDateOut,
@@ -1201,14 +1276,14 @@
             this.Price,
             this.Amount});
             this.grdMain.ColumnSelectForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 12F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(188)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdMain.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("宋体", 12F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(188)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdMain.DefaultCellStyle = dataGridViewCellStyle14;
             this.grdMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.grdMain.EnableHeadersVisualStyles = false;
@@ -1222,12 +1297,12 @@
             this.grdMain.Name = "grdMain";
             this.grdMain.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.grdMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdMain.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdMain.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.grdMain.RowTemplate.Height = 23;
             this.grdMain.Size = new System.Drawing.Size(1101, 147);
             this.grdMain.TabIndex = 2;
@@ -1241,6 +1316,13 @@
             this.SaleCarInBillCode.HeaderText = "单号";
             this.SaleCarInBillCode.Name = "SaleCarInBillCode";
             this.SaleCarInBillCode.ReadOnly = true;
+            // 
+            // SaleCarInBillID
+            // 
+            this.SaleCarInBillID.DataPropertyName = "SaleCarInBillID";
+            this.SaleCarInBillID.HeaderText = "SaleCarInBillID";
+            this.SaleCarInBillID.Name = "SaleCarInBillID";
+            this.SaleCarInBillID.Visible = false;
             // 
             // BillStatus
             // 
@@ -1290,9 +1372,9 @@
             // ItemName
             // 
             this.ItemName.DataPropertyName = "ItemName";
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = null;
-            this.ItemName.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Format = "d";
+            dataGridViewCellStyle13.NullValue = null;
+            this.ItemName.DefaultCellStyle = dataGridViewCellStyle13;
             this.ItemName.HeaderText = "货物名称";
             this.ItemName.Name = "ItemName";
             this.ItemName.ReadOnly = true;
@@ -1377,7 +1459,7 @@
             // txtBillDateTo
             // 
             this.txtBillDateTo.Location = new System.Drawing.Point(257, 9);
-            this.txtBillDateTo.MinimumSize = new System.Drawing.Size(0, 30);
+            this.txtBillDateTo.MinimumSize = new System.Drawing.Size(4, 30);
             this.txtBillDateTo.Name = "txtBillDateTo";
             this.txtBillDateTo.Size = new System.Drawing.Size(134, 30);
             this.txtBillDateTo.TabIndex = 26;
@@ -1397,7 +1479,7 @@
             // txtBillDateFrom
             // 
             this.txtBillDateFrom.Location = new System.Drawing.Point(87, 11);
-            this.txtBillDateFrom.MinimumSize = new System.Drawing.Size(0, 30);
+            this.txtBillDateFrom.MinimumSize = new System.Drawing.Size(4, 30);
             this.txtBillDateFrom.Name = "txtBillDateFrom";
             this.txtBillDateFrom.Size = new System.Drawing.Size(134, 30);
             this.txtBillDateFrom.TabIndex = 1;
@@ -1413,14 +1495,6 @@
             this.skinLabel18.TabIndex = 24;
             this.skinLabel18.Text = "过磅日期";
             this.skinLabel18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnRoomManager
-            // 
-            this.btnRoomManager.LBPermissionCode = "";
-            this.btnRoomManager.Name = "btnRoomManager";
-            this.btnRoomManager.Size = new System.Drawing.Size(152, 22);
-            this.btnRoomManager.Text = "磅房设置";
-            this.btnRoomManager.Click += new System.EventHandler(this.btnRoomManager_Click);
             // 
             // WeightForm
             // 
@@ -1466,12 +1540,12 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private Controls.LBSkinButton btnReadTareWeight;
-        private Controls.LBSkinButton lbSkinButton3;
+        private Controls.LBSkinButton btnCarTareManger;
         private Controls.LBSkinButton lbSkinButton2;
         private Controls.LBSkinButton lbSkinButton1;
         private Controls.LBSkinButton btnTotalWeight;
         private Controls.LBSkinButton lbSkinButton5;
-        private Controls.LBSkinButton lbSkinButton6;
+        private Controls.LBSkinButton btnRePrintReport;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private Controls.LBToolStripDropDownButton btnDDSystemManager;
         private Controls.LBToolStripMenuItem btnChangePassword;
@@ -1483,7 +1557,7 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.GroupBox groupBox8;
         private CCWin.SkinControl.SkinLabel skinLabel1;
-        private CCWin.SkinControl.SkinLabel skinLabel3;
+        private CCWin.SkinControl.SkinLabel lblWeightTypeName;
         private CCWin.SkinControl.SkinLabel skinLabel4;
         private CCWin.SkinControl.SkinLabel skinLabel5;
         private CCWin.SkinControl.SkinLabel skinLabel6;
@@ -1521,25 +1595,13 @@
         private Controls.LBTextBox.CoolTextBox txtItemID;
         private Controls.LBMetroComboBox txtCalculateType;
         private Controls.LBMetroComboBox txtReceiveType;
-        private Controls.LBMetroComboBox lbMetroComboBox1;
+        private Controls.LBMetroComboBox txtBillStatus;
         private Controls.LBSkinTextBox txtSaleCarInBillCode;
         private Controls.LBSkinTextBox txtDescription;
         private Controls.LBSkinTextBox txtSaleCarInBillID;
         private CCWin.SkinControl.SkinLabel txtBillDateIn;
         private CCWin.SkinControl.SkinLabel txtBillDateOut;
         private Controls.Searcher.CtlSearcher ctlSearcher1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SaleCarInBillCode;
-        private Controls.LBDataGridViewComboBoxColumn BillStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BillDateIn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BillDateOut;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CarNum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalWeight;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CarTare;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SuttleWeight;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private Common.Camera.ViewCamera viewCamera3;
         private Common.Camera.ViewCamera viewCamera4;
@@ -1551,5 +1613,20 @@
         private System.Windows.Forms.TextBox txtSuttleWeight;
         private System.Windows.Forms.TextBox txtTotalWeight;
         private Controls.LBToolStripMenuItem btnRoomManager;
+        private Controls.LBSkinTextBox txtSaleCarOutBillID;
+        private Controls.LBToolStripMenuItem btnWeightReportSet;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SaleCarInBillCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SaleCarInBillID;
+        private Controls.LBDataGridViewComboBoxColumn BillStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BillDateIn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BillDateOut;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CarNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalWeight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CarTare;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SuttleWeight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
     }
 }

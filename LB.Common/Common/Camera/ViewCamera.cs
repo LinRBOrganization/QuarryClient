@@ -111,8 +111,8 @@ namespace LB.Common.Camera
             if (!HikSDK.NET_DVR_CaptureJPEGPicture_NEW(user, 1, ref lpJpegPara, byJpegPicBuffer, iBuffSize, ref dwSizeReturned))
             {
                 uint iLastErr = HikSDK.NET_DVR_GetLastError();
-                string str = "NET_DVR_CaptureJPEGPicture_NEW failed, error code= " + iLastErr;
-                MessageBox.Show(str);
+                string str = "摄像头调用失败，无法获取影像图片, error code= " + iLastErr;
+                throw new Exception(str);
                 //DebugInfo(str);
                 return null;
             }

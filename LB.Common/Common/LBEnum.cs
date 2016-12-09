@@ -30,7 +30,8 @@ namespace LB.Common
         None,
         Item,
         Customer,
-        Car
+        CarIn,
+        CarOut
     }
 
     public enum enWeightType

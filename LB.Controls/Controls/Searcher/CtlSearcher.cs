@@ -145,6 +145,20 @@ namespace LB.Controls.Searcher
             }
         }
 
+        /// <summary>
+        /// 设置默认过滤条件
+        /// </summary>
+        /// <param name="strColumnName"></param>
+        /// <param name="strValue"></param>
+        public void SetDefaultFilter(string strColumnName,string strValue)
+        {
+            if (this.mgrdMain.Columns.Contains(strColumnName))
+            {
+                SetGridView(mgrdMain, strColumnName);
+                this.txtSearchText.Text = strValue;
+            }
+        }
+
         public string GetFilter()
         {
             string strFilter = "";

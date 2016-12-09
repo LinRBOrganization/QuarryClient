@@ -41,6 +41,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grdCustomer = new LB.Controls.LBDataGridView(this.components);
             this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Contact = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,9 +65,7 @@
             this.CreateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ChangeBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ChangeTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grdCar = new LB.Controls.LBDataGridView(this.components);
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CarNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdCarIn = new LB.Controls.LBDataGridView(this.components);
             this.grdItem = new LB.Controls.LBDataGridView(this.components);
             this.LBSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ItemCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,9 +77,17 @@
             this.ItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grdCarOut = new LB.Controls.LBDataGridView(this.components);
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CanOutBillCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NotOutBillCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdCar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCarIn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdItem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCarOut)).BeginInit();
             this.SuspendLayout();
             // 
             // grdCustomer
@@ -279,21 +289,22 @@
             this.ChangeTime.Name = "ChangeTime";
             this.ChangeTime.ReadOnly = true;
             // 
-            // grdCar
+            // grdCarIn
             // 
-            this.grdCar.AllowUserToAddRows = false;
+            this.grdCarIn.AllowUserToAddRows = false;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(253)))));
-            this.grdCar.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.grdCar.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.grdCar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.grdCar.ColumnFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.grdCar.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.grdCar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.grdCar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdCar.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.grdCarIn.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.grdCarIn.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.grdCarIn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.grdCarIn.ColumnFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.grdCarIn.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.grdCarIn.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.grdCarIn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdCarIn.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
-            this.CarNum});
-            this.grdCar.ColumnSelectForeColor = System.Drawing.SystemColors.HighlightText;
+            this.CarNum,
+            this.NotOutBillCount});
+            this.grdCarIn.ColumnSelectForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("宋体", 12F);
@@ -301,47 +312,31 @@
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(188)))), ((int)(((byte)(240)))));
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdCar.DefaultCellStyle = dataGridViewCellStyle7;
-            this.grdCar.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.grdCar.EnableHeadersVisualStyles = false;
-            this.grdCar.GridColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.grdCar.HeadFont = null;
-            this.grdCar.HeadForeColor = System.Drawing.Color.Empty;
-            this.grdCar.HeadSelectBackColor = System.Drawing.Color.Empty;
-            this.grdCar.HeadSelectForeColor = System.Drawing.Color.Empty;
-            this.grdCar.LineNumberForeColor = System.Drawing.Color.MidnightBlue;
-            this.grdCar.Location = new System.Drawing.Point(8, 163);
-            this.grdCar.Name = "grdCar";
-            this.grdCar.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.grdCar.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.grdCarIn.DefaultCellStyle = dataGridViewCellStyle7;
+            this.grdCarIn.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.grdCarIn.EnableHeadersVisualStyles = false;
+            this.grdCarIn.GridColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.grdCarIn.HeadFont = null;
+            this.grdCarIn.HeadForeColor = System.Drawing.Color.Empty;
+            this.grdCarIn.HeadSelectBackColor = System.Drawing.Color.Empty;
+            this.grdCarIn.HeadSelectForeColor = System.Drawing.Color.Empty;
+            this.grdCarIn.LineNumberForeColor = System.Drawing.Color.MidnightBlue;
+            this.grdCarIn.Location = new System.Drawing.Point(8, 163);
+            this.grdCarIn.Name = "grdCarIn";
+            this.grdCarIn.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.grdCarIn.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.grdCar.RowsDefaultCellStyle = dataGridViewCellStyle8;
-            this.grdCar.RowTemplate.Height = 23;
-            this.grdCar.Size = new System.Drawing.Size(411, 128);
-            this.grdCar.TabIndex = 9;
-            this.grdCar.TitleBack = null;
-            this.grdCar.TitleBackColorBegin = System.Drawing.Color.White;
-            this.grdCar.TitleBackColorEnd = System.Drawing.SystemColors.ActiveBorder;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "CustomerName";
-            this.dataGridViewTextBoxColumn1.HeaderText = "客户名称";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 180;
-            // 
-            // CarNum
-            // 
-            this.CarNum.DataPropertyName = "CarNum";
-            this.CarNum.HeaderText = "车牌号码";
-            this.CarNum.Name = "CarNum";
-            this.CarNum.ReadOnly = true;
-            this.CarNum.Width = 150;
+            this.grdCarIn.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            this.grdCarIn.RowTemplate.Height = 23;
+            this.grdCarIn.Size = new System.Drawing.Size(459, 68);
+            this.grdCarIn.TabIndex = 9;
+            this.grdCarIn.TitleBack = null;
+            this.grdCarIn.TitleBackColorBegin = System.Drawing.Color.White;
+            this.grdCarIn.TitleBackColorEnd = System.Drawing.SystemColors.ActiveBorder;
             // 
             // grdItem
             // 
@@ -480,18 +475,115 @@
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
             this.dataGridViewTextBoxColumn3.Width = 80;
             // 
+            // grdCarOut
+            // 
+            this.grdCarOut.AllowUserToAddRows = false;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(246)))), ((int)(((byte)(253)))));
+            this.grdCarOut.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            this.grdCarOut.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.grdCarOut.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.grdCarOut.ColumnFont = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.grdCarOut.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.grdCarOut.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            this.grdCarOut.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdCarOut.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.CanOutBillCount});
+            this.grdCarOut.ColumnSelectForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("宋体", 12F);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(188)))), ((int)(((byte)(240)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdCarOut.DefaultCellStyle = dataGridViewCellStyle15;
+            this.grdCarOut.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.grdCarOut.EnableHeadersVisualStyles = false;
+            this.grdCarOut.GridColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.grdCarOut.HeadFont = null;
+            this.grdCarOut.HeadForeColor = System.Drawing.Color.Empty;
+            this.grdCarOut.HeadSelectBackColor = System.Drawing.Color.Empty;
+            this.grdCarOut.HeadSelectForeColor = System.Drawing.Color.Empty;
+            this.grdCarOut.LineNumberForeColor = System.Drawing.Color.MidnightBlue;
+            this.grdCarOut.Location = new System.Drawing.Point(181, 122);
+            this.grdCarOut.Name = "grdCarOut";
+            this.grdCarOut.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.grdCarOut.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.grdCarOut.RowsDefaultCellStyle = dataGridViewCellStyle16;
+            this.grdCarOut.RowTemplate.Height = 23;
+            this.grdCarOut.Size = new System.Drawing.Size(459, 68);
+            this.grdCarOut.TabIndex = 11;
+            this.grdCarOut.TitleBack = null;
+            this.grdCarOut.TitleBackColorBegin = System.Drawing.Color.White;
+            this.grdCarOut.TitleBackColorEnd = System.Drawing.SystemColors.ActiveBorder;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "CustomerName";
+            this.dataGridViewTextBoxColumn4.HeaderText = "客户名称";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 180;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "CarNum";
+            this.dataGridViewTextBoxColumn5.HeaderText = "车牌号码";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 150;
+            // 
+            // CanOutBillCount
+            // 
+            this.CanOutBillCount.DataPropertyName = "CanOutBillCount";
+            this.CanOutBillCount.HeaderText = "可出场单数";
+            this.CanOutBillCount.Name = "CanOutBillCount";
+            this.CanOutBillCount.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "CustomerName";
+            this.dataGridViewTextBoxColumn1.HeaderText = "客户名称";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 180;
+            // 
+            // CarNum
+            // 
+            this.CarNum.DataPropertyName = "CarNum";
+            this.CarNum.HeaderText = "车牌号码";
+            this.CarNum.Name = "CarNum";
+            this.CarNum.ReadOnly = true;
+            this.CarNum.Width = 150;
+            // 
+            // NotOutBillCount
+            // 
+            this.NotOutBillCount.DataPropertyName = "NotOutBillCount";
+            this.NotOutBillCount.HeaderText = "未出场单数";
+            this.NotOutBillCount.Name = "NotOutBillCount";
+            this.NotOutBillCount.ReadOnly = true;
+            // 
             // CtlBaseInfoSelection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.grdCarOut);
             this.Controls.Add(this.grdItem);
-            this.Controls.Add(this.grdCar);
+            this.Controls.Add(this.grdCarIn);
             this.Controls.Add(this.grdCustomer);
             this.Name = "CtlBaseInfoSelection";
             this.Size = new System.Drawing.Size(643, 263);
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdCar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCarIn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdItem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCarOut)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -518,9 +610,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CreateTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn ChangeBy;
         private System.Windows.Forms.DataGridViewTextBoxColumn ChangeTime;
-        private Controls.LBDataGridView grdCar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CarNum;
+        private Controls.LBDataGridView grdCarIn;
         private Controls.LBDataGridView grdItem;
         private System.Windows.Forms.DataGridViewCheckBoxColumn LBSelected;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemCode;
@@ -532,5 +622,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private Controls.LBDataGridView grdCarOut;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CanOutBillCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CarNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NotOutBillCount;
     }
 }

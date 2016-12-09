@@ -1,6 +1,8 @@
 ﻿using LB.Common;
 using LB.Common.Camera;
 using LB.Controls;
+using LB.Controls.Args;
+using LB.Controls.Report;
 using LB.Page.Helper;
 using LB.SysConfig.SysConfig;
 using LB.WinFunction;
@@ -9,6 +11,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -22,6 +26,7 @@ namespace LB.MainForm
         LB.MainForm.CtlBaseInfoSelection _ctlBaseInfo = null;
         public bool _OpenCamera = false;
         public enWeightType _WeightType;
+        LB.MainForm.frmAutoPrint frmPrint = null;//打印等待界面
         public WeightForm()
         {
             InitializeComponent();
@@ -40,6 +45,8 @@ namespace LB.MainForm
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+
+            ReportHelper.LBFinishReport += ReportHelper_LBFinishReport;
 
             ReadWeightType();//读取磅房类型
 
@@ -65,7 +72,66 @@ namespace LB.MainForm
 
             threadCamera1 = new System.Threading.Thread(new System.Threading.ParameterizedThreadStart(OpenCamera));
             threadCamera1.Start(4);
+
+            this.grdMain.CellDoubleClick += GrdMain_CellDoubleClick;
         }
+
+        #region -- 双击打开清单  --
+
+        private void GrdMain_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if(e.RowIndex>=0 && e.ColumnIndex >= 0)
+                {
+                    long lSaleCarInBillID = LBConverter.ToInt64(this.grdMain["SaleCarInBillID",e.RowIndex].Value);
+                    if (lSaleCarInBillID > 0)
+                    {
+                        using (DataTable dtBill = ExecuteSQL.CallView(125, "", "SaleCarInBillID=" + lSaleCarInBillID.ToString(), ""))
+                        {
+                            //if (dtBill.Rows.Count > 0)
+                            //{
+                            //    DataRow drBill = dtBill.Rows[0];
+                            //    long lSaleCarOutBillID = LBConverter.ToInt64(drBill["SaleCarOutBillID"]);
+                            //    long lCarID= LBConverter.ToInt64(drBill["CarID"]);
+                            //    long lItemID = LBConverter.ToInt64(drBill["ItemID"]);
+                            //    long lCustomerID = LBConverter.ToInt64(drBill["CustomerID"]);
+                            //    int iBillStatus = LBConverter.ToInt32(drBill["BillStatus"]);
+
+                            //    this.txtBillDateIn.Text = drBill["BillDateIn"].ToString();
+                            //    this.txtBillDateOut.Text = drBill["BillDateOut"].ToString().TrimEnd();
+                            //    this.txtCalculateType.SelectedValue = drBill["CalculateType"];
+                            //    this.txtCarID.TextBox.SelectedItemID = drBill["CarID"];
+                            //    this.txtItemID.TextBox.SelectedItemID = drBill["ItemID"];
+                            //    this.txtCustomerID.TextBox.SelectedItemID = drBill["CustomerID"];
+                            //    this.txtCarTare.Text = drBill["CarTare"].ToString();
+                            //    this.txtDescription.Text = drBill["Description"].ToString();
+                            //    this.txtReceiveType.SelectedValue = drBill["ReceiveType"];
+                            //    this.txtSaleCarInBillCode.Text = drBill["SaleCarInBillCode"].ToString().TrimEnd();
+                            //    this.txtSaleCarInBillID.Text = drBill["SaleCarInBillID"].ToString().TrimEnd();
+                            //    this.txtSaleCarOutBillID.Text = drBill["SaleCarOutBillID"].ToString().TrimEnd();
+                            //    this.txtTotalWeight.Text = drBill["TotalWeight"].ToString().TrimEnd();
+                            //    this.txtSuttleWeight.Text = drBill["SuttleWeight"].ToString().TrimEnd();
+                            //    this.txtPrice.Text = drBill["Price"].ToString().TrimEnd();
+                            //    this.txtAmount.Text = drBill["Amount"].ToString().TrimEnd();
+                            //    this.txtBillStatus.SelectedValue = drBill["BillStatus"];
+
+                            //    if(lSaleCarOutBillID >= 0)
+                            //    {
+
+                            //    }
+                            //}
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+
+        #endregion -- 双击打开清单  --
 
         #region -- 读取磅房类型 -- 
 
@@ -87,12 +153,15 @@ namespace LB.MainForm
                 this.txtItemID.TextBox.ReadOnly = false;
                 this.txtCalculateType.Enabled = false;
                 this.txtReceiveType.Enabled = false;
+
+                this.lblWeightTypeName.Text = "磅单(入场)";
             }
             else
             {
                 this.txtItemID.TextBox.ReadOnly = true;
                 this.txtCalculateType.Enabled = true;
                 this.txtReceiveType.Enabled = true;
+                this.lblWeightTypeName.Text = "磅单(出场)";
             }
         }
 
@@ -167,6 +236,26 @@ namespace LB.MainForm
             try
             {
                 RereadBaseInfo(sender);
+
+                if(sender == this.txtCarID.TextBox)
+                {
+                    if(_WeightType== enWeightType.WeightOut)//出场磅房
+                    {
+                        this.txtTotalWeight.Text = "0";
+
+                        string strCarNum = this.txtCarID.TextBox.Text.ToString();
+                        long lCarID = 0;
+                        using (DataTable dtCar = ExecuteSQL.CallView(113, "CarID", "CarNum='" + strCarNum + "'", ""))
+                        {
+                            if (dtCar.Rows.Count > 0)
+                            {
+                                lCarID = LBConverter.ToInt64(dtCar.Rows[0]["CarID"]);
+                            }
+                        }
+                        //读取入场数据
+                        ReadCarInBill(lCarID);
+                    }
+                }
                 //读取物料价格
                 ReadPrice(sender);
             }
@@ -178,7 +267,17 @@ namespace LB.MainForm
 
         private void RereadBaseInfo(object sender)
         {
-            if (_ctlBaseInfo.BaseInfoType == enBaseInfoType.Car && sender == txtCarID.TextBox)
+            if (_ctlBaseInfo.BaseInfoType == enBaseInfoType.CarIn && sender == txtCarID.TextBox)
+            {
+                string strFilter = "";
+                string strValue = txtCarID.TextBox.Text.TrimEnd();
+                if (strValue != "")
+                {
+                    strFilter = "CarNum like '%" + strValue + "%'";
+                }
+                _ctlBaseInfo.LoadDataSource(strFilter);
+            }
+            else if (_ctlBaseInfo.BaseInfoType == enBaseInfoType.CarOut && sender == txtCarID.TextBox)
             {
                 string strFilter = "";
                 string strValue = txtCarID.TextBox.Text.TrimEnd();
@@ -278,7 +377,14 @@ namespace LB.MainForm
             {
                 if(sender == txtCarID.TextBox)
                 {
-                    this._ctlBaseInfo.ChangeItemType(enBaseInfoType.Car);
+                    if (_WeightType == enWeightType.WeightIn)
+                    {
+                        this._ctlBaseInfo.ChangeItemType(enBaseInfoType.CarIn);
+                    }
+                    else if (_WeightType == enWeightType.WeightOut)
+                    {
+                        this._ctlBaseInfo.ChangeItemType(enBaseInfoType.CarOut);
+                    }
                     RereadBaseInfo(txtCarID.TextBox);
                 }
                 else if (sender == txtItemID.TextBox)
@@ -315,7 +421,11 @@ namespace LB.MainForm
         {
             try
             {
-                if(e.BaseInfoType== enBaseInfoType.Car)
+                if(e.BaseInfoType== enBaseInfoType.CarIn)
+                {
+                    this.txtCarID.TextBox.SelectedItemID = e.SelectedRow["CarID"];
+                }
+                else if (e.BaseInfoType == enBaseInfoType.CarOut)
                 {
                     this.txtCarID.TextBox.SelectedItemID = e.SelectedRow["CarID"];
                 }
@@ -345,6 +455,10 @@ namespace LB.MainForm
             LBLog.AssemblyStart();
 
             this.grdMain.LBLoadConst();
+
+            this.txtBillStatus.DataSource = LB.Common.LBConst.GetConstData("BillStatus");//单据状态
+            this.txtBillStatus.DisplayMember = "ConstText";
+            this.txtBillStatus.ValueMember = "ConstValue";
         }
 
         #endregion
@@ -393,7 +507,14 @@ namespace LB.MainForm
         {
             try
             {
-                SaveInBill();
+                if (_WeightType == enWeightType.WeightIn)
+                {
+                    SaveInBill();
+                }
+                else if (_WeightType == enWeightType.WeightOut)
+                {
+                    SaveOutBill();
+                }
             }
             catch (Exception ex)
             {
@@ -472,6 +593,48 @@ namespace LB.MainForm
             {
                 frmWeightConfigType frm = new SysConfig.SysConfig.frmWeightConfigType();
                 LBShowForm.ShowDialog(frm);
+                if (frm.IsChangeWeightType)//入磅修改了磅房类型，则强制注销系统
+                {
+                    bolIsCancel = true;
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+        
+        private void btnWeightReportSet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                WeightReportConfig();
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+        
+        private void btnRePrintReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PreviceReport();
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
+        }
+        //查看皮重库
+        private void btnCarTareManger_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmCarTareManager frmTare = new frmCarTareManager(this.txtCarID.TextBox.Text);
+                LBShowForm.ShowDialog(frmTare);
             }
             catch (Exception ex)
             {
@@ -492,6 +655,61 @@ namespace LB.MainForm
             int iCalculateType = LBConverter.ToInt32(this.txtCalculateType.SelectedValue);
             decimal decCarTare = LBConverter.ToDecimal(this.txtCarTare.Text);
 
+            byte[] bImg1 = null;
+            byte[] bImg2 = null;
+            byte[] bImg3 = null;
+            byte[] bImg4 = null;
+
+            try
+            {
+                bImg1 = viewCamera1.CapturePic();
+                bImg2 = viewCamera2.CapturePic();
+                bImg3 = viewCamera3.CapturePic();
+                bImg4 = viewCamera4.CapturePic();
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.ShowCommonMessage(ex.Message);
+            }
+
+            //测试图片
+            /*using (MemoryStream ms = new MemoryStream())
+            {
+                Image img = Image.FromFile(@"F:\导出窗型(问题组合窗).jpg");
+                img.Save(ms, ImageFormat.Jpeg);
+                bImg1 = new byte[ms.Length];
+                //Image.Save()会改变MemoryStream的Position，需要重新Seek到Begin
+                ms.Seek(0, SeekOrigin.Begin);
+                ms.Read(bImg1, 0, bImg1.Length);
+            }
+            using (MemoryStream ms = new MemoryStream())
+            {
+                Image img = Image.FromFile(@"F:\导出窗型(问题组合窗).jpg");
+                img.Save(ms, ImageFormat.Jpeg);
+                bImg2 = new byte[ms.Length];
+                //Image.Save()会改变MemoryStream的Position，需要重新Seek到Begin
+                ms.Seek(0, SeekOrigin.Begin);
+                ms.Read(bImg2, 0, bImg2.Length);
+            }
+            using (MemoryStream ms = new MemoryStream())
+            {
+                Image img = Image.FromFile(@"F:\导出窗型(问题组合窗).jpg");
+                img.Save(ms, ImageFormat.Jpeg);
+                bImg3 = new byte[ms.Length];
+                //Image.Save()会改变MemoryStream的Position，需要重新Seek到Begin
+                ms.Seek(0, SeekOrigin.Begin);
+                ms.Read(bImg3, 0, bImg3.Length);
+            }
+            using (MemoryStream ms = new MemoryStream())
+            {
+                Image img = Image.FromFile(@"F:\导出窗型(问题组合窗).jpg");
+                img.Save(ms, ImageFormat.Jpeg);
+                bImg4 = new byte[ms.Length];
+                //Image.Save()会改变MemoryStream的Position，需要重新Seek到Begin
+                ms.Seek(0, SeekOrigin.Begin);
+                ms.Read(bImg4, 0, bImg4.Length);
+            }*/
+
             if (decCarTare == 0)
             {
                 throw new Exception("当前【皮重】值为0，无法保存！");
@@ -508,7 +726,11 @@ namespace LB.MainForm
             parmCol.Add(new LBParameter("ReceiveType", enLBDbType.Int32, iReceiveType));
             parmCol.Add(new LBParameter("CalculateType", enLBDbType.Int32, iCalculateType));
             parmCol.Add(new LBParameter("CarTare", enLBDbType.Decimal, decCarTare));
-            
+            parmCol.Add(new LBParameter("MonitoreImg1", enLBDbType.Bytes, bImg1));
+            parmCol.Add(new LBParameter("MonitoreImg2", enLBDbType.Bytes, bImg2));
+            parmCol.Add(new LBParameter("MonitoreImg3", enLBDbType.Bytes, bImg3));
+            parmCol.Add(new LBParameter("MonitoreImg4", enLBDbType.Bytes, bImg4));
+
             DataSet dsReturn;
             Dictionary<string, object> dictValue;
             ExecuteSQL.CallSP(14100, parmCol, out dsReturn, out dictValue);
@@ -526,9 +748,136 @@ namespace LB.MainForm
             }
 
             LoadAllSalesBill(); //刷新磅单清单
+
+            //打印磅单
+            frmPrint = new frmAutoPrint();
+            PreviceReport();
+            LBShowForm.ShowDialog(frmPrint);
         }
 
         #endregion-- 保存入磅记录 --
+
+        #region-- 保存出磅记录 --
+
+        private void SaveOutBill()
+        {
+            long lSaleCarInBillID = LBConverter.ToInt64(this.txtSaleCarInBillID.Text);
+
+            string strCarNum = this.txtCarID.TextBox.Text.ToString();
+            long lCarID = 0;
+            using (DataTable dtCar = ExecuteSQL.CallView(113, "CarID", "CarNum='" + strCarNum + "'", ""))
+            {
+                if (dtCar.Rows.Count > 0)
+                {
+                    lCarID = LBConverter.ToInt64(dtCar.Rows[0]["CarID"]);
+                }
+            }
+            
+            int iReceiveType = LBConverter.ToInt32(this.txtReceiveType.SelectedValue);
+            int iCalculateType = LBConverter.ToInt32(this.txtCalculateType.SelectedValue);
+            decimal decTotalWeight = LBConverter.ToDecimal(this.txtTotalWeight.Text);
+            decimal decSuttleWeight = LBConverter.ToDecimal(this.txtSuttleWeight.Text);
+            decimal decPrice = LBConverter.ToDecimal(this.txtPrice.Text);
+            decimal decAmount = LBConverter.ToDecimal(this.txtAmount.Text);
+
+            byte[] bImg1 = null;
+            byte[] bImg2 = null;
+            byte[] bImg3 = null;
+            byte[] bImg4 = null;
+
+            try
+            {
+                bImg1 = viewCamera1.CapturePic();
+                bImg2 = viewCamera2.CapturePic();
+                bImg3 = viewCamera3.CapturePic();
+                bImg4 = viewCamera4.CapturePic();
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.ShowCommonMessage(ex.Message);
+            }
+            //测试图片
+            /*using (MemoryStream ms = new MemoryStream())
+            {
+                Image img = Image.FromFile(@"F:\导出窗型(问题组合窗).jpg");
+                img.Save(ms, ImageFormat.Jpeg);
+                bImg1 = new byte[ms.Length];
+                //Image.Save()会改变MemoryStream的Position，需要重新Seek到Begin
+                ms.Seek(0, SeekOrigin.Begin);
+                ms.Read(bImg1, 0, bImg1.Length);
+            }
+            using (MemoryStream ms = new MemoryStream())
+            {
+                Image img = Image.FromFile(@"F:\导出窗型(问题组合窗).jpg");
+                img.Save(ms, ImageFormat.Jpeg);
+                bImg2 = new byte[ms.Length];
+                //Image.Save()会改变MemoryStream的Position，需要重新Seek到Begin
+                ms.Seek(0, SeekOrigin.Begin);
+                ms.Read(bImg2, 0, bImg2.Length);
+            }
+            using (MemoryStream ms = new MemoryStream())
+            {
+                Image img = Image.FromFile(@"F:\导出窗型(问题组合窗).jpg");
+                img.Save(ms, ImageFormat.Jpeg);
+                bImg3 = new byte[ms.Length];
+                //Image.Save()会改变MemoryStream的Position，需要重新Seek到Begin
+                ms.Seek(0, SeekOrigin.Begin);
+                ms.Read(bImg3, 0, bImg3.Length);
+            }
+            using (MemoryStream ms = new MemoryStream())
+            {
+                Image img = Image.FromFile(@"F:\导出窗型(问题组合窗).jpg");
+                img.Save(ms, ImageFormat.Jpeg);
+                bImg4 = new byte[ms.Length];
+                //Image.Save()会改变MemoryStream的Position，需要重新Seek到Begin
+                ms.Seek(0, SeekOrigin.Begin);
+                ms.Read(bImg4, 0, bImg4.Length);
+            }*/
+            if (decTotalWeight == 0)
+            {
+                throw new Exception("当前【毛重】值为0，无法保存！");
+            }
+            if (decSuttleWeight == 0)
+            {
+                throw new Exception("当前【净重】值为0，无法保存！");
+            }
+
+            LBDbParameterCollection parmCol = new LBDbParameterCollection();
+            parmCol.Add(new LBParameter("SaleCarInBillID", enLBDbType.Int64, lSaleCarInBillID));
+            parmCol.Add(new LBParameter("CarID", enLBDbType.Int64, lCarID));
+            parmCol.Add(new LBParameter("Price", enLBDbType.Decimal, decPrice));
+            parmCol.Add(new LBParameter("Amount", enLBDbType.Decimal, decAmount));
+            parmCol.Add(new LBParameter("Description", enLBDbType.String, this.txtDescription.Text));
+            parmCol.Add(new LBParameter("ReceiveType", enLBDbType.Int32, iReceiveType));
+            parmCol.Add(new LBParameter("CalculateType", enLBDbType.Int32, iCalculateType));
+            parmCol.Add(new LBParameter("TotalWeight", enLBDbType.Decimal, decTotalWeight));
+            parmCol.Add(new LBParameter("SuttleWeight", enLBDbType.Decimal, decSuttleWeight));
+            parmCol.Add(new LBParameter("MonitoreImg1", enLBDbType.Bytes, bImg1));
+            parmCol.Add(new LBParameter("MonitoreImg2", enLBDbType.Bytes, bImg2));
+            parmCol.Add(new LBParameter("MonitoreImg3", enLBDbType.Bytes, bImg3));
+            parmCol.Add(new LBParameter("MonitoreImg4", enLBDbType.Bytes, bImg4));
+
+            DataSet dsReturn;
+            Dictionary<string, object> dictValue;
+            ExecuteSQL.CallSP(14102, parmCol, out dsReturn, out dictValue);
+            if (dictValue.ContainsKey("SaleCarOutBillID"))
+            {
+                this.txtSaleCarOutBillID.Text = dictValue["SaleCarOutBillID"].ToString();
+            }
+            if (dictValue.ContainsKey("BillDate"))
+            {
+                this.txtBillDateOut.Text = dictValue["BillDate"].ToString();
+            }
+
+            LoadAllSalesBill(); //刷新磅单清单
+
+            //打印磅单
+            frmPrint = new frmAutoPrint();
+            PreviceReport();
+            LBShowForm.ShowDialog(frmPrint);
+        }
+
+        #endregion-- 保存出磅记录 --
 
         #region -- 查询磅单清单 --
 
@@ -552,7 +901,7 @@ namespace LB.MainForm
 
         private void OpenCamera(object CameraIndex)
         {
-            return;
+            //return;
             int iCameraIndex = Convert.ToInt16(CameraIndex);
             DataTable dtCamera = ExecuteSQL.CallView(122, "", "MachineName='" + LoginInfo.MachineName + "'", "");
             if (dtCamera.Rows.Count > 0)
@@ -711,6 +1060,181 @@ namespace LB.MainForm
 
             decimal decPrice= LBConverter.ToDecimal(this.txtPrice.Text);
             this.txtAmount.Text = (decPrice * (decTotalWeight - decCarTare)).ToString("0.0");
+        }
+
+        #endregion
+
+        #region -- 读取最近入场但未出场的数据 --
+
+        private void ReadCarInBill(long lCarID)
+        {
+            if (lCarID > 0)
+            {
+                LBDbParameterCollection parmCol = new LBDbParameterCollection();
+                parmCol.Add(new LBParameter("CarID", enLBDbType.Int64, lCarID));
+
+                DataSet dsReturn;
+                Dictionary<string, object> dictValue;
+                ExecuteSQL.CallSP(14101, parmCol, out dsReturn, out dictValue);
+                if(dsReturn!=null&& dsReturn.Tables.Count > 0)
+                {
+                    DataTable dtResult = dsReturn.Tables[0];
+                    DataView dvResult = new DataView(dtResult);
+                    if (dtResult.Rows.Count == 0)
+                    {
+                        ClearInBillInfo();
+                        throw new Exception("该车辆没有入场记录！");
+                    }
+                    else
+                    {
+                        dvResult.Sort = "BillDate desc";
+                        DataRowView drv = dvResult[0];
+
+                        this.txtBillDateIn.Text = drv["BillDate"].ToString();
+                        this.txtCalculateType.SelectedValue = drv["CalculateType"];
+                        this.txtItemID.TextBox.SelectedItemID = drv["ItemID"];
+                        this.txtCustomerID.TextBox.SelectedItemID = drv["CustomerID"];
+                        this.txtCarTare.Text = drv["CarTare"].ToString();
+                        this.txtDescription.Text= drv["Description"].ToString();
+                        this.txtReceiveType.SelectedValue = drv["ReceiveType"];
+                        this.txtSaleCarInBillCode.Text = drv["SaleCarInBillCode"].ToString().TrimEnd();
+                        this.txtSaleCarInBillID.Text= drv["SaleCarInBillID"].ToString().TrimEnd();
+                        this.txtBillStatus.SelectedValue = drv["BillStatus"];
+                    }
+                }
+            }
+            else
+            {
+                ClearInBillInfo();
+            }
+        }
+
+        #endregion
+
+        #region -- 出场磅单（当鼠标离开车牌控件时校验是否存在入场磅单，如果否则清空相关控件值）
+
+        private void ClearInBillInfo()
+        {
+            this.txtTotalWeight.Text = "0";
+            this.txtSaleCarInBillCode.Text = "";
+            this.txtPrice.Text = "0";
+            this.txtCarTare.Text = "0";
+            this.txtItemID.TextBox.Text = "0";
+            this.txtDescription.Text = "";
+            this.txtSaleCarInBillID.Text = "";
+            this.txtSaleCarOutBillID.Text = "";
+            this.txtBillDateIn.Text = "";
+            this.txtBillDateOut.Text = "";
+        }
+
+        #endregion
+
+        #region -- 报表设计 --
+
+        private void WeightReportConfig()
+        {
+            ReportRequestArgs args;
+            if (_WeightType == enWeightType.WeightIn)
+            {
+                args = new ReportRequestArgs(0, 6, null, null);
+
+                long lSaleCarInBillID = LBConverter.ToInt64(this.txtSaleCarInBillID.Text);
+                DataTable dtBill = ExecuteSQL.CallView(123, "", "SaleCarInBillID=" + lSaleCarInBillID, "");
+                //if (dtBill.Rows.Count > 0)
+                //{
+                //    DataRow drHeader = dtBill.Rows[0];
+                //    args.RecordDR = drHeader;
+                //}
+
+                dtBill.TableName = "T006";
+                DataSet dsSource = new DataSet("Report");
+                dsSource.Tables.Add(dtBill);
+                args.DSDataSource = dsSource;
+
+                frmReport frm = new frmReport(args);
+                LBShowForm.ShowDialog(frm);
+            }
+            else if (_WeightType == enWeightType.WeightOut)
+            {
+                args = new ReportRequestArgs(0, 7, null, null);
+
+                long lSaleCarOutBillID = LBConverter.ToInt64(this.txtSaleCarOutBillID.Text);
+                DataTable dtBill = ExecuteSQL.CallView(125, "", "SaleCarOutBillID=" + lSaleCarOutBillID, "");
+                dtBill.TableName = "T007";
+                DataSet dsSource = new DataSet("Report");
+                dsSource.Tables.Add(dtBill);
+                args.DSDataSource = dsSource;
+
+                frmReport frm = new frmReport(args);
+                LBShowForm.ShowDialog(frm);
+            }
+        }
+
+        #endregion
+
+        #region -- 预览磅单 --
+
+        private void PreviceReport()
+        {
+            ReportRequestArgs args;
+            if (_WeightType == enWeightType.WeightIn)
+            {
+                DataTable dtReportTemp = ExecuteSQL.CallView(105, "", "ReportTypeID=6", "");
+                if (dtReportTemp.Rows.Count > 0)
+                {
+                    DataRow drReport = dtReportTemp.Rows[0];
+                    long lReportTemplateID = Convert.ToInt64(drReport["ReportTemplateID"]);
+                    long lReportTypeID = Convert.ToInt64(drReport["ReportTypeID"]);
+
+                    args = new ReportRequestArgs(lReportTemplateID, 6, null, null);
+
+                    long lSaleCarInBillID = LBConverter.ToInt64(this.txtSaleCarInBillID.Text);
+                    DataTable dtBill = ExecuteSQL.CallView(123, "", "SaleCarInBillID=" + lSaleCarInBillID, "");
+                    dtBill.TableName = "T006";
+                    DataSet dsSource = new DataSet("Report");
+                    dsSource.Tables.Add(dtBill);
+                    args.DSDataSource = dsSource;
+
+                    ReportHelper.OpenReportDialog(enRequestReportActionType.DirectPrint, args);
+                }
+            }
+            else if (_WeightType == enWeightType.WeightOut)
+            {
+                DataTable dtReportTemp = ExecuteSQL.CallView(105, "", "ReportTypeID=7", "");
+                if (dtReportTemp.Rows.Count > 0)
+                {
+                    DataRow drReport = dtReportTemp.Rows[0];
+                    long lReportTemplateID = Convert.ToInt64(drReport["ReportTemplateID"]);
+                    long lReportTypeID = Convert.ToInt64(drReport["ReportTypeID"]);
+
+                    args = new ReportRequestArgs(lReportTemplateID, 7, null, null);
+
+                    long lSaleCarOutBillID = LBConverter.ToInt64(this.txtSaleCarOutBillID.Text);
+                    DataTable dtBill = ExecuteSQL.CallView(125, "", "SaleCarOutBillID=" + lSaleCarOutBillID, "");
+                    dtBill.TableName = "T007";
+                    DataSet dsSource = new DataSet("Report");
+                    dsSource.Tables.Add(dtBill);
+                    args.DSDataSource = dsSource;
+
+                    ReportHelper.OpenReportDialog(enRequestReportActionType.DirectPrint, args);
+                }
+            }
+        }
+
+        //报表打印完毕后触发事件
+        private void ReportHelper_LBFinishReport(object sender, EventArgs e)
+        {
+            try
+            {
+                if (frmPrint != null)
+                {
+                    frmPrint.IsFinish = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                LB.WinFunction.LBCommonHelper.DealWithErrorMessage(ex);
+            }
         }
 
         #endregion

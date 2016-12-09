@@ -83,6 +83,12 @@
     <Compile Include="MI\frmSaleCarInOutBillManager.Designer.cs">
       <DependentUpon>frmSaleCarInOutBillManager.cs</DependentUpon>
     </Compile>
+    <Compile Include="MI\frmSaleCarInOutEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MI\frmSaleCarInOutEdit.Designer.cs">
+      <DependentUpon>frmSaleCarInOutEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="MI\frmUOMManager.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -145,6 +151,9 @@
     <EmbeddedResource Include="MI\frmSaleCarInOutBillManager.resx">
       <DependentUpon>frmSaleCarInOutBillManager.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MI\frmSaleCarInOutEdit.resx">
+      <DependentUpon>frmSaleCarInOutEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MI\frmUOMManager.resx">
       <DependentUpon>frmUOMManager.cs</DependentUpon>
     </EmbeddedResource>
@@ -189,6 +198,21 @@
       <Project>{948f87ee-5644-4cb5-afa2-c8aeeb1470c2}</Project>
       <Name>LB.SysConfig</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnApprove.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnRedo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnUnPostInUse.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnReset.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnUnApprove.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
